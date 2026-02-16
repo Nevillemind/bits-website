@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>US-003 Tests - Hero Section</title>
+  <style>
+    body { font-family: monospace; background: #1a1a2e; color: #eee; padding: 2rem; }
+    .pass { color: #4caf50; } .fail { color: #e94560; }
+    iframe { display: none; }
+  </style>
+</head>
+<body>
+  <h1>US-003: Hero Section Tests</h1>
+  <div id="results"></div>
+  <iframe id="site" src="../index.html"></iframe>
+  <script>
+    const iframe = document.getElementById('site');
+    iframe.onload = () => {
+      const doc = iframe.contentDocument;
+      const results = document.getElementById('results');
+      let passed = 0, failed = 0;
+
+      function assert(name, condition) {
+        const el = document.createElement('p');
+        if (condition) { passed++; el.className = 'pass'; el.textContent = '✓ ' + name; }
+        else { failed++; el.className = 'fail'; el.textContent = '✗ ' + name; }
+        results.appendChild(el);
+      }
+
+      const hero = doc.getElementById('home');
+      assert('Hero section exists with id="home"', !!hero);
+      assert('Hero has min-height 100vh', hero && getComputedStyle(hero).minHeight === '100vh');
+
+      const h1 = hero && hero.querySelector('h1');
+      assert('H1 contains "Blockchain Integrative Technology Solutions"', h1 && h1.textContent.includes('Blockchain Integrative Technology Solutions'));
+
+      const tagline = hero && hero.querySelector('.hero-tagline');
+      assert('Tagline about empowering SMBs exists', tagline && tagline.textContent.includes('Empowering SMBs'));
+
+      const cta = hero && hero.querySelector('a.cta-button');
+      assert('CTA button exists', !!cta);
+      assert('CTA links to #products', cta && cta.getAttribute('href') === '#products');
+      assert('CTA text is "Explore Our Solutions"', cta && cta.textContent.trim() === 'Explore Our Solutions');
+
+      const bg = hero && hero.querySelector('.hero-bg');
+      const bgStyle = bg && getComputedStyle(bg);
+      assert('Animated gradient background exists', bg && bgStyle.animationName !== 'none');
+
+      const logo = hero && hero.querySelector('img.hero-logo');
+      assert('Hero logo image exists', !!logo);
+
+      const subtitle = hero && hero.querySelector('.hero-subtitle');
+      assert('Subtitle about data sovereignty exists', subtitle && subtitle.textContent.includes('data'));
+
+      const summary = document.createElement('h2');
+      summary.textContent = `Results: ${passed} passed, ${failed} failed`;
+      summary.className = failed ? 'fail' : 'pass';
+      results.insertBefore(summary, results.firstChild);
+    };
+  </script>
+</body>
+</html>
