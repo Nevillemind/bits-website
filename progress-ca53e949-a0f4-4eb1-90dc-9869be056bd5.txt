@@ -1,0 +1,21 @@
+# Progress Log
+Run: ca53e949-a0f4-4eb1-90dc-9869be056bd5
+Task: Build BITS marketing website
+Started: 2026-02-16
+
+## Codebase Patterns
+- Plain HTML/CSS/JS, no build step
+- CSS custom properties in :root for theming
+- Semantic sections with id attributes for nav anchoring
+- Tests via tests/test.html using iframe + JS assertions
+
+---
+
+## 2026-02-16 12:53 - US-001: Project scaffolding and base HTML structure
+- Created index.html with HTML5 structure, meta tags, semantic sections
+- Created css/styles.css with CSS reset, custom properties, dark theme, container class
+- Created js/main.js with DOMContentLoaded stub
+- Created tests/test.html with 11 assertions checking structure and styling
+- Created .gitignore
+- **Learnings:** straightforward static site, no build tooling needed
+---
