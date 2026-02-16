@@ -50,8 +50,110 @@ img {
   height: auto;
 }
 
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(26, 26, 46, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(233, 69, 96, 0.15);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: 2px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-link {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--primary);
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.hamburger-line {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+@media (max-width: 767px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: rgba(26, 26, 46, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem 1.5rem;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0 1.5rem;
+  }
+
+  .nav-links.open {
+    max-height: 300px;
+    padding: 1rem 1.5rem;
+  }
+
+  .nav-links li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+}
+
+/* Offset for fixed nav */
 section {
   padding: 4rem 1.5rem;
+  scroll-margin-top: 64px;
+}
+
+main {
+  padding-top: 64px;
 }
 
 footer {

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>US-002 Tests - Navigation Bar</title>
+</head>
+<body>
+  <h1>US-002: Responsive Navigation Bar Tests</h1>
+  <iframe id="site" src="../index.html" width="100%" height="400"></iframe>
+  <pre id="results"></pre>
+  <script>
+    const results = document.getElementById('results');
+    const iframe = document.getElementById('site');
+    let pass = 0, fail = 0;
+
+    function assert(condition, msg) {
+      if (condition) { pass++; log('✅ ' + msg); }
+      else { fail++; log('❌ ' + msg); }
+    }
+
+    function log(msg) {
+      console.log(msg);
+      results.textContent += msg + '\n';
+    }
+
+    iframe.addEventListener('load', () => {
+      const doc = iframe.contentDocument;
+
+      // Nav element exists
+      const nav = doc.querySelector('nav.navbar');
+      assert(nav !== null, 'Nav element with class "navbar" exists');
+
+      // Logo
+      const logo = doc.querySelector('.logo');
+      assert(logo !== null && logo.textContent.trim() === 'BITS', 'BITS logo text present');
+
+      // 5 nav links
+      const links = doc.querySelectorAll('.nav-link');
+      assert(links.length === 5, 'Has exactly 5 navigation links');
+
+      // Check link texts
+      const expected = ['Home', 'Products', 'Philosophy', 'About', 'Contact'];
+      const actual = Array.from(links).map(l => l.textContent.trim());
+      assert(JSON.stringify(actual) === JSON.stringify(expected), 'Nav links have correct text: ' + actual.join(', '));
+
+      // Check link hrefs point to sections
+      const hrefs = Array.from(links).map(l => l.getAttribute('href'));
+      assert(hrefs.every(h => h.startsWith('#')), 'All nav links are anchor links');
+
+      // Hamburger button exists
+      const hamburger = doc.getElementById('hamburger');
+      assert(hamburger !== null, 'Hamburger button exists');
+      assert(hamburger.tagName === 'BUTTON', 'Hamburger is a button element');
+
+      // Hamburger has aria-label
+      assert(hamburger.getAttribute('aria-label') !== null, 'Hamburger has aria-label');
+
+      // Nav has backdrop-filter
+      const navStyle = iframe.contentWindow.getComputedStyle(nav);
+      const hasBlur = navStyle.backdropFilter.includes('blur') || navStyle.webkitBackdropFilter?.includes('blur');
+      assert(hasBlur, 'Nav has backdrop-filter blur');
+
+      // Nav is fixed/sticky
+      assert(navStyle.position === 'fixed', 'Nav is position: fixed');
+
+      // Nav has z-index
+      assert(parseInt(navStyle.zIndex) >= 100, 'Nav has high z-index');
+
+      log(`\n${pass} passed, ${fail} failed`);
+      if (fail === 0) log('ALL TESTS PASSED');
+    });
+  </script>
+</body>
+</html>
