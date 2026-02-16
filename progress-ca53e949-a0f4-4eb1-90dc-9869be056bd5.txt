@@ -27,3 +27,11 @@ Started: 2026-02-16
 - Files changed: index.html, css/styles.css, js/main.js, tests/test-us002.html
 - **Learnings:** scroll-margin-top needed for fixed nav offset; padding-top on main for content below nav
 ---
+
+## 2026-02-16 13:12 - US-003: Hero section with BITS branding and tagline
+- Full viewport hero with animated gradient bg, BITS logo, heading, tagline, subtitle, CTA
+- Copied BITS-logo.png to assets/, updated nav links from #hero to #home
+- CSS: clamp() for responsive text, gradient text heading, animated bg, mobile full-width CTA
+- Files changed: index.html, css/styles.css, assets/BITS-logo.png, tests/test-us003.html
+- **Learnings:** hero id changed to 'home' for nav consistency; clamp() works well for responsive type
+---
