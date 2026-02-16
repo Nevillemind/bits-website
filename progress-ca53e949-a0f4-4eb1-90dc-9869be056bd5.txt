@@ -19,3 +19,11 @@ Started: 2026-02-16
 - Created .gitignore
 - **Learnings:** straightforward static site, no build tooling needed
 ---
+
+## 2026-02-16 13:03 - US-002: Responsive navigation bar
+- Added fixed navbar with BITS logo, 5 nav links, hamburger menu
+- CSS: semi-transparent bg with backdrop-filter blur, mobile responsive at <768px
+- JS: hamburger toggle, close-on-click, IntersectionObserver active link highlighting
+- Files changed: index.html, css/styles.css, js/main.js, tests/test-us002.html
+- **Learnings:** scroll-margin-top needed for fixed nav offset; padding-top on main for content below nav
+---
