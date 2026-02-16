@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>US-001 Tests</title>
+</head>
+<body>
+  <h1>US-001: Scaffolding Tests</h1>
+  <iframe id="site" src="../index.html" width="100%" height="400"></iframe>
+  <pre id="results"></pre>
+  <script>
+    const results = document.getElementById('results');
+    const iframe = document.getElementById('site');
+    let pass = 0, fail = 0;
+
+    function assert(condition, msg) {
+      if (condition) { pass++; log('✅ ' + msg); }
+      else { fail++; log('❌ ' + msg); }
+    }
+
+    function log(msg) {
+      console.log(msg);
+      results.textContent += msg + '\n';
+    }
+
+    iframe.addEventListener('load', () => {
+      const doc = iframe.contentDocument;
+
+      assert(doc.doctype !== null, 'Has DOCTYPE');
+      assert(doc.documentElement.lang === 'en', 'html lang="en"');
+      assert(doc.querySelector('meta[charset]') !== null, 'Has charset meta');
+      assert(doc.querySelector('meta[name="viewport"]') !== null, 'Has viewport meta');
+      assert(doc.querySelector('link[rel="stylesheet"][href="css/styles.css"]') !== null, 'CSS linked');
+      assert(doc.querySelector('script[src="js/main.js"]') !== null, 'JS linked');
+      assert(doc.getElementById('hero') !== null, 'Hero section exists');
+      assert(doc.getElementById('products') !== null, 'Products section exists');
+      assert(doc.getElementById('about') !== null, 'About section exists');
+      assert(doc.getElementById('contact') !== null, 'Contact section exists');
+
+      const bg = getComputedStyle(iframe.contentDocument.body).backgroundColor;
+      assert(bg === 'rgb(26, 26, 46)', 'Body background is --bg-dark (#1a1a2e)');
+
+      log(`\n${pass} passed, ${fail} failed`);
+      if (fail === 0) log('ALL TESTS PASSED');
+    });
+  </script>
+</body>
+</html>
