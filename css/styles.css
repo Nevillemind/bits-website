@@ -718,6 +718,253 @@ main {
   }
 }
 
+/* About Section - Personal & Story-Driven */
+.about-section {
+  background: linear-gradient(180deg, #1a1a2e 0%, #231a2e 50%, #1a1a2e 100%);
+  padding: 5rem 1.5rem;
+  scroll-margin-top: 64px;
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.about-label {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #e94560;
+  margin-bottom: 0.75rem;
+}
+
+.about-headline {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 0;
+  background: linear-gradient(135deg, #fff 0%, #e94560 50%, #ff6b8a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 4rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.about-photo {
+  position: sticky;
+  top: calc(64px + 2rem);
+}
+
+.photo-frame {
+  width: 220px;
+  height: 220px;
+  margin: 0 auto 1.25rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(233, 69, 96, 0.3) 0%, rgba(255, 107, 138, 0.2) 100%);
+  padding: 5px;
+  box-shadow: 0 12px 40px rgba(233, 69, 96, 0.25);
+}
+
+.photo-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2d2133 0%, #1a1a2e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(233, 69, 96, 0.5);
+  border: 2px dashed rgba(233, 69, 96, 0.3);
+}
+
+.photo-caption {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 0.25rem;
+}
+
+.photo-subtitle {
+  font-size: 0.9rem;
+  color: #e94560;
+  text-align: center;
+  font-weight: 500;
+}
+
+.about-story {
+  max-width: 700px;
+}
+
+.story-block {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(233, 69, 96, 0.1);
+}
+
+.story-block:last-of-type {
+  border-bottom: none;
+  margin-bottom: 2rem;
+  padding-bottom: 0;
+}
+
+.story-block h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.story-block h3::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.25rem;
+  bottom: 0.25rem;
+  width: 3px;
+  background: linear-gradient(180deg, #e94560, #ff6b8a);
+  border-radius: 2px;
+}
+
+.story-block p {
+  font-size: 1.05rem;
+  color: #c4b8ac;
+  line-height: 1.85;
+  margin-bottom: 1rem;
+}
+
+.story-block p:last-child {
+  margin-bottom: 0;
+}
+
+.story-personal {
+  background: rgba(233, 69, 96, 0.03);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-top: 1rem;
+  border: 1px solid rgba(233, 69, 96, 0.1);
+}
+
+.story-personal h3 {
+  padding-left: 0;
+}
+
+.story-personal h3::before {
+  display: none;
+}
+
+.story-personal p {
+  color: #b8a99a;
+}
+
+.mission-highlight {
+  display: flex;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, rgba(233, 69, 96, 0.1) 0%, rgba(255, 107, 138, 0.05) 100%);
+  border: 1px solid rgba(233, 69, 96, 0.2);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-top: 1rem;
+}
+
+.mission-icon {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #e94560 0%, #ff6b8a 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.mission-content h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e94560;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.mission-content p {
+  font-size: 1.05rem;
+  color: #e0d6cc;
+  line-height: 1.75;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .about-photo {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .photo-frame {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+@media (max-width: 767px) {
+  .about-section {
+    padding: 3rem 1rem;
+  }
+
+  .about-header {
+    margin-bottom: 3rem;
+  }
+
+  .story-block {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .story-block h3 {
+    font-size: 1.2rem;
+  }
+
+  .story-block p {
+    font-size: 1rem;
+  }
+
+  .story-personal {
+    padding: 1.5rem;
+  }
+
+  .mission-highlight {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    padding: 1.5rem;
+  }
+
+  .mission-icon {
+    width: 48px;
+    height: 48px;
+  }
+}
+
 footer {
   padding: 2rem 0;
   text-align: center;
