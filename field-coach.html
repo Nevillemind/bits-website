@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BITS Field Coach — AI-powered field intelligence for every industry.">
+  <title>BITS Field Coach — AI Field Intelligence</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .detail-hero { padding: 8rem 0 4rem; text-align: center; background: linear-gradient(135deg, var(--bg-dark), var(--bg-medium)); }
+    .detail-hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.5rem; }
+    .detail-hero .tagline { color: var(--primary); font-size: 1.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; }
+    .detail-hero p { color: var(--text-muted); max-width: 700px; margin: 0 auto 2rem; font-size: 1.05rem; line-height: 1.8; }
+    .detail-section { padding: 4rem 0; }
+    .detail-section:nth-child(even) { background: var(--bg-medium); }
+    .detail-section h2 { margin-bottom: 1.5rem; }
+    .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+    .use-case-card { background: var(--bg-dark); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 1.5rem; }
+    .use-case-card:hover { border-color: var(--primary); }
+    .use-case-card .icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .use-case-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .use-case-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
+    .how-it-works { counter-reset: step; }
+    .step { display: flex; gap: 1.5rem; margin-bottom: 2rem; align-items: flex-start; }
+    .step-number { flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; }
+    .step-content h3 { font-size: 1.1rem; margin-bottom: 0.25rem; }
+    .step-content p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+    .patent-notice { background: rgba(233, 69, 96, 0.1); border: 1px solid var(--primary); border-radius: var(--radius-md); padding: 1.5rem; margin-top: 3rem; text-align: center; }
+    .patent-notice p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+    .back-link { display: inline-block; margin-top: 2rem; color: var(--primary); font-weight: 600; }
+    .cta-section { text-align: center; padding: 4rem 0; }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <nav class="navbar">
+      <div class="container nav-container">
+        <a href="index.html" class="logo"><img src="assets/BITS-logo.png" alt="BITS" style="height: 36px;"></a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html" class="nav-link">← Back to BITS</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="detail-hero">
+      <div class="container">
+        <p class="tagline">AI Field Intelligence for Every Industry</p>
+        <h1>BITS Field Coach</h1>
+        <p>Real-time AI assistance that puts decades of expertise in every worker's pocket. Voice-powered queries, smart glasses integration, and supervisor intelligence — all running on your hardware, fully private.</p>
+        <span style="display: inline-block; background: var(--primary); color: #fff; padding: 0.35rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px;">PATENT PENDING</span>
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <div class="container">
+        <h2>The Problem We Solve</h2>
+        <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
+          Every day, workers in the field face situations where they need an answer — and the expert is back at the office, the manual is in the truck, or the foreman is on another job. That gap between "I need to know" and "I can find out" costs businesses thousands in delays, mistakes, and rework.
+        </p>
+        <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
+          BITS Field Coach closes that gap. Your organization's knowledge — SOPs, procedures, specifications, safety protocols — becomes an AI-powered assistant that every worker can query in real time, by voice, hands-free.
+        </p>
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <div class="container">
+        <h2>How It Works</h2>
+        <div class="how-it-works">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>Capture Your Knowledge</h3>
+              <p>We work with your team to digitize institutional knowledge — standard operating procedures, best practices, safety protocols, equipment manuals — into an AI-queryable knowledge base tailored to your operations.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>Deploy on Your Hardware</h3>
+              <p>Field Coach runs entirely on a local BITS Box — a pre-configured device that sits in your facility. No cloud dependency. No data leaving your building. Your knowledge stays yours.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>Workers Ask, AI Answers</h3>
+              <p>Your team queries Field Coach by voice — through smart glasses, a mobile device, or any connected device. "What's the spec for this?" "What's the safety protocol?" Instant, accurate answers drawn from YOUR knowledge base.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h3>Supervisors See Everything</h3>
+              <p>The supervisor dashboard shows what workers are asking, where knowledge gaps exist, and how the system is being used — giving management real-time intelligence on field operations without micromanaging.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <div class="container">
+        <h2>Industry Applications</h2>
+        <div class="use-cases-grid">
+          <div class="use-case-card">
+            <div class="icon">🔧</div>
+            <h3>Trades &amp; Construction</h3>
+            <p>Concrete mix specs, safety protocols, inspection checklists, equipment procedures. Workers get answers on-site without calling the office or searching through binders.</p>
+          </div>
+          <div class="use-case-card">
+            <div class="icon">🏥</div>
+            <h3>Medical &amp; Healthcare</h3>
+            <p>Clinical protocols, medication references, equipment procedures, compliance checklists. Staff access critical information hands-free during patient care.</p>
+          </div>
+          <div class="use-case-card">
+            <div class="icon">🏭</div>
+            <h3>Industrial &amp; Manufacturing</h3>
+            <p>Machine operation procedures, quality control specs, safety protocols, maintenance schedules. Reduce downtime and errors with instant AI-powered guidance.</p>
+          </div>
+          <div class="use-case-card">
+            <div class="icon">📦</div>
+            <h3>Warehouse &amp; Logistics</h3>
+            <p>Inventory procedures, pick-path optimization, equipment operation, receiving protocols. Keep operations moving efficiently with real-time AI assistance.</p>
+          </div>
+          <div class="use-case-card">
+            <div class="icon">🍽️</div>
+            <h3>Restaurants &amp; Hospitality</h3>
+            <p>Recipe standards, food safety protocols, equipment procedures, service standards. New hires get up to speed faster with an AI coach always available.</p>
+          </div>
+          <div class="use-case-card">
+            <div class="icon">🛒</div>
+            <h3>Retail</h3>
+            <p>Product knowledge, customer service protocols, inventory procedures, loss prevention guidelines. Empower floor staff with instant answers to any question.</p>
+          </div>
+        </div>
+
+        <div class="patent-notice">
+          <p><strong>⚠️ Patent Pending</strong> — BITS Field Coach technology is protected under provisional patent application filed with the United States Patent and Trademark Office. The proprietary AI architecture, knowledge base system, hardware abstraction layer, and multi-modal delivery platform described herein are the intellectual property of Blockchain Integrative Technology Solutions (BITS). All rights reserved.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <h2>Ready to Put AI in Your Workers' Hands?</h2>
+        <p style="color: var(--text-muted); margin-bottom: 2rem;">Let's talk about how Field Coach can transform your operations.</p>
+        <a href="https://calendly.com/bitscorpus" target="_blank" class="cta-button">Book a Consultation →</a>
+        <br>
+        <a href="index.html" class="back-link">← Back to BITS</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p class="copyright">&copy; 2026 BITS — Blockchain Integrative Technology Solutions. All rights reserved.</p>
+        <p style="color: var(--text-dim); font-size: 0.75rem; margin-top: 0.5rem;">Privacy-First &bull; Data-Sovereign &bull; Platform-Agnostic</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

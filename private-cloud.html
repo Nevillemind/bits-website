@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BITS Private Cloud | Military-Grade Private Infrastructure</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    :root {
+      --primary: #00d4ff;
+      --secondary: #0a0a1a;
+      --dark: #050510;
+      --text: #e0e0e0;
+      --card-bg: rgba(255,255,255,0.03);
+      --border: rgba(0,212,255,0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--dark);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    .navbar {
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      background: rgba(5,5,16,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+    }
+    .nav-container {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .logo { color: var(--primary); font-size: 1.5rem; font-weight: 700; text-decoration: none; }
+    .nav-links { list-style: none; display: flex; gap: 2rem; }
+    .nav-links a { color: var(--text); text-decoration: none; font-size: 0.95rem; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--primary); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: radial-gradient(ellipse at center top, rgba(0,212,255,0.08) 0%, transparent 60%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shield-glow {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0,212,255,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(0,212,255,0.1);
+      border: 1px solid rgba(0,212,255,0.3);
+      color: var(--primary);
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      color: #fff;
+    }
+
+    .hero h1 span { color: var(--primary); }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #aaa;
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .hero-ctas {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #000;
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: opacity 0.3s;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+
+    .btn-outline {
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+    .btn-outline:hover { background: rgba(0,212,255,0.1); }
+
+    /* SECTIONS */
+    section { padding: 5rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      color: var(--primary);
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-intro {
+      font-size: 1.1rem;
+      color: #aaa;
+      max-width: 650px;
+      margin-bottom: 3rem;
+    }
+
+    /* DIFFERENTIATOR */
+    .diff-section { background: var(--secondary); }
+
+    .diff-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .diff-col {
+      padding: 2.5rem;
+    }
+
+    .diff-col.them {
+      background: rgba(255,255,255,0.02);
+    }
+
+    .diff-col.us {
+      background: rgba(0,212,255,0.04);
+    }
+
+    .diff-col h3 {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .diff-col.them h3 { color: #888; }
+    .diff-col.us h3 { color: var(--primary); }
+
+    .diff-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      font-size: 0.95rem;
+    }
+
+    .diff-item .icon { font-size: 1.1rem; margin-top: 2px; flex-shrink: 0; }
+    .diff-col.them .icon { color: #555; }
+    .diff-col.us .icon { color: var(--primary); }
+
+    /* FEATURES GRID */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: border-color 0.3s;
+    }
+
+    .feature-card:hover { border-color: rgba(0,212,255,0.4); }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+
+    .feature-card p {
+      font-size: 0.9rem;
+      color: #888;
+      line-height: 1.6;
+    }
+
+    /* WHO IT'S FOR */
+    .who-section { background: var(--secondary); }
+
+    .who-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .who-card {
+      background: rgba(0,212,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      text-align: center;
+    }
+
+    .who-card .who-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .who-card h3 { font-size: 1rem; color: #fff; margin-bottom: 0.5rem; }
+    .who-card p { font-size: 0.85rem; color: #888; }
+
+    /* TIERS */
+    .tiers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .tier-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .tier-card.featured {
+      border-color: var(--primary);
+      background: rgba(0,212,255,0.05);
+    }
+
+    .tier-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary);
+      color: #000;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.3rem 1rem;
+      border-radius: 50px;
+      letter-spacing: 0.05em;
+    }
+
+    .tier-card h3 { font-size: 1.2rem; color: var(--primary); margin-bottom: 0.5rem; }
+    .tier-card .tier-desc { font-size: 0.9rem; color: #888; margin-bottom: 1.5rem; }
+
+    .tier-features { list-style: none; }
+    .tier-features li {
+      display: flex; gap: 0.6rem; align-items: flex-start;
+      font-size: 0.9rem; margin-bottom: 0.75rem; color: #ccc;
+    }
+    .tier-features li::before { content: "✓"; color: var(--primary); flex-shrink: 0; font-weight: 700; }
+
+    /* INTEGRATION */
+    .integration-section { background: var(--secondary); }
+
+    .integration-flow {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 3rem 0;
+    }
+
+    .flow-step {
+      background: rgba(0,212,255,0.06);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      text-align: center;
+      min-width: 150px;
+    }
+
+    .flow-step .step-icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+    .flow-step h4 { font-size: 0.9rem; color: #fff; margin-bottom: 0.25rem; }
+    .flow-step p { font-size: 0.78rem; color: #888; }
+
+    .flow-arrow { font-size: 1.5rem; color: var(--primary); flex-shrink: 0; }
+
+    /* CTA */
+    .cta-section {
+      text-align: center;
+      background: radial-gradient(ellipse at center, rgba(0,212,255,0.07) 0%, transparent 70%);
+      padding: 6rem 2rem;
+    }
+
+    .cta-section h2 { margin-bottom: 1rem; }
+    .cta-section p { color: #aaa; font-size: 1.1rem; max-width: 600px; margin: 0 auto 2.5rem; }
+
+    /* FOOTER */
+    footer {
+      background: var(--secondary);
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      color: #555;
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--primary); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .diff-grid { grid-template-columns: 1fr; }
+      .integration-flow { flex-direction: column; }
+      .flow-arrow { transform: rotate(90deg); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="logo">BITS</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="field-coach.html">Field Coach</a></li>
+      <li><a href="datavault.html">DataVault</a></li>
+      <li><a href="halo.html">Halo</a></li>
+      <li><a href="private-cloud.html" style="color: var(--primary);">Private Cloud</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="shield-glow"></div>
+  <div>
+    <div class="hero-badge">🔒 Available Now</div>
+    <h1>Your Data. <span>Your Vault.</span><br>No Big Tech.</h1>
+    <p>BITS clients can store their operational data, AI knowledge bases, and tokenized records in a private, military-grade facility — completely isolated from public cloud infrastructure. Not AWS. Not Azure. Not Google.</p>
+    <div class="hero-ctas">
+      <a href="index.html#contact" class="btn-primary">Talk to Us →</a>
+      <a href="#how-it-works" class="btn-outline">See How It Works</a>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENTIATOR -->
+<section class="diff-section">
+  <div class="container">
+    <div class="section-label">Why It Matters</div>
+    <h2>The Public Cloud Problem</h2>
+    <p class="section-intro">Most AI platforms route your data through AWS, Azure, or Google Cloud. That means someone else holds the keys to your most sensitive operational records.</p>
+
+    <div class="diff-grid">
+      <div class="diff-col them">
+        <h3>Everyone Else</h3>
+        <div class="diff-item"><span class="icon">✗</span><span>Data routed through AWS, Azure, or Google Cloud</span></div>
+        <div class="diff-item"><span class="icon">✗</span><span>Shared infrastructure — your data sits alongside thousands of other companies</span></div>
+        <div class="diff-item"><span class="icon">✗</span><span>Big Tech can analyze, log, and train models on your data</span></div>
+        <div class="diff-item"><span class="icon">✗</span><span>No true data isolation — "logical separation" isn't physical separation</span></div>
+        <div class="diff-item"><span class="icon">✗</span><span>Compliance complexity — HIPAA, CMMC, ITAR require extra controls</span></div>
+      </div>
+      <div class="diff-col us">
+        <h3>BITS Private Cloud</h3>
+        <div class="diff-item"><span class="icon">✓</span><span>Private facility — not a public cloud provider</span></div>
+        <div class="diff-item"><span class="icon">✓</span><span>Compartmentalized and physically segmented storage</span></div>
+        <div class="diff-item"><span class="icon">✓</span><span>Military-grade security protocols — your data is yours alone</span></div>
+        <div class="diff-item"><span class="icon">✓</span><span>True isolation — your environment is separate from all others</span></div>
+        <div class="diff-item"><span class="icon">✓</span><span>Built for regulated industries — healthcare, government, legal, defense</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="how-it-works">
+  <div class="container">
+    <div class="section-label">Infrastructure</div>
+    <h2>What You Get</h2>
+    <p class="section-intro">Enterprise-grade private infrastructure powering every BITS product — Field Coach, DataVault, and Halo.</p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🏗️</div>
+        <h3>Private Facility</h3>
+        <p>Your data is stored in a dedicated private data center — not a public cloud. Physical separation, not just logical isolation. Nobody shares your environment.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔐</div>
+        <h3>Military-Grade Security</h3>
+        <p>Enterprise security protocols protecting your operational records, AI knowledge bases, and tokenized TORA assets. Built for the most sensitive use cases.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📦</div>
+        <h3>Compartmentalized Storage</h3>
+        <p>Your data environment is segmented and isolated from all other clients. What's yours stays yours — with no possibility of cross-contamination.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Edge Compute</h3>
+        <p>AI inference runs close to your data — reducing latency and keeping processing within the private environment. Fast, private, and powerful.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔗</div>
+        <h3>DataVault Integration</h3>
+        <p>Your TORA assets — tokenized operational records — are stored and anchored within the private facility. Tell auditors, banks, and acquirers: your data is secure.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧠</div>
+        <h3>Field Coach AI — Private</h3>
+        <p>Your Field Coach knowledge base — SOPs, equipment manuals, worker profiles — lives entirely within the private cloud. No data leaves the facility.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section class="who-section">
+  <div class="container">
+    <div class="section-label">Industries</div>
+    <h2>Built for Regulated Industries</h2>
+    <p class="section-intro">If your industry has strict data requirements, BITS Private Cloud is built for you.</p>
+
+    <div class="who-grid">
+      <div class="who-card">
+        <div class="who-icon">🏥</div>
+        <h3>Healthcare</h3>
+        <p>HIPAA-compliant data isolation. Patient records and clinical data stay in a private, compartmentalized environment.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">🏛️</div>
+        <h3>Government Contractors</h3>
+        <p>CMMC and ITAR-ready infrastructure. Compliance documentation stored in a facility designed for sensitive data.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">⚖️</div>
+        <h3>Legal Firms</h3>
+        <p>Attorney-client privilege demands absolute data sovereignty. Your case files and client records never touch a public cloud.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">🏗️</div>
+        <h3>Construction & Trades</h3>
+        <p>25 years of project history, subcontractor data, and SOPs — stored privately, authenticated on blockchain, ready for due diligence.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">🛡️</div>
+        <h3>Defense Adjacent</h3>
+        <p>Companies working near classified environments need infrastructure that matches their security posture. BITS Private Cloud delivers.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">💼</div>
+        <h3>Acquisition-Ready Companies</h3>
+        <p>Buyers pay more when your operational DNA is stored in a verified, secure, military-grade facility. Your data credibility is your leverage.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIERS -->
+<section>
+  <div class="container">
+    <div class="section-label">Options</div>
+    <h2>Choose Your Infrastructure</h2>
+    <p class="section-intro">Every BITS client gets privacy-first infrastructure. Choose the level that fits your needs.</p>
+
+    <div class="tiers-grid">
+      <div class="tier-card">
+        <h3>BITS Box</h3>
+        <p class="tier-desc">Local on-premise hardware. Your data never leaves your building.</p>
+        <ul class="tier-features">
+          <li>On-premise deployment</li>
+          <li>Local AI inference</li>
+          <li>Field Coach + DataVault</li>
+          <li>Full data sovereignty</li>
+          <li>Best for: Small-mid businesses</li>
+        </ul>
+      </div>
+      <div class="tier-card featured">
+        <div class="tier-badge">RECOMMENDED</div>
+        <h3>BITS Private Cloud</h3>
+        <p class="tier-desc">Military-grade private facility. Enterprise-level isolation. No hardware required.</p>
+        <ul class="tier-features">
+          <li>Private facility — not AWS or Azure</li>
+          <li>Compartmentalized storage</li>
+          <li>Military-grade security</li>
+          <li>Edge compute</li>
+          <li>Field Coach + DataVault + Halo</li>
+          <li>Best for: Healthcare, government, legal</li>
+        </ul>
+      </div>
+      <div class="tier-card">
+        <h3>Hybrid</h3>
+        <p class="tier-desc">BITS Box on-premise for daily ops + Private Cloud for storage and archiving.</p>
+        <ul class="tier-features">
+          <li>Local + private cloud redundancy</li>
+          <li>Daily ops run on-site</li>
+          <li>Archives stored in private facility</li>
+          <li>Maximum uptime and security</li>
+          <li>Best for: Enterprise, acquisition-ready</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRATION -->
+<section class="integration-section" id="integration">
+  <div class="container">
+    <div class="section-label">How It Works</div>
+    <h2>One Platform. Private Infrastructure.</h2>
+    <p class="section-intro">BITS Private Cloud powers all three BITS products — seamlessly integrated, completely private.</p>
+
+    <div class="integration-flow">
+      <div class="flow-step">
+        <div class="step-icon">🧠</div>
+        <h4>Field Coach</h4>
+        <p>SOPs + manuals stored privately</p>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="step-icon">🔒</div>
+        <h4>Private Cloud</h4>
+        <p>Military-grade facility</p>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="step-icon">🗄️</div>
+        <h4>DataVault</h4>
+        <p>TORA assets authenticated</p>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="step-icon">👓</div>
+        <h4>Halo</h4>
+        <p>AI delivered privately to glasses</p>
+      </div>
+    </div>
+
+    <p style="text-align: center; color: #888; font-size: 0.95rem;">
+      Your data flows through the private facility — never touching a public cloud at any point.
+    </p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Ready for True <span style="color: var(--primary);">Data Sovereignty?</span></h2>
+    <p>Your operational records deserve better than a shared public cloud. Let's talk about what BITS Private Cloud can do for your business.</p>
+    <div class="hero-ctas">
+      <a href="mailto:contact@bitscorp.us" class="btn-primary">Contact Us →</a>
+      <a href="https://calendly.com/bitscorpus" target="_blank" class="btn-outline">Schedule a Consultation</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Blockchain Integrative Technology Solutions (BITS) · <a href="mailto:contact@bitscorp.us">contact@bitscorp.us</a> · Richmond, Virginia</p>
+</footer>
+
+</body>
+</html>
