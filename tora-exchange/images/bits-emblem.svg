@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 80" width="130" height="80">
+  <!-- Rotated group to match the diagonal angle from the business card -->
+  <g transform="rotate(-25, 65, 40)">
+    <!-- Upper-left hexagon (outline only) -->
+    <polygon points="25,12 45,12 55,32 45,52 25,52 15,32" fill="none" stroke="#2c5599" stroke-width="3.5" stroke-linejoin="round"/>
+    <!-- Lower-right hexagon (outline only) -->
+    <polygon points="70,18 90,18 100,38 90,58 70,58 60,38" fill="none" stroke="#2c5599" stroke-width="3.5" stroke-linejoin="round"/>
+    <!-- Diagonal connecting bar -->
+    <line x1="45" y1="34" x2="70" y2="36" stroke="#1a2535" stroke-width="4" stroke-linecap="round"/>
+    <!-- Left node -->
+    <circle cx="45" cy="34" r="5.5" fill="#1a2535"/>
+    <!-- Right node -->
+    <circle cx="70" cy="36" r="5.5" fill="#1a2535"/>
+  </g>
+</svg>
