@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact TORA Exchange — Get In Touch</title>
+<meta name="description" content="Questions about listing your data, licensing, partnerships, or enterprise access? We'd love to hear from you.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #ffffff;
+    --off-white: #f8f9fb;
+    --light-gray: #f1f3f6;
+    --mid-gray: #e5e8ed;
+    --border: #dfe2e8;
+    --text-primary: #0f1724;
+    --text-secondary: #3d4a5c;
+    --text-muted: #7a8599;
+    --gold: #9e7c2e;
+    --gold-light: #b8922f;
+    --gold-bg: #faf6ed;
+    --gold-border: #e8dcc0;
+    --navy: #0c1a32;
+    --navy-light: #1a2d4a;
+    --blue: #1a5bc4;
+    --blue-light: #e8f0fe;
+    --green: #0d8a50;
+    --green-bg: #edf7f1;
+    --cyan: #0891b2;
+  }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--white);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    margin-top: 36px;
+  }
+  .serif { font-family: 'DM Serif Display', Georgia, serif; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+  .nav {
+    position: fixed;
+    top: 36px; left: 0; right: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    z-index: 1000;
+  }
+  .nav-content {
+    display: flex; justify-content: space-between; align-items: center;
+    height: 64px;
+    max-width: 1200px; margin: 0 auto; padding: 0 40px;
+  }
+  .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-brand .tora-acronym {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--navy);
+    width: 48px; height: 48px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 20px; font-weight: 700;
+    box-shadow: 0 2px 8px rgba(158, 124, 46, 0.3);
+  }
+  .nav-brand-text {
+    font-size: 18px; font-weight: 600; color: var(--text-primary);
+  }
+  .nav-links { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; }
+  .nav-links a { text-decoration: none; color: var(--text-secondary); font-size: 14px; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+  .btn-nav-solid {
+    background: var(--gold); color: var(--navy);
+    padding: 10px 20px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; transition: all 0.2s;
+  }
+  .btn-nav-solid:hover { background: var(--gold-light); }
+  .hero {
+    padding: 120px 0 80px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 48px; font-weight: 800; color: var(--text-primary);
+    margin-bottom: 16px;
+  }
+  .hero .subtitle {
+    font-size: 20px; font-weight: 400; color: var(--text-secondary);
+    max-width: 700px; margin: 0 auto 48px;
+  }
+  .section { padding: 80px 0; }
+  .section-title {
+    font-size: 32px; font-weight: 700; color: var(--text-primary);
+    text-align: center; margin-bottom: 16px;
+  }
+  .section-subtitle {
+    font-size: 18px; color: var(--text-muted); text-align: center; max-width: 600px; margin: 0 auto 48px;
+  }
+  .contact-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; margin-bottom: 64px;
+  }
+  .contact-card {
+    background: var(--off-white); border-radius: 12px; padding: 32px; text-align: center;
+  }
+  .contact-icon {
+    font-size: 48px; margin-bottom: 16px;
+  }
+  .contact-title {
+    font-size: 18px; font-weight: 600; color: var(--navy); margin-bottom: 12px;
+  }
+  .contact-desc {
+    font-size: 14px; color: var(--text-muted); line-height: 1.6;
+  }
+  .form-section {
+    background: var(--navy-light); border-radius: 12px; padding: 48px; max-width: 600px; margin: 0 auto;
+  }
+  .form-section h3 {
+    font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 24px; text-align: center;
+  }
+  .form-group { margin-bottom: 20px; text-align: left; }
+  .form-group label {
+    display: block; font-size: 13px; font-weight: 500; color: var(--white); margin-bottom: 8px;
+  }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: var(--white); font-size: 14px;
+  }
+  .form-group input::placeholder { color: rgba(255,255,255,0.6); }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    outline: none; border-color: var(--gold); background: rgba(255,255,255,0.15);
+  }
+  .form-group textarea { min-height: 120px; resize: vertical; }
+  .submit-btn {
+    width: 100%; padding: 14px; background: var(--gold); color: var(--navy); border: none; border-radius: 6px; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+  }
+  .submit-btn:hover { background: var(--gold-light); }
+  .footer { background: var(--navy); color: rgba(255,255,255,0.6); padding: 48px 0; margin-top: 80px; }
+  .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+  .footer-logo { font-size: 16px; font-weight: 600; color: var(--white); text-decoration: none; }
+  .footer-links { display: flex; gap: 16px; list-style: none; margin: 0; padding: 0; }
+  .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-credit { font-size: 13px; color: rgba(255,255,255,0.4); }
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 32px; }
+    .hero .subtitle { font-size: 16px; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-content">
+      <a href="index.html" class="nav-brand">
+        <div class="tora-acronym">TE</div>
+        <div class="nav-brand-text">TORA Exchange</div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#marketplace">Marketplace</a></li>
+        <li><a href="index.html#how">How It Works</a></li>
+        <li><a href="index.html#industries">Industries</a></li>
+        <li><a href="index.html#insights">Insights</a></li>
+        <li><a href="supplier-guide.html">Supplier Guide</a></li>
+        <li><a href="buyer-guide.html">Buyer Guide</a></li>
+      </ul>
+      <a href="waitlist.html" class="btn-nav-solid">Get Started</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <h1 class="serif">Get In Touch</h1>
+      <p class="subtitle">Questions about listing your data, licensing, partnerships, or enterprise access? We'd love to hear from you.</p>
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <h2 class="section-title serif">Contact Information</h2>
+        <p class="section-subtitle">Reach out directly. We respond to every inquiry.</p>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="contact-icon">📧</div>
+            <h3 class="contact-title">Email Us</h3>
+            <p class="contact-desc">contact@bitscorp.us</p>
+            <p style="margin-top: 8px; font-size: 13px; color: var(--text-muted);">Response within 24 hours</p>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">📍</div>
+            <h3 class="contact-title">Visit Us</h3>
+            <p class="contact-desc">3900 Westerre Parkway, Suite 300</p>
+            <p style="margin-top: 4px; font-size: 14px; color: var(--text-primary); font-weight: 600;">Richmond, VA 23233</p>
+            <p style="margin-top: 8px; font-size: 13px; color: var(--text-muted);">United States</p>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">🌐</div>
+            <h3 class="contact-title">Website</h3>
+            <p class="contact-desc">bitscorp.us</p>
+            <p style="margin-top: 8px; font-size: 13px; color: var(--text-muted);">All BITS products — Field Coach, DataVault, TRACE, Halo — linked from here</p>
+          </div>
+        </div>
+
+        <div style="background: var(--gold-bg); border-radius: 12px; padding: 32px; margin-top: 32px; text-align: center;">
+          <h3 style="font-size: 20px; font-weight: 600; color: var(--navy); margin-bottom: 8px;">Have a question? Just ask.</h3>
+          <p style="max-width: 600px; margin: 0 auto; font-size: 15px; color: var(--text-secondary);">
+            Whether you're a data supplier, buyer, partner, or just curious — we're here to help. Send us a message, and we'll get back to you within 24 hours.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <h2 class="section-title serif">Send Us a Message</h2>
+        <p class="section-subtitle">We'd love to hear from you. Fill out the form below and we'll get back to you soon.</p>
+
+        <div class="form-section">
+          <h3>Get In Touch</h3>
+          <form>
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" placeholder="John Doe" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" placeholder="john@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="interest">I'm Interested In</label>
+              <select id="interest">
+                <option value="">Select an option...</option>
+                <option value="listing">Listing My Data on TORA Exchange</option>
+                <option value="licensing">Licensing Data from the Marketplace</option>
+                <option value="partnership">Partnership Opportunities</option>
+                <option value="api">Enterprise API Access</option>
+                <option value="general">General Inquiry</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Your Message</label>
+              <textarea id="message" placeholder="Tell us how we can help..." required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Send Message →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-credit">
+        © 2026 TORA Exchange — Blockchain Integrative Technology Solutions (BITS)
+      </div>
+      <div style="display: flex; gap: 24px; flex-wrap: wrap;">
+        <a href="about.html" class="footer-links" style="display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span style="font-size: 14px;">About</span>
+        </a>
+        <a href="contact.html" class="footer-links" style="display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          <span style="font-size: 14px;">Contact</span>
+        </a>
+        <a href="privacy.html" class="footer-links" style="display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          <span style="font-size: 14px;">Privacy</span>
+        </a>
+        <a href="terms.html" class="footer-links" style="display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          <span style="font-size: 14px;">Terms</span>
+        </a>
+        <a href="supplier-guide.html" class="footer-links" style="display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          <span style="font-size: 14px;">Supplier Guide</span>
+        </a>
+        <a href="buyer-guide.html" class="footer-links" style="display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          <span style="font-size: 14px;">Buyer Guide</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

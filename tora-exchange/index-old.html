@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TORA Exchange — The Global Marketplace for Tokenized Operational Record Assets</title>
+<meta name="description" content="TORA Exchange is the world's first marketplace for Tokenized Operational Record Assets. Blockchain-verified. Privacy-preserved. Institutional-grade.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  :root {
+    --navy: #080e1a;
+    --navy-light: #0d1829;
+    --navy-mid: #111f36;
+    --gold: #c9a84c;
+    --gold-light: #e4c96a;
+    --gold-dim: rgba(201,168,76,0.15);
+    --cyan: #00b4d8;
+    --cyan-dim: rgba(0,180,216,0.1);
+    --green: #00c46a;
+    --red: #ef4444;
+    --white: #f0f2f5;
+    --text: #c8cdd5;
+    --muted: #6b7a90;
+    --border: rgba(255,255,255,0.06);
+    --glass: rgba(255,255,255,0.03);
+    --glass-hover: rgba(255,255,255,0.06);
+  }
+
+  html { scroll-behavior: smooth; }
+  
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--navy);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== UTILITY ===== */
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .gold { color: var(--gold); }
+  .cyan { color: var(--cyan); }
+  .green { color: var(--green); }
+
+  /* ===== ANIMATED BACKGROUND ===== */
+  .bg-glow {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none; z-index: 0;
+    overflow: hidden;
+  }
+  .bg-glow::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(ellipse at 30% 20%, rgba(201,168,76,0.04) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(0,180,216,0.03) 0%, transparent 50%);
+    animation: glowShift 20s ease-in-out infinite alternate;
+  }
+  @keyframes glowShift {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-5%, 3%); }
+  }
+
+  /* ===== NAVIGATION ===== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 0 40px;
+    height: 72px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(8,14,26,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s ease;
+  }
+  nav.scrolled {
+    background: rgba(8,14,26,0.95);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: 16px;
+    text-decoration: none;
+  }
+  .nav-logo {
+    display: flex; flex-direction: column;
+  }
+  .nav-logo .brand-name {
+    font-size: 22px; font-weight: 800; color: #fff;
+    letter-spacing: 2px; text-transform: uppercase;
+    line-height: 1.1;
+  }
+  .nav-logo .brand-name .tora { color: var(--gold); }
+  .nav-logo .powered-by {
+    font-size: 9.5px; font-weight: 500; color: var(--muted);
+    letter-spacing: 1.8px; text-transform: uppercase;
+    margin-top: 1px;
+  }
+  .nav-links {
+    display: flex; align-items: center; gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none; color: var(--muted); font-size: 13px;
+    font-weight: 500; letter-spacing: 0.3px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 24px;
+    background: linear-gradient(135deg, var(--gold), #b8952f);
+    color: var(--navy) !important; font-weight: 700 !important;
+    font-size: 12px !important; letter-spacing: 0.8px; text-transform: uppercase;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 15px rgba(201,168,76,0.25);
+  }
+  .nav-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 25px rgba(201,168,76,0.4);
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative; z-index: 1;
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 0 80px;
+    overflow: hidden;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: center;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 16px;
+    background: var(--gold-dim);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 100px;
+    font-size: 11px; font-weight: 600; color: var(--gold);
+    letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .hero-badge .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .hero h1 {
+    font-size: 56px; font-weight: 800; color: #fff;
+    line-height: 1.08; letter-spacing: -1.5px;
+    margin-bottom: 24px;
+  }
+  .hero h1 .gold-text {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero p {
+    font-size: 17px; line-height: 1.7; color: var(--muted);
+    max-width: 520px; margin-bottom: 40px;
+  }
+  .hero-buttons {
+    display: flex; gap: 16px; align-items: center;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, var(--gold), #b8952f);
+    color: var(--navy); font-weight: 700; font-size: 14px;
+    letter-spacing: 0.5px; text-decoration: none;
+    border-radius: 8px; border: none; cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(201,168,76,0.3);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(201,168,76,0.4);
+  }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 32px;
+    background: transparent;
+    color: var(--white); font-weight: 600; font-size: 14px;
+    letter-spacing: 0.5px; text-decoration: none;
+    border-radius: 8px; border: 1px solid rgba(255,255,255,0.15);
+    cursor: pointer; transition: all 0.3s ease;
+  }
+  .btn-secondary:hover {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.25);
+  }
+
+  /* Hero Right — Live Data Preview */
+  .hero-data {
+    position: relative;
+  }
+  .data-card {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  .data-card-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 24px; padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-card-title {
+    font-size: 13px; font-weight: 600; color: var(--white);
+    letter-spacing: 0.8px; text-transform: uppercase;
+  }
+  .live-badge {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 600; color: var(--green);
+    letter-spacing: 0.5px;
+  }
+  .live-badge .live-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  /* Asset List in Hero */
+  .asset-list { display: flex; flex-direction: column; gap: 12px; }
+  .asset-row {
+    display: grid; grid-template-columns: 1fr auto auto auto;
+    gap: 20px; align-items: center;
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: all 0.2s ease;
+  }
+  .asset-row:hover {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(201,168,76,0.15);
+  }
+  .asset-name {
+    font-size: 13px; font-weight: 600; color: var(--white);
+  }
+  .asset-industry {
+    font-size: 11px; color: var(--muted); margin-top: 2px;
+  }
+  .asset-records {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; color: var(--cyan);
+  }
+  .asset-verified {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 11px; color: var(--green); font-weight: 500;
+  }
+  .asset-price {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 600; color: var(--gold);
+  }
+
+  /* ===== STATS BAR ===== */
+  .stats-bar {
+    position: relative; z-index: 1;
+    padding: 50px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: rgba(255,255,255,0.01);
+  }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;
+    text-align: center;
+  }
+  .stat-item .stat-number {
+    font-size: 42px; font-weight: 800; color: #fff;
+    letter-spacing: -1px;
+    font-family: 'JetBrains Mono', monospace;
+    line-height: 1;
+  }
+  .stat-item .stat-label {
+    font-size: 12px; color: var(--muted); margin-top: 8px;
+    font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
+  }
+  .stat-item .stat-number .unit {
+    font-size: 24px; color: var(--gold);
+  }
+
+  /* ===== HOW IT WORKS ===== */
+  .how-section {
+    position: relative; z-index: 1;
+    padding: 120px 0;
+  }
+  .section-label {
+    font-size: 11px; font-weight: 700; color: var(--gold);
+    letter-spacing: 2.5px; text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-size: 40px; font-weight: 800; color: #fff;
+    letter-spacing: -0.5px; margin-bottom: 16px;
+    line-height: 1.15;
+  }
+  .section-subtitle {
+    font-size: 16px; color: var(--muted); max-width: 560px;
+    margin-bottom: 60px; line-height: 1.7;
+  }
+  .how-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .how-card {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px 32px;
+    transition: all 0.3s ease;
+    position: relative; overflow: hidden;
+  }
+  .how-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0; transition: opacity 0.3s ease;
+  }
+  .how-card:hover {
+    background: var(--glass-hover);
+    border-color: rgba(201,168,76,0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  }
+  .how-card:hover::before { opacity: 1; }
+  .how-step {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 600; color: var(--gold);
+    letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .how-icon {
+    font-size: 32px; margin-bottom: 16px;
+  }
+  .how-card h3 {
+    font-size: 18px; font-weight: 700; color: #fff;
+    margin-bottom: 12px;
+  }
+  .how-card p {
+    font-size: 14px; color: var(--muted); line-height: 1.65;
+  }
+
+  /* ===== MARKETPLACE PREVIEW ===== */
+  .marketplace-section {
+    position: relative; z-index: 1;
+    padding: 120px 0;
+    background: linear-gradient(180deg, transparent, rgba(201,168,76,0.02), transparent);
+  }
+  .marketplace-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 40px;
+  }
+  .marketplace-filters {
+    display: flex; gap: 12px;
+  }
+  .filter-chip {
+    padding: 8px 18px;
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 12px; font-weight: 500; color: var(--muted);
+    cursor: pointer; transition: all 0.2s;
+  }
+  .filter-chip:hover, .filter-chip.active {
+    color: var(--gold);
+    border-color: rgba(201,168,76,0.3);
+    background: var(--gold-dim);
+  }
+  .marketplace-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .listing-card {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .listing-card:hover {
+    border-color: rgba(201,168,76,0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+  }
+  .listing-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 16px;
+  }
+  .listing-industry {
+    font-size: 10px; font-weight: 700; color: var(--cyan);
+    letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 4px 10px;
+    background: var(--cyan-dim);
+    border-radius: 4px;
+  }
+  .listing-verified {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 10px; font-weight: 600; color: var(--green);
+  }
+  .listing-title {
+    font-size: 16px; font-weight: 700; color: #fff;
+    margin-bottom: 6px;
+  }
+  .listing-desc {
+    font-size: 12.5px; color: var(--muted); line-height: 1.55;
+    margin-bottom: 20px;
+  }
+  .listing-meta {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .meta-item .meta-label {
+    font-size: 10px; font-weight: 600; color: var(--muted);
+    letter-spacing: 0.8px; text-transform: uppercase;
+  }
+  .meta-item .meta-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; font-weight: 600; color: #fff;
+    margin-top: 2px;
+  }
+  .meta-item .meta-value.gold { color: var(--gold); }
+
+  /* ===== INDUSTRIES ===== */
+  .industries-section {
+    position: relative; z-index: 1;
+    padding: 120px 0;
+  }
+  .industries-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  }
+  .industry-card {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .industry-card:hover {
+    background: var(--glass-hover);
+    border-color: rgba(201,168,76,0.15);
+    transform: translateY(-3px);
+  }
+  .industry-icon { font-size: 36px; margin-bottom: 12px; }
+  .industry-name {
+    font-size: 14px; font-weight: 700; color: #fff;
+    margin-bottom: 4px;
+  }
+  .industry-count {
+    font-size: 12px; color: var(--muted);
+  }
+
+  /* ===== TRUST SECTION ===== */
+  .trust-section {
+    position: relative; z-index: 1;
+    padding: 120px 0;
+    border-top: 1px solid var(--border);
+  }
+  .trust-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+    margin-top: 60px;
+  }
+  .trust-card {
+    text-align: center; padding: 40px 32px;
+  }
+  .trust-icon {
+    font-size: 48px; margin-bottom: 20px;
+  }
+  .trust-card h3 {
+    font-size: 18px; font-weight: 700; color: #fff;
+    margin-bottom: 12px;
+  }
+  .trust-card p {
+    font-size: 13.5px; color: var(--muted); line-height: 1.65;
+  }
+
+  /* ===== CTA SECTION ===== */
+  .cta-section {
+    position: relative; z-index: 1;
+    padding: 120px 0;
+  }
+  .cta-box {
+    background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(0,180,216,0.05));
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 24px;
+    padding: 80px 60px;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-box::before {
+    content: '';
+    position: absolute; top: -1px; left: 20%; right: 20%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .cta-box h2 {
+    font-size: 40px; font-weight: 800; color: #fff;
+    margin-bottom: 16px; letter-spacing: -0.5px;
+  }
+  .cta-box p {
+    font-size: 16px; color: var(--muted); max-width: 500px;
+    margin: 0 auto 40px; line-height: 1.7;
+  }
+  .cta-buttons {
+    display: flex; gap: 16px; justify-content: center;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    position: relative; z-index: 1;
+    padding: 60px 0 40px;
+    border-top: 1px solid var(--border);
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px;
+    margin-bottom: 50px;
+  }
+  .footer-brand .brand-name {
+    font-size: 20px; font-weight: 800; color: #fff;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .footer-brand .brand-name .tora { color: var(--gold); }
+  .footer-brand .powered {
+    font-size: 10px; color: var(--muted); letter-spacing: 1.5px;
+    text-transform: uppercase; margin-bottom: 16px;
+  }
+  .footer-brand p {
+    font-size: 13px; color: var(--muted); line-height: 1.6;
+    max-width: 320px;
+  }
+  .footer-col h4 {
+    font-size: 11px; font-weight: 700; color: var(--white);
+    letter-spacing: 1.5px; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .footer-col a {
+    display: block; font-size: 13px; color: var(--muted);
+    text-decoration: none; margin-bottom: 12px;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--gold); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 30px;
+    border-top: 1px solid var(--border);
+  }
+  .footer-bottom p {
+    font-size: 12px; color: var(--muted);
+  }
+  .footer-legal {
+    display: flex; gap: 24px;
+  }
+  .footer-legal a {
+    font-size: 12px; color: var(--muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-legal a:hover { color: var(--white); }
+  .patent-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 16px;
+    padding: 5px 12px;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 4px;
+    font-size: 10px; font-weight: 600; color: var(--gold);
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero h1 { font-size: 42px; }
+    .how-grid { grid-template-columns: 1fr; }
+    .marketplace-grid { grid-template-columns: 1fr 1fr; }
+    .industries-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  }
+  @media (max-width: 640px) {
+    .container { padding: 0 20px; }
+    .hero h1 { font-size: 32px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .marketplace-grid { grid-template-columns: 1fr; }
+    .industries-grid { grid-template-columns: 1fr 1fr; }
+    .cta-box { padding: 48px 24px; }
+    .cta-box h2 { font-size: 28px; }
+    .marketplace-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .trust-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===== ANIMATIONS ===== */
+  .fade-in {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible {
+    opacity: 1; transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+
+<!-- ===== NAVIGATION ===== -->
+<nav id="navbar">
+  <a href="#" class="nav-brand">
+    <div class="nav-logo">
+      <div class="brand-name"><span class="tora">TORA</span> EXCHANGE</div>
+      <div class="powered-by">Powered by BITS &nbsp;·&nbsp; Blockchain Integrative Technology Solutions</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#marketplace">Marketplace</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#industries">Industries</a></li>
+    <li><a href="#trust">Verification</a></li>
+    <li><a href="#" class="nav-cta">Get Started →</a></li>
+  </ul>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          Patent Pending — New Asset Class
+        </div>
+        <h1>The World's First Exchange for <span class="gold-text">Tokenized Operational Record Assets</span></h1>
+        <p>Unlock the value hidden in decades of business records. Blockchain-verified, privacy-preserved, and ready for institutional-grade licensing. Welcome to the future of data as an asset class.</p>
+        <div class="hero-buttons">
+          <a href="#" class="btn-primary">Explore the Marketplace →</a>
+          <a href="#how" class="btn-secondary">Learn More</a>
+        </div>
+      </div>
+      <div class="hero-data">
+        <div class="data-card">
+          <div class="data-card-header">
+            <div class="data-card-title">Featured Data Assets</div>
+            <div class="live-badge"><span class="live-dot"></span> LIVE</div>
+          </div>
+          <div class="asset-list">
+            <div class="asset-row">
+              <div>
+                <div class="asset-name">Mid-Atlantic HVAC Corpus</div>
+                <div class="asset-industry">HVAC · 25 Years · Virginia</div>
+              </div>
+              <div class="asset-records">18,247 records</div>
+              <div class="asset-verified">🔐 Verified</div>
+              <div class="asset-price">$4,200/mo</div>
+            </div>
+            <div class="asset-row">
+              <div>
+                <div class="asset-name">Southeast Plumbing Intelligence</div>
+                <div class="asset-industry">Plumbing · 18 Years · Georgia</div>
+              </div>
+              <div class="asset-records">12,890 records</div>
+              <div class="asset-verified">🔐 Verified</div>
+              <div class="asset-price">$3,100/mo</div>
+            </div>
+            <div class="asset-row">
+              <div>
+                <div class="asset-name">Commercial Electrical Archive</div>
+                <div class="asset-industry">Electrical · 30 Years · D.C. Metro</div>
+              </div>
+              <div class="asset-records">31,500 records</div>
+              <div class="asset-verified">🔐 Verified</div>
+              <div class="asset-price">$6,800/mo</div>
+            </div>
+            <div class="asset-row">
+              <div>
+                <div class="asset-name">Property Management Records</div>
+                <div class="asset-industry">Real Estate · 22 Years · Northeast</div>
+              </div>
+              <div class="asset-records">45,200 records</div>
+              <div class="asset-verified">🔐 Verified</div>
+              <div class="asset-price">$8,500/mo</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS BAR ===== -->
+<section class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number"><span class="unit">$</span><span class="counter" data-target="2.4">0</span><span class="unit">M</span></div>
+        <div class="stat-label">Total Asset Value Listed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number"><span class="counter" data-target="847">0</span><span class="unit">K</span></div>
+        <div class="stat-label">Verified Records</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number"><span class="counter" data-target="156">0</span></div>
+        <div class="stat-label">Active Data Assets</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number"><span class="counter" data-target="99.9">0</span><span class="unit">%</span></div>
+        <div class="stat-label">Verification Accuracy</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section class="how-section" id="how">
+  <div class="container">
+    <div class="section-label">How It Works</div>
+    <div class="section-title">From Dormant Records<br>to Tradeable Assets</div>
+    <div class="section-subtitle">Three steps to transform decades of operational data into a blockchain-verified, licensable asset class.</div>
+    <div class="how-grid">
+      <div class="how-card fade-in">
+        <div class="how-step">Step 01</div>
+        <div class="how-icon">📦</div>
+        <h3>Digitize & Authenticate</h3>
+        <p>Physical and digital records are scanned, processed through AI-powered indexing, and cryptographically hashed. Every document receives blockchain-anchored proof of existence — without any content ever touching the chain.</p>
+      </div>
+      <div class="how-card fade-in">
+        <div class="how-step">Step 02</div>
+        <div class="how-icon">🔗</div>
+        <h3>Tokenize as TORA</h3>
+        <p>Your authenticated corpus becomes a Tokenized Operational Record Asset — a new asset class with embedded smart contracts, programmable ownership rights, and automated partnership terms. Patent pending.</p>
+      </div>
+      <div class="how-card fade-in">
+        <div class="how-step">Step 03</div>
+        <div class="how-icon">💰</div>
+        <h3>List & License</h3>
+        <p>Anonymized data intelligence from your TORA is listed on the Exchange. Institutional buyers license access. Revenue flows automatically through smart contracts — no intermediaries, no invoicing, no delays.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MARKETPLACE PREVIEW ===== -->
+<section class="marketplace-section" id="marketplace">
+  <div class="container">
+    <div class="marketplace-header">
+      <div>
+        <div class="section-label">Marketplace</div>
+        <div class="section-title">Explore Data Assets</div>
+      </div>
+      <div class="marketplace-filters">
+        <span class="filter-chip active">All Industries</span>
+        <span class="filter-chip">Construction</span>
+        <span class="filter-chip">HVAC</span>
+        <span class="filter-chip">Healthcare</span>
+        <span class="filter-chip">Real Estate</span>
+        <span class="filter-chip">Transportation</span>
+      </div>
+    </div>
+    <div class="marketplace-grid">
+      <div class="listing-card fade-in">
+        <div class="listing-top">
+          <span class="listing-industry">HVAC</span>
+          <span class="listing-verified">🔐 Blockchain Verified</span>
+        </div>
+        <div class="listing-title">Mid-Atlantic HVAC Service Intelligence</div>
+        <div class="listing-desc">25 years of residential and commercial HVAC service records. Equipment lifecycle data, seasonal patterns, failure rates across 40+ brands.</div>
+        <div class="listing-meta">
+          <div class="meta-item">
+            <div class="meta-label">Records</div>
+            <div class="meta-value">18,247</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Date Range</div>
+            <div class="meta-value">2001–2026</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Quality Score</div>
+            <div class="meta-value">94/100</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">License Fee</div>
+            <div class="meta-value gold">$4,200/mo</div>
+          </div>
+        </div>
+      </div>
+      <div class="listing-card fade-in">
+        <div class="listing-top">
+          <span class="listing-industry">Construction</span>
+          <span class="listing-verified">🔐 Blockchain Verified</span>
+        </div>
+        <div class="listing-title">Commercial Masonry & Concrete Archive</div>
+        <div class="listing-desc">Two decades of commercial construction records. Project specs, material usage, labor analytics, and inspection histories across the Southeast.</div>
+        <div class="listing-meta">
+          <div class="meta-item">
+            <div class="meta-label">Records</div>
+            <div class="meta-value">24,100</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Date Range</div>
+            <div class="meta-value">2003–2026</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Quality Score</div>
+            <div class="meta-value">97/100</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">License Fee</div>
+            <div class="meta-value gold">$5,800/mo</div>
+          </div>
+        </div>
+      </div>
+      <div class="listing-card fade-in">
+        <div class="listing-top">
+          <span class="listing-industry">Healthcare</span>
+          <span class="listing-verified">🔐 Blockchain Verified</span>
+        </div>
+        <div class="listing-title">Regional Clinical Operations Data</div>
+        <div class="listing-desc">Anonymized operational records from a multi-location healthcare provider. Scheduling, equipment maintenance, compliance audit trails.</div>
+        <div class="listing-meta">
+          <div class="meta-item">
+            <div class="meta-label">Records</div>
+            <div class="meta-value">52,300</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Date Range</div>
+            <div class="meta-value">2010–2026</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Quality Score</div>
+            <div class="meta-value">91/100</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">License Fee</div>
+            <div class="meta-value gold">$9,200/mo</div>
+          </div>
+        </div>
+      </div>
+      <div class="listing-card fade-in">
+        <div class="listing-top">
+          <span class="listing-industry">Transportation</span>
+          <span class="listing-verified">🔐 Blockchain Verified</span>
+        </div>
+        <div class="listing-title">Fleet Management & Logistics Corpus</div>
+        <div class="listing-desc">15 years of fleet operations data. Maintenance logs, route analytics, fuel consumption, and vehicle lifecycle intelligence.</div>
+        <div class="listing-meta">
+          <div class="meta-item">
+            <div class="meta-label">Records</div>
+            <div class="meta-value">38,600</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Date Range</div>
+            <div class="meta-value">2011–2026</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Quality Score</div>
+            <div class="meta-value">89/100</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">License Fee</div>
+            <div class="meta-value gold">$7,400/mo</div>
+          </div>
+        </div>
+      </div>
+      <div class="listing-card fade-in">
+        <div class="listing-top">
+          <span class="listing-industry">Real Estate</span>
+          <span class="listing-verified">🔐 Blockchain Verified</span>
+        </div>
+        <div class="listing-title">Property Maintenance Intelligence</div>
+        <div class="listing-desc">22 years of property management records spanning 1,200+ units. Maintenance cycles, vendor performance, cost benchmarking, and tenant operations.</div>
+        <div class="listing-meta">
+          <div class="meta-item">
+            <div class="meta-label">Records</div>
+            <div class="meta-value">45,200</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Date Range</div>
+            <div class="meta-value">2004–2026</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Quality Score</div>
+            <div class="meta-value">96/100</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">License Fee</div>
+            <div class="meta-value gold">$8,500/mo</div>
+          </div>
+        </div>
+      </div>
+      <div class="listing-card fade-in">
+        <div class="listing-top">
+          <span class="listing-industry">Electrical</span>
+          <span class="listing-verified">🔐 Blockchain Verified</span>
+        </div>
+        <div class="listing-title">Commercial Electrical Systems Archive</div>
+        <div class="listing-desc">30 years of commercial electrical installation and maintenance records. Panel upgrades, code compliance, energy efficiency audits across the D.C. metro corridor.</div>
+        <div class="listing-meta">
+          <div class="meta-item">
+            <div class="meta-label">Records</div>
+            <div class="meta-value">31,500</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Date Range</div>
+            <div class="meta-value">1996–2026</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Quality Score</div>
+            <div class="meta-value">93/100</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">License Fee</div>
+            <div class="meta-value gold">$6,800/mo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INDUSTRIES ===== -->
+<section class="industries-section" id="industries">
+  <div class="container">
+    <div class="section-label">Industries</div>
+    <div class="section-title">Every Industry Has<br>Untapped Data Value</div>
+    <div class="section-subtitle">If your business has records, you have an asset. TORA Exchange serves every sector.</div>
+    <div class="industries-grid">
+      <div class="industry-card fade-in">
+        <div class="industry-icon">🏗️</div>
+        <div class="industry-name">Construction</div>
+        <div class="industry-count">Masonry, General Contracting, Trades</div>
+      </div>
+      <div class="industry-card fade-in">
+        <div class="industry-icon">❄️</div>
+        <div class="industry-name">HVAC</div>
+        <div class="industry-count">Installation, Service, Commercial</div>
+      </div>
+      <div class="industry-card fade-in">
+        <div class="industry-icon">🏥</div>
+        <div class="industry-name">Healthcare</div>
+        <div class="industry-count">Clinics, Equipment, Operations</div>
+      </div>
+      <div class="industry-card fade-in">
+        <div class="industry-icon">🏠</div>
+        <div class="industry-name">Real Estate</div>
+        <div class="industry-count">Property Management, Development</div>
+      </div>
+      <div class="industry-card fade-in">
+        <div class="industry-icon">🚛</div>
+        <div class="industry-name">Transportation</div>
+        <div class="industry-count">Fleet, Logistics, Freight</div>
+      </div>
+      <div class="industry-card fade-in">
+        <div class="industry-icon">⚡</div>
+        <div class="industry-name">Electrical</div>
+        <div class="industry-count">Commercial, Industrial, Residential</div>
+      </div>
+      <div class="industry-card fade-in">
+        <div class="industry-icon">🏭</div>
+        <div class="industry-name">Manufacturing</div>
+        <div class="industry-count">Production, QA, Supply Chain</div>
+      </div>
+      <div class="industry-card fade-in">
+        <div class="industry-icon">⚖️</div>
+        <div class="industry-name">Legal & Government</div>
+        <div class="industry-count">Compliance, Public Records, Audits</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRUST & VERIFICATION ===== -->
+<section class="trust-section" id="trust">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="section-label" style="text-align:center;">Trust & Verification</div>
+      <div class="section-title" style="text-align:center;">Institutional-Grade<br>Data Integrity</div>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card fade-in">
+        <div class="trust-icon">🔐</div>
+        <h3>Blockchain Verified</h3>
+        <p>Every record is cryptographically hashed and anchored to a distributed ledger. Tamper-proof proof of existence and integrity — without exposing any document content on-chain.</p>
+      </div>
+      <div class="trust-card fade-in">
+        <div class="trust-icon">🛡️</div>
+        <h3>Privacy Preserved</h3>
+        <p>Zero document content on the blockchain. Ever. Raw data stays sovereign with the owner. Only anonymized, aggregated intelligence is available to buyers. GDPR and CCPA aligned.</p>
+      </div>
+      <div class="trust-card fade-in">
+        <div class="trust-icon">⚡</div>
+        <h3>Smart Contract Automated</h3>
+        <p>Revenue distribution, licensing terms, and partnership percentages execute automatically. No intermediaries, no manual invoicing, no payment delays. Code is the contract.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-box fade-in">
+      <h2>Your Records Are<br>Worth More Than You Think</h2>
+      <p>Every business sitting on years of operational data is sitting on an unrecognized asset. TORA Exchange gives that data a market, a price, and a future.</p>
+      <div class="cta-buttons">
+        <a href="#" class="btn-primary">List Your Data →</a>
+        <a href="#" class="btn-secondary">Talk to Our Team</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand-name"><span class="tora">TORA</span> EXCHANGE</div>
+        <div class="powered">Powered by BITS · Blockchain Integrative Technology Solutions</div>
+        <p>The world's first marketplace for Tokenized Operational Record Assets. Transforming decades of dormant business records into verifiable, licensable, and tradeable data assets.</p>
+        <div class="patent-badge">🔒 U.S. Patent Pending</div>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <a href="#">Marketplace</a>
+        <a href="#">List Your Data</a>
+        <a href="#">API Access</a>
+        <a href="#">Pricing</a>
+        <a href="#">Documentation</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About BITS</a>
+        <a href="#">Careers</a>
+        <a href="#">Press</a>
+        <a href="#">Contact</a>
+        <a href="#">Partners</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="#">What is TORA?</a>
+        <a href="#">Verification Process</a>
+        <a href="#">Data Supplier Guide</a>
+        <a href="#">Buyer Guide</a>
+        <a href="#">Blog</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 BITS — Blockchain Integrative Technology Solutions. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Security</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Intersection Observer for fade-in animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Counter animation
+  function animateCounters() {
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+      const target = parseFloat(counter.dataset.target);
+      const isFloat = target % 1 !== 0;
+      const duration = 2000;
+      const start = performance.now();
+      
+      function update(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+        const current = target * eased;
+        counter.textContent = isFloat ? current.toFixed(1) : Math.floor(current).toLocaleString();
+        if (progress < 1) requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
+    });
+  }
+
+  // Trigger counters when stats bar is visible
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounters();
+        statsObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.5 });
+  
+  const statsBar = document.querySelector('.stats-bar');
+  if (statsBar) statsObserver.observe(statsBar);
+
+  // Filter chip interaction
+  document.querySelectorAll('.filter-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>

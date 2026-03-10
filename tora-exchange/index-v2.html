@@ -5,6 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TORA Exchange — The Global Marketplace for Tokenized Operational Record Assets</title>
 <meta name="description" content="TORA Exchange is the world's first marketplace for Tokenized Operational Record Assets. Blockchain-verified. Privacy-preserved. Institutional-grade.">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230c1a32'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='700' fill='%239e7c2e'>TE</text></svg>">
+
+<!-- Open Graph / Social Sharing -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="TORA Exchange — The Global Marketplace for Tokenized Operational Record Assets">
+<meta property="og:description" content="Transform decades of dormant business records into blockchain-verified, licensable data assets. Institutional-grade infrastructure for the world's first operational data marketplace.">
+<meta property="og:url" content="https://toraexchange.com">
+<meta property="og:site_name" content="TORA Exchange">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TORA Exchange — Tokenized Operational Record Assets">
+<meta name="twitter:description" content="The world's first marketplace for Tokenized Operational Record Assets. Powered by B.I.T.S.">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -63,9 +77,10 @@
   }
   .ticker-track {
     display: flex;
-    gap: 48px;
-    animation: tickerScroll 30s linear infinite;
+    gap: 36px;
+    animation: tickerScroll 60s linear infinite;
     white-space: nowrap;
+    will-change: transform;
   }
   .ticker-item {
     display: flex;
@@ -224,6 +239,19 @@
     letter-spacing: -0.5px;
     margin-bottom: 24px;
   }
+  .tora-acronym {
+    display: block;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 96px;
+    line-height: 1;
+    letter-spacing: -2px;
+    margin: 8px 0 4px;
+    background: linear-gradient(135deg, var(--blue) 0%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
   .hero h1 .highlight {
     color: var(--gold);
   }
@@ -785,65 +813,129 @@
     .search-bar { width: 100%; }
   }
   @media (max-width: 640px) {
-    .container { padding: 0 20px; }
-    nav { padding: 0 20px; }
-    .hero h1 { font-size: 32px; }
-    .hero { padding: 160px 0 60px; }
-    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-    .listing-grid { grid-template-columns: 1fr; }
-    .industries-grid { grid-template-columns: 1fr 1fr; }
-    .cta-box { padding: 48px 24px; }
-    .cta-box h2 { font-size: 28px; }
-    .insights-grid { grid-template-columns: 1fr; }
-    .trust-grid { grid-template-columns: 1fr; }
+    /* Layout */
+    .container { padding: 0 16px; }
+    nav { padding: 0 16px; height: 56px; }
+
+    /* Nav — hide links, keep brand + CTA */
     .nav-center { display: none; }
-    .credentials-flex { gap: 20px; }
-    .ticker-bar { font-size: 11px; }
+    .nav-right .btn-nav-outline { display: none; }
+    .nav-brand .powered-by { display: none; }
+    .brand-name { font-size: 14px; }
+    .nav-logo-mark { width: 30px; height: 30px; font-size: 12px; }
+
+    /* Ticker */
+    .ticker-bar { font-size: 10px; height: 32px; }
+
+    /* Hero */
+    .hero { padding: 140px 0 50px; }
+    .hero h1 { font-size: 28px; line-height: 1.25; }
+    .tora-acronym { font-size: 64px !important; letter-spacing: -1px; }
+    .hero-subtitle { font-size: 15px; }
+    .hero-ctas { flex-direction: column; gap: 10px; }
+    .hero-ctas a, .hero-ctas button { width: 100%; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; }
+
+    /* Credentials bar */
+    .credentials-flex { gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .credential-item { font-size: 11px; }
+
+    /* Stats */
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .stat-number { font-size: 28px; }
+
+    /* Marketplace */
+    .marketplace-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .search-bar { width: 100%; }
+    .filter-pills { gap: 6px; flex-wrap: wrap; }
+    .filter-pill { font-size: 11px; padding: 6px 12px; }
+    .listing-grid { grid-template-columns: 1fr; gap: 16px; }
+
+    /* Industries */
+    .industries-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .industry-card { padding: 20px 16px; }
+
+    /* How it works */
+    .how-grid { grid-template-columns: 1fr; }
+
+    /* Audience */
+    .audience-grid { grid-template-columns: 1fr; }
+
+    /* Trust */
+    .trust-grid { grid-template-columns: 1fr; }
+
+    /* Insights */
+    .insights-grid { grid-template-columns: 1fr; }
+
+    /* CTA */
+    .cta-box { padding: 40px 20px; }
+    .cta-box h2 { font-size: 26px; }
+    .cta-buttons { flex-direction: column; gap: 10px; }
+    .cta-buttons a, .cta-buttons button { width: 100%; text-align: center; min-height: 48px; }
+
+    /* Footer */
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    .footer-legal { flex-wrap: wrap; justify-content: center; gap: 12px; }
+
+    /* Modals — full width on mobile */
+    #listing-modal > div { padding: 16px 8px; }
+    #modal-inner { border-radius: 12px; }
+    #inquiry-modal > div { padding: 16px 8px; }
+    #inquiry-modal > div > div { padding: 24px 20px; border-radius: 12px; }
   }
+
+  /* Listing card clickable hover */
+  .listing-card { cursor: pointer; }
+  .listing-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(12,26,50,0.14); }
+  .listing-card .view-detail-hint {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--navy);
+    padding: 10px;
+    background: var(--off-white);
+    border-top: 1px solid var(--border);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .listing-card:hover .view-detail-hint { opacity: 1; }
 </style>
 </head>
 <body>
 
 <!-- ===== LIVE TICKER ===== -->
 <div class="ticker-bar">
-  <div class="ticker-track">
-    <span class="ticker-item"><span class="ticker-label">HVAC Mid-Atlantic</span> <span class="ticker-value">$4,200/mo</span></span>
-    <span class="ticker-dot"></span>
-    <span class="ticker-item"><span class="ticker-label">Masonry SE Archive</span> <span class="ticker-value">$5,800/mo</span></span>
-    <span class="ticker-dot"></span>
-    <span class="ticker-item"><span class="ticker-label">Fleet Logistics</span> <span class="ticker-value ticker-up">+12% ↑</span></span>
-    <span class="ticker-dot"></span>
-    <span class="ticker-item"><span class="ticker-label">Healthcare Ops</span> <span class="ticker-value">$9,200/mo</span></span>
-    <span class="ticker-dot"></span>
-    <span class="ticker-item"><span class="ticker-label">Property Mgmt NE</span> <span class="ticker-value">$8,500/mo</span></span>
-    <span class="ticker-dot"></span>
-    <span class="ticker-item"><span class="ticker-label">Electrical DC Metro</span> <span class="ticker-value ticker-up">+8% ↑</span></span>
-    <span class="ticker-dot"></span>
-    <span class="ticker-item"><span class="ticker-label">24h Volume</span> <span class="ticker-value">$247,800</span></span>
-    <span class="ticker-dot"></span>
-    <span class="ticker-item"><span class="ticker-label">Active Assets</span> <span class="ticker-value">156</span></span>
-    <span class="ticker-dot"></span>
-    <span class="ticker-item"><span class="ticker-label">HVAC Mid-Atlantic</span> <span class="ticker-value">$4,200/mo</span></span>
-    <span class="ticker-dot"></span>
-    <span class="ticker-item"><span class="ticker-label">Masonry SE Archive</span> <span class="ticker-value">$5,800/mo</span></span>
-    <span class="ticker-dot"></span>
-    <span class="ticker-item"><span class="ticker-label">Fleet Logistics</span> <span class="ticker-value ticker-up">+12% ↑</span></span>
-    <span class="ticker-dot"></span>
-    <span class="ticker-item"><span class="ticker-label">Healthcare Ops</span> <span class="ticker-value">$9,200/mo</span></span>
-    <span class="ticker-dot"></span>
-    <span class="ticker-item"><span class="ticker-label">Property Mgmt NE</span> <span class="ticker-value">$8,500/mo</span></span>
-    <span class="ticker-dot"></span>
-    <span class="ticker-item"><span class="ticker-label">Electrical DC Metro</span> <span class="ticker-value ticker-up">+8% ↑</span></span>
-    <span class="ticker-dot"></span>
-    <span class="ticker-item"><span class="ticker-label">24h Volume</span> <span class="ticker-value">$247,800</span></span>
-    <span class="ticker-dot"></span>
-    <span class="ticker-item"><span class="ticker-label">Active Assets</span> <span class="ticker-value">156</span></span>
+  <div class="ticker-track" id="live-ticker">
+    <span class="ticker-item"><span class="ticker-label">BTC</span> <span class="ticker-value">Loading...</span></span><span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">ETH</span> <span class="ticker-value">Loading...</span></span><span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">USDT</span> <span class="ticker-value">Loading...</span></span><span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">XRP</span> <span class="ticker-value">Loading...</span></span><span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">SOL</span> <span class="ticker-value">Loading...</span></span><span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">BNB</span> <span class="ticker-value">Loading...</span></span><span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">USDC</span> <span class="ticker-value">Loading...</span></span><span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">DOGE</span> <span class="ticker-value">Loading...</span></span><span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">ADA</span> <span class="ticker-value">Loading...</span></span><span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">LINK</span> <span class="ticker-value">Loading...</span></span><span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">AVAX</span> <span class="ticker-value">Loading...</span></span><span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">DOT</span> <span class="ticker-value">Loading...</span></span><span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">BTC</span> <span class="ticker-value">Loading...</span></span><span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">ETH</span> <span class="ticker-value">Loading...</span></span><span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">USDT</span> <span class="ticker-value">Loading...</span></span><span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">XRP</span> <span class="ticker-value">Loading...</span></span><span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">SOL</span> <span class="ticker-value">Loading...</span></span><span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">BNB</span> <span class="ticker-value">Loading...</span></span><span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">USDC</span> <span class="ticker-value">Loading...</span></span><span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">DOGE</span> <span class="ticker-value">Loading...</span></span><span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">ADA</span> <span class="ticker-value">Loading...</span></span><span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">LINK</span> <span class="ticker-value">Loading...</span></span><span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">AVAX</span> <span class="ticker-value">Loading...</span></span><span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">DOT</span> <span class="ticker-value">Loading...</span></span><span class="ticker-dot"></span>
   </div>
 </div>
 
 <!-- ===== NAVIGATION ===== -->
 <nav id="navbar">
-  <a href="#" class="nav-brand">
+  <a href="index.html" class="nav-brand">
     <div class="nav-logo-mark">TE</div>
     <div class="nav-logo-text">
       <div class="brand-name">TORA Exchange</div>
@@ -856,10 +948,11 @@
     <li><a href="#industries">Industries</a></li>
     <li><a href="#insights">Insights</a></li>
     <li><a href="#trust">Verification</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
   </ul>
   <div class="nav-right">
-    <a href="#" class="btn-nav-outline">Sign In</a>
-    <a href="#" class="btn-nav-solid">Get Started</a>
+    <a href="waitlist.html" class="btn-nav-outline">Sign In</a>
+    <a href="waitlist.html" class="btn-nav-solid">Get Started</a>
   </div>
 </nav>
 
@@ -868,11 +961,14 @@
   <div class="container">
     <div class="hero-content">
       <div class="hero-badge"><span class="dot"></span> A New Asset Class · Patent Pending</div>
-      <h1>The Global Exchange for <span class="highlight">Tokenized Operational Record Assets</span></h1>
+      <h1>The Global Exchange for
+        <span class="tora-acronym">TORA</span>
+        <span class="highlight">Tokenized Operational Record Assets</span>
+      </h1>
       <p class="subtitle">Transform decades of dormant business records into blockchain-verified, licensable data assets. Institutional-grade infrastructure for the world's first operational data marketplace.</p>
       <div class="hero-buttons">
-        <a href="#" class="btn-lg btn-primary">Explore the Marketplace →</a>
-        <a href="#" class="btn-lg btn-outline">List Your Data</a>
+        <a href="#marketplace" class="btn-lg btn-primary">Explore the Marketplace →</a>
+        <a href="waitlist.html" class="btn-lg btn-outline">List Your Data</a>
       </div>
     </div>
   </div>
@@ -930,19 +1026,19 @@
         <div class="audience-icon has-img" style="background-image:url('images/supplier.jpg')"></div>
         <h3>For Data Suppliers</h3>
         <p>You have years of operational records gathering dust. TORA Exchange transforms them into a recurring revenue stream — blockchain-verified, anonymized, and licensed to institutional buyers.</p>
-        <a href="#" class="card-link">Start listing your data →</a>
+        <a href="supplier-guide.html" class="card-link">Start listing your data →</a>
       </div>
       <div class="audience-card fade-in">
         <div class="audience-icon has-img" style="background-image:url('images/buyer.jpg')"></div>
         <h3>For Data Buyers</h3>
         <p>Access authenticated operational intelligence across industries. Equipment lifecycle data, service patterns, regional trends — verified on-chain and available for licensing today.</p>
-        <a href="#" class="card-link">Browse the marketplace →</a>
+        <a href="buyer-guide.html" class="card-link">Browse the marketplace →</a>
       </div>
       <div class="audience-card fade-in">
         <div class="audience-icon has-img" style="background-image:url('images/partner.jpg')"></div>
         <h3>For Partners</h3>
         <p>Integrate TORA assets into your platform. Whether you're a tokenization provider, data analytics firm, or financial institution — we're building the infrastructure layer together.</p>
-        <a href="#" class="card-link">Explore partnership →</a>
+        <a href="contact.html" class="card-link">Explore partnership →</a>
       </div>
     </div>
   </div>
@@ -997,6 +1093,12 @@
       <span class="filter-pill">Real Estate</span>
       <span class="filter-pill">Transportation</span>
       <span class="filter-pill">Electrical</span>
+      <span class="filter-pill">Legal</span>
+      <span class="filter-pill">Manufacturing</span>
+      <span class="filter-pill">Utilities</span>
+      <span class="filter-pill">Retail</span>
+      <span class="filter-pill">Logistics</span>
+      <span class="filter-pill">Agriculture</span>
     </div>
     <div class="listing-grid">
       <!-- Card 1 -->
@@ -1027,6 +1129,7 @@
           <span class="listing-hash">0x3a7f2b...c94e</span>
           <span class="listing-buyers">Licensed by 4 buyers</span>
         </div>
+      <div class="view-detail-hint">View Details →</div>
       </div>
       <!-- Card 2 -->
       <div class="listing-card fade-in">
@@ -1056,6 +1159,7 @@
           <span class="listing-hash">0x8c21ae...f7b2</span>
           <span class="listing-buyers">Licensed by 7 buyers</span>
         </div>
+      <div class="view-detail-hint">View Details →</div>
       </div>
       <!-- Card 3 -->
       <div class="listing-card fade-in">
@@ -1085,6 +1189,7 @@
           <span class="listing-hash">0xf4e19d...a3c8</span>
           <span class="listing-buyers">Licensed by 11 buyers</span>
         </div>
+      <div class="view-detail-hint">View Details →</div>
       </div>
       <!-- Card 4 -->
       <div class="listing-card fade-in">
@@ -1114,6 +1219,7 @@
           <span class="listing-hash">0xb72c4f...e156</span>
           <span class="listing-buyers">Licensed by 6 buyers</span>
         </div>
+      <div class="view-detail-hint">View Details →</div>
       </div>
       <!-- Card 5 -->
       <div class="listing-card fade-in">
@@ -1143,6 +1249,7 @@
           <span class="listing-hash">0xd901a8...c47f</span>
           <span class="listing-buyers">Licensed by 9 buyers</span>
         </div>
+      <div class="view-detail-hint">View Details →</div>
       </div>
       <!-- Card 6 -->
       <div class="listing-card fade-in">
@@ -1172,10 +1279,192 @@
           <span class="listing-hash">0x5e83bf...d219</span>
           <span class="listing-buyers">Licensed by 5 buyers</span>
         </div>
+      <div class="view-detail-hint">View Details →</div>
+      </div>
+    </div>
+      <!-- Card 7 -->
+      <div class="listing-card fade-in">
+        <div class="listing-img" style="background-image:url('images/legal.jpg')">
+          <div class="chain-badge">🔐 Verified</div>
+        </div>
+        <div class="listing-body">
+          <div class="listing-tag">Legal</div>
+          <div class="listing-title">Municipal Code Compliance Archive</div>
+          <div class="listing-desc">18 years of municipal code compliance records, permit applications, and inspection outcomes across regional jurisdictions. Ideal for legal research, policy analysts, and government contractors.</div>
+          <div class="listing-stats">
+            <div class="listing-stat">
+              <div class="ls-label">Records</div>
+              <div class="ls-value">31,400</div>
+            </div>
+            <div class="listing-stat">
+              <div class="ls-label">Span</div>
+              <div class="ls-value">18 yrs</div>
+            </div>
+            <div class="listing-stat">
+              <div class="ls-label">License</div>
+              <div class="ls-value gold">$6,200/mo</div>
+            </div>
+          </div>
+        </div>
+        <div class="listing-footer">
+          <span class="listing-hash">0x2d8f4a...b3e7</span>
+          <span class="listing-buyers">Licensed by 5 buyers</span>
+        </div>
+        <div class="view-detail-hint">View Details →</div>
+      </div>
+      <!-- Card 8 -->
+      <div class="listing-card fade-in">
+        <div class="listing-img" style="background-image:url('images/manufacturing.jpg')">
+          <div class="chain-badge">🔐 Verified</div>
+        </div>
+        <div class="listing-body">
+          <div class="listing-tag">Manufacturing</div>
+          <div class="listing-title">Regional Auto Parts Production Data</div>
+          <div class="listing-desc">28 years of automotive parts manufacturing records. Production runs, quality control audits, defect rates, and supply chain sourcing data across regional assembly operations.</div>
+          <div class="listing-stats">
+            <div class="listing-stat">
+              <div class="ls-label">Records</div>
+              <div class="ls-value">67,200</div>
+            </div>
+            <div class="listing-stat">
+              <div class="ls-label">Span</div>
+              <div class="ls-value">28 yrs</div>
+            </div>
+            <div class="listing-stat">
+              <div class="ls-label">License</div>
+              <div class="ls-value gold">$11,400/mo</div>
+            </div>
+          </div>
+        </div>
+        <div class="listing-footer">
+          <span class="listing-hash">0x9c4e7b...d2f1</span>
+          <span class="listing-buyers">Licensed by 14 buyers</span>
+        </div>
+        <div class="view-detail-hint">View Details →</div>
+      </div>
+      <!-- Card 9 -->
+      <div class="listing-card fade-in">
+        <div class="listing-img" style="background-image:url('images/utilities.jpg')">
+          <div class="chain-badge">🔐 Verified</div>
+        </div>
+        <div class="listing-body">
+          <div class="listing-tag">Utilities</div>
+          <div class="listing-title">Mid-Atlantic Water Infrastructure Records</div>
+          <div class="listing-desc">35 years of water system maintenance, infrastructure inspection, and compliance records. Pipe integrity data, repair histories, and service interruption logs across municipal coverage areas.</div>
+          <div class="listing-stats">
+            <div class="listing-stat">
+              <div class="ls-label">Records</div>
+              <div class="ls-value">44,800</div>
+            </div>
+            <div class="listing-stat">
+              <div class="ls-label">Span</div>
+              <div class="ls-value">35 yrs</div>
+            </div>
+            <div class="listing-stat">
+              <div class="ls-label">License</div>
+              <div class="ls-value gold">$8,900/mo</div>
+            </div>
+          </div>
+        </div>
+        <div class="listing-footer">
+          <span class="listing-hash">0x1f6b9c...a4e2</span>
+          <span class="listing-buyers">Licensed by 8 buyers</span>
+        </div>
+        <div class="view-detail-hint">View Details →</div>
+      </div>
+      <!-- Card 10 -->
+      <div class="listing-card fade-in">
+        <div class="listing-img" style="background-image:url('images/retail.jpg')">
+          <div class="chain-badge">🔐 Verified</div>
+        </div>
+        <div class="listing-body">
+          <div class="listing-tag">Retail</div>
+          <div class="listing-title">Mid-Atlantic Retail Operations Archive</div>
+          <div class="listing-desc">12 years of multi-location retail operations data. Inventory cycles, vendor performance, shrinkage analytics, and seasonal demand patterns across regional consumer markets.</div>
+          <div class="listing-stats">
+            <div class="listing-stat">
+              <div class="ls-label">Records</div>
+              <div class="ls-value">28,600</div>
+            </div>
+            <div class="listing-stat">
+              <div class="ls-label">Span</div>
+              <div class="ls-value">12 yrs</div>
+            </div>
+            <div class="listing-stat">
+              <div class="ls-label">License</div>
+              <div class="ls-value gold">$4,800/mo</div>
+            </div>
+          </div>
+        </div>
+        <div class="listing-footer">
+          <span class="listing-hash">0x7e3c5d...f8b4</span>
+          <span class="listing-buyers">Licensed by 3 buyers</span>
+        </div>
+        <div class="view-detail-hint">View Details →</div>
+      </div>
+      <!-- Card 11 -->
+      <div class="listing-card fade-in">
+        <div class="listing-img" style="background-image:url('images/logistics.jpg')">
+          <div class="chain-badge">🔐 Verified</div>
+        </div>
+        <div class="listing-body">
+          <div class="listing-tag">Logistics</div>
+          <div class="listing-title">East Coast Freight &amp; Supply Chain Data</div>
+          <div class="listing-desc">22 years of freight brokerage and supply chain operations. Lane performance, carrier reliability, load data, and delivery analytics across East Coast corridors.</div>
+          <div class="listing-stats">
+            <div class="listing-stat">
+              <div class="ls-label">Records</div>
+              <div class="ls-value">55,100</div>
+            </div>
+            <div class="listing-stat">
+              <div class="ls-label">Span</div>
+              <div class="ls-value">22 yrs</div>
+            </div>
+            <div class="listing-stat">
+              <div class="ls-label">License</div>
+              <div class="ls-value gold">$9,800/mo</div>
+            </div>
+          </div>
+        </div>
+        <div class="listing-footer">
+          <span class="listing-hash">0x4a8d2f...c6e3</span>
+          <span class="listing-buyers">Licensed by 9 buyers</span>
+        </div>
+        <div class="view-detail-hint">View Details →</div>
+      </div>
+      <!-- Card 12 -->
+      <div class="listing-card fade-in">
+        <div class="listing-img" style="background-image:url('images/agriculture.jpg')">
+          <div class="chain-badge">🔐 Verified</div>
+        </div>
+        <div class="listing-body">
+          <div class="listing-tag">Agriculture</div>
+          <div class="listing-title">Mid-Atlantic Agricultural Operations</div>
+          <div class="listing-desc">40 years of farm and agricultural operations data. Crop yield records, soil treatment histories, equipment maintenance logs, and weather-correlated production analytics.</div>
+          <div class="listing-stats">
+            <div class="listing-stat">
+              <div class="ls-label">Records</div>
+              <div class="ls-value">19,300</div>
+            </div>
+            <div class="listing-stat">
+              <div class="ls-label">Span</div>
+              <div class="ls-value">40 yrs</div>
+            </div>
+            <div class="listing-stat">
+              <div class="ls-label">License</div>
+              <div class="ls-value gold">$5,400/mo</div>
+            </div>
+          </div>
+        </div>
+        <div class="listing-footer">
+          <span class="listing-hash">0x6b1e3a...d9f5</span>
+          <span class="listing-buyers">Licensed by 6 buyers</span>
+        </div>
+        <div class="view-detail-hint">View Details →</div>
       </div>
     </div>
     <div class="view-all-btn">
-      <a href="#">View All 156 Data Assets →</a>
+      <a href="waitlist.html">View All 156 Data Assets →</a>
     </div>
   </div>
 </section>
@@ -1260,6 +1549,27 @@
           <div class="insight-meta">March 2026 · 6 min read</div>
         </div>
       </a>
+      <a href="insights/article-4-what-is-a-tora.html" class="insight-card fade-in" style="text-decoration:none;color:inherit;">
+        <div class="insight-img" style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80');background-size:cover;background-position:center;"></div>
+        <div class="insight-body">
+          <div class="insight-tag">Explainer</div>
+          <div class="insight-title">What Is a TORA? A Plain-English Guide to Tokenized Operational Record Assets</div>
+          <div class="insight-excerpt">Everything you need to know about TORAs — the concept, the value chain, a real HVAC example, and who benefits from this new asset class.</div>
+          <div class="insight-meta">March 2026 · 6 min read</div>
+        </div>
+      </a>
+      <a href="insights/article-5-supplier-passive-income.html" class="insight-card fade-in" style="text-decoration:none;color:inherit;">
+        <div class="insight-img" style="background-image:url('https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&q=80');background-size:cover;background-position:center;"></div>
+        <div class="insight-body">
+          <div class="insight-tag">Guide</div>
+          <div class="insight-title">How Data Suppliers Earn Passive Income from Records They Already Own</div>
+          <div class="insight-excerpt">The supplier journey from assessment to first payout — DataVault onboarding, revenue splits (75/15/10), real projections, and optimization tips.</div>
+          <div class="insight-meta">March 2026 · 7 min read</div>
+        </div>
+      </a>
+    </div>
+    <div class="view-all-btn" style="margin-top:40px;">
+      <a href="insights/article-1-trillion-dollar-asset-class.html">View All Insights →</a>
     </div>
   </div>
 </section>
@@ -1271,8 +1581,8 @@
       <h2>Your Records Are Worth<br>More Than You Think</h2>
       <p>Every business sitting on years of operational data is sitting on an unrecognized asset. TORA Exchange gives that data a market, a price, and a future.</p>
       <div class="cta-buttons">
-        <a href="#" class="btn-lg btn-primary">List Your Data →</a>
-        <a href="#" class="btn-lg btn-outline">Talk to Our Team</a>
+        <a href="waitlist.html" class="btn-lg btn-primary">List Your Data →</a>
+        <a href="contact.html" class="btn-lg btn-outline">Talk to Our Team</a>
       </div>
     </div>
   </div>
@@ -1290,35 +1600,35 @@
       </div>
       <div class="footer-col">
         <h4>Platform</h4>
-        <a href="#">Marketplace</a>
-        <a href="#">List Your Data</a>
-        <a href="#">API Access</a>
-        <a href="#">Pricing</a>
-        <a href="#">Documentation</a>
+        <a href="#marketplace">Marketplace</a>
+        <a href="waitlist.html">List Your Data</a>
+        <a href="contact.html">API Access</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Documentation</a>
       </div>
       <div class="footer-col">
         <h4>Company</h4>
-        <a href="#">About BITS</a>
-        <a href="#">Careers</a>
-        <a href="#">Press</a>
-        <a href="#">Contact</a>
-        <a href="#">Partners</a>
+        <a href="about.html">About BITS</a>
+        <a href="careers.html">Careers</a>
+        <a href="press.html">Press</a>
+        <a href="contact.html">Contact</a>
+        <a href="contact.html">Partners</a>
       </div>
       <div class="footer-col">
         <h4>Resources</h4>
-        <a href="#">What is TORA?</a>
-        <a href="#">Verification</a>
-        <a href="#">Supplier Guide</a>
-        <a href="#">Buyer Guide</a>
-        <a href="#">Blog</a>
+        <a href="insights/article-4-what-is-a-tora.html">What is TORA?</a>
+        <a href="contact.html">Verification</a>
+        <a href="supplier-guide.html">Supplier Guide</a>
+        <a href="buyer-guide.html">Buyer Guide</a>
+        <a href="#insights">Blog</a>
       </div>
     </div>
     <div class="footer-bottom">
       <p>© 2026 B.I.T.S. — Blockchain Integrative Technology Solutions. All rights reserved.</p>
       <div class="footer-legal">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="#">Security</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="contact.html">Security</a>
       </div>
     </div>
   </div>
@@ -1357,13 +1667,280 @@
   const sb = document.querySelector('.stats-section');
   if (sb) sObs.observe(sb);
 
-  // Filters
-  document.querySelectorAll('.filter-pill').forEach(f => {
+  // ===== SEARCH & FILTER =====
+  const searchInput = document.querySelector('.search-bar input');
+  const filterPills = document.querySelectorAll('.filter-pill');
+  const listingCards = document.querySelectorAll('.listing-card');
+
+  function applyFilters() {
+    const query = searchInput ? searchInput.value.toLowerCase() : '';
+    const activeFilter = document.querySelector('.filter-pill.active')?.textContent?.trim() || 'All Industries';
+
+    listingCards.forEach(card => {
+      const tag = card.querySelector('.listing-tag')?.textContent?.trim() || '';
+      const title = card.querySelector('.listing-title')?.textContent?.toLowerCase() || '';
+      const desc = card.querySelector('.listing-desc')?.textContent?.toLowerCase() || '';
+      const matchesFilter = activeFilter === 'All Industries' || tag === activeFilter;
+      const matchesSearch = !query || title.includes(query) || desc.includes(query) || tag.toLowerCase().includes(query);
+      card.style.display = matchesFilter && matchesSearch ? '' : 'none';
+    });
+  }
+
+  filterPills.forEach(f => {
     f.addEventListener('click', () => {
-      document.querySelectorAll('.filter-pill').forEach(x => x.classList.remove('active'));
+      filterPills.forEach(x => x.classList.remove('active'));
       f.classList.add('active');
+      applyFilters();
     });
   });
+
+  if (searchInput) searchInput.addEventListener('input', applyFilters);
+
+  // ===== LISTING DETAIL MODAL =====
+  const modalHTML = `
+  <div id="listing-modal" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(12,26,50,0.7);backdrop-filter:blur(4px);overflow-y:auto;">
+    <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px;">
+      <div id="modal-inner" style="background:#fff;border-radius:16px;max-width:760px;width:100%;box-shadow:0 32px 80px rgba(0,0,0,0.2);position:relative;overflow:hidden;">
+        <button id="modal-close" style="position:absolute;top:20px;right:20px;background:var(--light-gray);border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;z-index:1;">✕</button>
+        <div id="modal-hero" style="height:200px;background-size:cover;background-position:center;position:relative;">
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(12,26,50,0.8));"></div>
+          <div style="position:absolute;bottom:20px;left:28px;color:#fff;">
+            <div id="modal-tag" style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:var(--gold);color:#fff;padding:3px 10px;border-radius:4px;display:inline-block;margin-bottom:8px;"></div>
+            <div id="modal-title" style="font-family:'DM Serif Display',serif;font-size:26px;font-weight:400;line-height:1.2;"></div>
+          </div>
+        </div>
+        <div style="padding:32px 28px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:28px;">
+            <div style="background:var(--off-white);border-radius:10px;padding:16px;text-align:center;">
+              <div style="font-size:11px;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Records</div>
+              <div id="modal-records" style="font-size:22px;font-weight:700;color:var(--text-primary);font-family:'JetBrains Mono',monospace;"></div>
+            </div>
+            <div style="background:var(--off-white);border-radius:10px;padding:16px;text-align:center;">
+              <div style="font-size:11px;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Data Span</div>
+              <div id="modal-span" style="font-size:22px;font-weight:700;color:var(--text-primary);font-family:'JetBrains Mono',monospace;"></div>
+            </div>
+            <div style="background:var(--gold-bg);border-radius:10px;padding:16px;text-align:center;border:1px solid var(--gold-border);">
+              <div style="font-size:11px;color:var(--gold);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">License Fee</div>
+              <div id="modal-price" style="font-size:22px;font-weight:700;color:var(--gold);font-family:'JetBrains Mono',monospace;"></div>
+            </div>
+          </div>
+          <div id="modal-desc" style="color:var(--text-secondary);line-height:1.7;margin-bottom:24px;font-size:15px;"></div>
+          <div style="background:var(--off-white);border-radius:10px;padding:20px;margin-bottom:24px;">
+            <div style="font-size:12px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">Blockchain Verification</div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:18px;">🔐</span>
+              <div>
+                <div style="font-size:12px;color:var(--text-muted);margin-bottom:2px;">Asset Hash (Solana Mainnet)</div>
+                <div id="modal-hash" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text-primary);font-weight:600;"></div>
+              </div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <button onclick="openInquiry()" style="background:var(--navy);color:#fff;border:none;padding:14px 24px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;letter-spacing:0.3px;">Request Access →</button>
+            <button onclick="document.getElementById('listing-modal').style.display='none'" style="background:transparent;color:var(--text-secondary);border:2px solid var(--border);padding:14px 24px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+  document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+  const listingData = [
+    { tag:'HVAC', title:'Mid-Atlantic HVAC Service Intelligence', desc:'25 years of residential and commercial service records. Equipment lifecycle data, seasonal patterns, failure rates across 40+ brands. Ideal for insurance underwriters, equipment manufacturers, and HVAC distributors seeking regional performance benchmarks.', records:'18,247', span:'25 yrs', price:'$4,200/mo', img:'images/hvac.jpg', hash:'0x3a7f2b8e4c91d...c94e', buyers:4 },
+    { tag:'Construction', title:'Commercial Masonry & Concrete Archive', desc:'Two decades of commercial construction records. Project specs, material usage, labor analytics, and inspection histories. Valuable for insurance companies, PE firms doing due diligence, and construction industry researchers.', records:'24,100', span:'20 yrs', price:'$5,800/mo', img:'images/construction.jpg', hash:'0x8c21ae7f2d40b...f7b2', buyers:7 },
+    { tag:'Healthcare', title:'Regional Clinical Operations Data', desc:'Anonymized operational records from a multi-location healthcare provider. Scheduling, equipment maintenance, compliance audit trails. All PII removed. Perfect for healthcare consultants, equipment vendors, and compliance researchers.', records:'52,300', span:'16 yrs', price:'$9,200/mo', img:'images/healthcare.jpg', hash:'0xf4e19d3a8c72f...a3c8', buyers:11 },
+    { tag:'Transportation', title:'Fleet Management & Logistics Corpus', desc:'15 years of fleet operations data. Maintenance logs, route analytics, fuel consumption, and vehicle lifecycle intelligence. Prime dataset for fleet manufacturers, insurance carriers, and logistics optimization firms.', records:'38,600', span:'15 yrs', price:'$7,400/mo', img:'images/transportation.jpg', hash:'0xb72c4fa9e801d...e156', buyers:6 },
+    { tag:'Real Estate', title:'Property Maintenance Intelligence', desc:'22 years of property management records spanning 1,200+ units. Maintenance cycles, vendor performance, cost benchmarking. Sought by REITs, property insurers, and real estate private equity.', records:'45,200', span:'22 yrs', price:'$8,500/mo', img:'images/realestate.jpg', hash:'0xd901a83f7c29b...c47f', buyers:9 },
+    { tag:'Electrical', title:'DC Metro Electrical Contractor Archive', desc:'12 years of electrical contracting records across commercial and government projects. Code compliance history, material sourcing, labor productivity. Useful for utilities, government agencies, and construction analytics firms.', records:'16,800', span:'12 yrs', price:'$3,900/mo', img:'images/electrical.jpg', hash:'0xa5e73d2f91bc4...8d2a', buyers:3 },
+    { tag:'Legal', title:'Municipal Code Compliance Archive', desc:'18 years of municipal code compliance records, permit applications, and inspection outcomes across regional jurisdictions. Ideal for legal research, policy analysts, and government contractors seeking compliance benchmarks.', records:'31,400', span:'18 yrs', price:'$6,200/mo', img:'images/legal.jpg', hash:'0x2d8f4a7c3e1b9...b3e7', buyers:5 },
+    { tag:'Manufacturing', title:'Regional Auto Parts Production Data', desc:'28 years of automotive parts manufacturing records. Production runs, quality control audits, defect rates, and supply chain sourcing data across regional assembly operations. Sought by OEMs, insurers, and PE firms.', records:'67,200', span:'28 yrs', price:'$11,400/mo', img:'images/manufacturing.jpg', hash:'0x9c4e7b2a8f3d1...d2f1', buyers:14 },
+    { tag:'Utilities', title:'Mid-Atlantic Water Infrastructure Records', desc:'35 years of water system maintenance, infrastructure inspection, and compliance records. Pipe integrity data, repair histories, and service interruption logs across municipal coverage areas.', records:'44,800', span:'35 yrs', price:'$8,900/mo', img:'images/utilities.jpg', hash:'0x1f6b9c4e2a7d8...a4e2', buyers:8 },
+    { tag:'Retail', title:'Mid-Atlantic Retail Operations Archive', desc:'12 years of multi-location retail operations data. Inventory cycles, vendor performance, shrinkage analytics, and seasonal demand patterns across regional consumer markets.', records:'28,600', span:'12 yrs', price:'$4,800/mo', img:'images/retail.jpg', hash:'0x7e3c5d9a1b4f2...f8b4', buyers:3 },
+    { tag:'Logistics', title:'East Coast Freight & Supply Chain Data', desc:'22 years of freight brokerage and supply chain operations. Lane performance, carrier reliability, load data, and delivery analytics across East Coast corridors.', records:'55,100', span:'22 yrs', price:'$9,800/mo', img:'images/logistics.jpg', hash:'0x4a8d2f6c9e1b3...c6e3', buyers:9 },
+    { tag:'Agriculture', title:'Mid-Atlantic Agricultural Operations', desc:'40 years of farm and agricultural operations data. Crop yield records, soil treatment histories, equipment maintenance logs, and weather-correlated production analytics.', records:'19,300', span:'40 yrs', price:'$5,400/mo', img:'images/agriculture.jpg', hash:'0x6b1e3a8d5c7f2...d9f5', buyers:6 },
+  ];
+
+  document.querySelectorAll('.listing-card').forEach((card, i) => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => {
+      const d = listingData[i];
+      if (!d) return;
+      document.getElementById('modal-hero').style.backgroundImage = `url('${d.img}')`;
+      document.getElementById('modal-tag').textContent = d.tag;
+      document.getElementById('modal-title').textContent = d.title;
+      document.getElementById('modal-desc').textContent = d.desc;
+      document.getElementById('modal-records').textContent = d.records;
+      document.getElementById('modal-span').textContent = d.span;
+      document.getElementById('modal-price').textContent = d.price;
+      document.getElementById('modal-hash').textContent = d.hash;
+      document.getElementById('listing-modal').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  document.getElementById('modal-close').addEventListener('click', () => {
+    document.getElementById('listing-modal').style.display = 'none';
+    document.body.style.overflow = '';
+  });
+  document.getElementById('listing-modal').addEventListener('click', e => {
+    if (e.target === document.getElementById('listing-modal')) {
+      document.getElementById('listing-modal').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  });
+
+  // ===== PARTNER INQUIRY FORM =====
+  const inquiryHTML = `
+  <div id="inquiry-modal" style="display:none;position:fixed;inset:0;z-index:9100;background:rgba(12,26,50,0.75);backdrop-filter:blur(4px);overflow-y:auto;">
+    <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px;">
+      <div style="background:#fff;border-radius:16px;max-width:520px;width:100%;box-shadow:0 32px 80px rgba(0,0,0,0.25);padding:40px;position:relative;">
+        <button onclick="document.getElementById('inquiry-modal').style.display='none';document.body.style.overflow='';" style="position:absolute;top:20px;right:20px;background:var(--light-gray);border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;">✕</button>
+        <div style="font-family:'DM Serif Display',serif;font-size:26px;color:var(--text-primary);margin-bottom:8px;">Request Access</div>
+        <div style="color:var(--text-muted);font-size:14px;margin-bottom:28px;">Our team will follow up within 24 hours to discuss licensing options and data packages.</div>
+        <form id="inquiry-form" onsubmit="submitInquiry(event)">
+          <div style="margin-bottom:16px;">
+            <label style="display:block;font-size:12px;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Full Name *</label>
+            <input type="text" required placeholder="John Smith" style="width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--navy)'" onblur="this.style.borderColor='var(--border)'">
+          </div>
+          <div style="margin-bottom:16px;">
+            <label style="display:block;font-size:12px;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Company *</label>
+            <input type="text" required placeholder="Acme Insurance Co." style="width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--navy)'" onblur="this.style.borderColor='var(--border)'">
+          </div>
+          <div style="margin-bottom:16px;">
+            <label style="display:block;font-size:12px;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Business Email *</label>
+            <input type="email" required placeholder="john@company.com" style="width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--navy)'" onblur="this.style.borderColor='var(--border)'">
+          </div>
+          <div style="margin-bottom:16px;">
+            <label style="display:block;font-size:12px;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">I Am A</label>
+            <select style="width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;outline:none;background:#fff;cursor:pointer;">
+              <option>Data Buyer — seeking licensed data access</option>
+              <option>Data Supplier — want to list my records</option>
+              <option>Institutional Partner — API / enterprise inquiry</option>
+              <option>Investor / Press — general inquiry</option>
+            </select>
+          </div>
+          <div style="margin-bottom:24px;">
+            <label style="display:block;font-size:12px;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Message</label>
+            <textarea rows="3" placeholder="Tell us about your data needs or the records you want to list..." style="width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;outline:none;resize:vertical;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--navy)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+          </div>
+          <button type="submit" style="width:100%;background:var(--navy);color:#fff;border:none;padding:15px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;letter-spacing:0.3px;">Submit Request →</button>
+        </form>
+        <div id="inquiry-success" style="display:none;text-align:center;padding:20px 0;">
+          <div style="font-size:48px;margin-bottom:16px;">✅</div>
+          <div style="font-family:'DM Serif Display',serif;font-size:22px;color:var(--text-primary);margin-bottom:8px;">Request Received</div>
+          <div style="color:var(--text-muted);font-size:14px;">Our team will reach out within 24 hours at the email you provided.</div>
+        </div>
+        <p style="margin-top:16px;font-size:11px;color:var(--text-muted);text-align:center;">By submitting, you agree to be contacted by TORA Exchange / B.I.T.S. regarding your inquiry. We never share your information.</p>
+      </div>
+    </div>
+  </div>`;
+  document.body.insertAdjacentHTML('beforeend', inquiryHTML);
+
+  function openInquiry() {
+    document.getElementById('listing-modal').style.display = 'none';
+    document.getElementById('inquiry-modal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+  window.openInquiry = openInquiry;
+
+  function submitInquiry(e) {
+    e.preventDefault();
+    document.getElementById('inquiry-form').style.display = 'none';
+    document.getElementById('inquiry-success').style.display = 'block';
+    setTimeout(() => {
+      document.getElementById('inquiry-modal').style.display = 'none';
+      document.getElementById('inquiry-form').style.display = 'block';
+      document.getElementById('inquiry-success').style.display = 'none';
+      document.body.style.overflow = '';
+      e.target.reset();
+    }, 3000);
+  }
+  window.submitInquiry = submitInquiry;
+
+  // Wire CTA buttons to inquiry modal
+  document.querySelectorAll('a[href="#"]').forEach(a => {
+    const text = a.textContent.trim();
+    if (text.includes('Talk to Our Team') || text.includes('List Your Data') || text.includes('Get Started') || text.includes('Request Access')) {
+      a.addEventListener('click', e => { e.preventDefault(); openInquiry(); });
+    }
+  });
 </script>
+<!-- Live Market Data Ticker — Top 12 Cryptos from CoinGecko -->
+<script>
+(function() {
+  const symbols = {
+    bitcoin: 'BTC', ethereum: 'ETH', tether: 'USDT', ripple: 'XRP',
+    solana: 'SOL', binancecoin: 'BNB', usd_coin: 'USDC', dogecoin: 'DOGE',
+    cardano: 'ADA', chainlink: 'LINK', avalanche_2: 'AVAX', polkadot: 'DOT'
+  };
+  const ids = Object.keys(symbols).join(',');
+
+  const fmt = (n) => {
+    if (n >= 1000) return '$' + n.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+    if (n >= 1) return '$' + n.toFixed(2);
+    return '$' + n.toFixed(4);
+  };
+
+  function buildTicker(data) {
+    const track = document.getElementById('live-ticker');
+    if (!track) return;
+    let html = '';
+    // Build items twice for seamless scroll loop
+    for (let loop = 0; loop < 2; loop++) {
+      for (const [id, sym] of Object.entries(symbols)) {
+        if (!data[id]) continue;
+        const price = fmt(data[id].usd);
+        const chg = data[id].usd_24h_change || 0;
+        const sign = chg >= 0 ? '+' : '';
+        const arrow = chg >= 0 ? '▲' : '▼';
+        const cls = chg >= 0 ? 'ticker-up' : 'ticker-down';
+        html += `<span class="ticker-item"><span class="ticker-label">${sym}</span> <span class="ticker-value">${price} <span class="${cls}">${sign}${chg.toFixed(1)}% ${arrow}</span></span></span><span class="ticker-dot"></span>`;
+      }
+    }
+    track.innerHTML = html;
+  }
+
+  async function fetchPrices() {
+    try {
+      const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=' + ids + '&vs_currencies=usd&include_24hr_change=true');
+      const data = await res.json();
+      buildTicker(data);
+    } catch(e) { console.log('Ticker fetch error:', e); }
+  }
+
+  // Fallback data so ticker is NEVER empty
+  let lastData = {
+    bitcoin: {usd: 82500, usd_24h_change: 1.2},
+    ethereum: {usd: 2180, usd_24h_change: -0.8},
+    tether: {usd: 1.00, usd_24h_change: 0.01},
+    ripple: {usd: 2.28, usd_24h_change: 3.1},
+    solana: {usd: 128, usd_24h_change: 2.4},
+    binancecoin: {usd: 580, usd_24h_change: 0.6},
+    usd_coin: {usd: 1.00, usd_24h_change: 0.0},
+    dogecoin: {usd: 0.175, usd_24h_change: -1.3},
+    cardano: {usd: 0.78, usd_24h_change: 1.9},
+    chainlink: {usd: 14.20, usd_24h_change: 0.5},
+    avalanche_2: {usd: 22.50, usd_24h_change: -0.4},
+    polkadot: {usd: 4.85, usd_24h_change: 1.1}
+  };
+
+  // Show fallback immediately so ticker always scrolls
+  buildTicker(lastData);
+
+  async function safeFetch() {
+    try {
+      const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=' + ids + '&vs_currencies=usd&include_24hr_change=true');
+      if (res.ok) { lastData = await res.json(); buildTicker(lastData); }
+    } catch(e) { /* keep showing cached data */ }
+  }
+  // First live fetch after 5 seconds, then every 2 minutes
+  setTimeout(safeFetch, 5000);
+  setInterval(safeFetch, 120000);
+})();
+</script>
+
+<!-- Ticker down style -->
+<style>.ticker-down { color: #f87171; }</style>
+
 </body>
 </html>

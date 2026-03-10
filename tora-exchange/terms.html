@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service — TORA Exchange</title>
+<meta name="description" content="Terms of Service for TORA Exchange — the world's first marketplace for Tokenized Operational Record Assets.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230c1a32'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='700' fill='%239e7c2e'>TE</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #ffffff; --off-white: #f8f9fb; --light-gray: #f1f3f6; --mid-gray: #e5e8ed;
+    --border: #dfe2e8; --text-primary: #0f1724; --text-secondary: #3d4a5c; --text-muted: #7a8599;
+    --gold: #9e7c2e; --gold-light: #b8922f; --gold-bg: #faf6ed; --gold-border: #e8dcc0;
+    --navy: #0c1a32; --navy-light: #1a2d4a; --blue: #1a5bc4; --blue-light: #e8f0fe;
+    --green: #0d8a50; --green-bg: #edf7f1;
+  }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--white); color: var(--text-secondary); line-height: 1.6; -webkit-font-smoothing: antialiased; margin-top: 36px; }
+  .serif { font-family: 'DM Serif Display', Georgia, serif; }
+  .container { max-width: 800px; margin: 0 auto; padding: 0 40px; }
+  .container-wide { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+  /* Ticker */
+  .ticker-bar { background: var(--navy); color: rgba(255,255,255,0.7); font-size: 10px; font-weight: 500; height: 36px; display: flex; align-items: center; overflow: hidden; position: fixed; top: 0; left: 0; right: 0; z-index: 1001; }
+  .ticker-track { display: flex; gap: 36px; animation: tickerScroll 60s linear infinite; white-space: nowrap; }
+  .ticker-item { display: flex; align-items: center; gap: 8px; }
+  .ticker-label { color: rgba(255,255,255,0.5); }
+  .ticker-value { color: #fff; font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 11px; }
+  .ticker-up { color: #34d399; } .ticker-down { color: #f87171; }
+  .ticker-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+  @keyframes tickerScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* Nav */
+  .nav { position: fixed; top: 36px; left: 0; right: 0; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 1000; }
+  .nav-content { display: flex; justify-content: space-between; align-items: center; height: 64px; max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+  .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-brand .logo-mark { background: var(--navy); width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--gold-light); letter-spacing: 2px; }
+  .nav-brand-text { display: flex; flex-direction: column; }
+  .nav-brand-text .brand-name { font-size: 20px; font-weight: 800; color: var(--text-primary); letter-spacing: 2px; text-transform: uppercase; line-height: 1.1; }
+  .nav-brand-text .powered-by { font-size: 9px; font-weight: 500; color: var(--text-muted); letter-spacing: 1.2px; text-transform: uppercase; margin-top: 1px; }
+  .nav-links { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
+  .nav-links a { text-decoration: none; color: var(--text-secondary); font-size: 13px; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+  .btn-nav { background: var(--navy); color: #fff; padding: 9px 20px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+  .btn-nav:hover { background: var(--navy-light); }
+
+  /* Hero */
+  .hero { padding: 140px 0 60px; text-align: center; background: linear-gradient(180deg, var(--off-white) 0%, var(--white) 100%); }
+  .hero h1 { font-size: 48px; font-weight: 400; color: var(--text-primary); margin-bottom: 12px; }
+  .hero .date { font-size: 14px; color: var(--text-muted); }
+
+  /* Content */
+  .legal-content { padding: 60px 0 80px; }
+  .legal-content h2 { font-size: 24px; font-weight: 700; color: var(--text-primary); margin: 48px 0 16px; padding-top: 24px; border-top: 1px solid var(--border); }
+  .legal-content h2:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+  .legal-content p { margin-bottom: 16px; font-size: 15px; line-height: 1.8; }
+  .legal-content ul { margin: 0 0 20px 0; padding-left: 0; list-style: none; }
+  .legal-content li { padding: 8px 0; font-size: 15px; display: flex; align-items: flex-start; gap: 12px; line-height: 1.7; }
+  .legal-content li::before { content: '•'; color: var(--gold); font-size: 18px; flex-shrink: 0; margin-top: -1px; }
+
+  /* Footer */
+  .footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 32px 0; }
+  .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+  .footer-links { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; }
+  .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+
+  @media (max-width: 768px) {
+    .container { padding: 0 20px; }
+    .container-wide { padding: 0 20px; }
+    .hero { padding: 120px 0 40px; }
+    .hero h1 { font-size: 32px; }
+    .nav-links { display: none; }
+    .legal-content h2 { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Ticker -->
+<div class="ticker-bar"><div class="ticker-track" id="live-ticker"></div></div>
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="nav-content">
+    <a href="index.html" class="nav-brand">
+      <div class="logo-mark">TE</div>
+      <div class="nav-brand-text">
+        <span class="brand-name">TORA Exchange</span>
+        <span class="powered-by">Powered by B.I.T.S.</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#marketplace">Marketplace</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="supplier-guide.html">Supplier Guide</a></li>
+      <li><a href="buyer-guide.html">Buyer Guide</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="index.html#insights">Insights</a></li>
+    </ul>
+    <a href="waitlist.html" class="btn-nav">Get Started</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <h1 class="serif">Terms of Service</h1>
+  <p class="date">Effective Date: March 10, 2026</p>
+</div>
+
+<!-- Content -->
+<div class="legal-content">
+  <div class="container">
+
+    <h2>1. Platform Use</h2>
+    <p>TORA Exchange is a data licensing marketplace operated by Blockchain Integrative Technology Solutions (BITS). We facilitate connections between data suppliers and data buyers through blockchain-verified, tokenized operational record assets.</p>
+    <p>By accessing or using TORA Exchange, you agree to be bound by these Terms of Service. If you do not agree, do not use the platform.</p>
+
+    <h2>2. Eligibility</h2>
+    <p>You must be at least 18 years of age and have the legal capacity to enter into binding agreements. If you are acting on behalf of an organization, you represent that you have the authority to bind that organization to these terms.</p>
+
+    <h2>3. Accounts</h2>
+    <p>You are responsible for maintaining the confidentiality of your account credentials and for all activity that occurs under your account. You agree to notify us immediately of any unauthorized access.</p>
+
+    <h2>4. Data Supplier Terms</h2>
+    <ul>
+      <li>Suppliers warrant they have the legal right to list their data on TORA Exchange.</li>
+      <li>Suppliers control what data is listed and can deactivate listings at any time.</li>
+      <li>Suppliers are responsible for ensuring listed data does not contain personally identifiable information (PII) unless explicitly authorized.</li>
+      <li>Revenue distribution is handled automatically via smart contract according to the agreed platform fee structure.</li>
+      <li>Suppliers retain full ownership of their raw documents. Only anonymized data intelligence is shared on the marketplace.</li>
+    </ul>
+
+    <h2>5. Data Buyer Terms</h2>
+    <ul>
+      <li>Licenses are for the specified duration and use as described in each listing.</li>
+      <li>Licensed data may not be sublicensed or redistributed without supplier consent.</li>
+      <li>All purchases are processed on the Solana blockchain. Transactions are final and recorded on-chain.</li>
+      <li>Buyers agree to use licensed data in compliance with applicable laws and regulations.</li>
+      <li>Buyer access to data is contingent on maintaining an active license.</li>
+    </ul>
+
+    <h2>6. Revenue &amp; Payments</h2>
+    <ul>
+      <li>Revenue splits are enforced by smart contract and are transparent on-chain.</li>
+      <li>BITS retains a platform fee as specified in the supplier agreement (typically 10–25%).</li>
+      <li>Suppliers receive 75–90% of all licensing revenue, paid automatically to their designated wallet.</li>
+      <li>Payment processing is handled via Solana blockchain. BITS does not hold buyer or supplier funds in custody.</li>
+    </ul>
+
+    <h2>7. Intellectual Property</h2>
+    <p>TORA Exchange, the TORA name, associated technology, smart contracts, and platform infrastructure are protected under pending patents held by Blockchain Integrative Technology Solutions (BITS).</p>
+    <p>Supplier data remains the intellectual property of the supplier. Listing data on the exchange does not transfer ownership — only licensing rights for the specified terms.</p>
+
+    <h2>8. Prohibited Conduct</h2>
+    <ul>
+      <li>Listing data you do not have the legal right to share</li>
+      <li>Attempting to reverse-engineer, scrape, or extract raw data from licensed datasets</li>
+      <li>Using the platform for any illegal purpose</li>
+      <li>Interfering with platform operations, smart contracts, or other users' access</li>
+      <li>Misrepresenting your identity, company, or data</li>
+    </ul>
+
+    <h2>9. Limitation of Liability</h2>
+    <p>TORA Exchange and BITS provide the platform on an "as is" basis. To the maximum extent permitted by law, we disclaim all warranties, express or implied, including warranties of merchantability, fitness for a particular purpose, and non-infringement.</p>
+    <p>In no event shall BITS be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the platform.</p>
+
+    <h2>10. Dispute Resolution</h2>
+    <p>Any disputes arising from these Terms or use of the platform shall be resolved through good-faith negotiation. If negotiation fails, disputes shall be submitted to binding arbitration in Richmond, Virginia, in accordance with the rules of the American Arbitration Association.</p>
+
+    <h2>11. Termination</h2>
+    <p>We reserve the right to suspend or terminate accounts that violate these terms. Suppliers may deactivate listings at any time. Buyers' access to licensed data ends when the license term expires.</p>
+
+    <h2>12. Changes to Terms</h2>
+    <p>We may update these Terms from time to time. Material changes will be communicated via email or platform notification. Continued use of the platform after changes constitutes acceptance of the updated terms.</p>
+
+    <h2>13. Contact</h2>
+    <p style="font-weight: 600; color: var(--text-primary);">
+      contact@bitscorp.us<br>
+      Blockchain Integrative Technology Solutions (BITS)<br>
+      3900 Westerre Parkway, Suite 300<br>
+      Richmond, Virginia 23233
+    </p>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    <span>© 2026 B.I.T.S. — Blockchain Integrative Technology Solutions. All rights reserved.</span>
+    <ul class="footer-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
+      <li><a href="terms.html">Terms</a></li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Crypto Ticker Script -->
+<script>
+(function() {
+  const symbols = { bitcoin:'BTC', ethereum:'ETH', tether:'USDT', ripple:'XRP', solana:'SOL', binancecoin:'BNB', usd_coin:'USDC', dogecoin:'DOGE', cardano:'ADA', chainlink:'LINK', avalanche_2:'AVAX', polkadot:'DOT' };
+  const ids = Object.keys(symbols).join(',');
+  const fmt = n => n >= 1000 ? '$'+n.toLocaleString('en-US',{maximumFractionDigits:0}) : n >= 1 ? '$'+n.toFixed(2) : '$'+n.toFixed(4);
+  let last = { bitcoin:{usd:82500,usd_24h_change:1.2}, ethereum:{usd:2180,usd_24h_change:-0.8}, tether:{usd:1.00,usd_24h_change:0.01}, ripple:{usd:2.28,usd_24h_change:3.1}, solana:{usd:128,usd_24h_change:2.4}, binancecoin:{usd:580,usd_24h_change:0.6}, usd_coin:{usd:1.00,usd_24h_change:0.0}, dogecoin:{usd:0.175,usd_24h_change:-1.3}, cardano:{usd:0.78,usd_24h_change:1.9}, chainlink:{usd:14.20,usd_24h_change:0.5}, avalanche_2:{usd:22.50,usd_24h_change:-0.4}, polkadot:{usd:4.85,usd_24h_change:1.1} };
+  function build(data) {
+    const t = document.getElementById('live-ticker'); if(!t) return;
+    let h = '';
+    for(let l=0;l<2;l++) for(const[id,sym] of Object.entries(symbols)) { if(!data[id])continue; const p=fmt(data[id].usd),c=data[id].usd_24h_change||0,s=c>=0?'+':'',a=c>=0?'▲':'▼',cl=c>=0?'ticker-up':'ticker-down'; h+=`<span class="ticker-item"><span class="ticker-label">${sym}</span> <span class="ticker-value">${p} <span class="${cl}">${s}${c.toFixed(1)}% ${a}</span></span></span><span class="ticker-dot"></span>`; }
+    t.innerHTML = h;
+  }
+  build(last);
+  async function f() { try { const r=await fetch('https://api.coingecko.com/api/v3/simple/price?ids='+ids+'&vs_currencies=usd&include_24hr_change=true'); if(r.ok){last=await r.json();build(last);} } catch(e){} }
+  setTimeout(f,5000); setInterval(f,120000);
+})();
+</script>
+</body>
+</html>

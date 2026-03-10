@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — TORA Exchange</title>
+<meta name="description" content="Transparent, institutional-grade pricing for data buyers, data suppliers, and enterprise partners on TORA Exchange.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230c1a32'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='700' fill='%239e7c2e'>TE</text></svg>">
+<meta property="og:title" content="Pricing — TORA Exchange">
+<meta property="og:description" content="Transparent pricing for the world's first tokenized operational data marketplace.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --white: #ffffff;
+    --off-white: #f8f9fb;
+    --light-gray: #f1f3f6;
+    --border: #dfe2e8;
+    --text-primary: #0f1724;
+    --text-secondary: #3d4a5c;
+    --text-muted: #7a8599;
+    --gold: #9e7c2e;
+    --gold-light: #b8922f;
+    --gold-bg: #faf6ed;
+    --gold-border: #e8dcc0;
+    --navy: #0c1a32;
+    --navy-light: #1a2d4a;
+    --blue: #1a5bc4;
+    --blue-light: #e8f0fe;
+    --green: #0d8a50;
+    --green-bg: #edf7f1;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', -apple-system, sans-serif; background: var(--white); color: var(--text-secondary); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .serif { font-family: 'DM Serif Display', Georgia, serif; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+  /* ===== TICKER ===== */
+  .ticker-bar { background: var(--navy); color: rgba(255,255,255,0.7); font-size: 12px; font-weight: 500; height: 36px; display: flex; align-items: center; overflow: hidden; position: fixed; top: 0; left: 0; right: 0; z-index: 1001; }
+  .ticker-track { display: flex; gap: 48px; animation: tickerScroll 30s linear infinite; white-space: nowrap; }
+  .ticker-item { display: flex; align-items: center; gap: 8px; }
+  .ticker-label { color: rgba(255,255,255,0.5); }
+  .ticker-value { color: #fff; font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 11px; }
+  .ticker-up { color: #34d399; }
+  .ticker-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+  @keyframes tickerScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* ===== NAV ===== */
+  nav { position: fixed; top: 36px; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 40px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo-mark { width: 36px; height: 36px; background: var(--navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-size: 14px; color: var(--gold); font-weight: 400; }
+  .brand-name { font-size: 16px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.3px; }
+  .powered-by { font-size: 9px; color: var(--text-muted); font-weight: 500; letter-spacing: 0.5px; }
+  .nav-center { display: flex; list-style: none; gap: 32px; }
+  .nav-center a { text-decoration: none; font-size: 13px; font-weight: 500; color: var(--text-secondary); transition: color 0.2s; }
+  .nav-center a:hover { color: var(--navy); }
+  .nav-right { display: flex; align-items: center; gap: 12px; }
+  .btn-nav-outline { padding: 7px 16px; border: 1.5px solid var(--border); border-radius: 7px; font-size: 13px; font-weight: 600; color: var(--text-primary); text-decoration: none; transition: all 0.2s; }
+  .btn-nav-solid { padding: 7px 16px; background: var(--navy); border-radius: 7px; font-size: 13px; font-weight: 600; color: #fff; text-decoration: none; transition: all 0.2s; }
+
+  /* ===== PAGE HEADER ===== */
+  .page-header { padding: 140px 0 80px; background: linear-gradient(180deg, var(--off-white) 0%, var(--white) 100%); text-align: center; position: relative; overflow: hidden; }
+  .page-header::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(12,26,50,0.018) 40px, rgba(12,26,50,0.018) 41px); }
+  .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .page-title { font-family: 'DM Serif Display', serif; font-size: 52px; color: var(--text-primary); line-height: 1.1; margin-bottom: 20px; }
+  .page-subtitle { font-size: 17px; color: var(--text-muted); max-width: 560px; margin: 0 auto 40px; line-height: 1.7; }
+
+  /* ===== TOGGLE ===== */
+  .billing-toggle { display: inline-flex; align-items: center; gap: 16px; background: var(--light-gray); border-radius: 100px; padding: 6px; margin-bottom: 72px; }
+  .toggle-opt { padding: 8px 24px; border-radius: 100px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; color: var(--text-muted); }
+  .toggle-opt.active { background: var(--navy); color: #fff; box-shadow: 0 2px 8px rgba(12,26,50,0.2); }
+  .save-badge { background: var(--green-bg); color: var(--green); font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 100px; }
+
+  /* ===== SECTION TABS ===== */
+  .audience-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 56px; }
+  .aud-tab { padding: 10px 28px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; border: 1.5px solid var(--border); color: var(--text-secondary); background: var(--white); transition: all 0.2s; }
+  .aud-tab.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+  /* ===== PRICING GRID ===== */
+  .pricing-section { padding: 0 0 100px; }
+  .pricing-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+  .pricing-card { border: 1.5px solid var(--border); border-radius: 16px; overflow: hidden; background: var(--white); transition: box-shadow 0.2s, transform 0.2s; }
+  .pricing-card:hover { box-shadow: 0 16px 48px rgba(12,26,50,0.1); transform: translateY(-3px); }
+  .pricing-card.featured { border-color: var(--navy); box-shadow: 0 8px 32px rgba(12,26,50,0.12); position: relative; }
+  .featured-badge { position: absolute; top: -1px; left: 50%; transform: translateX(-50%); background: var(--navy); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 5px 20px; border-radius: 0 0 10px 10px; }
+  .card-header { padding: 36px 32px 28px; border-bottom: 1px solid var(--border); }
+  .card-header.featured-header { background: var(--navy); }
+  .tier-name { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+  .tier-name.light { color: rgba(255,255,255,0.6); }
+  .tier-price { font-family: 'JetBrains Mono', monospace; font-size: 42px; font-weight: 600; color: var(--text-primary); line-height: 1; margin-bottom: 6px; }
+  .tier-price.light { color: #fff; }
+  .tier-price span { font-size: 16px; font-weight: 400; color: var(--text-muted); font-family: 'Inter', sans-serif; }
+  .tier-price span.light { color: rgba(255,255,255,0.6); }
+  .tier-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-top: 10px; }
+  .tier-desc.light { color: rgba(255,255,255,0.7); }
+  .card-body { padding: 28px 32px 32px; }
+  .feature-list { list-style: none; display: flex; flex-direction: column; gap: 13px; margin-bottom: 28px; }
+  .feature-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--text-secondary); }
+  .feature-list li .check { color: var(--green); font-weight: 700; font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+  .feature-list li .dash { color: var(--text-muted); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .btn-tier { width: 100%; padding: 14px; border-radius: 9px; font-size: 14px; font-weight: 600; cursor: pointer; letter-spacing: 0.3px; border: none; transition: all 0.2s; }
+  .btn-tier-outline { background: transparent; border: 1.5px solid var(--navy); color: var(--navy); }
+  .btn-tier-outline:hover { background: var(--navy); color: #fff; }
+  .btn-tier-solid { background: var(--gold); color: #fff; }
+  .btn-tier-solid:hover { background: var(--gold-light); }
+  .btn-tier-navy { background: var(--navy); color: #fff; }
+  .btn-tier-navy:hover { background: var(--navy-light); }
+
+  /* ===== COMPARE TABLE ===== */
+  .compare-section { padding: 80px 0 100px; background: var(--off-white); }
+  .section-heading { font-family: 'DM Serif Display', serif; font-size: 36px; color: var(--text-primary); margin-bottom: 8px; }
+  .section-sub { font-size: 15px; color: var(--text-muted); margin-bottom: 48px; }
+  .compare-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 24px rgba(12,26,50,0.07); }
+  .compare-table th { background: var(--navy); color: rgba(255,255,255,0.9); font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 16px 24px; text-align: left; }
+  .compare-table th:first-child { width: 40%; }
+  .compare-table td { padding: 14px 24px; font-size: 14px; color: var(--text-secondary); border-bottom: 1px solid var(--border); }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:nth-child(even) td { background: var(--off-white); }
+  .compare-table td .yes { color: var(--green); font-weight: 700; }
+  .compare-table td .no { color: var(--text-muted); }
+  .compare-table td .custom { color: var(--gold); font-weight: 600; }
+
+  /* ===== FAQ ===== */
+  .faq-section { padding: 80px 0 100px; }
+  .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .faq-item { border-bottom: 1px solid var(--border); padding-bottom: 24px; }
+  .faq-q { font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 10px; }
+  .faq-a { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+  /* ===== CTA ===== */
+  .cta-section { padding: 80px 0 100px; background: var(--navy); text-align: center; }
+  .cta-section h2 { font-family: 'DM Serif Display', serif; font-size: 40px; color: #fff; margin-bottom: 16px; }
+  .cta-section p { font-size: 16px; color: rgba(255,255,255,0.7); margin-bottom: 36px; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .cta-buttons { display: flex; justify-content: center; gap: 12px; }
+  .btn-cta-gold { padding: 15px 32px; background: var(--gold); color: #fff; border: none; border-radius: 9px; font-size: 15px; font-weight: 600; cursor: pointer; text-decoration: none; }
+  .btn-cta-outline { padding: 15px 32px; background: transparent; color: rgba(255,255,255,0.8); border: 1.5px solid rgba(255,255,255,0.3); border-radius: 9px; font-size: 15px; font-weight: 600; cursor: pointer; text-decoration: none; }
+
+  /* ===== FOOTER ===== */
+  footer { background: var(--text-primary); color: rgba(255,255,255,0.6); padding: 48px 0 32px; }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 12px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); }
+  .footer-legal { display: flex; gap: 20px; }
+  .footer-legal a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 12px; }
+  .f-brand { font-family: 'DM Serif Display', serif; font-size: 18px; color: #fff; margin-bottom: 6px; }
+  .f-powered { font-size: 11px; color: rgba(255,255,255,0.4); margin-bottom: 12px; }
+
+  /* ===== HIDDEN PANELS ===== */
+  .pricing-panel { display: none; }
+  .pricing-panel.active { display: block; }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+    .faq-grid { grid-template-columns: 1fr; }
+    .nav-center { display: none; }
+    .page-title { font-size: 36px; }
+    .compare-table { font-size: 12px; }
+    .compare-table td, .compare-table th { padding: 12px 14px; }
+  }
+
+  @media (max-width: 640px) {
+    /* Layout */
+    .container { padding: 0 16px; }
+    nav { padding: 0 16px; height: 56px; }
+    .nav-center { display: none; }
+    .nav-right .btn-nav-outline { display: none; }
+    .brand-name { font-size: 14px; }
+    .nav-logo-mark { width: 30px; height: 30px; font-size: 12px; }
+    .powered-by { display: none; }
+    .ticker-bar { font-size: 10px; height: 32px; }
+
+    /* Page header */
+    .page-header { padding: 110px 0 48px; }
+    .page-title { font-size: 28px; line-height: 1.2; }
+    .page-subtitle { font-size: 14px; }
+    .billing-toggle { margin-bottom: 40px; }
+
+    /* Audience tabs */
+    .audience-tabs { gap: 6px; flex-wrap: wrap; justify-content: center; }
+    .aud-tab { font-size: 12px; padding: 8px 16px; }
+
+    /* Pricing cards */
+    .pricing-grid { grid-template-columns: 1fr; max-width: 100%; }
+    .card-header { padding: 28px 20px 20px; }
+    .card-body { padding: 20px; }
+    .tier-price { font-size: 36px; }
+    .btn-tier { min-height: 48px; }
+
+    /* Compare table — scrollable */
+    .compare-section { padding: 48px 0 60px; }
+    .compare-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .compare-table { min-width: 560px; }
+    .section-heading { font-size: 26px; }
+
+    /* FAQ */
+    .faq-grid { grid-template-columns: 1fr; }
+    .faq-section { padding: 48px 0 60px; }
+
+    /* CTA */
+    .cta-section { padding: 48px 0 60px; }
+    .cta-section h2 { font-size: 28px; }
+    .cta-buttons { flex-direction: column; gap: 10px; align-items: center; }
+    .btn-cta-gold, .btn-cta-outline { width: 100%; max-width: 320px; text-align: center; min-height: 48px; }
+
+    /* Footer */
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    .footer-legal { flex-wrap: wrap; justify-content: center; gap: 12px; }
+
+    /* Inquiry modal */
+    #inquiry-modal > div { padding: 16px 8px; }
+    #inquiry-modal > div > div { padding: 24px 20px; border-radius: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="ticker-label">HVAC Mid-Atlantic</span> <span class="ticker-value">$4,200/mo</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Masonry SE Archive</span> <span class="ticker-value">$5,800/mo</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Fleet Logistics</span> <span class="ticker-value ticker-up">+12% ↑</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Healthcare Ops</span> <span class="ticker-value">$9,200/mo</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">24h Volume</span> <span class="ticker-value">$247,800</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Active Assets</span> <span class="ticker-value">156</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">HVAC Mid-Atlantic</span> <span class="ticker-value">$4,200/mo</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Masonry SE Archive</span> <span class="ticker-value">$5,800/mo</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Fleet Logistics</span> <span class="ticker-value ticker-up">+12% ↑</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Healthcare Ops</span> <span class="ticker-value">$9,200/mo</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">24h Volume</span> <span class="ticker-value">$247,800</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Active Assets</span> <span class="ticker-value">156</span></span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="index-v2.html" class="nav-brand">
+    <div class="nav-logo-mark">TE</div>
+    <div>
+      <div class="brand-name">TORA Exchange</div>
+      <div class="powered-by">Powered by B.I.T.S. · Blockchain Integrative Technology Solutions</div>
+    </div>
+  </a>
+  <ul class="nav-center">
+    <li><a href="index-v2.html#marketplace">Marketplace</a></li>
+    <li><a href="index-v2.html#how">How It Works</a></li>
+    <li><a href="index-v2.html#industries">Industries</a></li>
+    <li><a href="index-v2.html#insights">Insights</a></li>
+    <li><a href="pricing.html" style="color:var(--navy);font-weight:700;">Pricing</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#" class="btn-nav-outline">Sign In</a>
+    <a href="#" class="btn-nav-solid" onclick="openInquiry();return false;">Get Started</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="container">
+    <div class="eyebrow">Pricing</div>
+    <h1 class="page-title serif">Simple, Transparent<br>Institutional Pricing</h1>
+    <p class="page-subtitle">Whether you're licensing data, listing your records, or integrating at enterprise scale — choose the plan that fits your mission.</p>
+
+    <!-- Billing Toggle -->
+    <div class="billing-toggle">
+      <div class="toggle-opt active" id="toggle-monthly" onclick="setBilling('monthly')">Monthly</div>
+      <div class="toggle-opt" id="toggle-annual" onclick="setBilling('annual')">Annual <span class="save-badge">Save 20%</span></div>
+    </div>
+
+    <!-- Audience Tabs -->
+    <div class="audience-tabs">
+      <div class="aud-tab active" onclick="setAudience('buyers')">🏦 Data Buyers</div>
+      <div class="aud-tab" onclick="setAudience('suppliers')">🏢 Data Suppliers</div>
+      <div class="aud-tab" onclick="setAudience('enterprise')">🔗 Enterprise / API</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING CARDS -->
+<section class="pricing-section">
+  <div class="container">
+
+    <!-- DATA BUYERS -->
+    <div class="pricing-panel active" id="panel-buyers">
+      <div class="pricing-grid">
+
+        <!-- Explorer -->
+        <div class="pricing-card">
+          <div class="card-header">
+            <div class="tier-name">Explorer</div>
+            <div class="tier-price"><span>$</span><span id="buyer-exp-price">499</span><span>/mo</span></div>
+            <div class="tier-desc">For analysts and researchers exploring the TORA data marketplace for the first time.</div>
+          </div>
+          <div class="card-body">
+            <ul class="feature-list">
+              <li><span class="check">✓</span> Access up to <strong>5 licensed datasets</strong></li>
+              <li><span class="check">✓</span> Standard data exports (CSV, JSON)</li>
+              <li><span class="check">✓</span> Blockchain verification certificates</li>
+              <li><span class="check">✓</span> Industry filter & search</li>
+              <li><span class="check">✓</span> Email support</li>
+              <li><span class="dash">—</span> API access</li>
+              <li><span class="dash">—</span> Bulk licensing discounts</li>
+              <li><span class="dash">—</span> Dedicated account manager</li>
+            </ul>
+            <button class="btn-tier btn-tier-outline" onclick="openInquiry()">Get Started →</button>
+          </div>
+        </div>
+
+        <!-- Professional (Featured) -->
+        <div class="pricing-card featured">
+          <div class="featured-badge">Most Popular</div>
+          <div class="card-header featured-header">
+            <div class="tier-name light">Professional</div>
+            <div class="tier-price light"><span class="light">$</span><span id="buyer-pro-price">2,500</span><span class="light">/mo</span></div>
+            <div class="tier-desc light">For institutional buyers requiring deep data access, analytics, and priority licensing.</div>
+          </div>
+          <div class="card-body">
+            <ul class="feature-list">
+              <li><span class="check">✓</span> <strong>Unlimited</strong> dataset access</li>
+              <li><span class="check">✓</span> Full API access (REST + Webhooks)</li>
+              <li><span class="check">✓</span> Advanced analytics dashboard</li>
+              <li><span class="check">✓</span> Bulk licensing at 15% discount</li>
+              <li><span class="check">✓</span> Custom industry reports</li>
+              <li><span class="check">✓</span> Blockchain audit trail exports</li>
+              <li><span class="check">✓</span> Priority support (4h SLA)</li>
+              <li><span class="dash">—</span> White-label data products</li>
+            </ul>
+            <button class="btn-tier btn-tier-solid" onclick="openInquiry()">Get Started →</button>
+          </div>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="pricing-card">
+          <div class="card-header">
+            <div class="tier-name">Enterprise</div>
+            <div class="tier-price" style="font-size:32px;">Custom</div>
+            <div class="tier-desc">For financial institutions, insurers, and PE firms requiring custom data packages and dedicated infrastructure.</div>
+          </div>
+          <div class="card-body">
+            <ul class="feature-list">
+              <li><span class="check">✓</span> Everything in Professional</li>
+              <li><span class="check">✓</span> Custom data packages built to spec</li>
+              <li><span class="check">✓</span> White-label data products</li>
+              <li><span class="check">✓</span> Dedicated data infrastructure</li>
+              <li><span class="check">✓</span> Securitize ATS integration (Model B)</li>
+              <li><span class="check">✓</span> NDA-protected licensing agreements</li>
+              <li><span class="check">✓</span> Dedicated account manager</li>
+              <li><span class="check">✓</span> SLA-backed uptime guarantee</li>
+            </ul>
+            <button class="btn-tier btn-tier-navy" onclick="openInquiry()">Contact Sales →</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DATA SUPPLIERS -->
+    <div class="pricing-panel" id="panel-suppliers">
+      <div class="pricing-grid">
+
+        <!-- Free Listing -->
+        <div class="pricing-card">
+          <div class="card-header">
+            <div class="tier-name">Standard Listing</div>
+            <div class="tier-price"><span>$</span>0<span>/mo</span></div>
+            <div class="tier-desc">List your tokenized records at no cost. TORA Exchange earns only when you earn — 15% platform fee on licenses.</div>
+          </div>
+          <div class="card-body">
+            <ul class="feature-list">
+              <li><span class="check">✓</span> List up to <strong>3 datasets</strong></li>
+              <li><span class="check">✓</span> Blockchain verification included</li>
+              <li><span class="check">✓</span> Smart contract revenue splits</li>
+              <li><span class="check">✓</span> Basic analytics (views, inquiries)</li>
+              <li><span class="check">✓</span> 15% platform fee on licenses</li>
+              <li><span class="dash">—</span> Featured placement</li>
+              <li><span class="dash">—</span> Advanced analytics</li>
+              <li><span class="dash">—</span> Dedicated onboarding</li>
+            </ul>
+            <button class="btn-tier btn-tier-outline" onclick="openInquiry()">List Your Data →</button>
+          </div>
+        </div>
+
+        <!-- Premium Supplier -->
+        <div class="pricing-card featured">
+          <div class="featured-badge">Best Value</div>
+          <div class="card-header featured-header">
+            <div class="tier-name light">Premium Supplier</div>
+            <div class="tier-price light"><span class="light">$</span><span id="sup-pro-price">299</span><span class="light">/mo</span></div>
+            <div class="tier-desc light">Maximize revenue with featured placement, full analytics, and reduced platform fees.</div>
+          </div>
+          <div class="card-body">
+            <ul class="feature-list">
+              <li><span class="check">✓</span> <strong>Unlimited</strong> dataset listings</li>
+              <li><span class="check">✓</span> Featured marketplace placement</li>
+              <li><span class="check">✓</span> Full analytics dashboard</li>
+              <li><span class="check">✓</span> Reduced platform fee — <strong>10%</strong></li>
+              <li><span class="check">✓</span> Buyer inquiry routing</li>
+              <li><span class="check">✓</span> Data quality certification badge</li>
+              <li><span class="check">✓</span> Priority listing in search results</li>
+              <li><span class="dash">—</span> Dedicated account manager</li>
+            </ul>
+            <button class="btn-tier btn-tier-solid" onclick="openInquiry()">Get Started →</button>
+          </div>
+        </div>
+
+        <!-- Enterprise Supplier -->
+        <div class="pricing-card">
+          <div class="card-header">
+            <div class="tier-name">Enterprise Supplier</div>
+            <div class="tier-price" style="font-size:32px;">Custom</div>
+            <div class="tier-desc">For large organizations with extensive record archives needing dedicated onboarding and API-level integration.</div>
+          </div>
+          <div class="card-body">
+            <ul class="feature-list">
+              <li><span class="check">✓</span> Everything in Premium Supplier</li>
+              <li><span class="check">✓</span> Dedicated onboarding specialist</li>
+              <li><span class="check">✓</span> Bulk record digitization support</li>
+              <li><span class="check">✓</span> Negotiated platform fee structure</li>
+              <li><span class="check">✓</span> Custom smart contract terms</li>
+              <li><span class="check">✓</span> White-glove DataVault integration</li>
+              <li><span class="check">✓</span> Co-marketing opportunities</li>
+              <li><span class="check">✓</span> Dedicated account manager</li>
+            </ul>
+            <button class="btn-tier btn-tier-navy" onclick="openInquiry()">Contact Sales →</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ENTERPRISE API -->
+    <div class="pricing-panel" id="panel-enterprise">
+      <div class="pricing-grid">
+
+        <!-- API Standard -->
+        <div class="pricing-card">
+          <div class="card-header">
+            <div class="tier-name">API Standard</div>
+            <div class="tier-price"><span>$</span><span id="api-std-price">5,000</span><span>/mo</span></div>
+            <div class="tier-desc">For fintech platforms and analytics firms integrating TORA data into their own products.</div>
+          </div>
+          <div class="card-body">
+            <ul class="feature-list">
+              <li><span class="check">✓</span> REST API — up to <strong>500K calls/mo</strong></li>
+              <li><span class="check">✓</span> All marketplace datasets</li>
+              <li><span class="check">✓</span> Webhook notifications</li>
+              <li><span class="check">✓</span> Blockchain proof endpoints</li>
+              <li><span class="check">✓</span> Developer documentation</li>
+              <li><span class="check">✓</span> Sandbox environment</li>
+              <li><span class="dash">—</span> Dedicated infrastructure</li>
+              <li><span class="dash">—</span> Custom data schemas</li>
+            </ul>
+            <button class="btn-tier btn-tier-outline" onclick="openInquiry()">Get API Access →</button>
+          </div>
+        </div>
+
+        <!-- API Professional -->
+        <div class="pricing-card featured">
+          <div class="featured-badge">Recommended</div>
+          <div class="card-header featured-header">
+            <div class="tier-name light">API Professional</div>
+            <div class="tier-price light"><span class="light">$</span><span id="api-pro-price">15,000</span><span class="light">/mo</span></div>
+            <div class="tier-desc light">For institutional platforms requiring high-volume data access and custom integration support.</div>
+          </div>
+          <div class="card-body">
+            <ul class="feature-list">
+              <li><span class="check">✓</span> REST API — <strong>Unlimited calls</strong></li>
+              <li><span class="check">✓</span> Real-time data streaming</li>
+              <li><span class="check">✓</span> Custom industry data feeds</li>
+              <li><span class="check">✓</span> Multi-environment support</li>
+              <li><span class="check">✓</span> Co-branding options</li>
+              <li><span class="check">✓</span> Dedicated technical account manager</li>
+              <li><span class="check">✓</span> 99.9% uptime SLA</li>
+              <li><span class="dash">—</span> Custom data schemas</li>
+            </ul>
+            <button class="btn-tier btn-tier-solid" onclick="openInquiry()">Get Started →</button>
+          </div>
+        </div>
+
+        <!-- API Enterprise -->
+        <div class="pricing-card">
+          <div class="card-header">
+            <div class="tier-name">API Enterprise</div>
+            <div class="tier-price" style="font-size:32px;">Custom</div>
+            <div class="tier-desc">For BlackRock, Apollo, insurance carriers, and global institutions requiring dedicated data infrastructure.</div>
+          </div>
+          <div class="card-body">
+            <ul class="feature-list">
+              <li><span class="check">✓</span> Everything in API Professional</li>
+              <li><span class="check">✓</span> Dedicated cloud infrastructure</li>
+              <li><span class="check">✓</span> Custom data schemas & pipelines</li>
+              <li><span class="check">✓</span> On-premise deployment option</li>
+              <li><span class="check">✓</span> BITS DataVault white-label</li>
+              <li><span class="check">✓</span> Executive relationship manager</li>
+              <li><span class="check">✓</span> Joint GTM partnership</li>
+              <li><span class="check">✓</span> NDA + custom MSA</li>
+            </ul>
+            <button class="btn-tier btn-tier-navy" onclick="openInquiry()">Contact Sales →</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- COMPARE TABLE -->
+<section class="compare-section">
+  <div class="container">
+    <div class="eyebrow" style="margin-bottom:12px;">Feature Comparison</div>
+    <h2 class="section-heading serif">Buyer Plan Comparison</h2>
+    <p class="section-sub">Everything you need to choose the right tier.</p>
+    <div class="compare-table-wrap">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Explorer</th>
+          <th>Professional</th>
+          <th>Enterprise</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Dataset Access</td><td>Up to 5</td><td><span class="yes">Unlimited</span></td><td><span class="custom">Custom</span></td></tr>
+        <tr><td>Blockchain Certificates</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+        <tr><td>Data Export (CSV, JSON)</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+        <tr><td>API Access</td><td><span class="no">—</span></td><td><span class="yes">✓ REST + Webhooks</span></td><td><span class="yes">✓ Full Suite</span></td></tr>
+        <tr><td>Advanced Analytics</td><td><span class="no">—</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓ Custom</span></td></tr>
+        <tr><td>Bulk Licensing Discount</td><td><span class="no">—</span></td><td><span class="yes">15% off</span></td><td><span class="custom">Negotiated</span></td></tr>
+        <tr><td>Custom Industry Reports</td><td><span class="no">—</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓ Bespoke</span></td></tr>
+        <tr><td>White-Label Data Products</td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="yes">✓</span></td></tr>
+        <tr><td>Securitize ATS Integration</td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="yes">✓</span></td></tr>
+        <tr><td>Dedicated Account Manager</td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="yes">✓</span></td></tr>
+        <tr><td>SLA Uptime Guarantee</td><td><span class="no">—</span></td><td><span class="yes">99.5%</span></td><td><span class="yes">99.9%</span></td></tr>
+        <tr><td>Support</td><td>Email</td><td>Priority (4h SLA)</td><td>Dedicated</td></tr>
+      </tbody>
+    </table>
+    </div><!-- end compare-table-wrap -->
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="container">
+    <div class="eyebrow" style="margin-bottom:12px;">FAQ</div>
+    <h2 class="section-heading serif" style="margin-bottom:8px;">Common Questions</h2>
+    <p class="section-sub">Everything else you need to know.</p>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <div class="faq-q">What exactly am I licensing when I buy access?</div>
+        <div class="faq-a">You're licensing access to anonymized data intelligence derived from verified operational records. No raw documents are ever shared — only aggregated patterns, trends, and insights. All content is privacy-preserved.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How are data suppliers paid?</div>
+        <div class="faq-a">Automatically, via smart contract. When a buyer licenses your dataset, the revenue splits instantly: 75-90% to you (depending on your plan), and the remainder to TORA Exchange as a platform fee. No invoicing, no delays.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is my raw data ever exposed publicly?</div>
+        <div class="faq-a">Never. TORA Exchange is built on BITS DataVault architecture — document content never touches the blockchain. Only cryptographic hashes are anchored on-chain. Your records remain private, sovereign, and under your control.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is a TORA asset exactly?</div>
+        <div class="faq-a">TORA (Tokenized Operational Record Asset) is a new asset class. It represents a corpus of business records that have been digitized, authenticated, hashed to the blockchain, and packaged into a licensable intelligence product.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is this regulated? Do I need to worry about the SEC?</div>
+        <div class="faq-a">TORA Exchange operates as a data marketplace, not a securities exchange. Licensing data intelligence is commerce — the same model used by Bloomberg, S&P Global, and Dun & Bradstreet. For tokenized securities, we partner with Securitize's SEC-registered ATS.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I cancel anytime?</div>
+        <div class="faq-a">Yes. Monthly plans can be cancelled at any time with no penalty. Annual plans include a 30-day satisfaction guarantee. Enterprise agreements are governed by individual MSAs.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2 class="serif">Ready to Enter<br>the Data Economy?</h2>
+    <p>Whether you're buying intelligence or listing your records — the world's first tokenized operational data marketplace is open.</p>
+    <div class="cta-buttons">
+      <a href="#" class="btn-cta-gold" onclick="openInquiry();return false;">Get Started Today →</a>
+      <a href="index-v2.html" class="btn-cta-outline">Back to Exchange</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-bottom">
+      <p>© 2026 B.I.T.S. — Blockchain Integrative Technology Solutions. All rights reserved. · <span style="color:var(--gold)">U.S. Patent Pending</span></p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">contact@bitscorp.us</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- INQUIRY MODAL -->
+<div id="inquiry-modal" style="display:none;position:fixed;inset:0;z-index:9100;background:rgba(12,26,50,0.75);backdrop-filter:blur(4px);overflow-y:auto;">
+  <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px;">
+    <div style="background:#fff;border-radius:16px;max-width:520px;width:100%;box-shadow:0 32px 80px rgba(0,0,0,0.25);padding:40px;position:relative;">
+      <button onclick="document.getElementById('inquiry-modal').style.display='none';document.body.style.overflow='';" style="position:absolute;top:20px;right:20px;background:#f1f3f6;border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px;">✕</button>
+      <div style="font-family:'DM Serif Display',serif;font-size:26px;color:#0f1724;margin-bottom:8px;">Get Started</div>
+      <div style="color:#7a8599;font-size:14px;margin-bottom:28px;">Our team will follow up within 24 hours to set up your account.</div>
+      <form id="inquiry-form" onsubmit="submitInquiry(event)">
+        <div style="margin-bottom:16px;"><label style="display:block;font-size:12px;font-weight:600;color:#3d4a5c;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Full Name *</label><input type="text" required placeholder="John Smith" style="width:100%;padding:12px 16px;border:1.5px solid #dfe2e8;border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;outline:none;"></div>
+        <div style="margin-bottom:16px;"><label style="display:block;font-size:12px;font-weight:600;color:#3d4a5c;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Company *</label><input type="text" required placeholder="Institution Name" style="width:100%;padding:12px 16px;border:1.5px solid #dfe2e8;border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;outline:none;"></div>
+        <div style="margin-bottom:16px;"><label style="display:block;font-size:12px;font-weight:600;color:#3d4a5c;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Business Email *</label><input type="email" required placeholder="you@institution.com" style="width:100%;padding:12px 16px;border:1.5px solid #dfe2e8;border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;outline:none;"></div>
+        <div style="margin-bottom:16px;"><label style="display:block;font-size:12px;font-weight:600;color:#3d4a5c;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Plan Interest</label><select style="width:100%;padding:12px 16px;border:1.5px solid #dfe2e8;border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;outline:none;background:#fff;"><option>Data Buyer — Explorer ($499/mo)</option><option>Data Buyer — Professional ($2,500/mo)</option><option>Data Buyer — Enterprise (Custom)</option><option>Data Supplier — Standard (Free)</option><option>Data Supplier — Premium ($299/mo)</option><option>API / Enterprise Integration</option></select></div>
+        <div style="margin-bottom:24px;"><label style="display:block;font-size:12px;font-weight:600;color:#3d4a5c;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Message</label><textarea rows="3" placeholder="Tell us about your use case..." style="width:100%;padding:12px 16px;border:1.5px solid #dfe2e8;border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;outline:none;resize:vertical;"></textarea></div>
+        <button type="submit" style="width:100%;background:#0c1a32;color:#fff;border:none;padding:15px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;">Submit Request →</button>
+      </form>
+      <div id="inquiry-success" style="display:none;text-align:center;padding:20px 0;">
+        <div style="font-size:48px;margin-bottom:16px;">✅</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:22px;color:#0f1724;margin-bottom:8px;">Request Received</div>
+        <div style="color:#7a8599;font-size:14px;">Our team will reach out within 24 hours.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Billing toggle
+  let billing = 'monthly';
+  const prices = {
+    monthly: { 'buyer-exp-price': 499, 'buyer-pro-price': 2500, 'sup-pro-price': 299, 'api-std-price': 5000, 'api-pro-price': 15000 },
+    annual:  { 'buyer-exp-price': 399, 'buyer-pro-price': 1999, 'sup-pro-price': 239, 'api-std-price': 3999, 'api-pro-price': 11999 }
+  };
+
+  function setBilling(type) {
+    billing = type;
+    document.getElementById('toggle-monthly').classList.toggle('active', type === 'monthly');
+    document.getElementById('toggle-annual').classList.toggle('active', type === 'annual');
+    Object.entries(prices[type]).forEach(([id, val]) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = val.toLocaleString();
+    });
+  }
+
+  // Audience tabs
+  function setAudience(aud) {
+    document.querySelectorAll('.aud-tab').forEach((t, i) => {
+      const auds = ['buyers', 'suppliers', 'enterprise'];
+      t.classList.toggle('active', auds[i] === aud);
+    });
+    document.querySelectorAll('.pricing-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-' + aud).classList.add('active');
+  }
+
+  // Inquiry
+  function openInquiry() {
+    document.getElementById('inquiry-modal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+  window.openInquiry = openInquiry;
+
+  function submitInquiry(e) {
+    e.preventDefault();
+    document.getElementById('inquiry-form').style.display = 'none';
+    document.getElementById('inquiry-success').style.display = 'block';
+    setTimeout(() => {
+      document.getElementById('inquiry-modal').style.display = 'none';
+      document.getElementById('inquiry-form').style.display = 'block';
+      document.getElementById('inquiry-success').style.display = 'none';
+      document.body.style.overflow = '';
+      e.target.reset();
+    }, 3000);
+  }
+  window.submitInquiry = submitInquiry;
+
+  // Nav scroll effect
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => nav && nav.classList.toggle('scrolled', window.scrollY > 50));
+</script>
+</body>
+</html>

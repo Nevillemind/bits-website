@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — TORA Exchange</title>
+<meta name="description" content="TORA Exchange is built on the principle of data sovereignty. Your data belongs to you — and our privacy practices reflect that.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230c1a32'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='700' fill='%239e7c2e'>TE</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #ffffff; --off-white: #f8f9fb; --light-gray: #f1f3f6; --mid-gray: #e5e8ed;
+    --border: #dfe2e8; --text-primary: #0f1724; --text-secondary: #3d4a5c; --text-muted: #7a8599;
+    --gold: #9e7c2e; --gold-light: #b8922f; --gold-bg: #faf6ed; --gold-border: #e8dcc0;
+    --navy: #0c1a32; --navy-light: #1a2d4a; --blue: #1a5bc4; --blue-light: #e8f0fe;
+    --green: #0d8a50; --green-bg: #edf7f1;
+  }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--white); color: var(--text-secondary); line-height: 1.6; -webkit-font-smoothing: antialiased; margin-top: 36px; }
+  .serif { font-family: 'DM Serif Display', Georgia, serif; }
+  .container { max-width: 800px; margin: 0 auto; padding: 0 40px; }
+  .container-wide { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+  /* Ticker */
+  .ticker-bar { background: var(--navy); color: rgba(255,255,255,0.7); font-size: 10px; font-weight: 500; height: 36px; display: flex; align-items: center; overflow: hidden; position: fixed; top: 0; left: 0; right: 0; z-index: 1001; }
+  .ticker-track { display: flex; gap: 36px; animation: tickerScroll 60s linear infinite; white-space: nowrap; }
+  .ticker-item { display: flex; align-items: center; gap: 8px; }
+  .ticker-label { color: rgba(255,255,255,0.5); }
+  .ticker-value { color: #fff; font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 11px; }
+  .ticker-up { color: #34d399; } .ticker-down { color: #f87171; }
+  .ticker-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+  @keyframes tickerScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* Nav */
+  .nav { position: fixed; top: 36px; left: 0; right: 0; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 1000; }
+  .nav-content { display: flex; justify-content: space-between; align-items: center; height: 64px; max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+  .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-brand .logo-mark { background: var(--navy); width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--gold-light); letter-spacing: 2px; }
+  .nav-brand-text { display: flex; flex-direction: column; }
+  .nav-brand-text .brand-name { font-size: 20px; font-weight: 800; color: var(--text-primary); letter-spacing: 2px; text-transform: uppercase; line-height: 1.1; }
+  .nav-brand-text .powered-by { font-size: 9px; font-weight: 500; color: var(--text-muted); letter-spacing: 1.2px; text-transform: uppercase; margin-top: 1px; }
+  .nav-links { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
+  .nav-links a { text-decoration: none; color: var(--text-secondary); font-size: 13px; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+  .btn-nav { background: var(--navy); color: #fff; padding: 9px 20px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+  .btn-nav:hover { background: var(--navy-light); }
+
+  /* Hero */
+  .hero { padding: 140px 0 60px; text-align: center; background: linear-gradient(180deg, var(--off-white) 0%, var(--white) 100%); }
+  .hero h1 { font-size: 48px; font-weight: 400; color: var(--text-primary); margin-bottom: 12px; }
+  .hero .date { font-size: 14px; color: var(--text-muted); }
+
+  /* Content */
+  .legal-content { padding: 60px 0 80px; }
+  .legal-content h2 { font-size: 24px; font-weight: 700; color: var(--text-primary); margin: 48px 0 16px; padding-top: 24px; border-top: 1px solid var(--border); }
+  .legal-content h2:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+  .legal-content p { margin-bottom: 16px; font-size: 15px; line-height: 1.8; }
+  .legal-content ul { margin: 0 0 20px 0; padding-left: 0; list-style: none; }
+  .legal-content li { padding: 10px 0; font-size: 15px; display: flex; align-items: flex-start; gap: 12px; line-height: 1.7; }
+  .legal-content li::before { content: '•'; color: var(--gold); font-size: 18px; flex-shrink: 0; margin-top: -1px; }
+  .highlight-box { background: var(--gold-bg); border: 1px solid var(--gold-border); border-radius: 12px; padding: 28px; margin: 32px 0; }
+  .highlight-box h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 16px; }
+
+  /* Footer */
+  .footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 32px 0; }
+  .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+  .footer-links { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; }
+  .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+
+  @media (max-width: 768px) {
+    .container { padding: 0 20px; }
+    .container-wide { padding: 0 20px; }
+    .hero { padding: 120px 0 40px; }
+    .hero h1 { font-size: 32px; }
+    .nav-links { display: none; }
+    .legal-content h2 { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Ticker -->
+<div class="ticker-bar"><div class="ticker-track" id="live-ticker"></div></div>
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="nav-content">
+    <a href="index.html" class="nav-brand">
+      <div class="logo-mark">TE</div>
+      <div class="nav-brand-text">
+        <span class="brand-name">TORA Exchange</span>
+        <span class="powered-by">Powered by B.I.T.S.</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#marketplace">Marketplace</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="supplier-guide.html">Supplier Guide</a></li>
+      <li><a href="buyer-guide.html">Buyer Guide</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="index.html#insights">Insights</a></li>
+    </ul>
+    <a href="waitlist.html" class="btn-nav">Get Started</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <h1 class="serif">Privacy Policy</h1>
+  <p class="date">Effective Date: March 10, 2026</p>
+</div>
+
+<!-- Content -->
+<div class="legal-content">
+  <div class="container">
+
+    <div class="highlight-box">
+      <h3>Our Commitment</h3>
+      <p style="margin-bottom: 0;">TORA Exchange is built on the principle of <strong>data sovereignty</strong>. We believe your data belongs to you — and our privacy practices reflect that.</p>
+    </div>
+
+    <h2>Key Principles</h2>
+    <ul>
+      <li><strong>Data suppliers retain full ownership</strong> of their raw documents at all times. Only anonymized data intelligence is listed on the exchange.</li>
+      <li><strong>No raw documents are stored</strong> on our servers or on the blockchain. Only cryptographic hashes (digital fingerprints) are recorded on-chain.</li>
+      <li><strong>Buyer data</strong> — account information is used solely for platform access, licensing, and communication. We do not sell buyer information to third parties.</li>
+      <li><strong>Blockchain transparency</strong> — All transactions are recorded on the Solana blockchain and are publicly verifiable.</li>
+      <li><strong>No tracking for advertising</strong> — We do not use your data for targeted advertising or sell it to ad networks.</li>
+    </ul>
+
+    <h2>Information We Collect</h2>
+    <p>We collect information necessary to operate the platform:</p>
+    <ul>
+      <li><strong>Account Information</strong> — Name, email address, company name, and wallet address when you register.</li>
+      <li><strong>Transaction Data</strong> — License purchases, listings, and payment records processed via Solana smart contracts.</li>
+      <li><strong>Usage Data</strong> — Basic analytics about how you interact with the platform (pages visited, features used) to improve the experience.</li>
+      <li><strong>Communication Data</strong> — Messages sent through our contact form or support channels.</li>
+    </ul>
+
+    <h2>How We Use Your Information</h2>
+    <ul>
+      <li>To operate and maintain the TORA Exchange platform</li>
+      <li>To process transactions and enforce smart contract terms</li>
+      <li>To communicate with you about your account, listings, or licenses</li>
+      <li>To improve platform functionality and user experience</li>
+      <li>To comply with legal obligations</li>
+    </ul>
+
+    <h2>What We Never Do</h2>
+    <ul>
+      <li>Sell your personal information to third parties</li>
+      <li>Use your data for targeted advertising</li>
+      <li>Share supplier data with buyers beyond what suppliers explicitly authorize</li>
+      <li>Store raw documents on our servers — only cryptographic hashes</li>
+    </ul>
+
+    <h2>Data Retention</h2>
+    <p>Account information is retained while your account is active. Transaction records on the blockchain are permanent and immutable by design. You may request deletion of your account data at any time by contacting us.</p>
+
+    <h2>Your Rights</h2>
+    <p>You have the right to:</p>
+    <ul>
+      <li>Access the personal information we hold about you</li>
+      <li>Request correction of inaccurate information</li>
+      <li>Request deletion of your account and associated data</li>
+      <li>Deactivate your listings at any time (suppliers)</li>
+      <li>Opt out of non-essential communications</li>
+    </ul>
+
+    <h2>Security</h2>
+    <p>We employ industry-standard security measures including encryption in transit (TLS), secure infrastructure, and access controls. Blockchain-anchored data is inherently tamper-evident through cryptographic verification.</p>
+
+    <h2>Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. Material changes will be communicated via email or platform notification. Continued use of the platform after changes constitutes acceptance.</p>
+
+    <h2>Contact</h2>
+    <p>For privacy inquiries, contact us at:</p>
+    <p style="font-weight: 600; color: var(--text-primary);">
+      contact@bitscorp.us<br>
+      Blockchain Integrative Technology Solutions (BITS)<br>
+      3900 Westerre Parkway, Suite 300<br>
+      Richmond, Virginia 23233
+    </p>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    <span>© 2026 B.I.T.S. — Blockchain Integrative Technology Solutions. All rights reserved.</span>
+    <ul class="footer-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
+      <li><a href="terms.html">Terms</a></li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Crypto Ticker Script -->
+<script>
+(function() {
+  const symbols = { bitcoin:'BTC', ethereum:'ETH', tether:'USDT', ripple:'XRP', solana:'SOL', binancecoin:'BNB', usd_coin:'USDC', dogecoin:'DOGE', cardano:'ADA', chainlink:'LINK', avalanche_2:'AVAX', polkadot:'DOT' };
+  const ids = Object.keys(symbols).join(',');
+  const fmt = n => n >= 1000 ? '$'+n.toLocaleString('en-US',{maximumFractionDigits:0}) : n >= 1 ? '$'+n.toFixed(2) : '$'+n.toFixed(4);
+  let last = { bitcoin:{usd:82500,usd_24h_change:1.2}, ethereum:{usd:2180,usd_24h_change:-0.8}, tether:{usd:1.00,usd_24h_change:0.01}, ripple:{usd:2.28,usd_24h_change:3.1}, solana:{usd:128,usd_24h_change:2.4}, binancecoin:{usd:580,usd_24h_change:0.6}, usd_coin:{usd:1.00,usd_24h_change:0.0}, dogecoin:{usd:0.175,usd_24h_change:-1.3}, cardano:{usd:0.78,usd_24h_change:1.9}, chainlink:{usd:14.20,usd_24h_change:0.5}, avalanche_2:{usd:22.50,usd_24h_change:-0.4}, polkadot:{usd:4.85,usd_24h_change:1.1} };
+  function build(data) {
+    const t = document.getElementById('live-ticker'); if(!t) return;
+    let h = '';
+    for(let l=0;l<2;l++) for(const[id,sym] of Object.entries(symbols)) { if(!data[id])continue; const p=fmt(data[id].usd),c=data[id].usd_24h_change||0,s=c>=0?'+':'',a=c>=0?'▲':'▼',cl=c>=0?'ticker-up':'ticker-down'; h+=`<span class="ticker-item"><span class="ticker-label">${sym}</span> <span class="ticker-value">${p} <span class="${cl}">${s}${c.toFixed(1)}% ${a}</span></span></span><span class="ticker-dot"></span>`; }
+    t.innerHTML = h;
+  }
+  build(last);
+  async function f() { try { const r=await fetch('https://api.coingecko.com/api/v3/simple/price?ids='+ids+'&vs_currencies=usd&include_24hr_change=true'); if(r.ok){last=await r.json();build(last);} } catch(e){} }
+  setTimeout(f,5000); setInterval(f,120000);
+})();
+</script>
+</body>
+</html>

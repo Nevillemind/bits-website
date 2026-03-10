@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About TORA Exchange — The World's First Marketplace for Tokenized Operational Record Assets</title>
+<meta name="description" content="TORA Exchange was founded by Blockchain Integrative Technology Solutions (BITS). We believe your data is yours — and you should unlock the value it holds.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #ffffff;
+    --off-white: #f8f9fb;
+    --light-gray: #f1f3f6;
+    --mid-gray: #e5e8ed;
+    --border: #dfe2e8;
+    --text-primary: #0f1724;
+    --text-secondary: #3d4a5c;
+    --text-muted: #7a8599;
+    --gold: #9e7c2e;
+    --gold-light: #b8922f;
+    --gold-bg: #faf6ed;
+    --gold-border: #e8dcc0;
+    --navy: #0c1a32;
+    --navy-light: #1a2d4a;
+    --blue: #1a5bc4;
+    --blue-light: #e8f0fe;
+    --green: #0d8a50;
+    --green-bg: #edf7f1;
+    --cyan: #0891b2;
+  }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--white);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    margin-top: 36px;
+  }
+  .serif { font-family: 'DM Serif Display', Georgia, serif; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+  .nav {
+    position: fixed;
+    top: 36px; left: 0; right: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    z-index: 1000;
+  }
+  .nav-content {
+    display: flex; justify-content: space-between; align-items: center;
+    height: 64px;
+    max-width: 1200px; margin: 0 auto; padding: 0 40px;
+  }
+  .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-brand .tora-acronym {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--navy);
+    width: 48px; height: 48px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 20px; font-weight: 700;
+    box-shadow: 0 2px 8px rgba(158, 124, 46, 0.3);
+  }
+  .nav-brand-text {
+    font-size: 18px; font-weight: 600; color: var(--text-primary);
+  }
+  .nav-links { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; }
+  .nav-links a { text-decoration: none; color: var(--text-secondary); font-size: 14px; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+  .btn-nav-solid {
+    background: var(--gold); color: var(--navy);
+    padding: 10px 20px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; transition: all 0.2s;
+  }
+  .btn-nav-solid:hover { background: var(--gold-light); }
+  .hero {
+    padding: 120px 0 80px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 48px; font-weight: 800; color: var(--text-primary);
+    margin-bottom: 16px;
+  }
+  .hero .subtitle {
+    font-size: 20px; font-weight: 400; color: var(--text-secondary);
+    max-width: 700px; margin: 0 auto 48px;
+  }
+  .hero .cta {
+    display: inline-block; background: var(--navy); color: var(--white);
+    padding: 14px 28px; border-radius: 8px; font-size: 15px; font-weight: 600; text-decoration: none; margin-top: 16px;
+    transition: all 0.2s;
+  }
+  .hero .cta:hover { background: var(--navy-light); transform: translateY(-2px); }
+  .section { padding: 80px 0; }
+  .section-title {
+    font-size: 32px; font-weight: 700; color: var(--text-primary);
+    text-align: center; margin-bottom: 16px;
+  }
+  .section-subtitle {
+    font-size: 18px; color: var(--text-muted); text-align: center; max-width: 600px; margin: 0 auto 48px;
+  }
+  .story-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+    align-items: center; margin-bottom: 64px;
+  }
+  .story-content h3 {
+    font-size: 24px; font-weight: 700; color: var(--navy); margin-bottom: 16px;
+  }
+  .story-content p { margin-bottom: 16px; font-size: 15px; }
+  .story-content p:last-child { margin-bottom: 0; }
+  .story-visual {
+    background: var(--navy-light); border-radius: 12px; padding: 40px;
+    text-align: center; color: var(--white);
+  }
+  .story-visual .icon {
+    font-size: 48px; margin-bottom: 16px;
+  }
+  .how-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 32px; margin-top: 48px; }
+  .step-card {
+    background: var(--off-white); border-radius: 12px; padding: 24px;
+  }
+  .step-number {
+    font-family: 'JetBrains Mono', monospace; font-size: 24px; font-weight: 700; color: var(--gold); margin-bottom: 12px;
+  }
+  .step-title { font-size: 18px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+  .step-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+  .mission {
+    background: var(--gold-bg); border-radius: 12px; padding: 48px; text-align: center;
+  }
+  .mission h3 { font-size: 24px; font-weight: 700; color: var(--navy); margin-bottom: 16px; }
+  .mission p { max-width: 700px; margin: 0 auto 24px; font-size: 15px; }
+  .leadership { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; margin-top: 48px; }
+  .leader-card {
+    background: var(--off-white); border-radius: 12px; padding: 32px; text-align: center;
+  }
+  .leader-role {
+    font-size: 14px; font-weight: 500; color: var(--gold); margin-bottom: 8px;
+  }
+  .leader-name { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .leader-location { font-size: 13px; color: var(--text-muted); }
+  .footer { background: var(--navy); color: rgba(255,255,255,0.6); padding: 48px 0; margin-top: 80px; }
+  .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+  .footer-logo { font-size: 16px; font-weight: 600; color: var(--white); text-decoration: none; }
+  .footer-links { display: flex; gap: 16px; list-style: none; margin: 0; padding: 0; }
+  .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-credit { font-size: 13px; color: rgba(255,255,255,0.4); }
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 32px; }
+    .hero .subtitle { font-size: 16px; }
+    .story-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-content">
+      <a href="index.html" class="nav-brand">
+        <div class="tora-acronym">TE</div>
+        <div class="nav-brand-text">TORA Exchange</div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#marketplace">Marketplace</a></li>
+        <li><a href="index.html#how">How It Works</a></li>
+        <li><a href="index.html#industries">Industries</a></li>
+        <li><a href="index.html#insights">Insights</a></li>
+        <li><a href="supplier-guide.html">Supplier Guide</a></li>
+        <li><a href="buyer-guide.html">Buyer Guide</a></li>
+      </ul>
+      <a href="waitlist.html" class="btn-nav-solid">Get Started</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <h1 class="serif">About TORA Exchange</h1>
+      <p class="subtitle">The World's First Marketplace for Tokenized Operational Record Assets</p>
+      <p style="max-width: 600px; margin: 0 auto 32px; font-size: 16px; color: var(--text-secondary);">
+        Transform decades of dormant business records into blockchain-verified, licensable data assets. Institutional-grade infrastructure for the world's first operational data marketplace.
+      </p>
+      <a href="waitlist.html" class="cta">Explore the Marketplace →</a>
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <h2 class="section-title serif">Our Story</h2>
+        <p class="section-subtitle">Born from a simple belief — your data is an asset. Let's unlock it.</p>
+
+        <div class="story-grid">
+          <div class="story-content">
+            <h3>The Problem</h3>
+            <p>TORA Exchange was founded by Blockchain Integrative Technology Solutions (BITS) with a simple belief: every business is sitting on a hidden asset — their operational data.</p>
+            <p>For decades, only large corporations had the infrastructure to monetize their data. Small and mid-size businesses generated valuable records every day — invoices, service histories, compliance logs, inspection reports — but had no way to turn that data into revenue.</p>
+          </div>
+          <div class="story-visual">
+            <div class="icon">📊</div>
+            <h3 class="serif" style="margin-bottom: 12px;">Data Is Power</h3>
+            <p style="font-size: 14px; opacity: 0.9;">Your records contain the patterns, trends, and insights that drive decisions — but only if you can unlock them.</p>
+          </div>
+        </div>
+
+        <div class="story-grid">
+          <div class="story-content">
+            <h3>The Solution</h3>
+            <p>TORA Exchange changes that. We built the first licensed data marketplace where businesses of any size can tokenize their operational records, list anonymized data intelligence, and earn recurring revenue — automatically, via smart contract.</p>
+          </div>
+          <div class="story-visual">
+            <div class="icon">🔄</div>
+            <h3 class="serif" style="margin-bottom: 12px;">Data → Revenue</h3>
+            <p style="font-size: 14px; opacity: 0.9;">Tokenize your records → List on the marketplace → Earn revenue automatically through smart contract.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <h2 class="section-title serif">How It Works</h2>
+        <p class="section-subtitle">Three simple steps to turn your records into revenue.</p>
+
+        <div class="how-steps">
+          <div class="step-card">
+            <div class="step-number">01</div>
+            <h3 class="step-title">Tokenize</h3>
+            <p class="step-desc">Your business records are digitized and hashed through BITS DataVault. Documents never touch the blockchain — only cryptographic proofs.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">02</div>
+            <h3 class="step-title">List</h3>
+            <p class="step-desc">You select which data categories to share. Anonymized, authenticated data intelligence appears on TORA Exchange, searchable by industry and region.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">03</div>
+            <h3 class="step-title">Earn</h3>
+            <p class="step-desc">When a buyer licenses your data, the smart contract automatically sends 75-90% of the revenue directly to your wallet — no invoicing, no waiting.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <h2 class="section-title serif">Our Mission</h2>
+        <p class="section-subtitle">Your data belongs to you. We help you unlock what it's worth.</p>
+        <div class="mission">
+          <h3>We believe your data is yours.</h3>
+          <p>Not Big Tech's. Not a broker's. Yours. TORA Exchange exists to help businesses unlock the value of what they already have — on their terms, under their control, with full transparency.</p>
+          <p>We're not a data marketplace that mines your information. We're a platform that helps you unlock what you've already built.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <h2 class="section-title serif">Leadership</h2>
+        <p class="section-subtitle">Built by people who understand data sovereignty.</p>
+
+        <div class="leadership">
+          <div class="leader-card">
+            <div class="leader-role">Founder & CEO</div>
+            <div class="leader-name">George Mundin</div>
+            <div class="leader-location">Richmond, Virginia</div>
+            <p style="margin-top: 12px; font-size: 13px; color: var(--text-muted);">9+ years in blockchain and AI | 4 patents pending | Founding Director, Virginia Blockchain Council</p>
+          </div>
+          <div class="leader-card">
+            <div class="leader-role">AI &amp; Engineering</div>
+            <div class="leader-name">BITS Technical Team</div>
+            <div class="leader-location">Richmond, Virginia</div>
+            <p style="margin-top: 12px; font-size: 13px; color: var(--text-muted);">AI infrastructure | Smart contract development | Blockchain engineering | Data pipeline architecture</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <h2 class="section-title serif">Backed By</h2>
+        <p class="section-subtitle">Built on Solana. Protected by patents. Powered by BITS.</p>
+        <div style="display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; margin-top: 32px;">
+          <div style="background: var(--navy-light); color: var(--white); padding: 24px 32px; border-radius: 8px; text-align: center;">
+            <div style="font-size: 32px; font-weight: 700; margin-bottom: 8px;">Solana</div>
+            <div style="font-size: 14px; opacity: 0.8;">Blockchain</div>
+          </div>
+          <div style="background: var(--green-bg); color: var(--green); padding: 24px 32px; border-radius: 8px; text-align: center;">
+            <div style="font-size: 32px; font-weight: 700; margin-bottom: 8px;">4</div>
+            <div style="font-size: 14px; opacity: 0.8;">Patents Pending</div>
+          </div>
+          <div style="background: var(--gold-bg); color: var(--navy); padding: 24px 32px; border-radius: 8px; text-align: center;">
+            <div style="font-size: 32px; font-weight: 700; margin-bottom: 8px;">BITS</div>
+            <div style="font-size: 14px; opacity: 0.8;">Company</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-credit">
+        © 2026 TORA Exchange — Blockchain Integrative Technology Solutions (BITS)
+      </div>
+      <div style="display: flex; gap: 24px; flex-wrap: wrap;">
+        <a href="about.html" class="footer-links" style="display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span style="font-size: 14px;">About</span>
+        </a>
+        <a href="contact.html" class="footer-links" style="display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          <span style="font-size: 14px;">Contact</span>
+        </a>
+        <a href="privacy.html" class="footer-links" style="display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          <span style="font-size: 14px;">Privacy</span>
+        </a>
+        <a href="terms.html" class="footer-links" style="display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          <span style="font-size: 14px;">Terms</span>
+        </a>
+        <a href="supplier-guide.html" class="footer-links" style="display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          <span style="font-size: 14px;">Supplier Guide</span>
+        </a>
+        <a href="buyer-guide.html" class="footer-links" style="display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          <span style="font-size: 14px;">Buyer Guide</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

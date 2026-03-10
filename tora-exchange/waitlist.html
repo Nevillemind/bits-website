@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join the Early Access List — TORA Exchange</title>
+<meta name="description" content="Be among the first institutions to license tokenized operational data assets. TORA Exchange launches Q2 2026.">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230c1a32'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='700' fill='%239e7c2e'>TE</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --white: #ffffff;
+    --off-white: #f8f9fb;
+    --light-gray: #f1f3f6;
+    --mid-gray: #e5e8ed;
+    --border: #dfe2e8;
+    --text-primary: #0f1724;
+    --text-secondary: #3d4a5c;
+    --text-muted: #7a8599;
+    --gold: #9e7c2e;
+    --gold-light: #b8922f;
+    --gold-bg: #faf6ed;
+    --gold-border: #e8dcc0;
+    --navy: #0c1a32;
+    --navy-light: #1a2d4a;
+    --blue: #1a5bc4;
+    --blue-light: #e8f0fe;
+    --green: #0d8a50;
+    --green-bg: #edf7f1;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--white);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .serif { font-family: 'DM Serif Display', Georgia, serif; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+  /* ===== LIVE TICKER ===== */
+  .ticker-bar {
+    background: var(--navy);
+    color: rgba(255,255,255,0.7);
+    font-size: 12px;
+    font-weight: 500;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1001;
+  }
+  .ticker-track {
+    display: flex;
+    gap: 48px;
+    animation: tickerScroll 30s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-item { display: flex; align-items: center; gap: 8px; }
+  .ticker-label { color: rgba(255,255,255,0.5); }
+  .ticker-value { color: #fff; font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 11px; }
+  .ticker-up { color: #34d399; }
+  .ticker-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+  @keyframes tickerScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ===== NAVIGATION ===== */
+  nav {
+    position: fixed;
+    top: 36px; left: 0; right: 0;
+    z-index: 1000;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+  .nav-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+  .nav-logo-mark {
+    width: 50px; height: 50px;
+    background: var(--navy);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px; font-weight: 400;
+    color: var(--gold-light);
+    letter-spacing: 2px;
+    flex-shrink: 0;
+  }
+  .nav-logo-text { display: flex; flex-direction: column; }
+  .nav-logo-text .brand-name {
+    font-size: 28px; font-weight: 800; color: var(--text-primary);
+    letter-spacing: 3px; text-transform: uppercase; line-height: 1.1;
+  }
+  .nav-logo-text .powered-by {
+    font-size: 9px; font-weight: 500; color: var(--text-muted);
+    letter-spacing: 1.2px; text-transform: uppercase; margin-top: 2px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .nav-logo-text .powered-by .bits-mini-logo {
+    width: 16px; height: 16px; border-radius: 3px;
+    display: inline-block; vertical-align: middle; object-fit: contain;
+  }
+  .nav-center { display: flex; gap: 36px; list-style: none; }
+  .nav-center a {
+    text-decoration: none; color: var(--text-secondary);
+    font-size: 13.5px; font-weight: 500; transition: color 0.2s; letter-spacing: 0.2px;
+  }
+  .nav-center a:hover { color: var(--text-primary); }
+  .nav-right { display: flex; align-items: center; gap: 16px; }
+  .btn-nav-outline {
+    padding: 8px 20px; border: 1.5px solid var(--border); border-radius: 6px;
+    font-size: 13px; font-weight: 600; color: var(--text-primary); text-decoration: none; transition: all 0.2s;
+  }
+  .btn-nav-outline:hover { border-color: var(--text-primary); }
+  .btn-nav-solid {
+    padding: 9px 22px; background: var(--navy); border: none; border-radius: 6px;
+    font-size: 13px; font-weight: 600; color: #fff; text-decoration: none; transition: all 0.2s;
+  }
+  .btn-nav-solid:hover { background: var(--navy-light); box-shadow: 0 2px 12px rgba(12,26,50,0.15); }
+
+  /* ===== HERO ===== */
+  .hero {
+    padding: 180px 0 100px;
+    background: linear-gradient(180deg, var(--off-white) 0%, var(--white) 100%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: -10%;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(158,124,46,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 18px;
+    background: var(--gold-bg); border: 1px solid var(--gold-border);
+    border-radius: 100px;
+    font-size: 11px; font-weight: 600; color: var(--gold);
+    letter-spacing: 1.2px; text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .hero-badge .dot {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .hero h1 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 54px; font-weight: 400;
+    color: var(--text-primary); line-height: 1.12;
+    letter-spacing: -0.5px; margin-bottom: 22px;
+    max-width: 780px; margin-left: auto; margin-right: auto;
+  }
+  .hero h1 .highlight { color: var(--gold); }
+  .hero .subtitle {
+    font-size: 18px; line-height: 1.7; color: var(--text-muted);
+    max-width: 580px; margin: 0 auto 48px;
+  }
+
+  /* ===== COUNTDOWN ===== */
+  .countdown-bar {
+    display: inline-flex; align-items: center; gap: 0;
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    margin-bottom: 60px;
+  }
+  .countdown-unit {
+    padding: 20px 28px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+  .countdown-unit:last-child { border-right: none; }
+  .countdown-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 36px; font-weight: 600;
+    color: var(--navy); line-height: 1;
+  }
+  .countdown-label {
+    font-size: 10px; font-weight: 600; color: var(--text-muted);
+    letter-spacing: 1.5px; text-transform: uppercase; margin-top: 6px;
+  }
+  .countdown-launch {
+    padding: 20px 28px; text-align: center;
+    background: var(--navy);
+  }
+  .countdown-launch-label {
+    font-size: 10px; font-weight: 700; color: var(--gold-light);
+    letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px;
+  }
+  .countdown-launch-date {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px; color: #fff;
+  }
+
+  /* ===== FORM SECTION ===== */
+  .form-section {
+    padding: 80px 0 100px;
+    background: var(--white);
+  }
+  .form-wrapper {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: start;
+  }
+  .form-left { padding-top: 8px; }
+  .form-left .section-eyebrow {
+    font-size: 11px; font-weight: 700; color: var(--gold);
+    letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 16px;
+  }
+  .form-left h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 38px; font-weight: 400; color: var(--text-primary);
+    line-height: 1.2; margin-bottom: 20px;
+  }
+  .form-left p {
+    font-size: 16px; color: var(--text-muted); line-height: 1.7; margin-bottom: 36px;
+  }
+  .benefit-list { list-style: none; display: flex; flex-direction: column; gap: 20px; }
+  .benefit-item {
+    display: flex; align-items: flex-start; gap: 16px;
+  }
+  .benefit-icon {
+    width: 44px; height: 44px; flex-shrink: 0;
+    background: var(--gold-bg); border: 1px solid var(--gold-border);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+  .benefit-text h4 {
+    font-size: 15px; font-weight: 700; color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+  .benefit-text p {
+    font-size: 13px; color: var(--text-muted); line-height: 1.55; margin-bottom: 0;
+  }
+
+  /* FORM CARD */
+  .form-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px 40px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.06);
+    position: relative;
+    overflow: hidden;
+  }
+  .form-card::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 20%; right: 20%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .form-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px; color: var(--text-primary); margin-bottom: 8px;
+  }
+  .form-card .form-subhead {
+    font-size: 14px; color: var(--text-muted); margin-bottom: 32px;
+  }
+  .form-group { margin-bottom: 20px; }
+  .form-group label {
+    display: block; font-size: 11px; font-weight: 700;
+    color: var(--text-secondary); text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 7px;
+  }
+  .form-group input,
+  .form-group select {
+    width: 100%; padding: 12px 16px;
+    border: 1.5px solid var(--border); border-radius: 8px;
+    font-family: 'Inter', sans-serif; font-size: 14px;
+    color: var(--text-primary); background: var(--white);
+    outline: none; transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus { border-color: var(--navy); }
+  .form-group input::placeholder { color: var(--text-muted); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .btn-submit {
+    width: 100%; padding: 15px;
+    background: var(--navy); color: #fff;
+    border: none; border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px; font-weight: 700;
+    cursor: pointer; transition: all 0.2s;
+    letter-spacing: 0.3px; margin-top: 8px;
+  }
+  .btn-submit:hover {
+    background: var(--navy-light);
+    box-shadow: 0 4px 16px rgba(12,26,50,0.2);
+    transform: translateY(-1px);
+  }
+  .form-note {
+    font-size: 11px; color: var(--text-muted); text-align: center; margin-top: 14px;
+  }
+
+  /* SUCCESS STATE */
+  .success-state {
+    display: none;
+    text-align: center;
+    padding: 48px 24px;
+  }
+  .success-icon {
+    width: 72px; height: 72px;
+    background: var(--green-bg); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px; margin: 0 auto 24px;
+  }
+  .success-state h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px; color: var(--text-primary); margin-bottom: 12px;
+  }
+  .success-state p { font-size: 15px; color: var(--text-muted); line-height: 1.65; }
+
+  /* ===== WHY JOIN SECTION ===== */
+  .why-section {
+    padding: 100px 0;
+    background: var(--off-white);
+    border-top: 1px solid var(--border);
+  }
+  .why-section .inner { text-align: center; }
+  .why-section .section-eyebrow {
+    font-size: 11px; font-weight: 700; color: var(--gold);
+    letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 12px;
+  }
+  .why-section h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 40px; font-weight: 400; color: var(--text-primary);
+    line-height: 1.2; margin-bottom: 16px;
+  }
+  .why-section .desc {
+    font-size: 16px; color: var(--text-muted); max-width: 520px;
+    margin: 0 auto 60px; line-height: 1.7;
+  }
+  .why-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+    margin-top: 0;
+  }
+  .why-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 12px; padding: 40px 32px;
+    text-align: left; transition: all 0.3s;
+  }
+  .why-card:hover {
+    border-color: var(--gold-border);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+    transform: translateY(-4px);
+  }
+  .why-card-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 600; color: var(--gold);
+    letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px;
+  }
+  .why-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px; color: var(--text-primary); margin-bottom: 12px;
+  }
+  .why-card p {
+    font-size: 14px; color: var(--text-muted); line-height: 1.65;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    padding: 60px 0 40px;
+    background: var(--navy);
+    color: rgba(255,255,255,0.5);
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 48px;
+  }
+  .footer-brand .f-name {
+    font-size: 18px; font-weight: 800; color: #fff;
+    letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px;
+  }
+  .footer-brand .f-powered {
+    font-size: 9px; color: rgba(255,255,255,0.35);
+    letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 16px;
+  }
+  .footer-brand p { font-size: 13px; line-height: 1.6; max-width: 320px; }
+  .patent-badge {
+    display: inline-flex; align-items: center; gap: 6px; margin-top: 20px;
+    padding: 6px 14px;
+    background: rgba(158,124,46,0.1); border: 1px solid rgba(158,124,46,0.2);
+    border-radius: 4px;
+    font-size: 10px; font-weight: 600; color: var(--gold-light);
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  .footer-col h4 {
+    font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.8);
+    letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 20px;
+  }
+  .footer-col a {
+    display: block; font-size: 13px; color: rgba(255,255,255,0.4);
+    text-decoration: none; margin-bottom: 12px; transition: color 0.2s;
+  }
+  .footer-col a:hover { color: rgba(255,255,255,0.8); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.06); font-size: 12px;
+  }
+  .footer-legal { display: flex; gap: 24px; }
+  .footer-legal a {
+    color: rgba(255,255,255,0.35); text-decoration: none; font-size: 12px; transition: color 0.2s;
+  }
+  .footer-legal a:hover { color: rgba(255,255,255,0.7); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .form-wrapper { grid-template-columns: 1fr; gap: 48px; }
+    .why-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  }
+  @media (max-width: 640px) {
+    /* Layout */
+    .container { padding: 0 16px; }
+    nav { padding: 0 16px; height: 56px; }
+    .nav-center { display: none; }
+    .nav-right .btn-nav-outline { display: none; }
+    .brand-name { font-size: 14px; }
+    .nav-logo-mark { width: 30px; height: 30px; font-size: 12px; }
+    .powered-by { display: none; }
+    .ticker-bar { font-size: 10px; height: 32px; }
+
+    /* Hero */
+    .hero { padding: 120px 0 48px; }
+    .hero h1 { font-size: 28px; line-height: 1.25; }
+    .hero-subtitle { font-size: 15px; }
+
+    /* Countdown */
+    .countdown-bar { flex-wrap: wrap; gap: 16px; justify-content: center; }
+    .countdown-item { min-width: 60px; }
+    .countdown-number { font-size: 32px; }
+
+    /* Form */
+    .form-card { padding: 24px 16px; }
+    .form-row { grid-template-columns: 1fr; }
+    .form-card input, .form-card select, .form-card textarea { min-height: 44px; }
+    .btn-submit { min-height: 50px; font-size: 15px; width: 100%; }
+
+    /* Why section */
+    .why-grid { grid-template-columns: 1fr; }
+    .why-card { padding: 24px 20px; }
+
+    /* Social proof */
+    .social-proof { padding: 40px 0; }
+
+    /* Footer */
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    .footer-legal { flex-wrap: wrap; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== LIVE TICKER ===== -->
+<div class="ticker-bar">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="ticker-label">HVAC Mid-Atlantic</span> <span class="ticker-value">$4,200/mo</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Masonry SE Archive</span> <span class="ticker-value">$5,800/mo</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Fleet Logistics</span> <span class="ticker-value ticker-up">+12% ↑</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Healthcare Ops</span> <span class="ticker-value">$9,200/mo</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Property Mgmt NE</span> <span class="ticker-value">$8,500/mo</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Electrical DC Metro</span> <span class="ticker-value ticker-up">+8% ↑</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">24h Volume</span> <span class="ticker-value">$247,800</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Early Access</span> <span class="ticker-value ticker-up">Launching Q2 2026</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">HVAC Mid-Atlantic</span> <span class="ticker-value">$4,200/mo</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Masonry SE Archive</span> <span class="ticker-value">$5,800/mo</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Fleet Logistics</span> <span class="ticker-value ticker-up">+12% ↑</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Healthcare Ops</span> <span class="ticker-value">$9,200/mo</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Property Mgmt NE</span> <span class="ticker-value">$8,500/mo</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Electrical DC Metro</span> <span class="ticker-value ticker-up">+8% ↑</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">24h Volume</span> <span class="ticker-value">$247,800</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Early Access</span> <span class="ticker-value ticker-up">Launching Q2 2026</span></span>
+  </div>
+</div>
+
+<!-- ===== NAVIGATION ===== -->
+<nav id="navbar">
+  <a href="index-v2.html" class="nav-brand">
+    <div class="nav-logo-mark">TE</div>
+    <div class="nav-logo-text">
+      <div class="brand-name">TORA Exchange</div>
+      <div class="powered-by"><img src="images/bits-emblem.svg" class="bits-mini-logo" alt="BITS" style="width:22px;height:18px;object-fit:contain;vertical-align:middle;margin-right:3px;"> Powered by B.I.T.S. · Blockchain Integrative Technology Solutions</div>
+    </div>
+  </a>
+  <ul class="nav-center">
+    <li><a href="index-v2.html#marketplace">Marketplace</a></li>
+    <li><a href="index-v2.html#how">How It Works</a></li>
+    <li><a href="index-v2.html#industries">Industries</a></li>
+    <li><a href="index-v2.html#insights">Insights</a></li>
+    <li><a href="index-v2.html#trust">Verification</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="index-v2.html" class="btn-nav-outline">← Back to Exchange</a>
+    <a href="#waitlist-form" class="btn-nav-solid">Join Waitlist</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge"><span class="dot"></span> Early Access · Q2 2026 Launch</div>
+    <h1>Join the TORA Exchange<br><span class="highlight">Early Access List</span></h1>
+    <p class="subtitle">Be among the first institutions to license tokenized operational data assets. Launching Q2 2026 — spots are limited.</p>
+
+    <!-- COUNTDOWN TIMER -->
+    <div class="countdown-bar" id="countdown">
+      <div class="countdown-unit">
+        <div class="countdown-num" id="cd-days">--</div>
+        <div class="countdown-label">Days</div>
+      </div>
+      <div class="countdown-unit">
+        <div class="countdown-num" id="cd-hours">--</div>
+        <div class="countdown-label">Hours</div>
+      </div>
+      <div class="countdown-unit">
+        <div class="countdown-num" id="cd-minutes">--</div>
+        <div class="countdown-label">Minutes</div>
+      </div>
+      <div class="countdown-unit">
+        <div class="countdown-num" id="cd-seconds">--</div>
+        <div class="countdown-label">Seconds</div>
+      </div>
+      <div class="countdown-launch">
+        <div class="countdown-launch-label">Target Launch</div>
+        <div class="countdown-launch-date">April 1, 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FORM + BENEFITS ===== -->
+<section class="form-section" id="waitlist-form">
+  <div class="container">
+    <div class="form-wrapper">
+
+      <!-- LEFT: Benefits -->
+      <div class="form-left">
+        <div class="section-eyebrow">Why Join Early?</div>
+        <h2>Your Competitive<br>Advantage Starts Here</h2>
+        <p>TORA Exchange is building the world's first institutional marketplace for tokenized operational data assets. Early access members shape the platform — and lock in advantages that won't be available at public launch.</p>
+        <ul class="benefit-list">
+          <li class="benefit-item">
+            <div class="benefit-icon">⚡</div>
+            <div class="benefit-text">
+              <h4>Priority Access</h4>
+              <p>Skip the public queue. Early access members get first rights to browse and license newly listed data assets — before they're visible to the general market.</p>
+            </div>
+          </li>
+          <li class="benefit-item">
+            <div class="benefit-icon">💰</div>
+            <div class="benefit-text">
+              <h4>Founding Member Pricing</h4>
+              <p>Lock in introductory licensing rates and platform fees that won't be available post-launch. Founding member pricing is grandfathered — permanently.</p>
+            </div>
+          </li>
+          <li class="benefit-item">
+            <div class="benefit-icon">🏗️</div>
+            <div class="benefit-text">
+              <h4>Shape the Platform</h4>
+              <p>Direct input into product roadmap decisions, API design, and new industry verticals. Your needs as a buyer, supplier, or partner inform what we build next.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- RIGHT: Form -->
+      <div class="form-card">
+        <div id="form-content">
+          <h3>Reserve Your Spot</h3>
+          <p class="form-subhead">Complete the form below. We'll reach out with early access details before our Q2 2026 launch.</p>
+
+          <form id="waitlist-form-el" onsubmit="submitWaitlist(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" required placeholder="Jane Smith">
+              </div>
+              <div class="form-group">
+                <label>Company *</label>
+                <input type="text" required placeholder="Acme Capital LLC">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Business Email *</label>
+              <input type="email" required placeholder="jane@company.com">
+            </div>
+            <div class="form-group">
+              <label>Your Role</label>
+              <select>
+                <option value="">Select your role...</option>
+                <option value="buyer">Data Buyer — seeking licensed data access</option>
+                <option value="supplier">Data Supplier — want to list my records</option>
+                <option value="partner">Institutional Partner — API / enterprise inquiry</option>
+                <option value="press">Press — media inquiry</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Industry</label>
+              <select>
+                <option value="">Select your industry...</option>
+                <option>Financial Services / Insurance</option>
+                <option>Real Estate / Property Management</option>
+                <option>Construction / Trades</option>
+                <option>Healthcare / Medical</option>
+                <option>Transportation / Logistics</option>
+                <option>Manufacturing</option>
+                <option>Legal / Government</option>
+                <option>Technology / Analytics</option>
+                <option>Utilities / Infrastructure</option>
+                <option>Retail / E-Commerce</option>
+                <option>Agriculture</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <button type="submit" class="btn-submit">Join the Early Access List →</button>
+          </form>
+          <p class="form-note">No spam, ever. We'll only contact you about TORA Exchange early access details.</p>
+        </div>
+
+        <!-- SUCCESS STATE -->
+        <div class="success-state" id="success-state">
+          <div class="success-icon">✅</div>
+          <h3>You're on the list.</h3>
+          <p>We'll be in touch with early access details before our Q2 2026 launch. Keep an eye on your inbox — founding member invitations will go out in March 2026.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY JOIN EARLY ===== -->
+<section class="why-section">
+  <div class="container">
+    <div class="inner">
+      <div class="section-eyebrow">The TORA Advantage</div>
+      <h2>What Early Members<br>Gain at Launch</h2>
+      <p class="desc">Three concrete benefits reserved exclusively for institutions on the early access list.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-card-num">01 · Access</div>
+        <h3>First Look at Every New Asset</h3>
+        <p>Early access members receive 48-hour advance notice before any new data asset goes live on the public marketplace. In a market where timing matters, first-mover advantage is built in to your membership.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-num">02 · Pricing</div>
+        <h3>Founding Member Rates — Locked In</h3>
+        <p>Post-launch platform fees will reflect the full commercial value of institutional-grade data infrastructure. Founding members lock in introductory rates at the moment of signup. These rates are grandfathered — forever.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-num">03 · Influence</div>
+        <h3>Direct Product Input</h3>
+        <p>We're still building. Early members get private briefings on upcoming features, beta access to new tools, and a direct line to the B.I.T.S. product team. Your use case shapes what TORA Exchange becomes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="f-name">TORA Exchange</div>
+        <div class="f-powered">Powered by B.I.T.S. · Blockchain Integrative Technology Solutions</div>
+        <p>The world's first marketplace for Tokenized Operational Record Assets. Transforming dormant business records into verifiable, licensable, and tradeable data assets.</p>
+        <div class="patent-badge">🔒 U.S. Patent Pending</div>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <a href="index-v2.html#marketplace">Marketplace</a>
+        <a href="waitlist.html">Get Early Access</a>
+        <a href="#">API Access</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="#">Documentation</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About BITS</a>
+        <a href="#">Careers</a>
+        <a href="#">Press</a>
+        <a href="#">Contact</a>
+        <a href="#">Partners</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="#">What is TORA?</a>
+        <a href="#">Verification</a>
+        <a href="#">Supplier Guide</a>
+        <a href="#">Buyer Guide</a>
+        <a href="index-v2.html#insights">Insights</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 B.I.T.S. — Blockchain Integrative Technology Solutions. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Security</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+
+  // Countdown to April 1, 2026
+  function updateCountdown() {
+    const target = new Date('2026-04-01T00:00:00');
+    const now = new Date();
+    const diff = target - now;
+    if (diff <= 0) {
+      document.getElementById('cd-days').textContent = '00';
+      document.getElementById('cd-hours').textContent = '00';
+      document.getElementById('cd-minutes').textContent = '00';
+      document.getElementById('cd-seconds').textContent = '00';
+      return;
+    }
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+    document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+    document.getElementById('cd-minutes').textContent = String(minutes).padStart(2, '0');
+    document.getElementById('cd-seconds').textContent = String(seconds).padStart(2, '0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // Waitlist form submit
+  function submitWaitlist(e) {
+    e.preventDefault();
+    document.getElementById('form-content').style.display = 'none';
+    document.getElementById('success-state').style.display = 'block';
+  }
+  window.submitWaitlist = submitWaitlist;
+</script>
+</body>
+</html>

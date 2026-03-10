@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Data Suppliers Earn Passive Income from Records They Already Own — TORA Exchange Insights</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --white: #ffffff; --off-white: #f8f9fb; --border: #dfe2e8;
+    --text-primary: #0f1724; --text-secondary: #3d4a5c; --text-muted: #7a8599;
+    --gold: #9e7c2e; --gold-bg: #faf6ed; --gold-border: #e8dcc0; --gold-light: #b8922f;
+    --navy: #0c1a32; --navy-light: #1a2d4a;
+    --green: #0d8a50; --green-bg: #edf7f1;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--text-secondary); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+
+  /* Ticker */
+  .ticker-bar {
+    background: var(--navy); color: rgba(255,255,255,0.7);
+    font-size: 12px; font-weight: 500; height: 36px;
+    display: flex; align-items: center; overflow: hidden;
+  }
+  .ticker-track {
+    display: flex; gap: 48px;
+    animation: tickerScroll 30s linear infinite; white-space: nowrap;
+  }
+  .ticker-item { display: flex; align-items: center; gap: 8px; }
+  .ticker-label { color: rgba(255,255,255,0.5); }
+  .ticker-value { color: #fff; font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 11px; }
+  .ticker-up { color: #34d399; }
+  .ticker-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+  @keyframes tickerScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* Nav */
+  nav { height: 68px; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; border-bottom: 1px solid var(--border); background: var(--white); }
+  .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-mark { width: 38px; height: 38px; background: var(--navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-size: 17px; color: var(--gold-light); }
+  .nav-text { font-size: 16px; font-weight: 800; color: var(--text-primary); letter-spacing: 1.5px; text-transform: uppercase; }
+  .nav-right { display: flex; align-items: center; gap: 20px; }
+  .nav-back { font-size: 13px; color: var(--text-muted); text-decoration: none; font-weight: 500; }
+  .nav-back:hover { color: var(--text-primary); }
+  .nav-cta {
+    padding: 8px 20px; background: var(--navy); color: #fff;
+    border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--navy-light); }
+
+  /* Article */
+  .article-hero { padding: 80px 0 60px; background: var(--off-white); border-bottom: 1px solid var(--border); text-align: center; }
+  .article-tag { display: inline-block; padding: 5px 14px; background: var(--gold-bg); border: 1px solid var(--gold-border); border-radius: 100px; font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 20px; }
+  .article-hero h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: 44px; font-weight: 400; color: var(--text-primary); line-height: 1.2; max-width: 760px; margin: 0 auto 20px; }
+  .article-meta { font-size: 13px; color: var(--text-muted); }
+  .article-img { max-width: 900px; margin: 0 auto; }
+  .article-img img { width: 100%; height: 380px; object-fit: cover; display: block; }
+
+  /* Content */
+  .article-body { max-width: 680px; margin: 0 auto; padding: 60px 24px 100px; }
+  .article-body p { margin-bottom: 24px; font-size: 16px; line-height: 1.85; color: var(--text-secondary); }
+  .article-body h2 { font-family: 'DM Serif Display', Georgia, serif; font-size: 30px; font-weight: 400; color: var(--text-primary); margin: 52px 0 20px; }
+  .article-body h3 { font-size: 18px; font-weight: 700; color: var(--text-primary); margin: 36px 0 16px; }
+  .article-body blockquote { border-left: 3px solid var(--gold); padding: 16px 24px; margin: 32px 0; background: var(--off-white); font-style: italic; color: var(--text-primary); border-radius: 0 8px 8px 0; }
+  .article-body ul, .article-body ol { margin: 16px 0 24px 24px; }
+  .article-body li { margin-bottom: 10px; font-size: 16px; line-height: 1.7; }
+  .article-body .stat-callout { background: var(--navy); color: #fff; padding: 32px 40px; border-radius: 12px; margin: 40px 0; text-align: center; }
+  .stat-callout .big-num { font-family: 'JetBrains Mono', monospace; font-size: 48px; font-weight: 600; color: var(--gold-light); }
+  .stat-callout .big-label { font-size: 14px; color: rgba(255,255,255,0.6); margin-top: 8px; }
+
+  /* Revenue Split Visual */
+  .revenue-split {
+    background: var(--off-white); border: 1px solid var(--border);
+    border-radius: 12px; padding: 32px; margin: 40px 0;
+  }
+  .revenue-split h4 {
+    font-size: 12px; font-weight: 700; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 24px;
+  }
+  .split-bar {
+    display: flex; border-radius: 6px; overflow: hidden; height: 36px; margin-bottom: 20px;
+  }
+  .split-seg {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: #fff;
+  }
+  .split-seg.supplier { background: var(--navy); width: 75%; }
+  .split-seg.platform { background: var(--gold); width: 15%; }
+  .split-seg.infra { background: #64748b; width: 10%; }
+  .split-legend { display: flex; gap: 20px; flex-wrap: wrap; }
+  .split-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-secondary); }
+  .split-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+  /* Journey Steps */
+  .journey-step {
+    display: flex; gap: 20px; margin-bottom: 32px; align-items: flex-start;
+  }
+  .step-badge {
+    width: 40px; height: 40px; flex-shrink: 0;
+    background: var(--navy); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 600; color: var(--gold-light);
+  }
+  .step-content h4 { font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
+  .step-content p { font-size: 14px; color: var(--text-muted); line-height: 1.65; margin-bottom: 0; }
+  .step-time {
+    display: inline-block; padding: 2px 10px;
+    background: var(--gold-bg); border: 1px solid var(--gold-border);
+    border-radius: 100px; font-size: 10px; font-weight: 700;
+    color: var(--gold); letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  /* Projection table */
+  .projection-table {
+    width: 100%; border-collapse: collapse; margin: 32px 0;
+    font-size: 14px;
+  }
+  .projection-table th {
+    background: var(--navy); color: rgba(255,255,255,0.8);
+    padding: 12px 16px; font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1px; text-align: left;
+  }
+  .projection-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); }
+  .projection-table tr:last-child td { border-bottom: none; }
+  .projection-table tr:nth-child(even) td { background: var(--off-white); }
+  .projection-table .highlight-row td { background: var(--gold-bg); font-weight: 600; color: var(--text-primary); }
+  .mono-val { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--gold); }
+
+  /* Tips */
+  .tip-box {
+    background: var(--green-bg); border: 1px solid rgba(13,138,80,0.2);
+    border-left: 4px solid var(--green); border-radius: 8px;
+    padding: 24px 28px; margin: 32px 0;
+  }
+  .tip-box .tip-label {
+    font-size: 11px; font-weight: 700; color: var(--green);
+    text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px;
+  }
+  .tip-box p { font-size: 14px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 0; }
+
+  /* Footer */
+  .article-footer { max-width: 680px; margin: 0 auto; padding: 0 24px 60px; border-top: 1px solid var(--border); padding-top: 32px; }
+  .article-footer p { font-size: 13px; color: var(--text-muted); }
+  .cta-inline { background: var(--gold-bg); border: 1px solid var(--gold-border); border-radius: 12px; padding: 36px 40px; margin: 40px 0; text-align: center; }
+  .cta-inline h3 { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--text-primary); margin-bottom: 12px; }
+  .cta-inline p { font-size: 14px; color: var(--text-muted); margin-bottom: 20px; }
+  .cta-inline a { display: inline-block; padding: 12px 28px; background: var(--navy); color: #fff; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; transition: background 0.2s; }
+  .cta-inline a:hover { background: var(--navy-light); }
+
+  @media (max-width: 640px) {
+    nav { padding: 0 20px; }
+    .article-hero h1 { font-size: 30px; }
+    .article-body { padding: 40px 16px 60px; }
+    .split-bar { height: 28px; }
+    .projection-table { font-size: 12px; }
+    .projection-table th, .projection-table td { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="ticker-label">HVAC Mid-Atlantic</span> <span class="ticker-value">$4,200/mo</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Masonry SE Archive</span> <span class="ticker-value">$5,800/mo</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Healthcare Ops</span> <span class="ticker-value">$9,200/mo</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Active Assets</span> <span class="ticker-value">156</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Fleet Logistics</span> <span class="ticker-value ticker-up">+12% ↑</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Property Mgmt NE</span> <span class="ticker-value">$8,500/mo</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">24h Volume</span> <span class="ticker-value">$247,800</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">HVAC Mid-Atlantic</span> <span class="ticker-value">$4,200/mo</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Masonry SE Archive</span> <span class="ticker-value">$5,800/mo</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Healthcare Ops</span> <span class="ticker-value">$9,200/mo</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Active Assets</span> <span class="ticker-value">156</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Fleet Logistics</span> <span class="ticker-value ticker-up">+12% ↑</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">Property Mgmt NE</span> <span class="ticker-value">$8,500/mo</span></span>
+    <span class="ticker-dot"></span>
+    <span class="ticker-item"><span class="ticker-label">24h Volume</span> <span class="ticker-value">$247,800</span></span>
+  </div>
+</div>
+
+<nav>
+  <a href="../index-v2.html" class="nav-brand">
+    <div class="nav-mark">TE</div>
+    <span class="nav-text">TORA Exchange</span>
+  </a>
+  <div class="nav-right">
+    <a href="../index-v2.html#insights" class="nav-back">← Back to Insights</a>
+    <a href="../waitlist.html" class="nav-cta">Get Early Access</a>
+  </div>
+</nav>
+
+<div class="article-hero">
+  <div class="article-tag">Guide</div>
+  <h1>How Data Suppliers Earn Passive Income from Records They Already Own</h1>
+  <div class="article-meta">TORA Exchange · March 2026 · 7 min read</div>
+</div>
+
+<div class="article-img">
+  <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=1200&q=80" alt="Business records and passive income">
+</div>
+
+<article class="article-body">
+
+<p>Most business owners think about passive income in familiar terms: rental properties, dividend stocks, maybe a franchise. Almost none of them consider the filing cabinet in the back office.</p>
+
+<p>But here's the reality: if you've been running a business for five or more years, you're sitting on a depreciating asset that could be generating monthly income. Your operational records — service logs, invoices, inspection reports, project histories — have measurable value to institutional buyers who need exactly the kind of operational intelligence your records contain.</p>
+
+<p>This guide walks through the supplier journey from first inquiry to first payout — and the real numbers behind what it can mean for your business.</p>
+
+<h2>What "Passive Income from Records" Actually Means</h2>
+
+<p>Let's clear something up immediately. Licensing your records through TORA Exchange is not selling your records. You're not handing over your files to a buyer and losing access. What you're licensing is the <em>derived intelligence</em> — anonymized, aggregated statistical patterns extracted from your corpus.</p>
+
+<blockquote>
+  "The HVAC operator's customers never know their service records contributed to a dataset. Because they didn't — their names, addresses, and account numbers are stripped before any intelligence is derived. What the insurance company licensed is regional equipment failure rates, not personal service histories."
+</blockquote>
+
+<p>Your documents stay on your infrastructure. You retain full ownership. The intelligence layer — the patterns and benchmarks extracted from your records — is what gets licensed to buyers on a monthly subscription basis.</p>
+
+<p>And because that licensing is contractual, automated by smart contract, and distributed to multiple buyers simultaneously, it's genuinely passive. You do the work once (onboarding and verification), and the revenue flows.</p>
+
+<h2>The Supplier Journey: From Records to Revenue</h2>
+
+<div class="journey-step">
+  <div class="step-badge">01</div>
+  <div class="step-content">
+    <div class="step-time">Week 1–2</div>
+    <h4>Initial Assessment</h4>
+    <p>The process starts with a free assessment from TORA Exchange. You describe your records — industry, volume (approximate), years of history, format (paper vs. digital). Our team evaluates market demand and provides a revenue estimate. No obligation, no commitment.</p>
+  </div>
+</div>
+
+<div class="journey-step">
+  <div class="step-badge">02</div>
+  <div class="step-content">
+    <div class="step-time">Week 3–6</div>
+    <h4>DataVault Onboarding</h4>
+    <p>You're connected to DataVault — the secure ingestion infrastructure built by B.I.T.S. For digital records, this is a direct integration with your existing systems. For physical records, a digitization workflow handles scanning and processing. All record content stays on your infrastructure throughout.</p>
+  </div>
+</div>
+
+<div class="journey-step">
+  <div class="step-badge">03</div>
+  <div class="step-content">
+    <div class="step-time">Week 6–8</div>
+    <h4>Verification & Hashing</h4>
+    <p>Each document in your corpus receives a cryptographic hash. The corpus is anchored to Solana Mainnet — creating immutable, public proof that your data corpus exists and is authentic. This is the "blockchain verification" step that institutional buyers require. You receive a TORA certificate with your unique asset hash.</p>
+  </div>
+</div>
+
+<div class="journey-step">
+  <div class="step-badge">04</div>
+  <div class="step-content">
+    <div class="step-time">Week 8–10</div>
+    <h4>Anonymization & Packaging</h4>
+    <p>PII removal and aggregation runs against your corpus. The output is an intelligence package — the actual product that buyers license. You review and approve the intelligence layer before it goes live. Nothing goes to market without your sign-off.</p>
+  </div>
+</div>
+
+<div class="journey-step">
+  <div class="step-badge">05</div>
+  <div class="step-content">
+    <div class="step-time">Week 10+</div>
+    <h4>Live on the Exchange — Revenue Starts</h4>
+    <p>Your TORA is listed on the marketplace. Buyers discover, preview, and license access. Smart contracts handle payment collection and revenue distribution automatically. Your supplier dashboard shows active licensees, monthly revenue, and payout history in real time.</p>
+  </div>
+</div>
+
+<h2>The Revenue Split: Where Your Money Goes</h2>
+
+<p>TORA Exchange operates on a transparent, fixed revenue split enforced by smart contract:</p>
+
+<div class="revenue-split">
+  <h4>Revenue Distribution</h4>
+  <div class="split-bar">
+    <div class="split-seg supplier">75%</div>
+    <div class="split-seg platform">15%</div>
+    <div class="split-seg infra">10%</div>
+  </div>
+  <div class="split-legend">
+    <div class="split-item"><div class="split-dot" style="background:var(--navy)"></div> 75% — Data Supplier</div>
+    <div class="split-item"><div class="split-dot" style="background:var(--gold)"></div> 15% — Exchange Platform</div>
+    <div class="split-item"><div class="split-dot" style="background:#64748b"></div> 10% — Verification & Compliance Infrastructure</div>
+  </div>
+</div>
+
+<p>Every dollar that flows into your TORA license fee is split this way, automatically, on every payment. The 75% to the supplier is non-negotiable — it's hardcoded into the smart contract, not subject to discretionary adjustment by the platform.</p>
+
+<h2>Real Projections: What to Expect</h2>
+
+<div class="stat-callout">
+  <div class="big-num">$12,500/mo</div>
+  <div class="big-label">Example: 25-year healthcare operator, 52,000 records, licensed to 9 institutional buyers at $9,200/mo · 75% = $6,900 supplier revenue · multi-TORA portfolio potential</div>
+</div>
+
+<p>Let's build out realistic projections across different supplier profiles:</p>
+
+<table class="projection-table">
+  <thead>
+    <tr>
+      <th>Supplier Profile</th>
+      <th>Records</th>
+      <th>License/mo</th>
+      <th>Buyers</th>
+      <th>Gross</th>
+      <th>Your 75%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Small HVAC (10 yrs)</td>
+      <td>6,200</td>
+      <td>$2,100/mo</td>
+      <td>2</td>
+      <td>$4,200</td>
+      <td class="mono-val">$3,150/mo</td>
+    </tr>
+    <tr>
+      <td>Mid HVAC (25 yrs)</td>
+      <td>18,247</td>
+      <td>$4,200/mo</td>
+      <td>4</td>
+      <td>$16,800</td>
+      <td class="mono-val">$12,600/mo</td>
+    </tr>
+    <tr>
+      <td>Construction (20 yrs)</td>
+      <td>24,100</td>
+      <td>$5,800/mo</td>
+      <td>7</td>
+      <td>$40,600</td>
+      <td class="mono-val">$30,450/mo</td>
+    </tr>
+    <tr class="highlight-row">
+      <td>Healthcare (16 yrs)</td>
+      <td>52,300</td>
+      <td>$9,200/mo</td>
+      <td>9</td>
+      <td>$82,800</td>
+      <td class="mono-val">$62,100/mo</td>
+    </tr>
+    <tr>
+      <td>Property Mgmt (22 yrs)</td>
+      <td>45,200</td>
+      <td>$8,500/mo</td>
+      <td>6</td>
+      <td>$51,000</td>
+      <td class="mono-val">$38,250/mo</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>These projections assume current marketplace pricing and buyer demand. Actual revenue depends on record quality, industry demand, and how many institutional buyers are actively seeking data in your vertical at the time of listing.</p>
+
+<h3>The Multi-TORA Strategy</h3>
+
+<p>Suppliers with records spanning multiple service lines, regions, or time periods can list multiple TORAs. A construction company with separate masonry, electrical, and general contracting divisions could list three distinct assets — each attracting different buyer pools, multiplying revenue without multiplying effort.</p>
+
+<p>The economics compound. Each TORA listed is a separate recurring revenue stream with zero marginal cost once established.</p>
+
+<h2>DataVault Onboarding: What It Actually Involves</h2>
+
+<p>The most common concern from potential suppliers is the onboarding burden. Let's be honest about what it involves.</p>
+
+<h3>Digital Records</h3>
+<p>If your records are already in digital form — QuickBooks exports, CRM data, project management files, scanned PDFs — onboarding is a technical integration that TORA Exchange's team manages end-to-end. You provide access credentials to a read-only export of your data. You don't build anything.</p>
+
+<h3>Physical Records</h3>
+<p>Paper records require digitization. For small corpora (under 5,000 documents), this can often be handled with a standard office scanner over a week or two. For large historical archives, TORA Exchange partners with professional digitization services who handle the physical scanning and processing. This is a one-time cost that is typically offset by the first two to three months of licensing revenue.</p>
+
+<div class="tip-box">
+  <div class="tip-label">Onboarding Tip</div>
+  <p>Don't wait until your records are perfectly organized to start the assessment process. The TORA team has processed everything from well-structured digital databases to decades of loose paper files in cardboard boxes. Starting the conversation early — before the records are "ready" — often surfaces organizational approaches that reduce onboarding time significantly.</p>
+</div>
+
+<h2>Optimization Tips for Maximum Revenue</h2>
+
+<h3>Volume Beats Perfection</h3>
+<p>A corpus of 50,000 imperfect records is more valuable than 5,000 pristine ones. Buyers care about statistical significance — larger datasets produce more reliable intelligence, which commands higher license fees. Don't discard older or messier records thinking they won't qualify. They often contribute the most historical context.</p>
+
+<h3>Historical Depth is Premium</h3>
+<p>Records spanning 20+ years attract a significant premium over five-year datasets. Institutional buyers — particularly insurance underwriters and risk modelers — need long time horizons to identify trends that survive economic cycles. If you have pre-2010 records, they may be your most valuable asset.</p>
+
+<h3>Multi-Year Commitments from Buyers</h3>
+<p>The Exchange supports annual licensing agreements, not just month-to-month. Buyers on annual terms pay a slight premium, but the supplier benefit is revenue predictability. Your dashboard shows which buyers are on annual vs. monthly terms so you can understand your revenue stability at a glance.</p>
+
+<h3>Append Continuously</h3>
+<p>A TORA doesn't have to be static. As you continue operating your business, new records append to your corpus automatically — growing the dataset, increasing its value, and potentially attracting additional buyers over time. The license fee is revisable upward as the corpus grows.</p>
+
+<div class="tip-box">
+  <div class="tip-label">Revenue Optimization</div>
+  <p>Suppliers who append new records quarterly and refresh their anonymized intelligence layer see an average 18% increase in license fees over the first year, according to early marketplace modeling. Treat your TORA as a living asset — not a one-time upload.</p>
+</div>
+
+<h2>The Real Question: Is This Right for You?</h2>
+
+<p>TORA Exchange is not for every business. A two-year-old company with minimal records and low institutional demand in their vertical won't be a fit — yet. But for businesses that have been operating for a decade or more in industries with strong institutional buyer demand (construction, healthcare, transportation, real estate, HVAC, electrical, legal, utilities), the economics are compelling.</p>
+
+<p>The passive income framing is accurate: the work is front-loaded (onboarding, verification, approval), and the revenue is recurring. Once your TORA is live, the only ongoing involvement is reviewing the quarterly intelligence refresh — which takes about an hour — and watching the payout notifications.</p>
+
+<blockquote>
+  "Every month I don't have a TORA listed is a month I'm leaving money on the table that my records already earned."
+</blockquote>
+
+<p>That's not marketing language. It's an accurate description of the opportunity cost of leaving operational data unmonetized. The records exist. The buyers exist. The infrastructure now exists. The question is whether you'll connect them.</p>
+
+<div class="cta-inline">
+  <h3>Start with a free assessment.</h3>
+  <p>Join the TORA Exchange early access list and get a personalized revenue estimate for your records before Q2 2026 launch. Founding member pricing is locked at signup.</p>
+  <a href="../waitlist.html">Get My Revenue Estimate →</a>
+</div>
+
+</article>
+
+<div class="article-footer">
+  <p>© 2026 B.I.T.S. — Blockchain Integrative Technology Solutions · <a href="../index-v2.html" style="color:var(--gold);text-decoration:none;">TORA Exchange</a> · Patent Pending</p>
+</div>
+
+</body>
+</html>
