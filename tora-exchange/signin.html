@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In — TORA Exchange</title>
+<meta name="description" content="Sign in to your TORA Exchange account. Access your supplier dashboard, buyer portal, or admin command center.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230c1a32'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='700' fill='%239e7c2e'>TE</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #ffffff; --off-white: #f8f9fb; --light-gray: #f1f3f6;
+    --border: #dfe2e8; --text-primary: #0f1724; --text-secondary: #3d4a5c; --text-muted: #7a8599;
+    --gold: #9e7c2e; --gold-light: #b8922f; --gold-bg: #faf6ed; --gold-border: #e8dcc0;
+    --navy: #0c1a32; --navy-light: #1a2d4a; --blue: #1a5bc4;
+    --green: #0d8a50; --red: #dc2626;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--off-white);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .serif { font-family: 'DM Serif Display', Georgia, serif; }
+
+  /* Layout */
+  .signin-page {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+  .signin-container {
+    width: 100%;
+    max-width: 440px;
+  }
+
+  /* Brand */
+  .signin-brand {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .signin-brand a {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .signin-brand .logo-mark {
+    background: var(--navy);
+    width: 48px; height: 48px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px; color: var(--gold-light); letter-spacing: 2px;
+  }
+  .signin-brand .brand-name {
+    font-size: 22px; font-weight: 800; color: var(--text-primary);
+    letter-spacing: 2px; text-transform: uppercase;
+  }
+
+  /* Card */
+  .signin-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+  }
+  .signin-card h1 {
+    font-size: 24px; font-weight: 700; color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+  .signin-card .subtitle {
+    font-size: 14px; color: var(--text-muted); margin-bottom: 32px;
+  }
+
+  /* Tabs */
+  .signin-tabs {
+    display: flex; gap: 0; margin-bottom: 28px;
+    border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+  }
+  .signin-tab {
+    flex: 1; padding: 10px; text-align: center;
+    font-size: 13px; font-weight: 600; color: var(--text-muted);
+    background: var(--off-white); cursor: pointer;
+    border-right: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .signin-tab:last-child { border-right: none; }
+  .signin-tab.active {
+    background: var(--navy); color: var(--white);
+  }
+  .signin-tab:hover:not(.active) {
+    background: var(--light-gray); color: var(--text-primary);
+  }
+
+  /* Form */
+  .form-group { margin-bottom: 20px; }
+  .form-label {
+    display: block; font-size: 12px; font-weight: 600;
+    color: var(--text-secondary); text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 6px;
+  }
+  .form-input {
+    width: 100%; padding: 12px 16px;
+    border: 1.5px solid var(--border); border-radius: 8px;
+    font-size: 14px; font-family: 'Inter', sans-serif;
+    color: var(--text-primary); outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-input:focus { border-color: var(--navy); }
+  .form-input::placeholder { color: var(--text-muted); }
+
+  .form-row {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 24px;
+  }
+  .form-check {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; color: var(--text-secondary); cursor: pointer;
+  }
+  .form-check input { accent-color: var(--navy); }
+  .form-link {
+    font-size: 13px; color: var(--gold); text-decoration: none; font-weight: 500;
+  }
+  .form-link:hover { color: var(--gold-light); }
+
+  .btn-signin {
+    width: 100%; padding: 14px;
+    background: var(--navy); color: var(--white);
+    border: none; border-radius: 8px;
+    font-size: 15px; font-weight: 600; font-family: 'Inter', sans-serif;
+    cursor: pointer; transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .btn-signin:hover {
+    background: var(--navy-light);
+    box-shadow: 0 4px 16px rgba(12,26,50,0.2);
+  }
+
+  .divider {
+    text-align: center; margin: 24px 0;
+    position: relative;
+  }
+  .divider::before {
+    content: ''; position: absolute; left: 0; top: 50%;
+    width: 100%; height: 1px; background: var(--border);
+  }
+  .divider span {
+    background: var(--white); padding: 0 16px;
+    font-size: 12px; color: var(--text-muted); position: relative;
+    text-transform: uppercase; letter-spacing: 1px; font-weight: 500;
+  }
+
+  .signup-prompt {
+    text-align: center; margin-top: 24px;
+    font-size: 14px; color: var(--text-muted);
+  }
+  .signup-prompt a { color: var(--gold); font-weight: 600; text-decoration: none; }
+  .signup-prompt a:hover { color: var(--gold-light); }
+
+  /* Error/Success */
+  .form-message {
+    padding: 12px 16px; border-radius: 8px;
+    font-size: 13px; font-weight: 500; margin-bottom: 20px;
+    display: none;
+  }
+  .form-message.error { background: #fef2f2; color: var(--red); border: 1px solid #fecaca; display: block; }
+  .form-message.success { background: #f0fdf4; color: var(--green); border: 1px solid #bbf7d0; display: block; }
+
+  /* Footer */
+  .signin-footer {
+    text-align: center; padding: 24px;
+    font-size: 12px; color: var(--text-muted);
+  }
+  .signin-footer a { color: var(--text-muted); text-decoration: none; margin: 0 8px; }
+  .signin-footer a:hover { color: var(--gold); }
+
+  @media (max-width: 480px) {
+    .signin-card { padding: 28px 20px; }
+    .signin-card h1 { font-size: 20px; }
+    .signin-tabs { flex-direction: column; }
+    .signin-tab { border-right: none; border-bottom: 1px solid var(--border); }
+    .signin-tab:last-child { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="signin-page">
+  <div class="signin-container">
+
+    <!-- Brand -->
+    <div class="signin-brand">
+      <a href="index.html">
+        <div class="logo-mark">TE</div>
+        <span class="brand-name">TORA Exchange</span>
+      </a>
+    </div>
+
+    <!-- Sign In Card -->
+    <div class="signin-card">
+      <h1>Welcome back</h1>
+      <p class="subtitle">Sign in to your TORA Exchange account</p>
+
+      <!-- Role Tabs -->
+      <div class="signin-tabs">
+        <div class="signin-tab active" data-role="supplier">Supplier</div>
+        <div class="signin-tab" data-role="buyer">Buyer</div>
+        <div class="signin-tab" data-role="admin">Admin</div>
+      </div>
+
+      <!-- Message Area -->
+      <div id="form-message" class="form-message"></div>
+
+      <!-- Form -->
+      <form id="signin-form" onsubmit="handleSignIn(event)">
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-input" id="email" placeholder="you@company.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-input" id="password" placeholder="Enter your password" required>
+        </div>
+        <div class="form-row">
+          <label class="form-check">
+            <input type="checkbox" checked> Remember me
+          </label>
+          <a href="#" class="form-link">Forgot password?</a>
+        </div>
+        <button type="submit" class="btn-signin">Sign In</button>
+      </form>
+
+      <div class="divider"><span>or</span></div>
+
+      <p class="signup-prompt">
+        Don't have an account? <a href="waitlist.html">Join the Waitlist</a>
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <div class="signin-footer">
+      <p>© 2026 B.I.T.S. — Blockchain Integrative Technology Solutions</p>
+      <p>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="contact.html">Contact</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Tab switching
+  let activeRole = 'supplier';
+  document.querySelectorAll('.signin-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.signin-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      activeRole = tab.dataset.role;
+    });
+  });
+
+  // Demo credentials
+  const demoAccounts = {
+    supplier: { email: 'supplier@demo.com', password: 'demo2026', redirect: 'portal-supplier.html' },
+    buyer: { email: 'buyer@demo.com', password: 'demo2026', redirect: 'portal-buyer.html' },
+    admin: { email: 'admin@toraexchange.com', password: 'admin2026', redirect: 'portal-admin.html' }
+  };
+
+  function handleSignIn(e) {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const msg = document.getElementById('form-message');
+    const demo = demoAccounts[activeRole];
+
+    if (email === demo.email && password === demo.password) {
+      msg.className = 'form-message success';
+      msg.textContent = 'Signing in...';
+      msg.style.display = 'block';
+      localStorage.setItem('tora_role', activeRole);
+      localStorage.setItem('tora_user', email);
+      setTimeout(() => { window.location.href = demo.redirect; }, 800);
+    } else {
+      msg.className = 'form-message error';
+      msg.textContent = 'Invalid email or password. Please try again.';
+      msg.style.display = 'block';
+    }
+  }
+</script>
+</body>
+</html>

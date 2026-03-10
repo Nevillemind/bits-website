@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Command Center — TORA Exchange</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230c1a32'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='700' fill='%239e7c2e'>TE</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #ffffff; --off-white: #f8f9fb; --light-gray: #f1f3f6;
+    --border: #dfe2e8; --text-primary: #0f1724; --text-secondary: #3d4a5c; --text-muted: #7a8599;
+    --gold: #9e7c2e; --gold-light: #b8922f; --gold-bg: #faf6ed; --gold-border: #e8dcc0;
+    --navy: #0c1a32; --navy-light: #1a2d4a; --blue: #1a5bc4; --blue-light: #e8f0fe;
+    --green: #0d8a50; --green-bg: #edf7f1;
+    --red: #dc2626; --red-bg: #fef2f2;
+    --purple: #7c3aed; --purple-bg: #f5f3ff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', -apple-system, sans-serif; background: var(--off-white); color: var(--text-secondary); -webkit-font-smoothing: antialiased; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+
+  /* Sidebar */
+  .sidebar { position: fixed; top: 0; left: 0; bottom: 0; width: 260px; background: #0a0f1a; color: rgba(255,255,255,0.7); display: flex; flex-direction: column; z-index: 100; }
+  .sidebar-brand { padding: 24px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; gap: 12px; }
+  .sidebar-brand .logo-mark { width: 40px; height: 40px; background: var(--red); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-size: 16px; color: var(--white); letter-spacing: 2px; font-weight: 700; }
+  .sidebar-brand .brand-text { font-size: 15px; font-weight: 700; color: var(--white); letter-spacing: 1px; }
+  .sidebar-brand .brand-role { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--red); margin-top: 2px; font-weight: 700; }
+
+  .sidebar-nav { flex: 1; padding: 16px 0; overflow-y: auto; }
+  .nav-section { padding: 0 16px; margin-bottom: 8px; }
+  .nav-section-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.2); padding: 8px 12px; }
+  .nav-item { display: flex; align-items: center; gap: 12px; padding: 10px 12px; margin: 2px 0; border-radius: 8px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.5); cursor: pointer; transition: all 0.15s; text-decoration: none; }
+  .nav-item:hover { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.9); }
+  .nav-item.active { background: rgba(220,38,38,0.15); color: #f87171; }
+  .nav-item svg { flex-shrink: 0; opacity: 0.5; }
+  .nav-item.active svg { opacity: 1; }
+  .nav-badge { margin-left: auto; background: var(--red); color: var(--white); font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 10px; }
+
+  .sidebar-footer { padding: 16px 24px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; gap: 12px; }
+  .sidebar-footer .avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--red); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: var(--white); }
+  .sidebar-footer .user-info { flex: 1; }
+  .sidebar-footer .user-name { font-size: 13px; font-weight: 600; color: var(--white); }
+  .sidebar-footer .user-email { font-size: 11px; color: rgba(255,255,255,0.3); }
+  .sidebar-footer .logout-btn { background: none; border: none; color: rgba(255,255,255,0.3); cursor: pointer; padding: 4px; }
+  .sidebar-footer .logout-btn:hover { color: var(--red); }
+
+  /* Main */
+  .main { margin-left: 260px; padding: 32px; min-height: 100vh; }
+  .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
+  .topbar h1 { font-size: 28px; font-weight: 700; color: var(--text-primary); }
+  .topbar .date { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+  .admin-badge { display: inline-block; background: var(--red); color: var(--white); font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 1px; margin-left: 12px; vertical-align: middle; }
+
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 32px; }
+  .stat-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+  .stat-card .stat-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 8px; }
+  .stat-card .stat-value { font-family: 'JetBrains Mono', monospace; font-size: 28px; font-weight: 700; color: var(--text-primary); }
+  .stat-card .stat-sub { font-size: 12px; margin-top: 6px; color: var(--text-muted); }
+  .stat-card.highlight { border-color: var(--gold-border); background: var(--gold-bg); }
+  .stat-card.highlight .stat-value { color: var(--gold); }
+
+  .content-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 24px; overflow: hidden; }
+  .card-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-bottom: 1px solid var(--border); }
+  .card-header h2 { font-size: 16px; font-weight: 700; color: var(--text-primary); }
+  .card-body { padding: 24px; }
+
+  .data-table { width: 100%; border-collapse: collapse; }
+  .data-table th { text-align: left; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); padding: 12px 16px; border-bottom: 1px solid var(--border); background: var(--off-white); }
+  .data-table td { padding: 14px 16px; border-bottom: 1px solid var(--light-gray); font-size: 14px; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: var(--off-white); }
+
+  .status-badge { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .status-active { background: var(--green-bg); color: var(--green); }
+  .status-pending { background: #fef3c7; color: #d97706; }
+  .status-suspended { background: var(--red-bg); color: var(--red); }
+  .role-supplier { background: var(--gold-bg); color: var(--gold); padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+  .role-buyer { background: var(--blue-light); color: var(--blue); padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+
+  /* Revenue chart */
+  .revenue-bars { display: flex; align-items: flex-end; gap: 8px; height: 180px; padding: 0 16px; }
+  .rev-bar-group { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .rev-bar { width: 100%; border-radius: 4px 4px 0 0; min-height: 4px; }
+  .rev-bar.platform { background: var(--gold); }
+  .rev-bar.supplier { background: var(--navy); }
+  .rev-bar-label { font-size: 10px; color: var(--text-muted); }
+  .rev-bar-value { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-primary); font-weight: 600; }
+
+  /* Alert */
+  .alert-item { display: flex; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--light-gray); align-items: flex-start; }
+  .alert-item:last-child { border-bottom: none; }
+  .alert-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; }
+  .alert-icon.warn { background: #fef3c7; }
+  .alert-icon.success { background: var(--green-bg); }
+  .alert-icon.danger { background: var(--red-bg); }
+  .alert-text { font-size: 14px; color: var(--text-primary); font-weight: 500; }
+  .alert-time { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+  .panel { display: none; }
+  .panel.active { display: block; }
+  .btn-sm { padding: 7px 16px; border-radius: 6px; font-size: 12px; font-weight: 600; border: none; cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; }
+  .btn-navy { background: var(--navy); color: var(--white); }
+  .btn-navy:hover { background: var(--navy-light); }
+  .btn-danger { background: var(--red); color: var(--white); }
+  .btn-danger:hover { background: #b91c1c; }
+  .btn-outline-sm { background: transparent; border: 1.5px solid var(--border); color: var(--text-primary); }
+  .btn-outline-sm:hover { border-color: var(--text-primary); }
+
+  @media (max-width: 1024px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 768px) { .sidebar { display: none; } .main { margin-left: 0; padding: 20px; } .stats-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <div class="logo-mark">TE</div>
+    <div>
+      <div class="brand-text">TORA Exchange</div>
+      <div class="brand-role">Admin Command Center</div>
+    </div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section">
+      <div class="nav-section-label">Overview</div>
+      <a class="nav-item active" data-panel="dashboard" onclick="showPanel('dashboard')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">Users</div>
+      <a class="nav-item" data-panel="suppliers" onclick="showPanel('suppliers')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Suppliers
+        <span class="nav-badge">8</span>
+      </a>
+      <a class="nav-item" data-panel="buyers" onclick="showPanel('buyers')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Buyers
+        <span class="nav-badge">14</span>
+      </a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">Platform</div>
+      <a class="nav-item" data-panel="revenue" onclick="showPanel('revenue')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Revenue
+      </a>
+      <a class="nav-item" data-panel="listings" onclick="showPanel('listings')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        All Listings
+      </a>
+      <a class="nav-item" data-panel="payments" onclick="showPanel('payments')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        Payments
+      </a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">System</div>
+      <a class="nav-item" data-panel="settings" onclick="showPanel('settings')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Settings
+      </a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="avatar">GM</div>
+    <div class="user-info">
+      <div class="user-name">George Mundin</div>
+      <div class="user-email">admin@toraexchange.com</div>
+    </div>
+    <button class="logout-btn" onclick="window.location.href='signin.html'">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+    </button>
+  </div>
+</aside>
+
+<!-- Main -->
+<div class="main">
+
+  <!-- Dashboard -->
+  <div class="panel active" id="panel-dashboard">
+    <div class="topbar">
+      <div><h1>Command Center <span class="admin-badge">Admin</span></h1><div class="date" id="current-date"></div></div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card highlight"><div class="stat-label">Platform Revenue (MTD)</div><div class="stat-value">$18,400</div><div class="stat-sub">15% platform fee collected</div></div>
+      <div class="stat-card"><div class="stat-label">Total Suppliers</div><div class="stat-value">8</div><div class="stat-sub">2 pending approval</div></div>
+      <div class="stat-card"><div class="stat-label">Total Buyers</div><div class="stat-value">14</div><div class="stat-sub">3 new this month</div></div>
+      <div class="stat-card"><div class="stat-label">Active Licenses</div><div class="stat-value">42</div><div class="stat-sub">Across 12 industries</div></div>
+    </div>
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+      <div class="content-card">
+        <div class="card-header"><h2>Platform Revenue — Last 6 Months</h2></div>
+        <div class="card-body">
+          <div style="display: flex; gap: 16px; margin-bottom: 16px;">
+            <span style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-muted);"><span style="width: 12px; height: 12px; background: var(--gold); border-radius: 2px;"></span> Platform Fee</span>
+            <span style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-muted);"><span style="width: 12px; height: 12px; background: var(--navy); border-radius: 2px;"></span> Supplier Payouts</span>
+          </div>
+          <div class="revenue-bars">
+            <div class="rev-bar-group"><div class="rev-bar-value">$2.1K</div><div class="rev-bar platform" style="height: 42px;"></div><div class="rev-bar supplier" style="height: 100px;"></div><div class="rev-bar-label">Oct</div></div>
+            <div class="rev-bar-group"><div class="rev-bar-value">$2.8K</div><div class="rev-bar platform" style="height: 56px;"></div><div class="rev-bar supplier" style="height: 110px;"></div><div class="rev-bar-label">Nov</div></div>
+            <div class="rev-bar-group"><div class="rev-bar-value">$3.2K</div><div class="rev-bar platform" style="height: 64px;"></div><div class="rev-bar supplier" style="height: 118px;"></div><div class="rev-bar-label">Dec</div></div>
+            <div class="rev-bar-group"><div class="rev-bar-value">$3.0K</div><div class="rev-bar platform" style="height: 60px;"></div><div class="rev-bar supplier" style="height: 112px;"></div><div class="rev-bar-label">Jan</div></div>
+            <div class="rev-bar-group"><div class="rev-bar-value">$3.8K</div><div class="rev-bar platform" style="height: 76px;"></div><div class="rev-bar supplier" style="height: 128px;"></div><div class="rev-bar-label">Feb</div></div>
+            <div class="rev-bar-group"><div class="rev-bar-value">$4.6K</div><div class="rev-bar platform" style="height: 92px;"></div><div class="rev-bar supplier" style="height: 145px;"></div><div class="rev-bar-label">Mar</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="content-card">
+        <div class="card-header"><h2>Alerts</h2></div>
+        <div class="card-body">
+          <div class="alert-item">
+            <div class="alert-icon warn">!</div>
+            <div><div class="alert-text">2 supplier applications pending</div><div class="alert-time">Requires review</div></div>
+          </div>
+          <div class="alert-item">
+            <div class="alert-icon success">+</div>
+            <div><div class="alert-text">New buyer registered</div><div class="alert-time">1 hour ago</div></div>
+          </div>
+          <div class="alert-item">
+            <div class="alert-icon danger">!</div>
+            <div><div class="alert-text">License payment overdue</div><div class="alert-time">Vanguard — Transportation</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Suppliers -->
+  <div class="panel" id="panel-suppliers">
+    <div class="topbar"><div><h1>Suppliers</h1><div class="date">Manage all data suppliers on the platform</div></div></div>
+    <div class="content-card">
+      <div class="card-body" style="padding: 0; overflow-x: auto;">
+        <table class="data-table">
+          <thead><tr><th>Company</th><th>Industry</th><th>Listings</th><th>Total Revenue</th><th>Active Licenses</th><th>Joined</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody>
+            <tr><td style="font-weight: 600; color: var(--text-primary);">Acme Construction LLC</td><td>Construction</td><td class="mono">3</td><td class="mono" style="color: var(--green);">$67,400</td><td class="mono">18</td><td>Jan 2026</td><td><span class="status-badge status-active">Active</span></td><td><button class="btn-sm btn-outline-sm">View</button></td></tr>
+            <tr><td style="font-weight: 600; color: var(--text-primary);">Metro Health Systems</td><td>Healthcare</td><td class="mono">1</td><td class="mono" style="color: var(--green);">$92,000</td><td class="mono">10</td><td>Dec 2025</td><td><span class="status-badge status-active">Active</span></td><td><button class="btn-sm btn-outline-sm">View</button></td></tr>
+            <tr><td style="font-weight: 600; color: var(--text-primary);">Atlantic Property Mgmt</td><td>Real Estate</td><td class="mono">2</td><td class="mono" style="color: var(--green);">$51,000</td><td class="mono">9</td><td>Nov 2025</td><td><span class="status-badge status-active">Active</span></td><td><button class="btn-sm btn-outline-sm">View</button></td></tr>
+            <tr><td style="font-weight: 600; color: var(--text-primary);">Southeast Freight Co.</td><td>Transportation</td><td class="mono">1</td><td class="mono" style="color: var(--green);">$44,400</td><td class="mono">6</td><td>Sep 2025</td><td><span class="status-badge status-active">Active</span></td><td><button class="btn-sm btn-outline-sm">View</button></td></tr>
+            <tr><td style="font-weight: 600; color: var(--text-primary);">Green Valley Farms</td><td>Agriculture</td><td class="mono">1</td><td class="mono" style="color: var(--green);">$16,200</td><td class="mono">3</td><td>Feb 2026</td><td><span class="status-badge status-active">Active</span></td><td><button class="btn-sm btn-outline-sm">View</button></td></tr>
+            <tr><td style="font-weight: 600; color: var(--text-primary);">Blue Ridge Energy</td><td>Energy</td><td class="mono">1</td><td class="mono" style="color: var(--green);">$22,800</td><td class="mono">4</td><td>Jan 2026</td><td><span class="status-badge status-active">Active</span></td><td><button class="btn-sm btn-outline-sm">View</button></td></tr>
+            <tr style="background: #fffbeb;"><td style="font-weight: 600; color: var(--text-primary);">Pinnacle Manufacturing</td><td>Manufacturing</td><td class="mono">—</td><td class="mono">—</td><td class="mono">—</td><td>Mar 2026</td><td><span class="status-badge status-pending">Pending</span></td><td><button class="btn-sm btn-navy">Review</button></td></tr>
+            <tr style="background: #fffbeb;"><td style="font-weight: 600; color: var(--text-primary);">Capital Legal Services</td><td>Legal</td><td class="mono">—</td><td class="mono">—</td><td class="mono">—</td><td>Mar 2026</td><td><span class="status-badge status-pending">Pending</span></td><td><button class="btn-sm btn-navy">Review</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Buyers -->
+  <div class="panel" id="panel-buyers">
+    <div class="topbar"><div><h1>Buyers</h1><div class="date">Manage all data buyers on the platform</div></div></div>
+    <div class="content-card">
+      <div class="card-body" style="padding: 0; overflow-x: auto;">
+        <table class="data-table">
+          <thead><tr><th>Company</th><th>Industry</th><th>Active Licenses</th><th>Total Spend</th><th>Joined</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody>
+            <tr><td style="font-weight: 600; color: var(--text-primary);">Vanguard Partners LLC</td><td>Private Equity</td><td class="mono">4</td><td class="mono">$31,200</td><td>Oct 2025</td><td><span class="status-badge status-active">Active</span></td><td><button class="btn-sm btn-outline-sm">View</button></td></tr>
+            <tr><td style="font-weight: 600; color: var(--text-primary);">State Street Analytics</td><td>Insurance</td><td class="mono">3</td><td class="mono">$27,600</td><td>Nov 2025</td><td><span class="status-badge status-active">Active</span></td><td><button class="btn-sm btn-outline-sm">View</button></td></tr>
+            <tr><td style="font-weight: 600; color: var(--text-primary);">BlackBridge Capital</td><td>Real Estate PE</td><td class="mono">2</td><td class="mono">$17,000</td><td>Dec 2025</td><td><span class="status-badge status-active">Active</span></td><td><button class="btn-sm btn-outline-sm">View</button></td></tr>
+            <tr><td style="font-weight: 600; color: var(--text-primary);">Meridian Research Institute</td><td>Academic</td><td class="mono">3</td><td class="mono">$14,400</td><td>Jan 2026</td><td><span class="status-badge status-active">Active</span></td><td><button class="btn-sm btn-outline-sm">View</button></td></tr>
+            <tr><td style="font-weight: 600; color: var(--text-primary);">National Grid Solutions</td><td>Utilities</td><td class="mono">2</td><td class="mono">$16,800</td><td>Jan 2026</td><td><span class="status-badge status-active">Active</span></td><td><button class="btn-sm btn-outline-sm">View</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Revenue -->
+  <div class="panel" id="panel-revenue">
+    <div class="topbar"><div><h1>Revenue</h1><div class="date">Platform earnings and financial overview</div></div></div>
+    <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="stat-card highlight"><div class="stat-label">Total Platform Revenue</div><div class="stat-value">$86,200</div><div class="stat-sub">All time (15% fee)</div></div>
+      <div class="stat-card"><div class="stat-label">Total Supplier Payouts</div><div class="stat-value">$488,600</div><div class="stat-sub">All time (85% to suppliers)</div></div>
+      <div class="stat-card"><div class="stat-label">Total GMV</div><div class="stat-value">$574,800</div><div class="stat-sub">Gross marketplace volume</div></div>
+    </div>
+    <div class="content-card">
+      <div class="card-header"><h2>Recent Transactions</h2></div>
+      <div class="card-body" style="padding: 0; overflow-x: auto;">
+        <table class="data-table">
+          <thead><tr><th>Date</th><th>Buyer</th><th>Supplier</th><th>Dataset</th><th>Amount</th><th>Platform Fee</th><th>TX Hash</th></tr></thead>
+          <tbody>
+            <tr><td>Mar 8</td><td>Vanguard Partners</td><td>Acme Construction</td><td>Construction Archive</td><td class="mono">$5,800</td><td class="mono" style="color: var(--gold);">$870</td><td class="mono" style="font-size: 12px; color: var(--text-muted);">0x8c21ae...f7b2</td></tr>
+            <tr><td>Mar 5</td><td>State Street</td><td>Atlantic Property</td><td>Property Intelligence</td><td class="mono">$8,500</td><td class="mono" style="color: var(--gold);">$1,275</td><td class="mono" style="font-size: 12px; color: var(--text-muted);">0xd901a8...c47f</td></tr>
+            <tr><td>Mar 3</td><td>BlackBridge</td><td>Metro Health</td><td>Clinical Operations</td><td class="mono">$9,200</td><td class="mono" style="color: var(--gold);">$1,380</td><td class="mono" style="font-size: 12px; color: var(--text-muted);">0xf4e19d...a3c8</td></tr>
+            <tr><td>Mar 1</td><td>Nat'l Grid</td><td>Blue Ridge Energy</td><td>Renewable Energy</td><td class="mono">$7,600</td><td class="mono" style="color: var(--gold);">$1,140</td><td class="mono" style="font-size: 12px; color: var(--text-muted);">0xa5e73d...8d2a</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- All Listings -->
+  <div class="panel" id="panel-listings">
+    <div class="topbar"><div><h1>All Listings</h1><div class="date">Every data asset on the exchange</div></div></div>
+    <div class="content-card">
+      <div class="card-body" style="padding: 0; overflow-x: auto;">
+        <table class="data-table">
+          <thead><tr><th>Asset</th><th>Supplier</th><th>Industry</th><th>Records</th><th>Fee</th><th>Licenses</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td style="font-weight: 600; color: var(--text-primary);">Multi-Trade Commercial Construction</td><td>Acme Construction</td><td>Construction</td><td class="mono">24,100</td><td class="mono" style="color: var(--gold);">$5,800/mo</td><td class="mono">7</td><td><span class="status-badge status-active">Active</span></td></tr>
+            <tr><td style="font-weight: 600; color: var(--text-primary);">Regional Clinical Operations</td><td>Metro Health</td><td>Healthcare</td><td class="mono">52,300</td><td class="mono" style="color: var(--gold);">$9,200/mo</td><td class="mono">10</td><td><span class="status-badge status-active">Active</span></td></tr>
+            <tr><td style="font-weight: 600; color: var(--text-primary);">Property Maintenance Intelligence</td><td>Atlantic Property</td><td>Real Estate</td><td class="mono">45,200</td><td class="mono" style="color: var(--gold);">$8,500/mo</td><td class="mono">9</td><td><span class="status-badge status-active">Active</span></td></tr>
+            <tr><td style="font-weight: 600; color: var(--text-primary);">Fleet Management & Logistics</td><td>Southeast Freight</td><td>Transportation</td><td class="mono">38,600</td><td class="mono" style="color: var(--gold);">$7,400/mo</td><td class="mono">6</td><td><span class="status-badge status-active">Active</span></td></tr>
+            <tr><td style="font-weight: 600; color: var(--text-primary);">Renewable Energy Operations</td><td>Blue Ridge Energy</td><td>Energy</td><td class="mono">28,900</td><td class="mono" style="color: var(--gold);">$7,600/mo</td><td class="mono">4</td><td><span class="status-badge status-active">Active</span></td></tr>
+            <tr><td style="font-weight: 600; color: var(--text-primary);">Agricultural Operations</td><td>Green Valley Farms</td><td>Agriculture</td><td class="mono">19,300</td><td class="mono" style="color: var(--gold);">$5,400/mo</td><td class="mono">3</td><td><span class="status-badge status-active">Active</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Payments -->
+  <div class="panel" id="panel-payments">
+    <div class="topbar"><div><h1>Payments</h1><div class="date">Payment processing and financial operations</div></div></div>
+    <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="stat-card"><div class="stat-label">Payment Processor</div><div class="stat-value" style="font-size: 20px;">Solana + Zebec</div><div class="stat-sub">Real-time streaming payments</div></div>
+      <div class="stat-card"><div class="stat-label">Pending Payments</div><div class="stat-value" style="color: #d97706;">1</div><div class="stat-sub">Overdue — requires action</div></div>
+      <div class="stat-card"><div class="stat-label">This Month Processed</div><div class="stat-value">$122,600</div><div class="stat-sub">Across all transactions</div></div>
+    </div>
+    <div class="content-card">
+      <div class="card-header"><h2>Payment Issues</h2></div>
+      <div class="card-body">
+        <div class="alert-item">
+          <div class="alert-icon danger">!</div>
+          <div style="flex: 1;">
+            <div class="alert-text">Vanguard Partners — Transportation license payment overdue (5 days)</div>
+            <div class="alert-time">License: Fleet Management & Logistics Corpus — $7,400/mo — Due Mar 5, 2026</div>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn-sm btn-outline-sm">Send Reminder</button>
+            <button class="btn-sm btn-danger">Suspend License</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-card">
+      <div class="card-header"><h2>Platform Wallet</h2></div>
+      <div class="card-body">
+        <div style="background: var(--navy); color: var(--white); border-radius: 12px; padding: 24px;">
+          <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.5; margin-bottom: 8px;">TORA Exchange Platform Wallet (Solana)</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; opacity: 0.7; margin-bottom: 16px; word-break: break-all;">ToRA1ExchAnge...PlatformWallet</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 32px; font-weight: 700;">$86,200</div>
+          <div style="font-size: 14px; opacity: 0.5; margin-top: 4px;">Total platform fees collected</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings -->
+  <div class="panel" id="panel-settings">
+    <div class="topbar"><div><h1>Platform Settings</h1><div class="date">Configure TORA Exchange operations</div></div></div>
+    <div class="content-card">
+      <div class="card-header"><h2>Fee Structure</h2></div>
+      <div class="card-body">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          <div>
+            <label style="display: block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 6px;">Default Platform Fee (%)</label>
+            <input type="number" value="15" style="width: 100%; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'JetBrains Mono', monospace; outline: none;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 6px;">Enterprise Fee (%)</label>
+            <input type="number" value="10" style="width: 100%; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'JetBrains Mono', monospace; outline: none;">
+          </div>
+        </div>
+        <button class="btn-sm btn-navy" style="margin-top: 24px; padding: 12px 28px; font-size: 14px;">Save Fee Settings</button>
+      </div>
+    </div>
+    <div class="content-card">
+      <div class="card-header"><h2>Payment Processors</h2></div>
+      <div class="card-body">
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+          <div style="border: 1px solid var(--green); border-radius: 12px; padding: 20px; text-align: center; background: var(--green-bg);">
+            <div style="font-size: 18px; font-weight: 700; color: var(--green); margin-bottom: 4px;">Solana</div>
+            <div style="font-size: 12px; color: var(--green);">Connected</div>
+          </div>
+          <div style="border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center;">
+            <div style="font-size: 18px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px;">Zebec</div>
+            <div style="font-size: 12px; color: var(--text-muted);">Pending Setup</div>
+          </div>
+          <div style="border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center;">
+            <div style="font-size: 18px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px;">Square</div>
+            <div style="font-size: 12px; color: var(--text-muted);">Not Connected</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showPanel(name) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.getElementById('panel-' + name).classList.add('active');
+    document.querySelector('[data-panel="' + name + '"]').classList.add('active');
+  }
+  const d = new Date();
+  const el = document.getElementById('current-date');
+  if (el) el.textContent = d.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+</script>
+</body>
+</html>
