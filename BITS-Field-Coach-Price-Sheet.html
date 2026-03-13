@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>B.I.T.S. Field Coach — Pricing</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f8f9fa;
+    color: #111;
+    padding: 40px 24px;
+  }
+
+  .page { max-width: 900px; margin: 0 auto; }
+
+  /* ── Header ── */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #0a0a0a;
+    border-radius: 16px;
+    padding: 28px 36px;
+    margin-bottom: 32px;
+  }
+  .header-left h1 {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: #00c46a;
+    letter-spacing: -0.5px;
+  }
+  .header-left p {
+    color: #888;
+    font-size: 0.9rem;
+    margin-top: 4px;
+  }
+  .header-right {
+    text-align: right;
+  }
+  .header-right .domain {
+    color: #00c46a;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  .header-right .contact {
+    color: #666;
+    font-size: 0.82rem;
+    margin-top: 4px;
+  }
+
+  /* ── Section label ── */
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #888;
+    margin-bottom: 12px;
+    margin-top: 32px;
+  }
+
+  /* ── Standard Tiers ── */
+  .tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  .tier {
+    background: #fff;
+    border: 2px solid #e8e8e8;
+    border-radius: 14px;
+    padding: 24px 20px;
+    position: relative;
+  }
+  .tier.popular {
+    border-color: #00c46a;
+  }
+  .tier .popular-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #00c46a;
+    color: #000;
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 3px 12px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  .tier-name {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    margin-bottom: 6px;
+  }
+  .tier-price {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #0a0a0a;
+    line-height: 1;
+  }
+  .tier-price span {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #888;
+  }
+  .tier-workers {
+    font-size: 0.85rem;
+    color: #555;
+    margin: 6px 0 14px;
+    font-weight: 600;
+  }
+  .tier-per {
+    font-size: 0.78rem;
+    color: #00c46a;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .tier-features {
+    list-style: none;
+    font-size: 0.83rem;
+    color: #444;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .tier-features li::before {
+    content: "✓ ";
+    color: #00c46a;
+    font-weight: 700;
+  }
+
+  /* ── Enterprise row ── */
+  .enterprise {
+    background: #0a0a0a;
+    border-radius: 14px;
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
+  .enterprise-left .ent-name {
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #666;
+  }
+  .enterprise-left .ent-price {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #00c46a;
+    margin: 4px 0;
+  }
+  .enterprise-left .ent-desc {
+    font-size: 0.82rem;
+    color: #888;
+  }
+  .enterprise-right {
+    text-align: right;
+  }
+  .enterprise-right .ent-features {
+    list-style: none;
+    font-size: 0.82rem;
+    color: #aaa;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .enterprise-right .ent-features li::after {
+    content: " ✓";
+    color: #00c46a;
+    font-weight: 700;
+  }
+  .btn-contact {
+    display: inline-block;
+    background: #00c46a;
+    color: #000;
+    font-weight: 800;
+    font-size: 0.85rem;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-top: 12px;
+  }
+
+  /* ── Vertical pricing ── */
+  .verticals-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 8px;
+  }
+  .vertical-card {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .vertical-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .vertical-info h4 {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #0a0a0a;
+    margin-bottom: 3px;
+  }
+  .vertical-info .v-price {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: #00c46a;
+    margin-bottom: 4px;
+  }
+  .vertical-info .v-reason {
+    font-size: 0.78rem;
+    color: #777;
+    line-height: 1.4;
+  }
+  .vertical-card.premium {
+    border-color: #ffd700;
+    background: #fffdf0;
+  }
+  .vertical-card.premium .v-price {
+    color: #c8960c;
+  }
+  .premium-badge {
+    display: inline-block;
+    background: #ffd700;
+    color: #7a5800;
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 2px 7px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  /* ── ROI callout ── */
+  .roi-strip {
+    background: linear-gradient(135deg, #0a2a16 0%, #0a0a0a 100%);
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    text-align: center;
+  }
+  .roi-item .roi-num {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #00c46a;
+  }
+  .roi-item .roi-label {
+    font-size: 0.78rem;
+    color: #888;
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  /* ── Pilot offer ── */
+  .pilot-bar {
+    background: #fff8e6;
+    border: 2px solid #ffd700;
+    border-radius: 12px;
+    padding: 16px 24px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .pilot-bar .pilot-text h4 {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #7a5800;
+  }
+  .pilot-bar .pilot-text p {
+    font-size: 0.82rem;
+    color: #a07020;
+    margin-top: 3px;
+  }
+  .pilot-bar .pilot-price {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: #c8960c;
+    white-space: nowrap;
+  }
+  .pilot-bar .pilot-price span {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #a07020;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    margin-top: 28px;
+    font-size: 0.78rem;
+    color: #aaa;
+    line-height: 1.6;
+  }
+  .footer strong { color: #555; }
+
+  /* ── Print ── */
+  @media print {
+    body { background: #fff; padding: 20px; }
+    .page { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <h1>⚒ B.I.T.S. Field Coach</h1>
+      <p>AI-powered field intelligence for skilled trades teams</p>
+    </div>
+    <div class="header-right">
+      <div class="domain">bitsfieldcoach.com</div>
+      <div class="contact">contact@bitscorp.us</div>
+      <div class="contact">Blockchain Integrative Technology Solutions</div>
+      <div class="contact">Richmond, Virginia</div>
+    </div>
+  </div>
+
+  <!-- Standard Tiers -->
+  <div class="section-label">Standard Plans</div>
+  <div class="tiers">
+
+    <div class="tier">
+      <div class="tier-name">Starter</div>
+      <div class="tier-price">$495 <span>/mo</span></div>
+      <div class="tier-workers">Up to 5 workers</div>
+      <div class="tier-per">$99 / worker / month</div>
+      <ul class="tier-features">
+        <li>AI Q&A — voice + camera</li>
+        <li>Trade knowledge base</li>
+        <li>Worker PIN profiles</li>
+        <li>Supervisor dashboard</li>
+        <li>Push notifications</li>
+        <li>Ratings + KB updates</li>
+        <li>Email support</li>
+      </ul>
+    </div>
+
+    <div class="tier popular">
+      <div class="popular-badge">Most Popular</div>
+      <div class="tier-name">Growth</div>
+      <div class="tier-price">$1,299 <span>/mo</span></div>
+      <div class="tier-workers">Up to 15 workers</div>
+      <div class="tier-per">$87 / worker / month</div>
+      <ul class="tier-features">
+        <li>Everything in Starter</li>
+        <li>Multi-crew dashboards</li>
+        <li>Knowledge gap reports</li>
+        <li>Custom SOPs onboarded</li>
+        <li>Smart glasses support</li>
+        <li>Priority support</li>
+        <li>Onboarding session</li>
+      </ul>
+    </div>
+
+    <div class="tier">
+      <div class="tier-name">Pro</div>
+      <div class="tier-price">$2,999 <span>/mo</span></div>
+      <div class="tier-workers">Up to 50 workers</div>
+      <div class="tier-per">$60 / worker / month</div>
+      <ul class="tier-features">
+        <li>Everything in Growth</li>
+        <li>Multiple job sites</li>
+        <li>Full knowledge extraction</li>
+        <li>Dedicated BITS setup</li>
+        <li>Monthly performance report</li>
+        <li>Dedicated account manager</li>
+        <li>SLA guarantee</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Enterprise -->
+  <div class="enterprise">
+    <div class="enterprise-left">
+      <div class="ent-name">Enterprise</div>
+      <div class="ent-price">Custom Pricing</div>
+      <div class="ent-desc">50+ workers · Multiple locations · Private deployment on your hardware</div>
+      <a class="btn-contact" href="mailto:contact@bitscorp.us">Contact for Pricing →</a>
+    </div>
+    <div class="enterprise-right">
+      <ul class="ent-features">
+        <li>On-premise BITS box deployment</li>
+        <li>100% data sovereignty — your hardware</li>
+        <li>Custom AI model training on your SOPs</li>
+        <li>White-label available</li>
+        <li>API integration with existing systems</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Premium Verticals -->
+  <div class="section-label">Industry-Specific Pricing</div>
+  <p style="font-size:0.82rem;color:#777;margin-bottom:16px;">High-liability trades qualify for specialized pricing — higher stakes require deeper expertise and stronger safety coverage.</p>
+
+  <div class="verticals-grid">
+
+    <div class="vertical-card premium">
+      <div class="vertical-icon">🔥</div>
+      <div class="vertical-info">
+        <h4>Fire Protection <span class="premium-badge">Premium</span></h4>
+        <div class="v-price">$199 / worker / mo</div>
+        <div class="v-reason">NFPA 13/25 compliance, sprinkler system analysis, inspection documentation. One missed violation = six-figure liability.</div>
+      </div>
+    </div>
+
+    <div class="vertical-card premium">
+      <div class="vertical-icon">⚡</div>
+      <div class="vertical-info">
+        <h4>Electrical <span class="premium-badge">Premium</span></h4>
+        <div class="v-price">$179 / worker / mo</div>
+        <div class="v-reason">NEC code citations, panel analysis, arc flash warnings, OSHA 1910.147 LOTO. Safety-critical — errors cost lives and licenses.</div>
+      </div>
+    </div>
+
+    <div class="vertical-card premium">
+      <div class="vertical-icon">❄️</div>
+      <div class="vertical-info">
+        <h4>HVAC <span class="premium-badge">Premium</span></h4>
+        <div class="v-price">$159 / worker / mo</div>
+        <div class="v-reason">Refrigerant identification, EPA 608 compliance, equipment diagnostics, ACCA Manual standards. Callbacks average $350-500 each.</div>
+      </div>
+    </div>
+
+    <div class="vertical-card premium">
+      <div class="vertical-icon">🔧</div>
+      <div class="vertical-info">
+        <h4>Plumbing & Gas <span class="premium-badge">Premium</span></h4>
+        <div class="v-price">$149 / worker / mo</div>
+        <div class="v-reason">IPC compliance, gas line safety, pressure testing protocols, Virginia codes. Gas mistakes = evacuations and legal exposure.</div>
+      </div>
+    </div>
+
+    <div class="vertical-card">
+      <div class="vertical-icon">🧱</div>
+      <div class="vertical-info">
+        <h4>Masonry & Concrete</h4>
+        <div class="v-price">$99 / worker / mo</div>
+        <div class="v-reason">Structural crack analysis, mix specs, ASTM standards, IBC compliance. Reduces rework and warranty callbacks significantly.</div>
+      </div>
+    </div>
+
+    <div class="vertical-card">
+      <div class="vertical-icon">🏗️</div>
+      <div class="vertical-info">
+        <h4>General Contracting</h4>
+        <div class="v-price">$99 / worker / mo</div>
+        <div class="v-reason">Multi-trade knowledge, OSHA safety scans, fall protection, site supervision support. Full crew coverage across disciplines.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ROI Strip -->
+  <div class="roi-strip">
+    <div class="roi-item">
+      <div class="roi-num">2-3×</div>
+      <div class="roi-label">Average callbacks prevented per month per crew</div>
+    </div>
+    <div class="roi-item">
+      <div class="roi-num">$500</div>
+      <div class="roi-label">Average cost of a single trade callback (labor + truck + parts)</div>
+    </div>
+    <div class="roi-item">
+      <div class="roi-num">10-15×</div>
+      <div class="roi-label">Typical ROI on Field Coach subscription in first 60 days</div>
+    </div>
+  </div>
+
+  <!-- Pilot Offer -->
+  <div class="pilot-bar">
+    <div class="pilot-text">
+      <h4>🚀 Pilot Program — Limited Availability</h4>
+      <p>First 3 months at reduced rate. Includes full onboarding, SOP extraction, and dedicated setup. No long-term commitment required.</p>
+    </div>
+    <div class="pilot-price">$299 <span>/mo</span></div>
+  </div>
+
+  <!-- Setup & Hardware -->
+  <div class="section-label" style="margin-top:28px;">SETUP & HARDWARE PACKAGES</div>
+  <p style="font-size:0.82rem;color:#777;margin-bottom:16px;">One-time setup fee covers hardware, installation, knowledge extraction, and training. All packages include remote configuration and 30-day support.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px;">
+
+    <!-- Cloud Starter -->
+    <div style="background:#fff;border:1px solid #e8e8e8;border-radius:12px;padding:20px;">
+      <div style="font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:8px;">☁️ Cloud Starter</div>
+      <div style="font-size:1.8rem;font-weight:900;color:#0a0a0a;line-height:1;">$500</div>
+      <div style="font-size:0.8rem;color:#555;margin:4px 0 6px;font-weight:600;">One-time setup</div>
+      <div style="font-size:0.75rem;color:#888;margin-bottom:14px;">No hardware needed — workers use phones, tablets, or laptops. Best for smaller crews or piloting before hardware commitment.</div>
+      <div style="font-size:0.75rem;color:#333;border-top:1px solid #eee;padding-top:10px;">
+        <div style="margin-bottom:5px;"><span style="color:#00c46a;font-weight:700;">✓</span> Remote configuration</div>
+        <div style="margin-bottom:5px;"><span style="color:#00c46a;font-weight:700;">✓</span> Base trade knowledge loaded</div>
+        <div style="margin-bottom:5px;"><span style="color:#00c46a;font-weight:700;">✓</span> Worker + supervisor setup</div>
+        <div style="margin-bottom:5px;"><span style="color:#00c46a;font-weight:700;">✓</span> 1-hour training session</div>
+        <div style="color:#aaa;">— No on-site hardware</div>
+        <div style="color:#aaa;">— Cloud AI (internet required)</div>
+      </div>
+    </div>
+
+    <!-- BITS Box Standard -->
+    <div style="background:#fff;border:2px solid #00c46a;border-radius:12px;padding:20px;position:relative;">
+      <div style="position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:#00c46a;color:#000;font-size:0.65rem;font-weight:800;padding:3px 12px;border-radius:999px;text-transform:uppercase;white-space:nowrap;">Recommended</div>
+      <div style="font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:8px;">🖥️ BITS Box Standard</div>
+      <div style="font-size:1.8rem;font-weight:900;color:#0a0a0a;line-height:1;">$1,499</div>
+      <div style="font-size:0.8rem;color:#555;margin:4px 0 6px;font-weight:600;">One-time setup</div>
+      <div style="font-size:0.75rem;color:#888;margin-bottom:14px;">Includes M4 Mac Mini (24GB) — runs local AI on your premises</div>
+      <div style="font-size:0.75rem;color:#333;border-top:1px solid #eee;padding-top:10px;">
+        <div style="margin-bottom:5px;"><span style="color:#00c46a;font-weight:700;">✓</span> M4 Mac Mini 24GB included</div>
+        <div style="margin-bottom:5px;"><span style="color:#00c46a;font-weight:700;">✓</span> Ollama local AI installed</div>
+        <div style="margin-bottom:5px;"><span style="color:#00c46a;font-weight:700;">✓</span> Full Field Coach configured</div>
+        <div style="margin-bottom:5px;"><span style="color:#00c46a;font-weight:700;">✓</span> Knowledge extraction session</div>
+        <div style="margin-bottom:5px;"><span style="color:#00c46a;font-weight:700;">✓</span> Remote install + testing</div>
+        <div><span style="color:#00c46a;font-weight:700;">✓</span> 2-hour training session</div>
+      </div>
+    </div>
+
+    <!-- BITS Box Pro -->
+    <div style="background:#fff;border:1px solid #e8e8e8;border-radius:12px;padding:20px;">
+      <div style="font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:8px;">⚡ BITS Box Pro</div>
+      <div style="font-size:1.8rem;font-weight:900;color:#0a0a0a;line-height:1;">$2,999</div>
+      <div style="font-size:0.8rem;color:#555;margin:4px 0 6px;font-weight:600;">One-time setup</div>
+      <div style="font-size:0.75rem;color:#888;margin-bottom:14px;">Includes M4 Pro Mac Mini 48GB — runs top-tier 70B AI model locally, fully offline</div>
+      <div style="font-size:0.75rem;color:#333;border-top:1px solid #eee;padding-top:10px;">
+        <div style="margin-bottom:5px;"><span style="color:#00c46a;font-weight:700;">✓</span> M4 Pro Mac Mini 48GB included</div>
+        <div style="margin-bottom:5px;"><span style="color:#00c46a;font-weight:700;">✓</span> 70B local AI model (no internet)</div>
+        <div style="margin-bottom:5px;"><span style="color:#00c46a;font-weight:700;">✓</span> Full knowledge extraction + SOPs</div>
+        <div style="margin-bottom:5px;"><span style="color:#00c46a;font-weight:700;">✓</span> On-site or remote installation</div>
+        <div style="margin-bottom:5px;"><span style="color:#00c46a;font-weight:700;">✓</span> Full-day training session</div>
+        <div><span style="color:#00c46a;font-weight:700;">✓</span> 30-day dedicated support</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Glasses Add-On -->
+  <div style="background:#0a0a0a;border-radius:12px;padding:20px 24px;margin-bottom:14px;">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+      <div style="flex:1;min-width:260px;">
+        <div style="font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#666;margin-bottom:8px;">👓 MENTRA LIVE SMART GLASSES — ADD-ON</div>
+        <div style="font-size:0.85rem;color:#f0f0f0;margin-bottom:6px;">Hands-free Field Coach on the job site. Workers ask questions by voice — answers play through the glasses speaker. Camera vision hands-free. Built-in Field Coach app.</div>
+        <div style="font-size:0.78rem;color:#888;">Mentra Live · Camera · Mic · Speaker · MentraOS · Field Coach pre-configured</div>
+        <div style="margin-top:12px;font-size:0.75rem;color:#666;line-height:1.6;">
+          Includes: hardware · Virginia sales tax (5.3%) · shipping · per-device setup by BITS engineers · Field Coach pairing + testing · 30-day hardware support
+        </div>
+      </div>
+      <div style="text-align:right;flex-shrink:0;">
+        <div style="font-size:0.75rem;color:#666;margin-bottom:4px;">Per pair</div>
+        <div style="font-size:2rem;font-weight:900;color:#00c46a;line-height:1;">$449</div>
+        <div style="font-size:0.78rem;color:#888;margin-top:4px;">per device</div>
+        <div style="margin-top:12px;font-size:0.72rem;color:#555;text-align:right;line-height:1.6;">
+          Hardware · Tax · Shipping<br/>
+          Setup labor: included<br/>
+          <span style="color:#00c46a;font-weight:700;">All-in. No hidden costs.</span>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:14px;border-top:1px solid #1e1e1e;padding-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center;">
+      <div>
+        <div style="font-size:0.85rem;font-weight:800;color:#00c46a;">1–4 pairs</div>
+        <div style="font-size:1.1rem;font-weight:900;color:#f0f0f0;">$449<span style="font-size:0.8rem;color:#888;">/ea</span></div>
+      </div>
+      <div style="border-left:1px solid #222;border-right:1px solid #222;">
+        <div style="font-size:0.85rem;font-weight:800;color:#00c46a;">5–14 pairs</div>
+        <div style="font-size:1.1rem;font-weight:900;color:#f0f0f0;">$399<span style="font-size:0.8rem;color:#888;">/ea</span></div>
+      </div>
+      <div>
+        <div style="font-size:0.85rem;font-weight:800;color:#00c46a;">15+ pairs</div>
+        <div style="font-size:1.1rem;font-weight:900;color:#f0f0f0;">$349<span style="font-size:0.8rem;color:#888;">/ea</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ollama Product Line -->
+  <div style="background:#fff;border:1px solid #e8e8e8;border-radius:12px;padding:20px 24px;margin-bottom:14px;">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+      <div style="flex:1;min-width:260px;">
+        <div style="font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:8px;">🤖 BITS LOCAL AI ENGINE — POWERED BY OLLAMA</div>
+        <div style="font-size:0.95rem;font-weight:700;color:#0a0a0a;margin-bottom:6px;">Professional AI Model Setup & Configuration</div>
+        <div style="font-size:0.82rem;color:#555;margin-bottom:10px;">Ollama is the open-source engine that runs AI models locally — on your hardware, on your premises, never sending data to the cloud. BITS installs, selects the right model for your trade, optimizes performance, and tests end-to-end before handoff.</div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;font-size:0.78rem;color:#444;">
+          <div><span style="color:#00c46a;font-weight:700;">✓</span> Ollama engine installed & configured</div>
+          <div><span style="color:#00c46a;font-weight:700;">✓</span> Best model selected for your trade</div>
+          <div><span style="color:#00c46a;font-weight:700;">✓</span> Model downloaded & optimized (4–40GB)</div>
+          <div><span style="color:#00c46a;font-weight:700;">✓</span> Performance benchmarked & tested</div>
+          <div><span style="color:#00c46a;font-weight:700;">✓</span> Field Coach integrated with local model</div>
+          <div><span style="color:#00c46a;font-weight:700;">✓</span> Offline operation verified on job site</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;flex-shrink:0;text-align:center;">
+        <div style="background:#f8f9fa;border:1px solid #e8e8e8;border-radius:10px;padding:14px 20px;">
+          <div style="font-size:0.72rem;font-weight:700;color:#888;text-transform:uppercase;margin-bottom:4px;">One-Time Setup</div>
+          <div style="font-size:1.6rem;font-weight:900;color:#0a0a0a;line-height:1;">$399</div>
+          <div style="font-size:0.75rem;color:#888;margin-top:3px;">Install · Configure · Test</div>
+        </div>
+        <div style="background:#f0faf5;border:1px solid #00c46a;border-radius:10px;padding:14px 20px;">
+          <div style="font-size:0.72rem;font-weight:700;color:#00c46a;text-transform:uppercase;margin-bottom:4px;">Model Management</div>
+          <div style="font-size:1.6rem;font-weight:900;color:#0a0a0a;line-height:1;">$99<span style="font-size:0.85rem;font-weight:600;color:#888;">/mo</span></div>
+          <div style="font-size:0.75rem;color:#888;margin-top:3px;">Updates · New models · Support</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:14px;background:#fffdf0;border:1px solid #ffd700;border-radius:8px;padding:10px 14px;font-size:0.78rem;color:#7a5800;">
+      <strong>Why this matters:</strong> When DeepSeek R2 or Llama 5 drops — your box gets the upgrade. Model management means your AI stays current without touching your hardware. BITS handles it remotely.
+    </div>
+  </div>
+
+  <!-- Support & Retainer -->
+  <div class="section-label" style="margin-top:8px;">SUPPORT & MANAGED CARE PLANS</div>
+  <p style="font-size:0.82rem;color:#777;margin-bottom:14px;">Basic support is included with every subscription. Upgrade for priority response, proactive monitoring, and a dedicated BITS engineer on your account.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;">
+
+    <!-- Basic -->
+    <div style="background:#fff;border:1px solid #e8e8e8;border-radius:12px;padding:18px;">
+      <div style="font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:8px;">🟢 Basic Support</div>
+      <div style="font-size:1.6rem;font-weight:900;color:#0a0a0a;line-height:1;">Included</div>
+      <div style="font-size:0.78rem;color:#555;margin:4px 0 12px;font-weight:600;">With every subscription</div>
+      <div style="font-size:0.75rem;color:#333;border-top:1px solid #eee;padding-top:10px;display:flex;flex-direction:column;gap:5px;">
+        <div><span style="color:#00c46a;font-weight:700;">✓</span> Email + ticket support</div>
+        <div><span style="color:#00c46a;font-weight:700;">✓</span> 48-hour response time</div>
+        <div><span style="color:#00c46a;font-weight:700;">✓</span> Knowledge base access</div>
+        <div><span style="color:#00c46a;font-weight:700;">✓</span> Software update notifications</div>
+        <div style="color:#aaa;">— No live support</div>
+        <div style="color:#aaa;">— No proactive monitoring</div>
+      </div>
+    </div>
+
+    <!-- Priority -->
+    <div style="background:#fff;border:2px solid #00c46a;border-radius:12px;padding:18px;position:relative;">
+      <div style="position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:#00c46a;color:#000;font-size:0.65rem;font-weight:800;padding:3px 12px;border-radius:999px;text-transform:uppercase;white-space:nowrap;">Most Popular Add-On</div>
+      <div style="font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:8px;">🔵 Priority Support</div>
+      <div style="font-size:1.6rem;font-weight:900;color:#0a0a0a;line-height:1;">$149<span style="font-size:0.9rem;font-weight:600;color:#888;">/mo</span></div>
+      <div style="font-size:0.78rem;color:#555;margin:4px 0 12px;font-weight:600;">Per account · Add to any plan</div>
+      <div style="font-size:0.75rem;color:#333;border-top:1px solid #eee;padding-top:10px;display:flex;flex-direction:column;gap:5px;">
+        <div><span style="color:#00c46a;font-weight:700;">✓</span> Phone + chat support</div>
+        <div><span style="color:#00c46a;font-weight:700;">✓</span> 4-hour response guarantee</div>
+        <div><span style="color:#00c46a;font-weight:700;">✓</span> Remote fix via Parsec</div>
+        <div><span style="color:#00c46a;font-weight:700;">✓</span> Monthly 30-min check-in call</div>
+        <div><span style="color:#00c46a;font-weight:700;">✓</span> Priority ticket queue</div>
+        <div style="color:#aaa;">— No proactive monitoring</div>
+      </div>
+    </div>
+
+    <!-- Managed Care -->
+    <div style="background:#0a0a0a;border-radius:12px;padding:18px;">
+      <div style="font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#666;margin-bottom:8px;">⚡ Managed Care</div>
+      <div style="font-size:1.6rem;font-weight:900;color:#00c46a;line-height:1;">$249<span style="font-size:0.9rem;font-weight:600;color:#888;">/mo</span></div>
+      <div style="font-size:0.78rem;color:#888;margin:4px 0 12px;font-weight:600;">Dedicated BITS engineer · Full coverage</div>
+      <div style="font-size:0.75rem;color:#aaa;border-top:1px solid #1e1e1e;padding-top:10px;display:flex;flex-direction:column;gap:5px;">
+        <div><span style="color:#00c46a;font-weight:700;">✓</span> Everything in Priority</div>
+        <div><span style="color:#00c46a;font-weight:700;">✓</span> 1-hour response SLA</div>
+        <div><span style="color:#00c46a;font-weight:700;">✓</span> Proactive box monitoring</div>
+        <div><span style="color:#00c46a;font-weight:700;">✓</span> Auto model updates (new AI releases)</div>
+        <div><span style="color:#00c46a;font-weight:700;">✓</span> Quarterly strategy call</div>
+        <div><span style="color:#00c46a;font-weight:700;">✓</span> Dedicated BITS engineer assigned</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Support ROI note -->
+  <div style="background:#f0faf5;border:1px solid #c8e6d4;border-radius:10px;padding:12px 18px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+    <div style="font-size:0.8rem;color:#1a5c35;">
+      <strong>Remote-first support.</strong> Every BITS box is accessible via secure remote connection — most issues resolved in under 30 minutes without an on-site visit.
+    </div>
+    <div style="font-size:0.75rem;color:#888;text-align:right;white-space:nowrap;">
+      No truck rolls · No on-site fees<br/>
+      <strong style="color:#00c46a;">Problems fixed before you notice them</strong>
+    </div>
+  </div>
+
+  <!-- Hardware quick ref -->
+  <div style="background:#0a0a0a;border-radius:10px;padding:16px 20px;margin-bottom:8px;">
+    <div style="font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#666;margin-bottom:10px;">Hardware Reference — What's Inside Each BITS Box</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+      <div style="text-align:center;">
+        <div style="font-size:0.85rem;font-weight:800;color:#00c46a;">M4 Mac Mini 24GB</div>
+        <div style="font-size:0.75rem;color:#888;margin-top:3px;">Retail: $999 (Apple)</div>
+        <div style="font-size:0.72rem;color:#666;margin-top:3px;">Runs 8B–14B local model · Works offline<br/>Ideal for 5–10 workers</div>
+      </div>
+      <div style="text-align:center;border-left:1px solid #222;border-right:1px solid #222;">
+        <div style="font-size:0.85rem;font-weight:800;color:#00c46a;">M4 Pro Mac Mini 48GB</div>
+        <div style="font-size:0.75rem;color:#888;margin-top:3px;">Retail: ~$1,999 (Apple)</div>
+        <div style="font-size:0.72rem;color:#666;margin-top:3px;">Runs 70B elite model · Full offline<br/>Ideal for 10–50 workers</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:0.85rem;font-weight:800;color:#00c46a;">M4 Max Mac Studio 128GB</div>
+        <div style="font-size:0.75rem;color:#888;margin-top:3px;">Retail: ~$2,500 (Apple)</div>
+        <div style="font-size:0.72rem;color:#666;margin-top:3px;">Runs 70B+ at max speed · Enterprise<br/>Ideal for 50+ workers</div>
+      </div>
+    </div>
+    <div style="font-size:0.7rem;color:#555;margin-top:10px;text-align:center;">Ollama is free and open-source · Models are free to use · No per-query API costs on local deployment</div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <strong>All plans include:</strong> unlimited questions, camera vision, voice input, PWA mobile app, push notifications, supervisor dashboard, knowledge base updates<br/>
+    <strong>Setup fee:</strong> One-time $500 knowledge extraction session (included free in Growth + Pro) · All installations performed by certified BITS engineers<br/>
+    <strong>Glasses pricing</strong> includes hardware, Virginia sales tax (5.3%), shipping, per-device setup, and 30-day hardware support · Volume discounts available<br/>
+    Pricing effective March 2026 · Contact <strong>contact@bitscorp.us</strong> for volume pricing and custom deployments<br/>
+    <strong>Blockchain Integrative Technology Solutions (BITS)</strong> · Richmond, Virginia · bitscorp.us
+  </div>
+
+</div>
+</body>
+</html>
