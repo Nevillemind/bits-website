@@ -104,6 +104,43 @@ object GlassesProtocol {
     }
 
     /**
+     * Camera initialization settings — must be sent after glasses_ready
+     * before take_photo commands will work.
+     */
+    fun createButtonModeSetting(mode: String = "photo"): ByteArray {
+        val json = JSONObject().apply {
+            put("type", "button_mode_setting")
+            put("mode", mode)
+        }
+        return packForSend(json.toString(), wakeup = true)
+    }
+
+    fun createButtonPhotoSetting(size: String = "small"): ByteArray {
+        val json = JSONObject().apply {
+            put("type", "button_photo_setting")
+            put("size", size)
+        }
+        return packForSend(json.toString())
+    }
+
+    fun createGalleryMode(active: Boolean = true): ByteArray {
+        val json = JSONObject().apply {
+            put("type", "save_in_gallery_mode")
+            put("active", active)
+            put("timestamp", System.currentTimeMillis())
+        }
+        return packForSend(json.toString(), wakeup = true)
+    }
+
+    fun createButtonCameraLedSetting(enabled: Boolean = false): ByteArray {
+        val json = JSONObject().apply {
+            put("type", "button_camera_led")
+            put("enabled", enabled)
+        }
+        return packForSend(json.toString(), wakeup = true)
+    }
+
+    /**
      * Create heartbeat ping.
      */
     fun createPing(): ByteArray {

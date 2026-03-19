@@ -947,6 +947,16 @@ class BleConnectionManager(private val context: Context) {
             queueData(GlassesProtocol.createMicCommand(true))
         }, 500)
 
+        // Camera initialization — required before take_photo commands work
+        handler.postDelayed({
+            debugLog("📸 Sending camera init settings...")
+            queueData(GlassesProtocol.createButtonModeSetting("photo"))
+            queueData(GlassesProtocol.createButtonPhotoSetting("small"))
+            queueData(GlassesProtocol.createButtonCameraLedSetting(false))
+            queueData(GlassesProtocol.createGalleryMode(true))
+            debugLog("📸 Camera init complete — photo commands enabled")
+        }, 800)
+
         // Start heartbeat
         startHeartbeat()
 
