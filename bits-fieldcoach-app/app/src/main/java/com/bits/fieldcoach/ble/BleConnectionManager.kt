@@ -1160,6 +1160,49 @@ class BleConnectionManager(private val context: Context) {
         return sendCommand(GlassesProtocol.createEnableAudioTx(enabled))
     }
 
+    fun startRtmpStream(rtmpUrl: String): Boolean {
+        val json = JSONObject().apply {
+            put("type", "start_rtmp_stream")
+            put("url", rtmpUrl)
+        }
+        debugLog("Starting RTMP stream to: $rtmpUrl")
+        return sendCommand(K900Protocol.packJsonToK900(json.toString(), true) ?: return false)
+    }
+
+    fun stopRtmpStream(): Boolean {
+        val json = JSONObject().apply {
+            put("type", "stop_rtmp_stream")
+        }
+        debugLog("Stopping RTMP stream")
+        return sendCommand(K900Protocol.packJsonToK900(json.toString(), true) ?: return false)
+    }
+
+    fun startVideoStream(): Boolean {
+        val json = JSONObject().apply {
+            put("type", "start_video_stream")
+        }
+        debugLog("Starting video stream")
+        return sendCommand(K900Protocol.packJsonToK900(json.toString(), true) ?: return false)
+    }
+
+    fun stopVideoStream(): Boolean {
+        val json = JSONObject().apply {
+            put("type", "stop_video_stream")
+        }
+        debugLog("Stopping video stream")
+        return sendCommand(K900Protocol.packJsonToK900(json.toString(), true) ?: return false)
+    }
+
+    fun sendWifiCredentials(ssid: String, password: String): Boolean {
+        val json = JSONObject().apply {
+            put("type", "set_wifi_credentials")
+            put("ssid", ssid)
+            put("password", password)
+        }
+        debugLog("Sending WiFi credentials: $ssid")
+        return sendCommand(K900Protocol.packJsonToK900(json.toString(), true) ?: return false)
+    }
+
     // -----------------------------------------------------------------------
     // Incoming data processing
     // -----------------------------------------------------------------------
@@ -1232,6 +1275,22 @@ class BleConnectionManager(private val context: Context) {
 
             is GlassesEvent.KeepAliveAck -> {
                 Log.v(TAG, "Keep-alive ACK received")
+            }
+
+            is GlassesEvent.BlePhotoReady -> {
+                val bleImgId = event.bleImgId
+                debugLog("📸 ble_photo_ready received: bleImgId=$bleImgId")
+                photoInProgress = true
+                notifyEvent(event)
+            }
+
+            is GlassesEvent.RtmpStreamStatus -> {
+                if (event.errorDetails != null) {
+                    debugLog("📡 RTMP stream status: ${event.status} error=${event.errorDetails}")
+                } else {
+                    debugLog("📡 RTMP stream status: ${event.status}")
+                }
+                notifyEvent(event)
             }
 
             else -> {

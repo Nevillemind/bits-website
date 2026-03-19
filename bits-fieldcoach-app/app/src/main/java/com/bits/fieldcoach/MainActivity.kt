@@ -328,6 +328,11 @@ class MainActivity : AppCompatActivity() {
                     // Escalation
                     escalationKeywords.any { lower.contains(it) } -> {
                         speechManager.speak("Escalating now. Connecting you to your supervisor.")
+                        val techId = android.provider.Settings.Secure.getString(
+                            contentResolver, android.provider.Settings.Secure.ANDROID_ID
+                        ) ?: "worker"
+                        bleManager.startRtmpStream("rtmp://bitsfieldcoach.com/live/worker_$techId")
+                        speechManager.speak("Starting live feed for your supervisor.")
                         val result = aiClient.escalate("glasses_user", lastQuestion.ifEmpty { text }, lastAnswer)
                         result.onSuccess {
                             speechManager.speak("Your supervisor has been notified.") { finishProcessing() }

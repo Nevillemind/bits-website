@@ -34,16 +34,16 @@ object GlassesProtocol {
     }
 
     fun createPhotoCommand(requestId: String): ByteArray {
-        val bleImgId = "I${String.format("%09d", System.currentTimeMillis() % 1000000000)}"
+        val bleImgId = "I" + (System.currentTimeMillis() % 1000000000)
         val json = JSONObject().apply {
             put("type", BleConstants.CMD_TAKE_PHOTO)
             put("requestId", requestId)
             put("appId", "com.bits.fieldcoach")
             put("size", "medium")
-            put("compress", "medium")
+            put("compress", "none")
             put("silent", false)
             put("bleImgId", bleImgId)
-            put("transferMethod", "auto")
+            put("transferMethod", "ble")
         }
         return packForSend(json.toString())
     }
@@ -218,7 +218,14 @@ object GlassesProtocol {
             BleConstants.CMD_GLASSES_READY -> GlassesEvent.GlassesReady
 
             "ble_photo_ready" -> GlassesEvent.BlePhotoReady(
-                compressionTimeMs = json.optLong("compressionTime", 0)
+                bleImgId = json.optString("bleImgId", ""),
+                requestId = json.optString("requestId", ""),
+                compressionTimeMs = json.optLong("compressionDurationMs", json.optLong("compressionTime", 0))
+            )
+
+            "rtmp_stream_status" -> GlassesEvent.RtmpStreamStatus(
+                status = json.optString("status", ""),
+                errorDetails = if (json.has("error")) json.optString("error", null) else null
             )
 
             "ble_photo_complete" -> GlassesEvent.BlePhotoComplete(
@@ -307,7 +314,8 @@ sealed class GlassesEvent {
     data class ConnectionState(val connected: Boolean) : GlassesEvent()
     data class HeartbeatResponse(val ready: Boolean, val battery: Int, val charging: Boolean) : GlassesEvent()
     data object GlassesReady : GlassesEvent()
-    data class BlePhotoReady(val compressionTimeMs: Long) : GlassesEvent()
+    data class BlePhotoReady(val bleImgId: String, val requestId: String, val compressionTimeMs: Long) : GlassesEvent()
+    data class RtmpStreamStatus(val status: String, val errorDetails: String?) : GlassesEvent()
     data class BlePhotoComplete(val success: Boolean) : GlassesEvent()
     data class MessageAck(val messageId: Long) : GlassesEvent()
     data object KeepAliveAck : GlassesEvent()
