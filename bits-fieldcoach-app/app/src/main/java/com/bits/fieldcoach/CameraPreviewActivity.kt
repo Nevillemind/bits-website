@@ -74,18 +74,15 @@ class CameraPreviewActivity : AppCompatActivity() {
             finish()
         }
 
-        // Start/Stop preview toggle
+        // Take Photo button — single shot, shows on screen
+        startStopButton.text = "📸 TAKE PHOTO"
         startStopButton.setOnClickListener {
-            if (isPreviewRunning) {
-                stopPreviewLoop()
-            } else {
-                startPreviewLoop()
-            }
+            takeSinglePhoto()
         }
 
-        // Ask AI button
+        // Ask AI button — takes ONE photo and analyzes it
         askAiButton.setOnClickListener {
-            askAi()
+            takePhotoAndAnalyze()
         }
 
         // Observe connection state
@@ -112,16 +109,26 @@ class CameraPreviewActivity : AppCompatActivity() {
         updateConnectionUi(bleManager?.connectionState?.value ?: com.bits.fieldcoach.ble.ConnectionStatus.DISCONNECTED)
     }
 
+    private var pendingQuestion: String = "What do you see? Describe any issues or observations."
+    private var waitingForPhoto = false
+
     private fun setupGlassesEventListener() {
         val listener: (GlassesEvent) -> Unit = { event ->
             when (event) {
                 is GlassesEvent.PhotoResponse -> {
-                    if (event.success && event.photoData != null && isPreviewRunning) {
+                    if (event.success && event.photoData != null) {
                         handleNewFrame(event.photoData)
-                    } else if (isPreviewRunning) {
-                        // Photo failed — retry after short delay
+                        // If we were waiting for a photo to analyze, do it now
+                        if (waitingForPhoto) {
+                            waitingForPhoto = false
+                            analyzeCurrentFrame(pendingQuestion)
+                        }
+                    } else {
                         Log.w(TAG, "Photo failed: ${event.error}")
-                        handler.postDelayed({ requestNextFrame() }, 2000)
+                        runOnUiThread {
+                            frameCountText.text = "Photo capture failed — tap TAKE PHOTO to retry"
+                        }
+                        waitingForPhoto = false
                     }
                 }
                 is GlassesEvent.ConnectionState -> {
@@ -163,83 +170,82 @@ class CameraPreviewActivity : AppCompatActivity() {
             Log.d(TAG, "Frame $frameCount displayed (${photoData.size} bytes, $fps)")
         }
 
-        // Queue next frame after 1 second
-        handler.postDelayed({ requestNextFrame() }, 1000)
+        // Re-enable take photo button
+        runOnUiThread { startStopButton.isEnabled = true }
     }
 
-    private fun startPreviewLoop() {
+    /**
+     * Take a single photo from glasses and display it on screen.
+     * Does NOT auto-analyze — user must tap ASK AI or use voice.
+     */
+    private fun takeSinglePhoto() {
         val bleManager = FieldCoachApp.bleManager
-        if (bleManager == null) {
-            aiResponseText.text = "BLE manager not available."
-            aiResponseText.visibility = View.VISIBLE
-            return
-        }
-        if (!bleManager.isConnected()) {
+        if (bleManager == null || !bleManager.isConnected()) {
             aiResponseText.text = "Glasses not connected. Connect from main screen first."
             aiResponseText.visibility = View.VISIBLE
             return
         }
 
-        isPreviewRunning = true
-        frameCount = 0
-        lastFrameTimeMs = 0L
+        frameCountText.text = "Taking photo..."
+        startStopButton.isEnabled = false
+        
+        val requestId = "preview_${System.currentTimeMillis()}"
+        bleManager.requestPhoto(requestId)
+        Log.i(TAG, "Single photo requested: $requestId")
 
-        startStopButton.text = "STOP PREVIEW"
-        startStopButton.backgroundTintList =
-            android.content.res.ColorStateList.valueOf(0xFF475569.toInt())
-
-        frameCountText.text = "Starting..."
-        Log.i(TAG, "Preview loop started")
-
-        requestNextFrame()
+        // Re-enable button after 10 seconds (timeout)
+        handler.postDelayed({
+            startStopButton.isEnabled = true
+            if (lastPhotoData == null) {
+                frameCountText.text = "Photo timed out — tap to retry"
+            }
+        }, 10000)
     }
 
-    private fun stopPreviewLoop() {
-        isPreviewRunning = false
-        handler.removeCallbacksAndMessages(null)
+    /**
+     * Take photo AND analyze with a question — triggered by ASK AI button.
+     * User speaks question first, then photo is taken and sent with that question.
+     */
+    private fun takePhotoAndAnalyze() {
+        val bleManager = FieldCoachApp.bleManager
+        val speechManager = FieldCoachApp.speechManager
 
-        startStopButton.text = "START PREVIEW"
-        startStopButton.backgroundTintList =
-            android.content.res.ColorStateList.valueOf(0xFFdc3246.toInt())
-
-        frameCountText.text = "Stopped | Frame $frameCount"
-        Log.i(TAG, "Preview loop stopped at frame $frameCount")
-    }
-
-    private fun requestNextFrame() {
-        if (!isPreviewRunning) return
-
-        val bleManager = FieldCoachApp.bleManager ?: return
-
-        if (bleManager.isConnected() && bleManager.isFullyBooted()) {
-            val requestId = "preview_${System.currentTimeMillis()}"
-            bleManager.requestPhoto(requestId)
-            Log.d(TAG, "Requesting frame: $requestId")
-        } else {
-            // Not ready — retry after 2 seconds
-            Log.w(TAG, "Glasses not ready — retrying in 2s")
-            handler.postDelayed({ requestNextFrame() }, 2000)
-        }
-    }
-
-    private fun askAi() {
-        val photoData = lastPhotoData
-        if (photoData == null) {
-            aiResponseText.text = "No frame captured yet. Start preview and wait for a frame."
+        if (bleManager == null || !bleManager.isConnected()) {
+            aiResponseText.text = "Glasses not connected."
             aiResponseText.visibility = View.VISIBLE
             return
         }
 
+        // If we already have a photo, analyze it directly
+        if (lastPhotoData != null) {
+            analyzeCurrentFrame(pendingQuestion)
+            return
+        }
+
+        // Otherwise take a photo first, then analyze
+        waitingForPhoto = true
+        aiResponseText.text = "Taking photo..."
+        aiResponseText.visibility = View.VISIBLE
+        speechManager?.speak("Taking a photo now.")
+
+        val requestId = "analyze_${System.currentTimeMillis()}"
+        bleManager.requestPhoto(requestId)
+    }
+
+    /**
+     * Analyze the current frame with AI using the given question.
+     */
+    private fun analyzeCurrentFrame(question: String) {
+        val photoData = lastPhotoData ?: return
         val aiClient = FieldCoachApp.aiClient
         val speechManager = FieldCoachApp.speechManager
 
         if (aiClient == null) {
-            aiResponseText.text = "AI client not available."
+            aiResponseText.text = "AI not available."
             aiResponseText.visibility = View.VISIBLE
             return
         }
 
-        // Show analysis in progress
         aiResponseText.text = "Analyzing..."
         aiResponseText.visibility = View.VISIBLE
         askAiButton.isEnabled = false
@@ -247,10 +253,7 @@ class CameraPreviewActivity : AppCompatActivity() {
         speechManager?.speak("Analyzing what I see.")
 
         lifecycleScope.launch {
-            val result = aiClient.analyzePhoto(
-                "What do you see? Describe any issues or observations.",
-                photoData
-            )
+            val result = aiClient.analyzePhoto(question, photoData)
 
             result.onSuccess { answer ->
                 runOnUiThread {
@@ -271,6 +274,11 @@ class CameraPreviewActivity : AppCompatActivity() {
                 Log.e(TAG, "AI analysis failed", error)
             }
         }
+    }
+
+    private fun stopPreviewLoop() {
+        isPreviewRunning = false
+        handler.removeCallbacksAndMessages(null)
     }
 
     private fun updateConnectionUi(state: ConnectionStatus) {
