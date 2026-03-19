@@ -34,18 +34,18 @@ object GlassesProtocol {
     }
 
     fun createPhotoCommand(requestId: String): ByteArray {
-        val bleImgId = "I" + (System.currentTimeMillis() % 1000000000)
+        val bleImgId = "I" + String.format("%09d", System.currentTimeMillis() % 1000000000)
         val json = JSONObject().apply {
             put("type", BleConstants.CMD_TAKE_PHOTO)
             put("requestId", requestId)
             put("appId", "com.bits.fieldcoach")
-            put("size", "medium")
+            put("size", "small")
             put("compress", "none")
             put("silent", false)
             put("bleImgId", bleImgId)
-            put("transferMethod", "ble")
+            put("transferMethod", "auto")
         }
-        return packForSend(json.toString())
+        return packForSend(json.toString(), wakeup = true)
     }
 
     fun createLedCommand(enabled: Boolean): ByteArray {
