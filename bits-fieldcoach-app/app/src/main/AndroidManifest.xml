@@ -33,6 +33,7 @@
     <uses-feature android:name="android.hardware.camera" android:required="false" />
 
     <application
+        android:name=".FieldCoachApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="BITS Field Coach"
@@ -60,6 +61,11 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+        <!-- Live camera preview screen -->
+        <activity
+            android:name=".CameraPreviewActivity"
+            android:screenOrientation="portrait" />
 
         <!-- BLE foreground service for persistent glasses connection -->
         <service

@@ -85,6 +85,11 @@ class MainActivity : AppCompatActivity() {
         speechManager = SpeechManager(this)
         aiClient = FieldCoachClient("https://bitsfieldcoach.com")
 
+        // Store in app-level holder so CameraPreviewActivity can access them
+        FieldCoachApp.bleManager = bleManager
+        FieldCoachApp.speechManager = speechManager
+        FieldCoachApp.aiClient = aiClient
+
         // Request permissions
         requestPermissions()
 
@@ -94,21 +99,10 @@ class MainActivity : AppCompatActivity() {
         // Button handlers
         connectButton.setOnClickListener { startConnection() }
 
-        // Camera button — try glasses camera first, fall back to phone camera
+        // Camera button — launches live camera preview screen
         cameraButton.setOnClickListener {
-            if (bleManager.isConnected() && bleManager.isFullyBooted()) {
-                // Use glasses camera via BLE
-                speechManager.speak("Taking a photo now.")
-                val requestId = "photo_${System.currentTimeMillis()}"
-                bleManager.requestPhoto(requestId)
-                Log.i(TAG, "Photo requested via glasses camera: $requestId")
-            } else {
-                // Fall back to phone camera
-                val intent = phoneCamera.createCameraIntent(this)
-                if (intent != null) {
-                    startActivityForResult(intent, PhoneCamera.REQUEST_CODE)
-                }
-            }
+            val intent = Intent(this, CameraPreviewActivity::class.java)
+            startActivity(intent)
         }
 
         // Mic button — push to talk

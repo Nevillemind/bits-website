@@ -1,20 +1,35 @@
 R_DEF: Internal format may change without notice
 local
+drawable dot_connected
+drawable dot_disconnected
+id aiResponseText
+id askAiButton
+id backButton
 id batteryText
+id bottomBar
+id brandingText
 id buttonRow
 id cameraButton
 id connectButton
+id connectionDot
+id connectionStatusText
 id debugText
 id divider
 id footerText
+id frameCountText
 id micButton
+id noSignalText
+id previewImage
 id responseLabel
 id responseText
+id startStopButton
 id statusText
 id subtitleText
 id titleText
+id topBar
 id transcriptLabel
 id transcriptText
+layout activity_camera_preview
 layout activity_main
 mipmap ic_launcher
 mipmap ic_launcher_round

@@ -2981,6 +2981,8 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable dot_connected
+drawable dot_disconnected
 drawable ic_arrow_back_black_24
 drawable ic_call_answer
 drawable ic_call_answer_low
@@ -3145,6 +3147,7 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
+id aiResponseText
 id alertTitle
 id aligned
 id all
@@ -3156,11 +3159,13 @@ id antiClockwise
 id anticipate
 id arc
 id asConfigured
+id askAiButton
 id async
 id auto
 id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
+id backButton
 id barrier
 id baseline
 id batteryText
@@ -3169,10 +3174,12 @@ id beginning
 id bestChoice
 id blocking
 id bottom
+id bottomBar
 id bounce
 id bounceBoth
 id bounceEnd
 id bounceStart
+id brandingText
 id buttonPanel
 id buttonRow
 id cache_measures
@@ -3201,6 +3208,8 @@ id collapseActionView
 id compress
 id confirm_button
 id connectButton
+id connectionDot
+id connectionStatusText
 id constraint
 id container
 id content
@@ -3278,6 +3287,7 @@ id floating
 id footerText
 id forever
 id fragment_container_view_tag
+id frameCountText
 id frost
 id fullscreen_header
 id ghost_view
@@ -3393,6 +3403,7 @@ id never
 id neverCompleteToEnd
 id neverCompleteToStart
 id noScroll
+id noSignalText
 id noState
 id none
 id normal
@@ -3435,6 +3446,7 @@ id pin
 id position
 id postLayout
 id pressed
+id previewImage
 id progress_circular
 id progress_horizontal
 id radio
@@ -3502,6 +3514,7 @@ id src_over
 id standard
 id start
 id startHorizontal
+id startStopButton
 id startToEnd
 id startVertical
 id staticLayout
@@ -3550,6 +3563,7 @@ id titleText
 id title_template
 id toggle
 id top
+id topBar
 id topPanel
 id touch_outside
 id transcriptLabel
@@ -3699,6 +3713,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_camera_preview
 layout activity_main
 layout custom_dialog
 layout design_bottom_navigation_item

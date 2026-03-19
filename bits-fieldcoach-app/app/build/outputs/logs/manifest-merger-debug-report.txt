@@ -1,20 +1,20 @@
 -- Merging decision tree log ---
 provider#androidx.core.content.FileProvider
-INJECTED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:54:9-62:20
+INJECTED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:55:9-63:20
 	android:grantUriPermissions
-		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:58:13-47
+		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:59:13-47
 	android:authorities
 		INJECTED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml
-		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:56:13-64
+		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:57:13-64
 	android:exported
-		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:57:13-37
+		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:58:13-37
 	android:name
-		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:55:13-62
+		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:56:13-62
 manifest
-ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:2:1-71:12
-INJECTED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:2:1-71:12
-INJECTED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:2:1-71:12
-INJECTED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:2:1-71:12
+ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:2:1-77:12
+INJECTED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:2:1-77:12
+INJECTED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:2:1-77:12
+INJECTED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:2:1-77:12
 MERGED from [androidx.databinding:viewbinding:8.2.2] /Users/georgemundin/.gradle/caches/transforms-3/cc0b72b02bdcd59079ede77e6baa02ac/transformed/viewbinding-8.2.2/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.11.0] /Users/georgemundin/.gradle/caches/transforms-3/84114cdc67145947aeae5617e585aba8/transformed/material-1.11.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/georgemundin/.gradle/caches/transforms-3/3a9c143dc806935c0544adcf7cccee2c/transformed/constraintlayout-2.1.4/AndroidManifest.xml:2:1-11:12
@@ -147,8 +147,8 @@ ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/
 	android:name
 		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:33:19-57
 application
-ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:35:5-70:19
-INJECTED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:35:5-70:19
+ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:35:5-76:19
+INJECTED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:35:5-76:19
 MERGED from [com.google.android.material:material:1.11.0] /Users/georgemundin/.gradle/caches/transforms-3/84114cdc67145947aeae5617e585aba8/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] /Users/georgemundin/.gradle/caches/transforms-3/84114cdc67145947aeae5617e585aba8/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/georgemundin/.gradle/caches/transforms-3/3a9c143dc806935c0544adcf7cccee2c/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
@@ -170,49 +170,57 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/georgemundin/.gradle
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.12.0] /Users/georgemundin/.gradle/caches/transforms-3/4dde0fce54f6341b6da19770f76a2130/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:40:9-35
+		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:41:9-35
 	android:label
-		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:38:9-41
+		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:39:9-41
 	android:roundIcon
-		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:39:9-54
+		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:40:9-54
 	android:icon
-		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:37:9-43
+		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:38:9-43
 	android:allowBackup
-		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:36:9-35
+		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:37:9-35
 	android:theme
-		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:41:9-52
+		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:42:9-52
+	android:name
+		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:36:9-38
 activity#com.bits.fieldcoach.MainActivity
-ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:43:9-51:20
+ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:44:9-52:20
 	android:screenOrientation
-		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:46:13-49
+		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:47:13-49
 	android:exported
-		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:45:13-36
+		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:46:13-36
 	android:name
-		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:44:13-41
+		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:45:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:47:13-50:29
+ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:48:13-51:29
 action#android.intent.action.MAIN
-ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:48:17-69
+ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:49:17-69
 	android:name
-		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:48:25-66
+		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:49:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:49:17-77
+ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:50:17-77
 	android:name
-		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:49:27-74
+		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:50:27-74
+activity#com.bits.fieldcoach.CameraPreviewActivity
+ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:66:9-68:52
+	android:screenOrientation
+		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:68:13-49
+	android:name
+		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:67:13-50
 service#com.bits.fieldcoach.ble.GlassesConnectionService
-ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:65:9-68:40
+ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:71:9-74:40
 	android:exported
-		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:68:13-37
+		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:74:13-37
 	android:foregroundServiceType
-		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:67:13-60
+		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:73:13-60
 	android:name
-		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:66:13-57
+		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:72:13-57
 meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:59:13-61:54
+ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:60:13-62:54
 	android:resource
-		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:61:17-51
+		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:62:17-51
 	android:name
-		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:60:17-67
+		ADDED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml:61:17-67
 uses-sdk
 INJECTED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/georgemundin/.openclaw/workspace/bits/bits-fieldcoach-app/app/src/main/AndroidManifest.xml

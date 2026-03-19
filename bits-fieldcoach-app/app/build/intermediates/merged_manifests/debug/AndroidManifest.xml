@@ -52,6 +52,7 @@
     <uses-permission android:name="com.bits.fieldcoach.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
 
     <application
+        android:name="com.bits.fieldcoach.FieldCoachApp"
         android:allowBackup="true"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
@@ -82,6 +83,11 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+        <!-- Live camera preview screen -->
+        <activity
+            android:name="com.bits.fieldcoach.CameraPreviewActivity"
+            android:screenOrientation="portrait" />
 
         <!-- BLE foreground service for persistent glasses connection -->
         <service
