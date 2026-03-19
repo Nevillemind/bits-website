@@ -43,7 +43,7 @@ object GlassesProtocol {
             put("compress", "none")
             put("silent", false)
             put("bleImgId", bleImgId)
-            put("transferMethod", "auto")
+            put("transferMethod", "ble")
         }
         return packForSend(json.toString(), wakeup = true)
     }
