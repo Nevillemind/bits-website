@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -50,10 +51,19 @@ public final class ActivityCameraPreviewBinding implements ViewBinding {
   public final TextView frameCountText;
 
   @NonNull
+  public final Button micButton;
+
+  @NonNull
   public final TextView noSignalText;
 
   @NonNull
   public final ImageView previewImage;
+
+  @NonNull
+  public final LinearLayout questionBar;
+
+  @NonNull
+  public final EditText questionInput;
 
   @NonNull
   public final Button startStopButton;
@@ -66,7 +76,8 @@ public final class ActivityCameraPreviewBinding implements ViewBinding {
       @NonNull TextView batteryText, @NonNull LinearLayout bottomBar,
       @NonNull TextView brandingText, @NonNull View connectionDot,
       @NonNull TextView connectionStatusText, @NonNull TextView frameCountText,
-      @NonNull TextView noSignalText, @NonNull ImageView previewImage,
+      @NonNull Button micButton, @NonNull TextView noSignalText, @NonNull ImageView previewImage,
+      @NonNull LinearLayout questionBar, @NonNull EditText questionInput,
       @NonNull Button startStopButton, @NonNull LinearLayout topBar) {
     this.rootView = rootView;
     this.aiResponseText = aiResponseText;
@@ -78,8 +89,11 @@ public final class ActivityCameraPreviewBinding implements ViewBinding {
     this.connectionDot = connectionDot;
     this.connectionStatusText = connectionStatusText;
     this.frameCountText = frameCountText;
+    this.micButton = micButton;
     this.noSignalText = noSignalText;
     this.previewImage = previewImage;
+    this.questionBar = questionBar;
+    this.questionInput = questionInput;
     this.startStopButton = startStopButton;
     this.topBar = topBar;
   }
@@ -165,6 +179,12 @@ public final class ActivityCameraPreviewBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.micButton;
+      Button micButton = ViewBindings.findChildViewById(rootView, id);
+      if (micButton == null) {
+        break missingId;
+      }
+
       id = R.id.noSignalText;
       TextView noSignalText = ViewBindings.findChildViewById(rootView, id);
       if (noSignalText == null) {
@@ -174,6 +194,18 @@ public final class ActivityCameraPreviewBinding implements ViewBinding {
       id = R.id.previewImage;
       ImageView previewImage = ViewBindings.findChildViewById(rootView, id);
       if (previewImage == null) {
+        break missingId;
+      }
+
+      id = R.id.questionBar;
+      LinearLayout questionBar = ViewBindings.findChildViewById(rootView, id);
+      if (questionBar == null) {
+        break missingId;
+      }
+
+      id = R.id.questionInput;
+      EditText questionInput = ViewBindings.findChildViewById(rootView, id);
+      if (questionInput == null) {
         break missingId;
       }
 
@@ -191,8 +223,8 @@ public final class ActivityCameraPreviewBinding implements ViewBinding {
 
       return new ActivityCameraPreviewBinding((ConstraintLayout) rootView, aiResponseText,
           askAiButton, backButton, batteryText, bottomBar, brandingText, connectionDot,
-          connectionStatusText, frameCountText, noSignalText, previewImage, startStopButton,
-          topBar);
+          connectionStatusText, frameCountText, micButton, noSignalText, previewImage, questionBar,
+          questionInput, startStopButton, topBar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

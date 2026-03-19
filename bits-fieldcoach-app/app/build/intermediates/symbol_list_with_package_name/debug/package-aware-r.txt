@@ -3449,6 +3449,8 @@ id pressed
 id previewImage
 id progress_circular
 id progress_horizontal
+id questionBar
+id questionInput
 id radio
 id ratio
 id rectangles

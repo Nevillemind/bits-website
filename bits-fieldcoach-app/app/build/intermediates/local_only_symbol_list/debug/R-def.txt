@@ -20,6 +20,8 @@ id frameCountText
 id micButton
 id noSignalText
 id previewImage
+id questionBar
+id questionInput
 id responseLabel
 id responseText
 id startStopButton

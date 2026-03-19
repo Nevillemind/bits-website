@@ -1,15 +1,19 @@
 [
     {
+        "merged": "/Users/georgemundin/.gradle/daemon/8.5/com.bits.fieldcoach.app-merged_res-33:/drawable_dot_connected.xml.flat",
+        "source": "/Users/georgemundin/.gradle/daemon/8.5/com.bits.fieldcoach.app-main-35:/drawable/dot_connected.xml"
+    },
+    {
         "merged": "/Users/georgemundin/.gradle/daemon/8.5/com.bits.fieldcoach.app-merged_res-33:/mipmap-xxhdpi_ic_launcher.png.flat",
         "source": "/Users/georgemundin/.gradle/daemon/8.5/com.bits.fieldcoach.app-main-35:/mipmap-xxhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.bits.fieldcoach.app-merged_res-33:/drawable_dot_connected.xml.flat",
-        "source": "com.bits.fieldcoach.app-main-35:/drawable/dot_connected.xml"
-    },
-    {
         "merged": "/Users/georgemundin/.gradle/daemon/8.5/com.bits.fieldcoach.app-merged_res-33:/mipmap-mdpi_ic_launcher_round.png.flat",
         "source": "/Users/georgemundin/.gradle/daemon/8.5/com.bits.fieldcoach.app-main-35:/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/georgemundin/.gradle/daemon/8.5/com.bits.fieldcoach.app-merged_res-33:/layout_activity_camera_preview.xml.flat",
+        "source": "/Users/georgemundin/.gradle/daemon/8.5/com.bits.fieldcoach.app-main-35:/layout/activity_camera_preview.xml"
     },
     {
         "merged": "/Users/georgemundin/.gradle/daemon/8.5/com.bits.fieldcoach.app-merged_res-33:/mipmap-xxxhdpi_ic_launcher.png.flat",
@@ -28,16 +32,16 @@
         "source": "/Users/georgemundin/.gradle/daemon/8.5/com.bits.fieldcoach.app-main-35:/mipmap-xxhdpi/ic_launcher_round.png"
     },
     {
+        "merged": "/Users/georgemundin/.gradle/daemon/8.5/com.bits.fieldcoach.app-merged_res-33:/drawable_dot_disconnected.xml.flat",
+        "source": "/Users/georgemundin/.gradle/daemon/8.5/com.bits.fieldcoach.app-main-35:/drawable/dot_disconnected.xml"
+    },
+    {
         "merged": "com.bits.fieldcoach.app-merged_res-33:/layout_activity_camera_preview.xml.flat",
         "source": "com.bits.fieldcoach.app-main-35:/layout/activity_camera_preview.xml"
     },
     {
         "merged": "/Users/georgemundin/.gradle/daemon/8.5/com.bits.fieldcoach.app-merged_res-33:/mipmap-hdpi_ic_launcher.png.flat",
         "source": "/Users/georgemundin/.gradle/daemon/8.5/com.bits.fieldcoach.app-main-35:/mipmap-hdpi/ic_launcher.png"
-    },
-    {
-        "merged": "com.bits.fieldcoach.app-merged_res-33:/drawable_dot_disconnected.xml.flat",
-        "source": "com.bits.fieldcoach.app-main-35:/drawable/dot_disconnected.xml"
     },
     {
         "merged": "/Users/georgemundin/.gradle/daemon/8.5/com.bits.fieldcoach.app-merged_res-33:/mipmap-xhdpi_ic_launcher_round.png.flat",

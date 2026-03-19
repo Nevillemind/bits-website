@@ -7,6 +7,7 @@ import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -38,8 +39,10 @@ class CameraPreviewActivity : AppCompatActivity() {
     private lateinit var batteryText: TextView
     private lateinit var startStopButton: Button
     private lateinit var askAiButton: Button
+    private lateinit var micButton: Button
     private lateinit var backButton: Button
     private lateinit var aiResponseText: TextView
+    private lateinit var questionInput: EditText
 
     // Preview state
     private var isPreviewRunning = false
@@ -68,21 +71,58 @@ class CameraPreviewActivity : AppCompatActivity() {
         backButton = findViewById(R.id.backButton)
         aiResponseText = findViewById(R.id.aiResponseText)
 
+        // Bind new views
+        micButton = findViewById(R.id.micButton)
+        questionInput = findViewById(R.id.questionInput)
+
         // Back button
         backButton.setOnClickListener {
             stopPreviewLoop()
             finish()
         }
 
-        // Take Photo button — single shot, shows on screen
+        // Take Photo button — single shot, shows on screen, NO auto-analyze
         startStopButton.text = "📸 TAKE PHOTO"
         startStopButton.setOnClickListener {
             takeSinglePhoto()
         }
 
-        // Ask AI button — takes ONE photo and analyzes it
+        // Ask AI button — analyzes current photo with the question from input/voice
         askAiButton.setOnClickListener {
+            val typedQuestion = questionInput.text.toString().trim()
+            if (typedQuestion.isNotEmpty()) {
+                pendingQuestion = typedQuestion
+            }
             takePhotoAndAnalyze()
+        }
+
+        // Mic button — voice input for question
+        micButton.setOnClickListener {
+            val speechManager = FieldCoachApp.speechManager ?: return@setOnClickListener
+            if (speechManager.isListening.value) {
+                speechManager.stopListening()
+                micButton.text = "🎤"
+                micButton.backgroundTintList = android.content.res.ColorStateList.valueOf(0xFF16A34A.toInt())
+            } else {
+                micButton.text = "⏹️"
+                micButton.backgroundTintList = android.content.res.ColorStateList.valueOf(0xFFDC2626.toInt())
+                speechManager.startListening(
+                    onTranscription = { text ->
+                        runOnUiThread {
+                            questionInput.setText(text)
+                            pendingQuestion = text
+                            micButton.text = "🎤"
+                            micButton.backgroundTintList = android.content.res.ColorStateList.valueOf(0xFF16A34A.toInt())
+                            frameCountText.text = "Question set: \"$text\" — tap ASK AI"
+                        }
+                    },
+                    onPartial = { partial ->
+                        runOnUiThread {
+                            questionInput.setText(partial)
+                        }
+                    }
+                )
+            }
         }
 
         // Observe connection state

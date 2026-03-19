@@ -1,5 +1,9 @@
 [
     {
+        "merged": "/Users/georgemundin/.gradle/daemon/8.5/com.bits.fieldcoach.app-mergeDebugResources-32:/layout/activity_camera_preview.xml",
+        "source": "/Users/georgemundin/.gradle/daemon/8.5/com.bits.fieldcoach.app-main-35:/layout/activity_camera_preview.xml"
+    },
+    {
         "merged": "/Users/georgemundin/.gradle/daemon/8.5/com.bits.fieldcoach.app-mergeDebugResources-32:/layout/activity_main.xml",
         "source": "/Users/georgemundin/.gradle/daemon/8.5/com.bits.fieldcoach.app-main-35:/layout/activity_main.xml"
     },
