@@ -118,17 +118,15 @@ class CameraPreviewActivity : AppCompatActivity() {
                 is GlassesEvent.PhotoResponse -> {
                     if (event.success && event.photoData != null) {
                         handleNewFrame(event.photoData)
-                        // If we were waiting for a photo to analyze, do it now
-                        if (waitingForPhoto) {
-                            waitingForPhoto = false
-                            analyzeCurrentFrame(pendingQuestion)
+                        // Photo displayed — user can now tap ASK AI when ready
+                        runOnUiThread {
+                            frameCountText.text = "Photo captured ✅ — tap ASK AI to analyze"
                         }
                     } else {
                         Log.w(TAG, "Photo failed: ${event.error}")
                         runOnUiThread {
                             frameCountText.text = "Photo capture failed — tap TAKE PHOTO to retry"
                         }
-                        waitingForPhoto = false
                     }
                 }
                 is GlassesEvent.ConnectionState -> {
@@ -203,33 +201,19 @@ class CameraPreviewActivity : AppCompatActivity() {
     }
 
     /**
-     * Take photo AND analyze with a question — triggered by ASK AI button.
-     * User speaks question first, then photo is taken and sent with that question.
+     * ASK AI button — analyzes the ALREADY CAPTURED photo.
+     * User must take a photo first, then tap ASK AI.
+     * Does NOT take a new photo — uses whatever is on screen.
      */
     private fun takePhotoAndAnalyze() {
-        val bleManager = FieldCoachApp.bleManager
-        val speechManager = FieldCoachApp.speechManager
-
-        if (bleManager == null || !bleManager.isConnected()) {
-            aiResponseText.text = "Glasses not connected."
+        val photoData = lastPhotoData
+        if (photoData == null) {
+            aiResponseText.text = "Take a photo first, then tap ASK AI."
             aiResponseText.visibility = View.VISIBLE
             return
         }
 
-        // If we already have a photo, analyze it directly
-        if (lastPhotoData != null) {
-            analyzeCurrentFrame(pendingQuestion)
-            return
-        }
-
-        // Otherwise take a photo first, then analyze
-        waitingForPhoto = true
-        aiResponseText.text = "Taking photo..."
-        aiResponseText.visibility = View.VISIBLE
-        speechManager?.speak("Taking a photo now.")
-
-        val requestId = "analyze_${System.currentTimeMillis()}"
-        bleManager.requestPhoto(requestId)
+        analyzeCurrentFrame(pendingQuestion)
     }
 
     /**
@@ -250,7 +234,7 @@ class CameraPreviewActivity : AppCompatActivity() {
         aiResponseText.visibility = View.VISIBLE
         askAiButton.isEnabled = false
 
-        speechManager?.speak("Analyzing what I see.")
+        speechManager?.speak("Got it. Analyzing now.")
 
         lifecycleScope.launch {
             val result = aiClient.analyzePhoto(question, photoData)
