@@ -1,0 +1,23 @@
+R_DEF: Internal format may change without notice
+local
+id batteryText
+id buttonRow
+id cameraButton
+id connectButton
+id debugText
+id divider
+id footerText
+id micButton
+id responseLabel
+id responseText
+id statusText
+id subtitleText
+id titleText
+id transcriptLabel
+id transcriptText
+layout activity_main
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+style Theme.BITSFieldCoach
+xml file_paths
