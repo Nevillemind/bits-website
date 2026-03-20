@@ -122,7 +122,7 @@
         android:paddingEnd="16dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:maxLines="4"
+        android:maxLines="12"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/questionBar"
         app:layout_constraintStart_toStartOf="parent"
