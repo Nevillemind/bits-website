@@ -18,6 +18,7 @@ id divider
 id footerText
 id frameCountText
 id micButton
+id modeButton
 id noSignalText
 id previewImage
 id questionBar

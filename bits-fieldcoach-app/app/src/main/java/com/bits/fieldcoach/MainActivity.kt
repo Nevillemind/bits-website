@@ -96,6 +96,37 @@ class MainActivity : AppCompatActivity() {
         micButton = findViewById(R.id.micButton)
         val cameraButton: Button = findViewById(R.id.cameraButton)
 
+        // Mode toggle button
+        val modeButton: Button = findViewById(R.id.modeButton)
+        val titleText: TextView = findViewById(R.id.titleText)
+        val responseLabel: TextView = findViewById(R.id.responseLabel)
+        
+        fun updateModeUi() {
+            val mode = FieldCoachApp.currentMode
+            modeButton.text = "MODE: ${mode.displayName.uppercase()}"
+            titleText.text = "BITS ${mode.displayName.uppercase()}"
+            responseLabel.text = mode.displayName.uppercase()
+            if (mode == FieldCoachApp.Companion.AppMode.HALO) {
+                modeButton.backgroundTintList = android.content.res.ColorStateList.valueOf(0xFFC4A45F.toInt())
+                titleText.setTextColor(0xFFC4A45F.toInt())
+            } else {
+                modeButton.backgroundTintList = android.content.res.ColorStateList.valueOf(0xFFdc3246.toInt())
+                titleText.setTextColor(0xFF1A56DB.toInt())
+            }
+        }
+
+        modeButton.setOnClickListener {
+            val newMode = if (FieldCoachApp.currentMode == FieldCoachApp.Companion.AppMode.FIELD_COACH)
+                FieldCoachApp.Companion.AppMode.HALO
+            else
+                FieldCoachApp.Companion.AppMode.FIELD_COACH
+            FieldCoachApp.switchMode(newMode)
+            aiClient = FieldCoachApp.aiClient!!
+            updateModeUi()
+        }
+
+        updateModeUi()
+
         // Button handlers
         connectButton.setOnClickListener { startConnection() }
 

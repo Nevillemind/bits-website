@@ -46,6 +46,9 @@ public final class ActivityMainBinding implements ViewBinding {
   public final Button micButton;
 
   @NonNull
+  public final Button modeButton;
+
+  @NonNull
   public final TextView responseLabel;
 
   @NonNull
@@ -69,9 +72,10 @@ public final class ActivityMainBinding implements ViewBinding {
   private ActivityMainBinding(@NonNull ConstraintLayout rootView, @NonNull TextView batteryText,
       @NonNull LinearLayout buttonRow, @NonNull Button cameraButton, @NonNull Button connectButton,
       @NonNull TextView debugText, @NonNull View divider, @NonNull TextView footerText,
-      @NonNull Button micButton, @NonNull TextView responseLabel, @NonNull TextView responseText,
-      @NonNull TextView statusText, @NonNull TextView subtitleText, @NonNull TextView titleText,
-      @NonNull TextView transcriptLabel, @NonNull TextView transcriptText) {
+      @NonNull Button micButton, @NonNull Button modeButton, @NonNull TextView responseLabel,
+      @NonNull TextView responseText, @NonNull TextView statusText, @NonNull TextView subtitleText,
+      @NonNull TextView titleText, @NonNull TextView transcriptLabel,
+      @NonNull TextView transcriptText) {
     this.rootView = rootView;
     this.batteryText = batteryText;
     this.buttonRow = buttonRow;
@@ -81,6 +85,7 @@ public final class ActivityMainBinding implements ViewBinding {
     this.divider = divider;
     this.footerText = footerText;
     this.micButton = micButton;
+    this.modeButton = modeButton;
     this.responseLabel = responseLabel;
     this.responseText = responseText;
     this.statusText = statusText;
@@ -165,6 +170,12 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.modeButton;
+      Button modeButton = ViewBindings.findChildViewById(rootView, id);
+      if (modeButton == null) {
+        break missingId;
+      }
+
       id = R.id.responseLabel;
       TextView responseLabel = ViewBindings.findChildViewById(rootView, id);
       if (responseLabel == null) {
@@ -208,8 +219,9 @@ public final class ActivityMainBinding implements ViewBinding {
       }
 
       return new ActivityMainBinding((ConstraintLayout) rootView, batteryText, buttonRow,
-          cameraButton, connectButton, debugText, divider, footerText, micButton, responseLabel,
-          responseText, statusText, subtitleText, titleText, transcriptLabel, transcriptText);
+          cameraButton, connectButton, debugText, divider, footerText, micButton, modeButton,
+          responseLabel, responseText, statusText, subtitleText, titleText, transcriptLabel,
+          transcriptText);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

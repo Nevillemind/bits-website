@@ -15,6 +15,19 @@ class FieldCoachApp : Application() {
         var bleManager: com.bits.fieldcoach.ble.BleConnectionManager? = null
         var speechManager: com.bits.fieldcoach.audio.SpeechManager? = null
         var aiClient: com.bits.fieldcoach.ai.FieldCoachClient? = null
+
+        // Mode selector — switches between Field Coach and Halo backends
+        enum class AppMode(val displayName: String, val baseUrl: String) {
+            FIELD_COACH("Field Coach", "https://bitsfieldcoach.com"),
+            HALO("Halo", "https://bitshalo.com")
+        }
+
+        var currentMode: AppMode = AppMode.FIELD_COACH
+
+        fun switchMode(mode: AppMode) {
+            currentMode = mode
+            aiClient = com.bits.fieldcoach.ai.FieldCoachClient(mode.baseUrl)
+        }
     }
 
     override fun onCreate() {
