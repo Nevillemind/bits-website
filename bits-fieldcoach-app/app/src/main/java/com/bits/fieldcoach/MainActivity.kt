@@ -96,37 +96,6 @@ class MainActivity : AppCompatActivity() {
         micButton = findViewById(R.id.micButton)
         val cameraButton: Button = findViewById(R.id.cameraButton)
 
-        // Mode toggle button
-        val modeButton: Button = findViewById(R.id.modeButton)
-        val titleText: TextView = findViewById(R.id.titleText)
-        val responseLabel: TextView = findViewById(R.id.responseLabel)
-        
-        fun updateModeUi() {
-            val mode = FieldCoachApp.currentMode
-            modeButton.text = "MODE: ${mode.displayName.uppercase()}"
-            titleText.text = "BITS ${mode.displayName.uppercase()}"
-            responseLabel.text = mode.displayName.uppercase()
-            if (mode == FieldCoachApp.Companion.AppMode.HALO) {
-                modeButton.backgroundTintList = android.content.res.ColorStateList.valueOf(0xFFC4A45F.toInt())
-                titleText.setTextColor(0xFFC4A45F.toInt())
-            } else {
-                modeButton.backgroundTintList = android.content.res.ColorStateList.valueOf(0xFFdc3246.toInt())
-                titleText.setTextColor(0xFF1A56DB.toInt())
-            }
-        }
-
-        modeButton.setOnClickListener {
-            val newMode = if (FieldCoachApp.currentMode == FieldCoachApp.Companion.AppMode.FIELD_COACH)
-                FieldCoachApp.Companion.AppMode.HALO
-            else
-                FieldCoachApp.Companion.AppMode.FIELD_COACH
-            FieldCoachApp.switchMode(newMode)
-            aiClient = FieldCoachApp.aiClient!!
-            updateModeUi()
-        }
-
-        updateModeUi()
-
         // Button handlers
         connectButton.setOnClickListener { startConnection() }
 
@@ -243,7 +212,6 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 is GlassesEvent.BatteryUpdate -> {
-                    // Battery is also handled via StateFlow, but log it
                     Log.d(TAG, "Battery: ${event.level}% (charging: ${event.charging})")
                 }
                 is GlassesEvent.FirmwareVersion -> {
@@ -374,9 +342,7 @@ class MainActivity : AppCompatActivity() {
                         if (bleManager.isConnected()) {
                             bleManager.requestPhoto(requestId)
                             Log.i(TAG, "Photo requested via glasses: $requestId")
-                            // Photo response handled in event listener
                             // Timeout fallback to phone camera after 25 seconds
-                            // (glasses BLE file transfer can take 10-20s)
                             android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
                                 if (isBusy) {
                                     Log.w(TAG, "Glasses photo timed out (25s) — falling back to phone camera")
@@ -452,7 +418,6 @@ class MainActivity : AppCompatActivity() {
         Log.i(TAG, "Button ${event.button} pressed (long: ${event.longPress})")
         when {
             event.button == 1 && !event.longPress -> {
-                // Short press button 1 — start/stop listening
                 if (speechManager.isListening.value) {
                     speechManager.stopListening()
                 } else {
@@ -460,18 +425,15 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             event.button == 1 && event.longPress -> {
-                // Long press button 1 — photo mode
                 handleTranscription("take a photo")
             }
             event.button == 2 -> {
-                // Button 2 — escalate
                 handleTranscription("escalate")
             }
         }
     }
 
     private fun handleAudioData(event: GlassesEvent.AudioData) {
-        // Forward LC3 decoded PCM to speech manager for potential processing
         speechManager.handleGlassesAudioData(event.data)
     }
 
@@ -481,7 +443,6 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == PhoneCamera.REQUEST_CODE) {
             val photoBytes = phoneCamera.processResult(resultCode, data)
             if (photoBytes != null) {
-                // Send to vision AI
                 speechManager.speak("Analyzing what I see.")
                 transcriptText.text = "Photo captured — analyzing..."
                 lifecycleScope.launch {
