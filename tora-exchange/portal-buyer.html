@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Buyer Dashboard — TORA Exchange</title>
+<!-- Security: Content Security Policy -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com; connect-src 'self'; frame-ancestors 'none';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230c1a32'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='700' fill='%239e7c2e'>TE</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -149,12 +153,12 @@
     </div>
   </nav>
   <div class="sidebar-footer">
-    <div class="avatar">VP</div>
+    <div class="avatar" id="user-avatar">BU</div>
     <div class="user-info">
-      <div class="user-name">Vanguard Partners</div>
-      <div class="user-email">buyer@demo.com</div>
+      <div class="user-name" id="user-display-name">Buyer Account</div>
+      <div class="user-email" id="user-display-email"></div>
     </div>
-    <button class="logout-btn" onclick="window.location.href='signin.html'">
+    <button class="logout-btn" onclick="signOut()" title="Sign Out">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
     </button>
   </div>
@@ -282,7 +286,7 @@
     <div class="topbar"><div><h1>API Access</h1><div class="date">Connect your systems to licensed TORA data</div></div></div>
     <div class="api-box">
       <div class="api-label">Your API Key</div>
-      <div class="api-key">tora_live_sk_7f3a8b2c9d1e4f5a6b7c8d9e0f1a2b3c4d5e6f7a</div>
+      <div class="api-key" id="api-key-display" style="color: rgba(255,255,255,0.4); font-style: italic;">[API key will be issued when backend is connected — contact support@toraexchange.com]</div>
       <div class="api-label" style="margin-top: 16px;">Base URL</div>
       <div class="api-endpoint">https://api.toraexchange.com/v1</div>
     </div>
@@ -316,7 +320,7 @@
       <div class="card-body">
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
           <div><label style="display: block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 6px;">Company Name</label><input type="text" value="Vanguard Partners LLC" style="width: 100%; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'Inter', sans-serif; outline: none;"></div>
-          <div><label style="display: block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 6px;">Contact Email</label><input type="email" value="buyer@demo.com" style="width: 100%; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'Inter', sans-serif; outline: none;"></div>
+          <div><label style="display: block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 6px;">Contact Email</label><input type="email" id="account-email-field" value="" placeholder="your@company.com" style="width: 100%; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'Inter', sans-serif; outline: none;"></div>
           <div><label style="display: block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 6px;">Industry</label><input type="text" value="Private Equity / Insurance" style="width: 100%; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'Inter', sans-serif; outline: none;"></div>
           <div><label style="display: block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 6px;">Solana Wallet Address</label><input type="text" value="EmktnJnnKc8DAxju...FpjT" style="width: 100%; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'JetBrains Mono', monospace; outline: none;"></div>
         </div>
@@ -327,12 +331,50 @@
 </div>
 
 <script>
+  // ─── Authentication guard ─────────────────────────────────────
+  (function() {
+    try {
+      const raw = sessionStorage.getItem('tora_session');
+      if (!raw) { window.location.replace('signin.html'); return; }
+      const session = JSON.parse(raw);
+      if (!session || !session.token || !session.role || !session.expiry) {
+        sessionStorage.removeItem('tora_session');
+        window.location.replace('signin.html');
+        return;
+      }
+      if (Date.now() > session.expiry) {
+        sessionStorage.removeItem('tora_session');
+        window.location.replace('signin.html');
+        return;
+      }
+      if (session.role !== 'buyer') {
+        window.location.replace('signin.html');
+        return;
+      }
+      // Populate user info from session using textContent (XSS-safe)
+      const emailEl = document.getElementById('user-display-email');
+      const emailField = document.getElementById('account-email-field');
+      if (emailEl) emailEl.textContent = session.email || '';
+      if (emailField) emailField.value = session.email || '';
+    } catch(e) {
+      sessionStorage.removeItem('tora_session');
+      window.location.replace('signin.html');
+    }
+  })();
+
+  function signOut() {
+    sessionStorage.removeItem('tora_session');
+    window.location.replace('signin.html');
+  }
+
   function showPanel(name) {
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
     document.getElementById('panel-' + name).classList.add('active');
-    document.querySelector('[data-panel="' + name + '"]').classList.add('active');
+    const navItem = document.querySelector('[data-panel="' + name + '"]');
+    if (navItem) navItem.classList.add('active');
   }
+
   const d = new Date();
   const el = document.getElementById('current-date');
   if (el) el.textContent = d.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });

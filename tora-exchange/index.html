@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TORA Exchange — The Global Marketplace for Tokenized Operational Record Assets</title>
 <meta name="description" content="TORA Exchange is the world's first marketplace for Tokenized Operational Record Assets. Blockchain-verified. Privacy-preserved. Institutional-grade.">
+<!-- Security: Content Security Policy -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com; connect-src 'self' https://api.coingecko.com; frame-ancestors 'none';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 
 <!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230c1a32'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='700' fill='%239e7c2e'>TE</text></svg>">
@@ -1933,20 +1937,48 @@
   function buildTicker(data) {
     const track = document.getElementById('live-ticker');
     if (!track) return;
-    let html = '';
+    // Use safe DOM construction instead of innerHTML to prevent XSS (V-09 fix)
+    const frag = document.createDocumentFragment();
     // Build items twice for seamless scroll loop
     for (let loop = 0; loop < 2; loop++) {
       for (const [id, sym] of Object.entries(symbols)) {
         if (!data[id]) continue;
         const price = fmt(data[id].usd);
-        const chg = data[id].usd_24h_change || 0;
+        const chg = typeof data[id].usd_24h_change === 'number' ? data[id].usd_24h_change : 0;
         const sign = chg >= 0 ? '+' : '';
         const arrow = chg >= 0 ? '▲' : '▼';
         const cls = chg >= 0 ? 'ticker-up' : 'ticker-down';
-        html += `<span class="ticker-item"><span class="ticker-label">${sym}</span> <span class="ticker-value">${price} <span class="${cls}">${sign}${chg.toFixed(1)}% ${arrow}</span></span></span><span class="ticker-dot"></span>`;
+
+        // Build each element via DOM API — no innerHTML, no XSS risk
+        const item = document.createElement('span');
+        item.className = 'ticker-item';
+
+        const labelSpan = document.createElement('span');
+        labelSpan.className = 'ticker-label';
+        labelSpan.textContent = sym; // textContent is XSS-safe
+
+        const valueSpan = document.createElement('span');
+        valueSpan.className = 'ticker-value';
+        valueSpan.textContent = price + ' '; // safe numeric string from fmt()
+
+        const chgSpan = document.createElement('span');
+        chgSpan.className = cls;
+        chgSpan.textContent = sign + chg.toFixed(1) + '% ' + arrow; // safe — all numeric/controlled
+
+        valueSpan.appendChild(chgSpan);
+        item.appendChild(labelSpan);
+        item.appendChild(document.createTextNode(' '));
+        item.appendChild(valueSpan);
+        frag.appendChild(item);
+
+        const dot = document.createElement('span');
+        dot.className = 'ticker-dot';
+        frag.appendChild(dot);
       }
     }
-    track.innerHTML = html;
+    // Clear and repopulate safely
+    while (track.firstChild) track.removeChild(track.firstChild);
+    track.appendChild(frag);
   }
 
   async function fetchPrices() {

@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sign In — TORA Exchange</title>
 <meta name="description" content="Sign in to your TORA Exchange account. Access your supplier dashboard, buyer portal, or admin command center.">
+<!-- Security: Content Security Policy -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230c1a32'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='700' fill='%239e7c2e'>TE</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -260,7 +264,7 @@
 </div>
 
 <script>
-  // Tab switching
+  // ─── Tab switching ───────────────────────────────────────────
   let activeRole = 'supplier';
   document.querySelectorAll('.signin-tab').forEach(tab => {
     tab.addEventListener('click', () => {
@@ -270,30 +274,105 @@
     });
   });
 
-  // Demo credentials
-  const demoAccounts = {
-    supplier: { email: 'supplier@demo.com', password: 'demo2026', redirect: 'portal-supplier.html' },
-    buyer: { email: 'buyer@demo.com', password: 'demo2026', redirect: 'portal-buyer.html' },
-    admin: { email: 'admin@toraexchange.com', password: 'admin2026', redirect: 'portal-admin.html' }
+  // ─── Rate limiting ───────────────────────────────────────────
+  // Track failed attempts in sessionStorage (cleared on tab close)
+  function getAttempts() {
+    try { return JSON.parse(sessionStorage.getItem('tora_attempts') || '{"count":0,"resetAt":0}'); }
+    catch(e) { return {count: 0, resetAt: 0}; }
+  }
+  function recordAttempt() {
+    const now = Date.now();
+    let a = getAttempts();
+    if (now > a.resetAt) { a = {count: 0, resetAt: now + 15 * 60 * 1000}; } // 15-min window
+    a.count++;
+    sessionStorage.setItem('tora_attempts', JSON.stringify(a));
+    return a.count;
+  }
+  function isLocked() {
+    const a = getAttempts();
+    return Date.now() <= a.resetAt && a.count >= 5;
+  }
+
+  // ─── Credential verification (hashed – no plaintext in source) ──
+  // NOTE: These SHA-256 hashes are of the form sha256(email:password:salt).
+  // Credentials must be changed before production by updating these hashes.
+  // To generate a new hash: sha256(<email>:<password>:tora_exchange_2026_secure)
+  const SALT = 'tora_exchange_2026_secure';
+  const ACCOUNTS = {
+    supplier: {
+      hash: 'f745d2ebcdee93158d8a9c68137415a63d89180c46e9e5c5f4e5723a3e9e4d7f',
+      redirect: 'portal-supplier.html'
+    },
+    buyer: {
+      hash: 'b0128a58080b39f30027319269d2cd58036a60fb3cc6c832c55773fe732d0185',
+      redirect: 'portal-buyer.html'
+    },
+    admin: {
+      hash: 'c563772e3fbfa7fb45ba6442c94b8d16cd71b26f4a1d12e7caa1d0f9029c579b',
+      redirect: 'portal-admin.html'
+    }
   };
 
-  function handleSignIn(e) {
-    e.preventDefault();
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const msg = document.getElementById('form-message');
-    const demo = demoAccounts[activeRole];
+  async function sha256hex(str) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+  }
 
-    if (email === demo.email && password === demo.password) {
-      msg.className = 'form-message success';
-      msg.textContent = 'Signing in...';
-      msg.style.display = 'block';
-      localStorage.setItem('tora_role', activeRole);
-      localStorage.setItem('tora_user', email);
-      setTimeout(() => { window.location.href = demo.redirect; }, 800);
-    } else {
+  // ─── Session management ──────────────────────────────────────
+  function createSession(role, email) {
+    const token = crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2) + Date.now().toString(36);
+    const session = {
+      token,
+      role,
+      email,
+      expiry: Date.now() + 8 * 60 * 60 * 1000 // 8-hour session
+    };
+    sessionStorage.setItem('tora_session', JSON.stringify(session));
+    return session;
+  }
+
+  // ─── Sign-in handler ─────────────────────────────────────────
+  async function handleSignIn(e) {
+    e.preventDefault();
+    const msg = document.getElementById('form-message');
+
+    if (isLocked()) {
       msg.className = 'form-message error';
-      msg.textContent = 'Invalid email or password. Please try again.';
+      msg.textContent = 'Too many failed attempts. Please wait 15 minutes before trying again.';
+      msg.style.display = 'block';
+      return;
+    }
+
+    const email = document.getElementById('email').value.trim().toLowerCase();
+    const password = document.getElementById('password').value;
+    const account = ACCOUNTS[activeRole];
+
+    if (!account) {
+      msg.className = 'form-message error';
+      msg.textContent = 'Invalid role selected.';
+      msg.style.display = 'block';
+      return;
+    }
+
+    // Hash the submitted credentials (never compare plaintext)
+    const inputHash = await sha256hex(email + ':' + password + ':' + SALT);
+
+    if (inputHash === account.hash) {
+      // Clear failed attempts on success
+      sessionStorage.removeItem('tora_attempts');
+      // Create session token
+      createSession(activeRole, email);
+      msg.className = 'form-message success';
+      msg.textContent = 'Signing in…';
+      msg.style.display = 'block';
+      setTimeout(() => { window.location.replace(account.redirect); }, 800);
+    } else {
+      const attempts = recordAttempt();
+      const remaining = Math.max(0, 5 - attempts);
+      msg.className = 'form-message error';
+      msg.textContent = remaining > 0
+        ? `Invalid email or password. ${remaining} attempt${remaining !== 1 ? 's' : ''} remaining.`
+        : 'Account locked for 15 minutes due to too many failed attempts.';
       msg.style.display = 'block';
     }
   }

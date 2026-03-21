@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Supplier Dashboard — TORA Exchange</title>
+<!-- Security: Content Security Policy -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230c1a32'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='700' fill='%239e7c2e'>TE</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -234,12 +238,12 @@
   </nav>
 
   <div class="sidebar-footer">
-    <div class="avatar">AC</div>
+    <div class="avatar" id="user-avatar">SP</div>
     <div class="user-info">
-      <div class="user-name">Acme Construction</div>
-      <div class="user-email">supplier@demo.com</div>
+      <div class="user-name" id="user-display-name">Supplier Account</div>
+      <div class="user-email" id="user-display-email"></div>
     </div>
-    <button class="logout-btn" onclick="window.location.href='signin.html'" title="Sign Out">
+    <button class="logout-btn" onclick="signOut()" title="Sign Out">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
     </button>
   </div>
@@ -388,7 +392,7 @@
 
     <div class="wallet-box">
       <div class="wallet-label">Connected Wallet (Solana)</div>
-      <div class="wallet-address">9nqb1rUaP6UfXMCbA6mpwppBvPNmpRSiN4J2stG7yXSG</div>
+      <div class="wallet-address" id="supplier-wallet-address" style="color: rgba(255,255,255,0.4); font-style: italic;">[Connect your Solana wallet to view address]</div>
       <div class="wallet-balance">$24,800</div>
       <div class="wallet-usd">Total earned all time</div>
     </div>
@@ -465,10 +469,13 @@
               <input type="number" placeholder="e.g. 4500" style="width: 100%; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'Inter', sans-serif; outline: none;">
             </div>
           </div>
-          <div style="margin-bottom: 24px; background: var(--off-white); border: 2px dashed var(--border); border-radius: 12px; padding: 40px; text-align: center; cursor: pointer;">
+          <div style="margin-bottom: 24px; background: var(--off-white); border: 2px dashed var(--border); border-radius: 12px; padding: 40px; text-align: center; cursor: pointer;" onclick="document.getElementById('file-upload-input').click()">
             <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
             <p style="margin-top: 12px; font-size: 14px; color: var(--text-muted);">Drag files here or click to browse</p>
             <p style="font-size: 12px; color: var(--text-muted); opacity: 0.6; margin-top: 4px;">Supported: CSV, Excel, PDF, ZIP (max 500MB)</p>
+            <input type="file" id="file-upload-input" accept=".csv,.xls,.xlsx,.pdf,.zip" style="display: none;" onchange="validateUploadFile(this)">
+            <p id="file-error-msg" style="color: var(--red); font-size: 12px; margin-top: 8px; display: none;"></p>
+            <p id="file-ok-msg" style="color: var(--green); font-size: 12px; margin-top: 8px; display: none;"></p>
           </div>
           <button type="submit" class="btn-sm btn-navy" style="padding: 14px 32px; font-size: 15px;">Submit for Review</button>
         </form>
@@ -491,7 +498,7 @@
           </div>
           <div>
             <label style="display: block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 6px;">Contact Email</label>
-            <input type="email" value="supplier@demo.com" style="width: 100%; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'Inter', sans-serif; outline: none;">
+            <input type="email" id="supplier-email-field" value="" placeholder="your@company.com" style="width: 100%; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'Inter', sans-serif; outline: none;">
           </div>
           <div>
             <label style="display: block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 6px;">Industry</label>
@@ -499,7 +506,7 @@
           </div>
           <div>
             <label style="display: block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 6px;">Solana Wallet Address</label>
-            <input type="text" value="9nqb1rUaP6UfXMCb...G7yXSG" style="width: 100%; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'JetBrains Mono', monospace; outline: none;">
+            <input type="text" id="supplier-wallet-field" value="" placeholder="Connect your Solana wallet" style="width: 100%; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; font-family: 'JetBrains Mono', monospace; outline: none;">
           </div>
         </div>
         <button class="btn-sm btn-navy" style="margin-top: 24px; padding: 12px 28px; font-size: 14px;">Save Changes</button>
@@ -510,12 +517,86 @@
 </div>
 
 <script>
-  // Panel switching
+  // ─── Authentication guard ─────────────────────────────────────
+  (function() {
+    try {
+      const raw = sessionStorage.getItem('tora_session');
+      if (!raw) { window.location.replace('signin.html'); return; }
+      const session = JSON.parse(raw);
+      if (!session || !session.token || !session.role || !session.expiry) {
+        sessionStorage.removeItem('tora_session');
+        window.location.replace('signin.html');
+        return;
+      }
+      if (Date.now() > session.expiry) {
+        sessionStorage.removeItem('tora_session');
+        window.location.replace('signin.html');
+        return;
+      }
+      if (session.role !== 'supplier') {
+        window.location.replace('signin.html');
+        return;
+      }
+      // Populate user info from session using textContent (XSS-safe)
+      const emailEl = document.getElementById('user-display-email');
+      const emailField = document.getElementById('supplier-email-field');
+      if (emailEl) emailEl.textContent = session.email || '';
+      if (emailField) emailField.value = session.email || '';
+    } catch(e) {
+      sessionStorage.removeItem('tora_session');
+      window.location.replace('signin.html');
+    }
+  })();
+
+  function signOut() {
+    sessionStorage.removeItem('tora_session');
+    window.location.replace('signin.html');
+  }
+
+  // ─── File upload validation (V-23) ───────────────────────────
+  const ALLOWED_TYPES = {
+    'text/csv': true,
+    'application/vnd.ms-excel': true,
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': true,
+    'application/pdf': true,
+    'application/zip': true,
+    'application/x-zip-compressed': true
+  };
+  const ALLOWED_EXTENSIONS = /\.(csv|xls|xlsx|pdf|zip)$/i;
+  const MAX_SIZE_BYTES = 500 * 1024 * 1024; // 500 MB
+
+  function validateUploadFile(input) {
+    const errEl = document.getElementById('file-error-msg');
+    const okEl = document.getElementById('file-ok-msg');
+    errEl.style.display = 'none';
+    okEl.style.display = 'none';
+
+    if (!input.files || input.files.length === 0) return;
+    const file = input.files[0];
+
+    if (!ALLOWED_EXTENSIONS.test(file.name)) {
+      errEl.textContent = 'Invalid file type. Allowed: CSV, Excel (.xls/.xlsx), PDF, ZIP.';
+      errEl.style.display = 'block';
+      input.value = '';
+      return;
+    }
+    if (file.size > MAX_SIZE_BYTES) {
+      errEl.textContent = 'File too large. Maximum size is 500 MB.';
+      errEl.style.display = 'block';
+      input.value = '';
+      return;
+    }
+    okEl.textContent = 'File selected: ' + file.name + ' (' + (file.size / 1048576).toFixed(1) + ' MB)';
+    okEl.style.display = 'block';
+  }
+
+  // ─── Panel switching ──────────────────────────────────────────
   function showPanel(name) {
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
     document.getElementById('panel-' + name).classList.add('active');
-    document.querySelector('[data-panel="' + name + '"]').classList.add('active');
+    const navItem = document.querySelector('[data-panel="' + name + '"]');
+    if (navItem) navItem.classList.add('active');
   }
 
   // Set date

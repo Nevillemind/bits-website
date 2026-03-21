@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Join the Early Access List — TORA Exchange</title>
 <meta name="description" content="Be among the first institutions to license tokenized operational data assets. TORA Exchange launches Q2 2026.">
+<!-- Security: Content Security Policy -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://formsubmit.co; frame-ancestors 'none';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230c1a32'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='13' font-weight='700' fill='%239e7c2e'>TE</text></svg>">
 
@@ -613,24 +617,32 @@
           <h3>Reserve Your Spot</h3>
           <p class="form-subhead">Complete the form below. We'll reach out with early access details before our Q2 2026 launch.</p>
 
-          <form id="waitlist-form-el" onsubmit="submitWaitlist(event)">
+          <!-- V-16 fix: form now submits to FormSubmit.co (free form backend, no server required) -->
+          <!-- ACTION: Replace "contact@bitscorp.us" with the actual intake email before launch -->
+          <form id="waitlist-form-el" onsubmit="submitWaitlist(event)"
+                action="https://formsubmit.co/contact@bitscorp.us" method="POST">
+            <!-- FormSubmit configuration fields -->
+            <input type="hidden" name="_subject" value="TORA Exchange — New Waitlist Registration">
+            <input type="hidden" name="_next" value="waitlist.html?success=1">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
             <div class="form-row">
               <div class="form-group">
                 <label>Full Name *</label>
-                <input type="text" required placeholder="Jane Smith">
+                <input type="text" name="full_name" id="wl-name" required placeholder="Jane Smith" maxlength="100" autocomplete="name">
               </div>
               <div class="form-group">
                 <label>Company *</label>
-                <input type="text" required placeholder="Acme Capital LLC">
+                <input type="text" name="company" id="wl-company" required placeholder="Acme Capital LLC" maxlength="100" autocomplete="organization">
               </div>
             </div>
             <div class="form-group">
               <label>Business Email *</label>
-              <input type="email" required placeholder="jane@company.com">
+              <input type="email" name="email" id="wl-email" required placeholder="jane@company.com" maxlength="254" autocomplete="email">
             </div>
             <div class="form-group">
               <label>Your Role</label>
-              <select>
+              <select name="role">
                 <option value="">Select your role...</option>
                 <option value="buyer">Data Buyer — seeking licensed data access</option>
                 <option value="supplier">Data Supplier — want to list my records</option>
@@ -640,7 +652,7 @@
             </div>
             <div class="form-group">
               <label>Industry</label>
-              <select>
+              <select name="industry">
                 <option value="">Select your industry...</option>
                 <option>Financial Services / Insurance</option>
                 <option>Real Estate / Property Management</option>
@@ -656,6 +668,7 @@
                 <option>Other</option>
               </select>
             </div>
+            <div id="waitlist-error" style="color: #dc2626; font-size: 13px; margin-bottom: 12px; display: none;"></div>
             <button type="submit" class="btn-submit">Join the Early Access List →</button>
           </form>
           <p class="form-note">No spam, ever. We'll only contact you about TORA Exchange early access details.</p>
@@ -776,13 +789,51 @@
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
-  // Waitlist form submit
+  // Waitlist form — input validation before submission (V-16 + XSS prevention)
   function submitWaitlist(e) {
-    e.preventDefault();
-    document.getElementById('form-content').style.display = 'none';
-    document.getElementById('success-state').style.display = 'block';
+    const errEl = document.getElementById('waitlist-error');
+    errEl.style.display = 'none';
+
+    const name = (document.getElementById('wl-name').value || '').trim();
+    const company = (document.getElementById('wl-company').value || '').trim();
+    const email = (document.getElementById('wl-email').value || '').trim();
+
+    // Basic input validation
+    if (name.length < 2) {
+      e.preventDefault();
+      errEl.textContent = 'Please enter your full name.';
+      errEl.style.display = 'block';
+      return;
+    }
+    if (company.length < 2) {
+      e.preventDefault();
+      errEl.textContent = 'Please enter your company name.';
+      errEl.style.display = 'block';
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      e.preventDefault();
+      errEl.textContent = 'Please enter a valid email address.';
+      errEl.style.display = 'block';
+      return;
+    }
+
+    // If URL param indicates FormSubmit returned us here after success, show success state
+    if (new URLSearchParams(window.location.search).get('success') === '1') {
+      document.getElementById('form-content').style.display = 'none';
+      document.getElementById('success-state').style.display = 'block';
+    }
+    // Let the form submit naturally to FormSubmit.co backend
   }
   window.submitWaitlist = submitWaitlist;
+
+  // Show success state if redirected back with ?success=1
+  if (new URLSearchParams(window.location.search).get('success') === '1') {
+    const fc = document.getElementById('form-content');
+    const ss = document.getElementById('success-state');
+    if (fc) fc.style.display = 'none';
+    if (ss) ss.style.display = 'block';
+  }
 </script>
 </body>
 </html>

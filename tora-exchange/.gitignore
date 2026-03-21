@@ -1,0 +1,29 @@
+# Environment & Secrets
+.env
+.env.*
+*.env
+
+# Solana wallet files — NEVER commit private keys
+*wallet*.json
+*-wallet.json
+*.keypair.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Node
+node_modules/
+npm-debug.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/

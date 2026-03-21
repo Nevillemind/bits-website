@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact TORA Exchange — Get In Touch</title>
 <meta name="description" content="Questions about listing your data, licensing, partnerships, or enterprise access? We'd love to hear from you.">
+<!-- Security: Content Security Policy -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://formsubmit.co; frame-ancestors 'none';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -214,20 +218,28 @@
 
         <div class="form-section">
           <h3>Get In Touch</h3>
-          <form>
+          <!-- V-17 fix: form now submits via FormSubmit.co backend -->
+          <!-- ACTION: Replace "contact@bitscorp.us" with the actual contact email before launch -->
+          <form id="contact-form-el" onsubmit="submitContact(event)"
+                action="https://formsubmit.co/contact@bitscorp.us" method="POST">
+            <!-- FormSubmit configuration -->
+            <input type="hidden" name="_subject" value="TORA Exchange — Contact Form Inquiry">
+            <input type="hidden" name="_next" value="contact.html?sent=1">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
             <div class="form-group">
-              <label for="name">Your Name</label>
-              <input type="text" id="name" placeholder="John Doe" required>
+              <label for="contact-name">Your Name</label>
+              <input type="text" id="contact-name" name="name" placeholder="John Doe" required maxlength="100" autocomplete="name">
             </div>
 
             <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" placeholder="john@example.com" required>
+              <label for="contact-email">Email Address</label>
+              <input type="email" id="contact-email" name="email" placeholder="john@example.com" required maxlength="254" autocomplete="email">
             </div>
 
             <div class="form-group">
               <label for="interest">I'm Interested In</label>
-              <select id="interest">
+              <select id="interest" name="interest">
                 <option value="">Select an option...</option>
                 <option value="listing">Listing My Data on TORA Exchange</option>
                 <option value="licensing">Licensing Data from the Marketplace</option>
@@ -238,10 +250,12 @@
             </div>
 
             <div class="form-group">
-              <label for="message">Your Message</label>
-              <textarea id="message" placeholder="Tell us how we can help..." required></textarea>
+              <label for="contact-message">Your Message</label>
+              <textarea id="contact-message" name="message" placeholder="Tell us how we can help..." required maxlength="5000"></textarea>
             </div>
 
+            <div id="contact-error" style="color: #dc2626; font-size: 13px; margin-bottom: 12px; display: none;"></div>
+            <div id="contact-success" style="color: #0d8a50; font-size: 14px; font-weight: 600; margin-bottom: 12px; display: none;">✓ Your message has been sent! We'll get back to you soon.</div>
             <button type="submit" class="submit-btn">Send Message →</button>
           </form>
         </div>
@@ -303,5 +317,42 @@
       </div>
     </div>
   </footer>
+<script>
+  // V-17 fix: contact form validation + submission handler
+  function submitContact(e) {
+    const errEl = document.getElementById('contact-error');
+    errEl.style.display = 'none';
+
+    const name = (document.getElementById('contact-name').value || '').trim();
+    const email = (document.getElementById('contact-email').value || '').trim();
+    const message = (document.getElementById('contact-message').value || '').trim();
+
+    if (name.length < 2) {
+      e.preventDefault();
+      errEl.textContent = 'Please enter your name.';
+      errEl.style.display = 'block';
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      e.preventDefault();
+      errEl.textContent = 'Please enter a valid email address.';
+      errEl.style.display = 'block';
+      return;
+    }
+    if (message.length < 10) {
+      e.preventDefault();
+      errEl.textContent = 'Please enter a message (at least 10 characters).';
+      errEl.style.display = 'block';
+      return;
+    }
+    // Form passes validation — submit naturally to FormSubmit.co
+  }
+
+  // Show success message if redirected back with ?sent=1
+  if (new URLSearchParams(window.location.search).get('sent') === '1') {
+    const el = document.getElementById('contact-success');
+    if (el) el.style.display = 'block';
+  }
+</script>
 </body>
 </html>
