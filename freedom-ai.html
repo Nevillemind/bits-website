@@ -1,190 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="BITS Freedom AI — Your own AI assistant, running locally, trained on your business, answering to you alone.">
-  <title>BITS Freedom AI — Private AI Assistant for Business</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <style>
-    .detail-hero { padding: 8rem 0 4rem; text-align: center; background: linear-gradient(135deg, var(--bg-dark), var(--bg-medium)); }
-    .detail-hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.5rem; }
-    .detail-hero .tagline { color: var(--primary); font-size: 1.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; }
-    .detail-hero p { color: var(--text-muted); max-width: 700px; margin: 0 auto 2rem; font-size: 1.05rem; line-height: 1.8; }
-    .detail-section { padding: 4rem 0; }
-    .detail-section:nth-child(even) { background: var(--bg-medium); }
-    .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-    .use-case-card { background: var(--bg-dark); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 1.5rem; }
-    .use-case-card:hover { border-color: var(--primary); }
-    .use-case-card .icon { font-size: 2rem; margin-bottom: 0.75rem; }
-    .use-case-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
-    .use-case-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
-    .feature-block { display: flex; gap: 2rem; margin-bottom: 2.5rem; align-items: flex-start; }
-    .feature-block .icon { font-size: 2.5rem; flex-shrink: 0; }
-    .feature-block h3 { font-size: 1.15rem; margin-bottom: 0.25rem; }
-    .feature-block p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
-    .back-link { display: inline-block; margin-top: 2rem; color: var(--primary); font-weight: 600; }
-    .cta-section { text-align: center; padding: 4rem 0; }
-    .scenario { background: var(--bg-dark); border-left: 3px solid var(--primary); padding: 1.5rem; margin-bottom: 1.5rem; border-radius: 0 var(--radius-md) var(--radius-md) 0; }
-    .scenario h3 { font-size: 1rem; margin-bottom: 0.5rem; color: var(--primary); }
-    .scenario p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin: 0; }
-    @media (max-width: 600px) { .feature-block { flex-direction: column; gap: 0.5rem; } }
-  </style>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="description" content="BITS Freedom AI — Your own AI assistant, running locally, trained on your business, answering to you alone.">
+ <title>BITS Freedom AI — Private AI Assistant for Business</title>
+ <link rel="stylesheet" href="css/styles.css">
+ <style>
+ .detail-hero { padding: 8rem 0 4rem; text-align: center; background: linear-gradient(135deg, var(--bg-dark), var(--bg-medium)); }
+ .detail-hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.5rem; }
+ .detail-hero .tagline { color: var(--primary); font-size: 1.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; }
+ .detail-hero p { color: var(--text-muted); max-width: 700px; margin: 0 auto 2rem; font-size: 1.05rem; line-height: 1.8; }
+ .detail-section { padding: 4rem 0; }
+ .detail-section:nth-child(even) { background: var(--bg-medium); }
+ .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+ .use-case-card { background: var(--bg-dark); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 1.5rem; }
+ .use-case-card:hover { border-color: var(--primary); }
+ .use-case-card .icon { font-size: 2rem; margin-bottom: 0.75rem; }
+ .use-case-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+ .use-case-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
+ .feature-block { display: flex; gap: 2rem; margin-bottom: 2.5rem; align-items: flex-start; }
+ .feature-block .icon { font-size: 2.5rem; flex-shrink: 0; }
+ .feature-block h3 { font-size: 1.15rem; margin-bottom: 0.25rem; }
+ .feature-block p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+ .back-link { display: inline-block; margin-top: 2rem; color: var(--primary); font-weight: 600; }
+ .cta-section { text-align: center; padding: 4rem 0; }
+ .scenario { background: var(--bg-dark); border-left: 3px solid var(--primary); padding: 1.5rem; margin-bottom: 1.5rem; border-radius: 0 var(--radius-md) var(--radius-md) 0; }
+ .scenario h3 { font-size: 1rem; margin-bottom: 0.5rem; color: var(--primary); }
+ .scenario p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin: 0; }
+ @media (max-width: 600px) { .feature-block { flex-direction: column; gap: 0.5rem; } }
+</style>
 </head>
 <body>
-  <header id="header">
-    <nav class="navbar">
-      <div class="container nav-container">
-        <a href="index.html" class="logo"><img src="assets/BITS-logo.png" alt="BITS" style="height: 36px;"></a>
-        <ul class="nav-links" id="nav-links">
-          <li><a href="index.html" class="nav-link">← Back to BITS</a></li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+ <header id="header">
+ <nav class="navbar">
+ <div class="container nav-container">
+ <a href="index.html" class="logo"><img src="assets/BITS-logo.png" alt="BITS" style="height: 36px;"></a>
+ <ul class="nav-links" id="nav-links">
+ <li><a href="index.html" class="nav-link">← Back to BITS</a></li>
+</ul>
+</div>
+</nav>
+</header>
 
-  <main>
-    <section class="detail-hero">
-      <div class="container">
-        <p class="tagline">Your Private AI Assistant</p>
-        <h1>BITS Freedom AI</h1>
-        <p>A personal AI assistant that runs on your hardware, knows your business, and answers to you alone. Like having a brilliant co-worker who never sleeps, never forgets, and never shares your secrets with anyone.</p>
-      </div>
-    </section>
+ <main>
+ <section class="detail-hero">
+ <div class="container">
+ <p class="tagline">Your Private AI Assistant</p>
+ <h1>BITS Freedom AI</h1>
+ <p>A personal AI assistant that runs on your hardware, knows your business, and answers to you alone. Like having a brilliant co-worker who never sleeps, never forgets, and never shares your secrets with anyone.</p>
+</div>
+</section>
 
-    <section class="detail-section">
-      <div class="container">
-        <h2>What If Your AI Actually Knew Your Business?</h2>
-        <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
-          ChatGPT is impressive — but it doesn't know your business. It doesn't know your clients, your processes, your pricing, your history. Every conversation starts from zero. And everything you tell it goes to OpenAI's servers.
-        </p>
-        <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
-          BITS Freedom AI is different. It runs locally on your BITS Box. It's trained on your documents, your SOPs, your client data. It remembers conversations. It learns your preferences. And nothing — not a single word — ever leaves your building.
-        </p>
-        <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
-          This is AI that works <em>for you</em>, not for a platform.
-        </p>
-      </div>
-    </section>
+ <section class="detail-section">
+ <div class="container">
+ <h2>What If Your AI Actually Knew Your Business?</h2>
+ <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
+ ChatGPT is impressive — but it doesn't know your business. It doesn't know your clients, your processes, your pricing, your history. Every conversation starts from zero. And everything you tell it goes to OpenAI's servers.
+</p>
+ <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
+ BITS Freedom AI is different. It runs locally on your BITS Box. It's trained on your documents, your SOPs, your client data. It remembers conversations. It learns your preferences. And nothing — not a single word — ever leaves your building.
+</p>
+ <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
+ This is AI that works <em>for you</em>, not for a platform.
+</p>
+</div>
+</section>
 
-    <section class="detail-section">
-      <div class="container">
-        <h2>What Freedom AI Can Do</h2>
+ <section class="detail-section">
+ <div class="container">
+ <h2>What Freedom AI Can Do</h2>
 
-        <div class="feature-block">
-          <div class="icon">💬</div>
-          <div>
-            <h3>Conversational Business Intelligence</h3>
-            <p>Ask Freedom AI anything about your business in natural language. "What was our revenue from the Johnson project?" "When does the permit expire for 4th Street?" "Draft a follow-up email to the client we met last Tuesday." It knows because it has access to your data — locally.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>Conversational Business Intelligence</h3>
+ <p>Ask Freedom AI anything about your business in natural language. "What was our revenue from the Johnson project?" "When does the permit expire for 4th Street?" "Draft a follow-up email to the client we met last Tuesday." It knows because it has access to your data — locally.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">📝</div>
-          <div>
-            <h3>Document Generation &amp; Analysis</h3>
-            <p>Generate proposals, contracts, reports, emails, and summaries — all informed by your actual business data. Freedom AI doesn't write generic content; it writes content that sounds like your business because it knows your business.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>Document Generation &amp; Analysis</h3>
+ <p>Generate proposals, contracts, reports, emails, and summaries — all informed by your actual business data. Freedom AI doesn't write generic content; it writes content that sounds like your business because it knows your business.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">📊</div>
-          <div>
-            <h3>Operations &amp; Scheduling Intelligence</h3>
-            <p>Track projects, monitor deadlines, manage client communications, analyze financial data. Freedom AI acts as an intelligent operations layer that keeps your business organized and surfaces what needs attention before things slip.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>Operations &amp; Scheduling Intelligence</h3>
+ <p>Track projects, monitor deadlines, manage client communications, analyze financial data. Freedom AI acts as an intelligent operations layer that keeps your business organized and surfaces what needs attention before things slip.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">🔗</div>
-          <div>
-            <h3>Multi-Channel Communication</h3>
-            <p>Freedom AI connects to your existing channels — email, messaging, calendar — and serves as a central hub for business communications. Proactive alerts, automated follow-ups, and intelligent routing ensure nothing falls through the cracks.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>Multi-Channel Communication</h3>
+ <p>Freedom AI connects to your existing channels — email, messaging, calendar — and serves as a central hub for business communications. Proactive alerts, automated follow-ups, and intelligent routing ensure nothing falls through the cracks.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">🧠</div>
-          <div>
-            <h3>Continuous Learning</h3>
-            <p>Unlike cloud AI that forgets every conversation, Freedom AI maintains persistent memory. It learns your preferences, your terminology, your decision patterns. The longer you use it, the more valuable it becomes — and that value stays with you, not a platform.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>Continuous Learning</h3>
+ <p>Unlike cloud AI that forgets every conversation, Freedom AI maintains persistent memory. It learns your preferences, your terminology, your decision patterns. The longer you use it, the more valuable it becomes — and that value stays with you, not a platform.</p>
+</div>
+</div>
+</div>
+</section>
 
-    <section class="detail-section">
-      <div class="container">
-        <h2>A Day With Freedom AI</h2>
+ <section class="detail-section">
+ <div class="container">
+ <h2>A Day With Freedom AI</h2>
 
-        <div class="scenario">
-          <h3>7:00 AM — Morning Brief</h3>
-          <p>"Good morning. You have 3 meetings today — the 10 AM with James River Air was moved to 11. Two invoices are overdue from last week. Weather looks clear through Thursday, good for the outdoor jobs. Here's what I'd prioritize today..."</p>
-        </div>
+ <div class="scenario">
+ <h3>7:00 AM — Morning Brief</h3>
+ <p>"Good morning. You have 3 meetings today — the 10 AM with James River Air was moved to 11. Two invoices are overdue from last week. Weather looks clear through Thursday, good for the outdoor jobs. Here's what I'd prioritize today..."</p>
+</div>
 
-        <div class="scenario">
-          <h3>10:30 AM — Quick Research</h3>
-          <p>"What's the compliance requirement for the medical facility project?" — Freedom AI pulls from your document library and gives you the specific answer in seconds, citing the source document.</p>
-        </div>
+ <div class="scenario">
+ <h3>10:30 AM — Quick Research</h3>
+ <p>"What's the compliance requirement for the medical facility project?" — Freedom AI pulls from your document library and gives you the specific answer in seconds, citing the source document.</p>
+</div>
 
-        <div class="scenario">
-          <h3>2:00 PM — Document Draft</h3>
-          <p>"Draft a proposal for the warehouse inventory system using our standard template and last quarter's pricing." — Freedom AI generates a complete, branded proposal informed by your actual pricing data.</p>
-        </div>
+ <div class="scenario">
+ <h3>2:00 PM — Document Draft</h3>
+ <p>"Draft a proposal for the warehouse inventory system using our standard template and last quarter's pricing." — Freedom AI generates a complete, branded proposal informed by your actual pricing data.</p>
+</div>
 
-        <div class="scenario">
-          <h3>5:00 PM — End of Day</h3>
-          <p>"Here's your day summary: 3 client calls completed, 2 proposals sent, the permit application was submitted. Tomorrow's priority: follow up with the retail client and prep for the Wednesday team meeting."</p>
-        </div>
-      </div>
-    </section>
+ <div class="scenario">
+ <h3>5:00 PM — End of Day</h3>
+ <p>"Here's your day summary: 3 client calls completed, 2 proposals sent, the permit application was submitted. Tomorrow's priority: follow up with the retail client and prep for the Wednesday team meeting."</p>
+</div>
+</div>
+</section>
 
-    <section class="detail-section">
-      <div class="container">
-        <h2>Who It's For</h2>
-        <div class="use-cases-grid">
-          <div class="use-case-card">
-            <div class="icon">👤</div>
-            <h3>Business Owners</h3>
-            <p>An AI chief of staff that manages the details so you can focus on strategy. Tracks everything, forgets nothing, and gives you back hours every week.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">👥</div>
-            <h3>Small Teams</h3>
-            <p>Give a 5-person team the operational intelligence of a 50-person company. Freedom AI handles research, documentation, scheduling, and communications — freeing your people to do what they do best.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">🏢</div>
-            <h3>Professional Services</h3>
-            <p>Lawyers, consultants, accountants — anyone handling sensitive client data who needs AI assistance but can't risk that data leaving their control.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">🚀</div>
-            <h3>Growing Companies</h3>
-            <p>Scaling without hiring for every function. Freedom AI fills operational gaps and gives growing companies infrastructure that scales with them.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+ <section class="detail-section">
+ <div class="container">
+ <h2>Who It's For</h2>
+ <div class="use-cases-grid">
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Business Owners</h3>
+ <p>An AI chief of staff that manages the details so you can focus on strategy. Tracks everything, forgets nothing, and gives you back hours every week.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Small Teams</h3>
+ <p>Give a 5-person team the operational intelligence of a 50-person company. Freedom AI handles research, documentation, scheduling, and communications — freeing your people to do what they do best.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Professional Services</h3>
+ <p>Lawyers, consultants, accountants — anyone handling sensitive client data who needs AI assistance but can't risk that data leaving their control.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Growing Companies</h3>
+ <p>Scaling without hiring for every function. Freedom AI fills operational gaps and gives growing companies infrastructure that scales with them.</p>
+</div>
+</div>
+</div>
+</section>
 
-    <section class="cta-section">
-      <div class="container">
-        <h2>AI That Works For You — Not For a Platform</h2>
-        <p style="color: var(--text-muted); margin-bottom: 2rem;">Let's talk about putting a private AI assistant in your business.</p>
-        <a href="https://calendly.com/bitscorpus" target="_blank" class="cta-button">Book a Consultation →</a>
-        <br>
-        <a href="index.html" class="back-link">← Back to BITS</a>
-      </div>
-    </section>
-  </main>
+ <section class="cta-section">
+ <div class="container">
+ <h2>AI That Works For You — Not For a Platform</h2>
+ <p style="color: var(--text-muted); margin-bottom: 2rem;">Let's talk about putting a private AI assistant in your business.</p>
+ <a href="https://calendly.com/bitscorpus" target="_blank" class="cta-button">Book a Consultation →</a>
+ <br>
+ <a href="index.html" class="back-link">← Back to BITS</a>
+</div>
+</section>
+</main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-bottom">
-        <p class="copyright">&copy; 2026 BITS — Blockchain Integrative Technology Solutions. All rights reserved.</p>
-        <p style="color: var(--text-dim); font-size: 0.75rem; margin-top: 0.5rem;">Privacy-First &bull; Data-Sovereign &bull; Platform-Agnostic</p>
-      </div>
-    </div>
-  </footer>
+ <footer class="site-footer">
+ <div class="container">
+ <div class="footer-bottom">
+ <p class="copyright">&copy; 2026 BITS — Blockchain Integrative Technology Solutions. All rights reserved.</p>
+ <p style="color: var(--text-dim); font-size: 0.75rem; margin-top: 0.5rem;">Privacy-First &bull; Data-Sovereign &bull; Platform-Agnostic</p>
+</div>
+</div>
+</footer>
 </body>
 </html>

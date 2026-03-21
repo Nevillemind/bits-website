@@ -1,174 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="BITS DataVault — Transform dormant business records into AI-searchable, blockchain-authenticated digital assets.">
-  <title>BITS DataVault — Document Intelligence &amp; Data Activation</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <style>
-    .detail-hero { padding: 8rem 0 4rem; text-align: center; background: linear-gradient(135deg, var(--bg-dark), var(--bg-medium)); }
-    .detail-hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.5rem; }
-    .detail-hero .tagline { color: var(--primary); font-size: 1.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; }
-    .detail-hero p { color: var(--text-muted); max-width: 700px; margin: 0 auto 2rem; font-size: 1.05rem; line-height: 1.8; }
-    .detail-section { padding: 4rem 0; }
-    .detail-section:nth-child(even) { background: var(--bg-medium); }
-    .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-    .use-case-card { background: var(--bg-dark); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 1.5rem; }
-    .use-case-card:hover { border-color: var(--primary); }
-    .use-case-card .icon { font-size: 2rem; margin-bottom: 0.75rem; }
-    .use-case-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
-    .use-case-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
-    .feature-block { display: flex; gap: 2rem; margin-bottom: 2.5rem; align-items: flex-start; }
-    .feature-block .icon { font-size: 2.5rem; flex-shrink: 0; }
-    .feature-block h3 { font-size: 1.15rem; margin-bottom: 0.25rem; }
-    .feature-block p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
-    .patent-notice { background: rgba(233, 69, 96, 0.1); border: 1px solid var(--primary); border-radius: var(--radius-md); padding: 1.5rem; margin-top: 3rem; text-align: center; }
-    .patent-notice p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
-    .back-link { display: inline-block; margin-top: 2rem; color: var(--primary); font-weight: 600; }
-    .cta-section { text-align: center; padding: 4rem 0; }
-    .value-stat { text-align: center; padding: 1.5rem; }
-    .value-stat .number { font-size: 2.5rem; font-weight: 800; color: var(--primary); }
-    .value-stat .label { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
-    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 2rem 0; }
-    @media (max-width: 600px) { .feature-block { flex-direction: column; gap: 0.5rem; } }
-  </style>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="description" content="BITS DataVault — Transform dormant business records into AI-searchable, blockchain-authenticated digital assets.">
+ <title>BITS DataVault — Document Intelligence &amp; Data Activation</title>
+ <link rel="stylesheet" href="css/styles.css">
+ <style>
+ .detail-hero { padding: 8rem 0 4rem; text-align: center; background: linear-gradient(135deg, var(--bg-dark), var(--bg-medium)); }
+ .detail-hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.5rem; }
+ .detail-hero .tagline { color: var(--primary); font-size: 1.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; }
+ .detail-hero p { color: var(--text-muted); max-width: 700px; margin: 0 auto 2rem; font-size: 1.05rem; line-height: 1.8; }
+ .detail-section { padding: 4rem 0; }
+ .detail-section:nth-child(even) { background: var(--bg-medium); }
+ .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+ .use-case-card { background: var(--bg-dark); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 1.5rem; }
+ .use-case-card:hover { border-color: var(--primary); }
+ .use-case-card .icon { font-size: 2rem; margin-bottom: 0.75rem; }
+ .use-case-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+ .use-case-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
+ .feature-block { display: flex; gap: 2rem; margin-bottom: 2.5rem; align-items: flex-start; }
+ .feature-block .icon { font-size: 2.5rem; flex-shrink: 0; }
+ .feature-block h3 { font-size: 1.15rem; margin-bottom: 0.25rem; }
+ .feature-block p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+ .patent-notice { background: rgba(233, 69, 96, 0.1); border: 1px solid var(--primary); border-radius: var(--radius-md); padding: 1.5rem; margin-top: 3rem; text-align: center; }
+ .patent-notice p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+ .back-link { display: inline-block; margin-top: 2rem; color: var(--primary); font-weight: 600; }
+ .cta-section { text-align: center; padding: 4rem 0; }
+ .value-stat { text-align: center; padding: 1.5rem; }
+ .value-stat .number { font-size: 2.5rem; font-weight: 800; color: var(--primary); }
+ .value-stat .label { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+ .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 2rem 0; }
+ @media (max-width: 600px) { .feature-block { flex-direction: column; gap: 0.5rem; } }
+</style>
 </head>
 <body>
-  <header id="header">
-    <nav class="navbar">
-      <div class="container nav-container">
-        <a href="index.html" class="logo"><img src="assets/BITS-logo.png" alt="BITS" style="height: 36px;"></a>
-        <ul class="nav-links" id="nav-links">
-          <li><a href="index.html" class="nav-link">← Back to BITS</a></li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+ <header id="header">
+ <nav class="navbar">
+ <div class="container nav-container">
+ <a href="index.html" class="logo"><img src="assets/BITS-logo.png" alt="BITS" style="height: 36px;"></a>
+ <ul class="nav-links" id="nav-links">
+ <li><a href="index.html" class="nav-link">← Back to BITS</a></li>
+</ul>
+</div>
+</nav>
+</header>
 
-  <main>
-    <section class="detail-hero">
-      <div class="container">
-        <p class="tagline">Document Intelligence &amp; Data Activation</p>
-        <h1>BITS DataVault</h1>
-        <p>Transform decades of dormant business records into AI-searchable, blockchain-authenticated digital assets. Your history isn't dead weight — it's untapped value waiting to be activated.</p>
-        <span style="display: inline-block; background: var(--primary); color: #fff; padding: 0.35rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px;">PATENT PENDING</span>
-      </div>
-    </section>
+ <main>
+ <section class="detail-hero">
+ <div class="container">
+ <p class="tagline">Document Intelligence &amp; Data Activation</p>
+ <h1>BITS DataVault</h1>
+ <p>Transform decades of dormant business records into AI-searchable, blockchain-authenticated digital assets. Your history isn't dead weight — it's untapped value waiting to be activated.</p>
+ <span style="display: inline-block; background: var(--primary); color: #fff; padding: 0.35rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px;">PATENT PENDING</span>
+</div>
+</section>
 
-    <section class="detail-section">
-      <div class="container">
-        <h2>The Hidden Problem</h2>
-        <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
-          Every established business sits on years — sometimes decades — of records. Invoices, contracts, permits, correspondence, plans, certifications. Filing cabinets full. Boxes in storage. Hard drives collecting dust.
-        </p>
-        <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
-          This isn't just paper. It's institutional knowledge. Client relationships. Compliance history. Operational intelligence. But right now, it's invisible to your business — unsearchable, unverifiable, and depreciating every day.
-        </p>
-        <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
-          BITS DataVault wakes it up. We digitize your records, index them with AI so you can search them by meaning (not just keywords), authenticate them on blockchain so their integrity is provable, and transform them into a data asset with real, measurable value.
-        </p>
-      </div>
-    </section>
+ <section class="detail-section">
+ <div class="container">
+ <h2>The Hidden Problem</h2>
+ <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
+ Every established business sits on years — sometimes decades — of records. Invoices, contracts, permits, correspondence, plans, certifications. Filing cabinets full. Boxes in storage. Hard drives collecting dust.
+</p>
+ <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
+ This isn't just paper. It's institutional knowledge. Client relationships. Compliance history. Operational intelligence. But right now, it's invisible to your business — unsearchable, unverifiable, and depreciating every day.
+</p>
+ <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
+ BITS DataVault wakes it up. We digitize your records, index them with AI so you can search them by meaning (not just keywords), authenticate them on blockchain so their integrity is provable, and transform them into a data asset with real, measurable value.
+</p>
+</div>
+</section>
 
-    <section class="detail-section">
-      <div class="container">
-        <h2>How It Works</h2>
+ <section class="detail-section">
+ <div class="container">
+ <h2>How It Works</h2>
 
-        <div class="feature-block">
-          <div class="icon">📄</div>
-          <div>
-            <h3>Digitize</h3>
-            <p>Your physical records are scanned and processed with professional-grade OCR — converting paper documents into searchable digital text with high accuracy, preserving the original formatting and structure.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>Digitize</h3>
+ <p>Your physical records are scanned and processed with professional-grade OCR — converting paper documents into searchable digital text with high accuracy, preserving the original formatting and structure.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">🧠</div>
-          <div>
-            <h3>AI Semantic Indexing</h3>
-            <p>Our proprietary local AI engine reads and understands your documents — not just the words, but the meaning. Search for "that contract we signed with the HVAC company in 2019" and find it instantly, even if those exact words don't appear in the document.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>AI Semantic Indexing</h3>
+ <p>Our proprietary local AI engine reads and understands your documents — not just the words, but the meaning. Search for "that contract we signed with the HVAC company in 2019" and find it instantly, even if those exact words don't appear in the document.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">⛓️</div>
-          <div>
-            <h3>Blockchain Authentication</h3>
-            <p>Every document receives a cryptographic fingerprint anchored on blockchain. This creates immutable proof of existence, integrity, and timestamp — verifiable by anyone, tamper-evident forever. If a document is altered, the system detects it.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>Blockchain Authentication</h3>
+ <p>Every document receives a cryptographic fingerprint anchored on blockchain. This creates immutable proof of existence, integrity, and timestamp — verifiable by anyone, tamper-evident forever. If a document is altered, the system detects it.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">💎</div>
-          <div>
-            <h3>Data Asset Creation</h3>
-            <p>Your digitized, indexed, authenticated records become a formal data asset — with documented value, provable integrity, and embedded smart contract protections. This asset has real worth in business valuations, audits, compliance reviews, and potential transactions.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>Data Asset Creation</h3>
+ <p>Your digitized, indexed, authenticated records become a formal data asset — with documented value, provable integrity, and embedded smart contract protections. This asset has real worth in business valuations, audits, compliance reviews, and potential transactions.</p>
+</div>
+</div>
+</div>
+</section>
 
-    <section class="detail-section">
-      <div class="container">
-        <h2>Who Benefits</h2>
-        <div class="use-cases-grid">
-          <div class="use-case-card">
-            <div class="icon">🏗️</div>
-            <h3>Contractors &amp; Trades</h3>
-            <p>Decades of permits, inspections, contracts, and project records — searchable in seconds. Prove compliance history instantly. Increase business valuation with documented, authenticated records.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">🏥</div>
-            <h3>Healthcare Providers</h3>
-            <p>Patient records, compliance documentation, certifications, and procedural history — digitized, HIPAA-compliant, searchable, and blockchain-verified for audit readiness.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">⚖️</div>
-            <h3>Legal &amp; Professional Services</h3>
-            <p>Case files, contracts, correspondence, and precedent research — indexed by meaning, instantly retrievable, and authenticated for evidentiary integrity.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">🏭</div>
-            <h3>Manufacturing &amp; Industrial</h3>
-            <p>Equipment manuals, maintenance logs, safety certifications, quality records — searchable across decades of operations. Prove compliance and operational history on demand.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">🏛️</div>
-            <h3>Government &amp; Municipal</h3>
-            <p>Public records, permits, zoning documents, historical archives — digitized, searchable, and blockchain-authenticated for transparency and public trust.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">🏢</div>
-            <h3>Any Established Business</h3>
-            <p>If you've been in business for 10+ years, you're sitting on records that have untapped value. DataVault turns filing cabinets into a competitive advantage.</p>
-          </div>
-        </div>
+ <section class="detail-section">
+ <div class="container">
+ <h2>Who Benefits</h2>
+ <div class="use-cases-grid">
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Contractors &amp; Trades</h3>
+ <p>Decades of permits, inspections, contracts, and project records — searchable in seconds. Prove compliance history instantly. Increase business valuation with documented, authenticated records.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Healthcare Providers</h3>
+ <p>Patient records, compliance documentation, certifications, and procedural history — digitized, HIPAA-compliant, searchable, and blockchain-verified for audit readiness.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Legal &amp; Professional Services</h3>
+ <p>Case files, contracts, correspondence, and precedent research — indexed by meaning, instantly retrievable, and authenticated for evidentiary integrity.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Manufacturing &amp; Industrial</h3>
+ <p>Equipment manuals, maintenance logs, safety certifications, quality records — searchable across decades of operations. Prove compliance and operational history on demand.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Government &amp; Municipal</h3>
+ <p>Public records, permits, zoning documents, historical archives — digitized, searchable, and blockchain-authenticated for transparency and public trust.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Any Established Business</h3>
+ <p>If you've been in business for 10+ years, you're sitting on records that have untapped value. DataVault turns filing cabinets into a competitive advantage.</p>
+</div>
+</div>
 
-        <div class="patent-notice">
-          <p><strong>⚠️ Patent Pending</strong> — BITS DataVault technology is protected under provisional patent application filed with the United States Patent and Trademark Office. The proprietary document digitization pipeline, AI semantic indexing engine, blockchain authentication system, tokenized data asset creation framework, and smart contract exit participation mechanism are the intellectual property of Blockchain Integrative Technology Solutions (BITS). All rights reserved.</p>
-        </div>
-      </div>
-    </section>
+ <div class="patent-notice">
+ <p><strong> Patent Pending</strong> — BITS DataVault technology is protected under provisional patent application filed with the United States Patent and Trademark Office. The proprietary document digitization pipeline, AI semantic indexing engine, blockchain authentication system, tokenized data asset creation framework, and smart contract exit participation mechanism are the intellectual property of Blockchain Integrative Technology Solutions (BITS). All rights reserved.</p>
+</div>
+</div>
+</section>
 
-    <section class="cta-section">
-      <div class="container">
-        <h2>Your Records Are Worth More Than You Think</h2>
-        <p style="color: var(--text-muted); margin-bottom: 2rem;">Let's talk about activating your business's dormant data.</p>
-        <a href="https://calendly.com/bitscorpus" target="_blank" class="cta-button">Book a Consultation →</a>
-        <br>
-        <a href="index.html" class="back-link">← Back to BITS</a>
-      </div>
-    </section>
-  </main>
+ <section class="cta-section">
+ <div class="container">
+ <h2>Your Records Are Worth More Than You Think</h2>
+ <p style="color: var(--text-muted); margin-bottom: 2rem;">Let's talk about activating your business's dormant data.</p>
+ <a href="https://calendly.com/bitscorpus" target="_blank" class="cta-button">Book a Consultation →</a>
+ <br>
+ <a href="index.html" class="back-link">← Back to BITS</a>
+</div>
+</section>
+</main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-bottom">
-        <p class="copyright">&copy; 2026 BITS — Blockchain Integrative Technology Solutions. All rights reserved.</p>
-        <p style="color: var(--text-dim); font-size: 0.75rem; margin-top: 0.5rem;">Privacy-First &bull; Data-Sovereign &bull; Platform-Agnostic</p>
-      </div>
-    </div>
-  </footer>
+ <footer class="site-footer">
+ <div class="container">
+ <div class="footer-bottom">
+ <p class="copyright">&copy; 2026 BITS — Blockchain Integrative Technology Solutions. All rights reserved.</p>
+ <p style="color: var(--text-dim); font-size: 0.75rem; margin-top: 0.5rem;">Privacy-First &bull; Data-Sovereign &bull; Platform-Agnostic</p>
+</div>
+</div>
+</footer>
 </body>
 </html>

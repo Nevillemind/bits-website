@@ -1,153 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="BITS Education & Certification — Blockchain and AI certification programs for businesses and professionals.">
-  <title>BITS Education &amp; Certification — Blockchain &amp; AI Training</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <style>
-    .detail-hero { padding: 8rem 0 4rem; text-align: center; background: linear-gradient(135deg, var(--bg-dark), var(--bg-medium)); }
-    .detail-hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.5rem; }
-    .detail-hero .tagline { color: var(--primary); font-size: 1.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; }
-    .detail-hero p { color: var(--text-muted); max-width: 700px; margin: 0 auto 2rem; font-size: 1.05rem; line-height: 1.8; }
-    .detail-section { padding: 4rem 0; }
-    .detail-section:nth-child(even) { background: var(--bg-medium); }
-    .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-    .use-case-card { background: var(--bg-dark); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 1.5rem; }
-    .use-case-card:hover { border-color: var(--primary); }
-    .use-case-card .icon { font-size: 2rem; margin-bottom: 0.75rem; }
-    .use-case-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
-    .use-case-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
-    .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
-    .cert-card { background: var(--bg-dark); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 1.5rem; text-align: center; }
-    .cert-card:hover { border-color: var(--primary); }
-    .cert-card .cert-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
-    .cert-card h3 { font-size: 1rem; margin-bottom: 0.5rem; }
-    .cert-card p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; }
-    .back-link { display: inline-block; margin-top: 2rem; color: var(--primary); font-weight: 600; }
-    .cta-section { text-align: center; padding: 4rem 0; }
-    .and-more { text-align: center; margin-top: 1.5rem; color: var(--text-muted); font-size: 1.1rem; font-style: italic; }
-  </style>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="description" content="BITS Education & Certification — Blockchain and AI certification programs for businesses and professionals.">
+ <title>BITS Education &amp; Certification — Blockchain &amp; AI Training</title>
+ <link rel="stylesheet" href="css/styles.css">
+ <style>
+ .detail-hero { padding: 8rem 0 4rem; text-align: center; background: linear-gradient(135deg, var(--bg-dark), var(--bg-medium)); }
+ .detail-hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.5rem; }
+ .detail-hero .tagline { color: var(--primary); font-size: 1.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; }
+ .detail-hero p { color: var(--text-muted); max-width: 700px; margin: 0 auto 2rem; font-size: 1.05rem; line-height: 1.8; }
+ .detail-section { padding: 4rem 0; }
+ .detail-section:nth-child(even) { background: var(--bg-medium); }
+ .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+ .use-case-card { background: var(--bg-dark); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 1.5rem; }
+ .use-case-card:hover { border-color: var(--primary); }
+ .use-case-card .icon { font-size: 2rem; margin-bottom: 0.75rem; }
+ .use-case-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+ .use-case-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
+ .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+ .cert-card { background: var(--bg-dark); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 1.5rem; text-align: center; }
+ .cert-card:hover { border-color: var(--primary); }
+ .cert-card .cert-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+ .cert-card h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+ .cert-card p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; }
+ .back-link { display: inline-block; margin-top: 2rem; color: var(--primary); font-weight: 600; }
+ .cta-section { text-align: center; padding: 4rem 0; }
+ .and-more { text-align: center; margin-top: 1.5rem; color: var(--text-muted); font-size: 1.1rem; font-style: italic; }
+</style>
 </head>
 <body>
-  <header id="header">
-    <nav class="navbar">
-      <div class="container nav-container">
-        <a href="index.html" class="logo"><img src="assets/BITS-logo.png" alt="BITS" style="height: 36px;"></a>
-        <ul class="nav-links" id="nav-links">
-          <li><a href="index.html" class="nav-link">← Back to BITS</a></li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+ <header id="header">
+ <nav class="navbar">
+ <div class="container nav-container">
+ <a href="index.html" class="logo"><img src="assets/BITS-logo.png" alt="BITS" style="height: 36px;"></a>
+ <ul class="nav-links" id="nav-links">
+ <li><a href="index.html" class="nav-link">← Back to BITS</a></li>
+</ul>
+</div>
+</nav>
+</header>
 
-  <main>
-    <section class="detail-hero">
-      <div class="container">
-        <p class="tagline">Blockchain &amp; AI Training for Your Team</p>
-        <h1>BITS Education &amp; Certification</h1>
-        <p>Industry-recognized blockchain and AI certification programs for businesses and professionals. Equip your team with the knowledge and credentials to navigate the technology transforming every industry.</p>
-      </div>
-    </section>
+ <main>
+ <section class="detail-hero">
+ <div class="container">
+ <p class="tagline">Blockchain &amp; AI Training for Your Team</p>
+ <h1>BITS Education &amp; Certification</h1>
+ <p>Industry-recognized blockchain and AI certification programs for businesses and professionals. Equip your team with the knowledge and credentials to navigate the technology transforming every industry.</p>
+</div>
+</section>
 
-    <section class="detail-section">
-      <div class="container">
-        <h2>Why Certification Matters</h2>
-        <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
-          Blockchain and AI are reshaping how businesses operate — from payments and supply chain to customer service and data management. The companies that invest in their team's understanding of these technologies will lead their industries. The ones that don't will be playing catch-up.
-        </p>
-        <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
-          BITS connects your business with industry-recognized certification programs that give your team the knowledge they need — whether they're business leaders looking to understand the big picture or team members looking to develop new skills.
-        </p>
-      </div>
-    </section>
+ <section class="detail-section">
+ <div class="container">
+ <h2>Why Certification Matters</h2>
+ <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
+ Blockchain and AI are reshaping how businesses operate — from payments and supply chain to customer service and data management. The companies that invest in their team's understanding of these technologies will lead their industries. The ones that don't will be playing catch-up.
+</p>
+ <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
+ BITS connects your business with industry-recognized certification programs that give your team the knowledge they need — whether they're business leaders looking to understand the big picture or team members looking to develop new skills.
+</p>
+</div>
+</section>
 
-    <section class="detail-section">
-      <div class="container">
-        <h2>Available Certifications</h2>
-        <div class="cert-grid">
-          <div class="cert-card">
-            <div class="cert-icon">⛓️</div>
-            <h3>Certified Blockchain Expert™</h3>
-            <p>Comprehensive understanding of blockchain technology, how it works, and its applications across industries. Ideal for business professionals and decision-makers.</p>
-          </div>
-          <div class="cert-card">
-            <div class="cert-icon">🎓</div>
-            <h3>Blockchain for Business (Online Degree™)</h3>
-            <p>A deeper dive into how blockchain applies to business operations — from supply chain and finance to identity management and smart contracts.</p>
-          </div>
-          <div class="cert-card">
-            <div class="cert-icon">🤖</div>
-            <h3>Certified Prompt Engineer™</h3>
-            <p>Master the art of working with AI models effectively. Learn to craft high-quality prompts and get the most out of AI tools for your business operations.</p>
-          </div>
-          <div class="cert-card">
-            <div class="cert-icon">🌐</div>
-            <h3>Certified Web3 &amp; DAO Expert™</h3>
-            <p>Understand the decentralized web, decentralized autonomous organizations, and how Web3 technologies are creating new business models and governance structures.</p>
-          </div>
-          <div class="cert-card">
-            <div class="cert-icon">📈</div>
-            <h3>SEO &amp; AI-Powered Marketing</h3>
-            <p>For marketing professionals and business owners looking to leverage AI for organic growth, content optimization, and modern digital marketing strategies.</p>
-          </div>
-          <div class="cert-card">
-            <div class="cert-icon">👨‍💻</div>
-            <h3>Certified Blockchain Developer™</h3>
-            <p>For technical team members who want to build on blockchain. Deep dive into smart contracts, dApps, and blockchain development frameworks.</p>
-          </div>
-        </div>
-        <p class="and-more">...and many more certifications available across blockchain, AI, Web3, and emerging technologies.</p>
-      </div>
-    </section>
+ <section class="detail-section">
+ <div class="container">
+ <h2>Available Certifications</h2>
+ <div class="cert-grid">
+ <div class="cert-card">
+ <div class="cert-icon"></div>
+ <h3>Certified Blockchain Expert™</h3>
+ <p>Comprehensive understanding of blockchain technology, how it works, and its applications across industries. Ideal for business professionals and decision-makers.</p>
+</div>
+ <div class="cert-card">
+ <div class="cert-icon"></div>
+ <h3>Blockchain for Business (Online Degree™)</h3>
+ <p>A deeper dive into how blockchain applies to business operations — from supply chain and finance to identity management and smart contracts.</p>
+</div>
+ <div class="cert-card">
+ <div class="cert-icon"></div>
+ <h3>Certified Prompt Engineer™</h3>
+ <p>Master the art of working with AI models effectively. Learn to craft high-quality prompts and get the most out of AI tools for your business operations.</p>
+</div>
+ <div class="cert-card">
+ <div class="cert-icon"></div>
+ <h3>Certified Web3 &amp; DAO Expert™</h3>
+ <p>Understand the decentralized web, decentralized autonomous organizations, and how Web3 technologies are creating new business models and governance structures.</p>
+</div>
+ <div class="cert-card">
+ <div class="cert-icon"></div>
+ <h3>SEO &amp; AI-Powered Marketing</h3>
+ <p>For marketing professionals and business owners looking to leverage AI for organic growth, content optimization, and modern digital marketing strategies.</p>
+</div>
+ <div class="cert-card">
+ <div class="cert-icon"></div>
+ <h3>Certified Blockchain Developer™</h3>
+ <p>For technical team members who want to build on blockchain. Deep dive into smart contracts, dApps, and blockchain development frameworks.</p>
+</div>
+</div>
+ <p class="and-more">...and many more certifications available across blockchain, AI, Web3, and emerging technologies.</p>
+</div>
+</section>
 
-    <section class="detail-section">
-      <div class="container">
-        <h2>Who Should Get Certified</h2>
-        <div class="use-cases-grid">
-          <div class="use-case-card">
-            <div class="icon">👤</div>
-            <h3>Business Owners &amp; Executives</h3>
-            <p>Understand the strategic impact of blockchain and AI on your industry. Make informed technology decisions and lead your organization's digital transformation.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">👥</div>
-            <h3>Managers &amp; Team Leads</h3>
-            <p>Learn how to evaluate and manage AI and blockchain tools within your department. Bridge the gap between technology and day-to-day operations.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">💼</div>
-            <h3>Professionals Looking to Upskill</h3>
-            <p>Add industry-recognized credentials to your resume. Stand out in a competitive job market with certifications that demonstrate real expertise.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">🏛️</div>
-            <h3>Government &amp; Public Sector</h3>
-            <p>Equip public servants with knowledge to evaluate blockchain and AI proposals, develop informed policy, and serve constituents in an increasingly digital world.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+ <section class="detail-section">
+ <div class="container">
+ <h2>Who Should Get Certified</h2>
+ <div class="use-cases-grid">
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Business Owners &amp; Executives</h3>
+ <p>Understand the strategic impact of blockchain and AI on your industry. Make informed technology decisions and lead your organization's digital transformation.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Managers &amp; Team Leads</h3>
+ <p>Learn how to evaluate and manage AI and blockchain tools within your department. Bridge the gap between technology and day-to-day operations.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Professionals Looking to Upskill</h3>
+ <p>Add industry-recognized credentials to your resume. Stand out in a competitive job market with certifications that demonstrate real expertise.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Government &amp; Public Sector</h3>
+ <p>Equip public servants with knowledge to evaluate blockchain and AI proposals, develop informed policy, and serve constituents in an increasingly digital world.</p>
+</div>
+</div>
+</div>
+</section>
 
-    <section class="cta-section">
-      <div class="container">
-        <h2>Invest in Your Team's Future</h2>
-        <p style="color: var(--text-muted); margin-bottom: 2rem;">Let's discuss the right certification programs for your business.</p>
-        <a href="https://calendly.com/bitscorpus" target="_blank" class="cta-button">Book a Consultation →</a>
-        <br>
-        <a href="index.html" class="back-link">← Back to BITS</a>
-      </div>
-    </section>
-  </main>
+ <section class="cta-section">
+ <div class="container">
+ <h2>Invest in Your Team's Future</h2>
+ <p style="color: var(--text-muted); margin-bottom: 2rem;">Let's discuss the right certification programs for your business.</p>
+ <a href="https://calendly.com/bitscorpus" target="_blank" class="cta-button">Book a Consultation →</a>
+ <br>
+ <a href="index.html" class="back-link">← Back to BITS</a>
+</div>
+</section>
+</main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-bottom">
-        <p class="copyright">&copy; 2026 BITS — Blockchain Integrative Technology Solutions. All rights reserved.</p>
-        <p style="color: var(--text-dim); font-size: 0.75rem; margin-top: 0.5rem;">Privacy-First &bull; Data-Sovereign &bull; Platform-Agnostic</p>
-      </div>
-    </div>
-  </footer>
+ <footer class="site-footer">
+ <div class="container">
+ <div class="footer-bottom">
+ <p class="copyright">&copy; 2026 BITS — Blockchain Integrative Technology Solutions. All rights reserved.</p>
+ <p style="color: var(--text-dim); font-size: 0.75rem; margin-top: 0.5rem;">Privacy-First &bull; Data-Sovereign &bull; Platform-Agnostic</p>
+</div>
+</div>
+</footer>
 </body>
 </html>

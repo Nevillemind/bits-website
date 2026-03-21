@@ -1,216 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="BITS Freedom Workspace — A complete private digital workspace for your business. No Google. No Microsoft. No data harvesting. Just work.">
-  <title>BITS Freedom Workspace — Your Private Digital Office</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <style>
-    .detail-hero { padding: 8rem 0 4rem; text-align: center; background: linear-gradient(135deg, var(--bg-dark), var(--bg-medium)); }
-    .detail-hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.5rem; }
-    .detail-hero .tagline { color: var(--primary); font-size: 1.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; }
-    .detail-hero p { color: var(--text-muted); max-width: 700px; margin: 0 auto 2rem; font-size: 1.05rem; line-height: 1.8; }
-    .detail-section { padding: 4rem 0; }
-    .detail-section:nth-child(even) { background: var(--bg-medium); }
-    .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-    .use-case-card { background: var(--bg-dark); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 1.5rem; }
-    .use-case-card:hover { border-color: var(--primary); }
-    .use-case-card .icon { font-size: 2rem; margin-bottom: 0.75rem; }
-    .use-case-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
-    .use-case-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
-    .feature-block { display: flex; gap: 2rem; margin-bottom: 2.5rem; align-items: flex-start; }
-    .feature-block .icon { font-size: 2.5rem; flex-shrink: 0; }
-    .feature-block h3 { font-size: 1.15rem; margin-bottom: 0.25rem; }
-    .feature-block p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
-    .back-link { display: inline-block; margin-top: 2rem; color: var(--primary); font-weight: 600; }
-    .cta-section { text-align: center; padding: 4rem 0; }
-    .app-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0; }
-    .app-item { background: var(--bg-dark); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-md); padding: 1.25rem; text-align: center; }
-    .app-item:hover { border-color: var(--primary); }
-    .app-item .app-icon { font-size: 2rem; margin-bottom: 0.5rem; }
-    .app-item .app-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.25rem; }
-    .app-item .app-replaces { color: var(--text-dim); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
-    @media (max-width: 600px) { .feature-block { flex-direction: column; gap: 0.5rem; } }
-  </style>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="description" content="BITS Freedom Workspace — A complete private digital workspace for your business. No Google. No Microsoft. No data harvesting. Just work.">
+ <title>BITS Freedom Workspace — Your Private Digital Office</title>
+ <link rel="stylesheet" href="css/styles.css">
+ <style>
+ .detail-hero { padding: 8rem 0 4rem; text-align: center; background: linear-gradient(135deg, var(--bg-dark), var(--bg-medium)); }
+ .detail-hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.5rem; }
+ .detail-hero .tagline { color: var(--primary); font-size: 1.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; }
+ .detail-hero p { color: var(--text-muted); max-width: 700px; margin: 0 auto 2rem; font-size: 1.05rem; line-height: 1.8; }
+ .detail-section { padding: 4rem 0; }
+ .detail-section:nth-child(even) { background: var(--bg-medium); }
+ .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+ .use-case-card { background: var(--bg-dark); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 1.5rem; }
+ .use-case-card:hover { border-color: var(--primary); }
+ .use-case-card .icon { font-size: 2rem; margin-bottom: 0.75rem; }
+ .use-case-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+ .use-case-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
+ .feature-block { display: flex; gap: 2rem; margin-bottom: 2.5rem; align-items: flex-start; }
+ .feature-block .icon { font-size: 2.5rem; flex-shrink: 0; }
+ .feature-block h3 { font-size: 1.15rem; margin-bottom: 0.25rem; }
+ .feature-block p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+ .back-link { display: inline-block; margin-top: 2rem; color: var(--primary); font-weight: 600; }
+ .cta-section { text-align: center; padding: 4rem 0; }
+ .app-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0; }
+ .app-item { background: var(--bg-dark); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-md); padding: 1.25rem; text-align: center; }
+ .app-item:hover { border-color: var(--primary); }
+ .app-item .app-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+ .app-item .app-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.25rem; }
+ .app-item .app-replaces { color: var(--text-dim); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
+ @media (max-width: 600px) { .feature-block { flex-direction: column; gap: 0.5rem; } }
+</style>
 </head>
 <body>
-  <header id="header">
-    <nav class="navbar">
-      <div class="container nav-container">
-        <a href="index.html" class="logo"><img src="assets/BITS-logo.png" alt="BITS" style="height: 36px;"></a>
-        <ul class="nav-links" id="nav-links">
-          <li><a href="index.html" class="nav-link">← Back to BITS</a></li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+ <header id="header">
+ <nav class="navbar">
+ <div class="container nav-container">
+ <a href="index.html" class="logo"><img src="assets/BITS-logo.png" alt="BITS" style="height: 36px;"></a>
+ <ul class="nav-links" id="nav-links">
+ <li><a href="index.html" class="nav-link">← Back to BITS</a></li>
+</ul>
+</div>
+</nav>
+</header>
 
-  <main>
-    <section class="detail-hero">
-      <div class="container">
-        <p class="tagline">Your Private Digital Office</p>
-        <h1>BITS Freedom Workspace</h1>
-        <p>A complete, self-hosted digital office — email, file storage, calendar, documents, messaging — running on your hardware, under your control. Everything Google Workspace and Microsoft 365 do, without sending your data to big tech.</p>
-      </div>
-    </section>
+ <main>
+ <section class="detail-hero">
+ <div class="container">
+ <p class="tagline">Your Private Digital Office</p>
+ <h1>BITS Freedom Workspace</h1>
+ <p>A complete, self-hosted digital office — email, file storage, calendar, documents, messaging — running on your hardware, under your control. Everything Google Workspace and Microsoft 365 do, without sending your data to big tech.</p>
+</div>
+</section>
 
-    <section class="detail-section">
-      <div class="container">
-        <h2>Who Owns Your Digital Office?</h2>
-        <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
-          Right now, most businesses run their entire operation on someone else's infrastructure. Your emails live on Google's servers. Your documents live on Microsoft's servers. Your files live on Dropbox or OneDrive. Your calendar, your contacts, your client communications — all stored, indexed, and controlled by companies whose primary business model is data.
-        </p>
-        <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
-          You're paying them monthly for the privilege of using your own business data. And if they change their terms, raise prices, or get breached — your business is along for the ride.
-        </p>
-        <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
-          BITS Freedom Workspace gives that control back to you. Every tool your business needs to operate — running locally, privately, and entirely under your ownership.
-        </p>
-      </div>
-    </section>
+ <section class="detail-section">
+ <div class="container">
+ <h2>Who Owns Your Digital Office?</h2>
+ <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
+ Right now, most businesses run their entire operation on someone else's infrastructure. Your emails live on Google's servers. Your documents live on Microsoft's servers. Your files live on Dropbox or OneDrive. Your calendar, your contacts, your client communications — all stored, indexed, and controlled by companies whose primary business model is data.
+</p>
+ <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
+ You're paying them monthly for the privilege of using your own business data. And if they change their terms, raise prices, or get breached — your business is along for the ride.
+</p>
+ <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
+ BITS Freedom Workspace gives that control back to you. Every tool your business needs to operate — running locally, privately, and entirely under your ownership.
+</p>
+</div>
+</section>
 
-    <section class="detail-section">
-      <div class="container">
-        <h2>What's Included</h2>
+ <section class="detail-section">
+ <div class="container">
+ <h2>What's Included</h2>
 
-        <div class="app-grid">
-          <div class="app-item">
-            <div class="app-icon">📧</div>
-            <div class="app-name">Private Email</div>
-            <div class="app-replaces">Replaces Gmail / Outlook</div>
-          </div>
-          <div class="app-item">
-            <div class="app-icon">📁</div>
-            <div class="app-name">File Storage &amp; Sync</div>
-            <div class="app-replaces">Replaces Google Drive / OneDrive</div>
-          </div>
-          <div class="app-item">
-            <div class="app-icon">📄</div>
-            <div class="app-name">Documents &amp; Spreadsheets</div>
-            <div class="app-replaces">Replaces Google Docs / Office 365</div>
-          </div>
-          <div class="app-item">
-            <div class="app-icon">📅</div>
-            <div class="app-name">Calendar &amp; Scheduling</div>
-            <div class="app-replaces">Replaces Google Calendar / Outlook</div>
-          </div>
-          <div class="app-item">
-            <div class="app-icon">💬</div>
-            <div class="app-name">Team Messaging</div>
-            <div class="app-replaces">Replaces Slack / Teams</div>
-          </div>
-          <div class="app-item">
-            <div class="app-icon">📹</div>
-            <div class="app-name">Video Conferencing</div>
-            <div class="app-replaces">Replaces Zoom / Google Meet</div>
-          </div>
-          <div class="app-item">
-            <div class="app-icon">✅</div>
-            <div class="app-name">Project Management</div>
-            <div class="app-replaces">Replaces Asana / Monday</div>
-          </div>
-          <div class="app-item">
-            <div class="app-icon">🔐</div>
-            <div class="app-name">Password Management</div>
-            <div class="app-replaces">Replaces LastPass / 1Password</div>
-          </div>
-        </div>
-      </div>
-    </section>
+ <div class="app-grid">
+ <div class="app-item">
+ <div class="app-icon"></div>
+ <div class="app-name">Private Email</div>
+ <div class="app-replaces">Replaces Gmail / Outlook</div>
+</div>
+ <div class="app-item">
+ <div class="app-icon"></div>
+ <div class="app-name">File Storage &amp; Sync</div>
+ <div class="app-replaces">Replaces Google Drive / OneDrive</div>
+</div>
+ <div class="app-item">
+ <div class="app-icon"></div>
+ <div class="app-name">Documents &amp; Spreadsheets</div>
+ <div class="app-replaces">Replaces Google Docs / Office 365</div>
+</div>
+ <div class="app-item">
+ <div class="app-icon"></div>
+ <div class="app-name">Calendar &amp; Scheduling</div>
+ <div class="app-replaces">Replaces Google Calendar / Outlook</div>
+</div>
+ <div class="app-item">
+ <div class="app-icon"></div>
+ <div class="app-name">Team Messaging</div>
+ <div class="app-replaces">Replaces Slack / Teams</div>
+</div>
+ <div class="app-item">
+ <div class="app-icon"></div>
+ <div class="app-name">Video Conferencing</div>
+ <div class="app-replaces">Replaces Zoom / Google Meet</div>
+</div>
+ <div class="app-item">
+ <div class="app-icon"></div>
+ <div class="app-name">Project Management</div>
+ <div class="app-replaces">Replaces Asana / Monday</div>
+</div>
+ <div class="app-item">
+ <div class="app-icon"></div>
+ <div class="app-name">Password Management</div>
+ <div class="app-replaces">Replaces LastPass / 1Password</div>
+</div>
+</div>
+</div>
+</section>
 
-    <section class="detail-section">
-      <div class="container">
-        <h2>Why It Matters</h2>
+ <section class="detail-section">
+ <div class="container">
+ <h2>Why It Matters</h2>
 
-        <div class="feature-block">
-          <div class="icon">🔒</div>
-          <div>
-            <h3>Complete Data Sovereignty</h3>
-            <p>Every email, every file, every calendar entry — stored on hardware you own, in your building. No third party has access. No terms of service can change what you can do with your own data. It's yours. Period.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>Complete Data Sovereignty</h3>
+ <p>Every email, every file, every calendar entry — stored on hardware you own, in your building. No third party has access. No terms of service can change what you can do with your own data. It's yours. Period.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">💰</div>
-          <div>
-            <h3>Eliminate Per-User Cloud Fees</h3>
-            <p>Google Workspace and Microsoft 365 charge $12-22 per user per month. For a 20-person team, that's $3,000-5,000+ per year — forever. Freedom Workspace runs on your BITS Box at a fraction of the cost with no per-seat pricing.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>Eliminate Per-User Cloud Fees</h3>
+ <p>Google Workspace and Microsoft 365 charge $12-22 per user per month. For a 20-person team, that's $3,000-5,000+ per year — forever. Freedom Workspace runs on your BITS Box at a fraction of the cost with no per-seat pricing.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">🛡️</div>
-          <div>
-            <h3>Breach-Resistant Architecture</h3>
-            <p>When a cloud provider gets breached, millions of accounts are exposed at once. Your Freedom Workspace is a single-tenant system — your data exists only on your hardware. An attacker would have to target you specifically, not ride a mass breach.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>Breach-Resistant Architecture</h3>
+ <p>When a cloud provider gets breached, millions of accounts are exposed at once. Your Freedom Workspace is a single-tenant system — your data exists only on your hardware. An attacker would have to target you specifically, not ride a mass breach.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">⚡</div>
-          <div>
-            <h3>No Internet? No Problem.</h3>
-            <p>Cloud services go down. Internet connections fail. Your Freedom Workspace keeps running because it's local. Your team can access email, files, documents, and messaging even when the internet is out.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>No Internet? No Problem.</h3>
+ <p>Cloud services go down. Internet connections fail. Your Freedom Workspace keeps running because it's local. Your team can access email, files, documents, and messaging even when the internet is out.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">🤖</div>
-          <div>
-            <h3>AI-Enhanced (Freedom AI Built In)</h3>
-            <p>Freedom Workspace integrates with BITS Freedom AI. Search your email by meaning. Summarize documents. Auto-draft responses. Get intelligent calendar suggestions. Every workspace tool, supercharged with private AI.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>AI-Enhanced (Freedom AI Built In)</h3>
+ <p>Freedom Workspace integrates with BITS Freedom AI. Search your email by meaning. Summarize documents. Auto-draft responses. Get intelligent calendar suggestions. Every workspace tool, supercharged with private AI.</p>
+</div>
+</div>
+</div>
+</section>
 
-    <section class="detail-section">
-      <div class="container">
-        <h2>Who It's For</h2>
-        <div class="use-cases-grid">
-          <div class="use-case-card">
-            <div class="icon">⚖️</div>
-            <h3>Law Firms</h3>
-            <p>Attorney-client privilege requires absolute data control. Freedom Workspace ensures privileged communications and case files never touch a third-party server.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">🏥</div>
-            <h3>Healthcare Practices</h3>
-            <p>HIPAA compliance is simpler when patient data never leaves your building. Freedom Workspace gives healthcare providers a fully compliant digital office without the cloud risk.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">🏭</div>
-            <h3>Manufacturing &amp; IP-Heavy Businesses</h3>
-            <p>Trade secrets, product designs, proprietary processes — too valuable to store on someone else's servers. Freedom Workspace keeps your intellectual property where it belongs.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">🏢</div>
-            <h3>Any Business That Values Independence</h3>
-            <p>If you believe your business data should belong to you — not rented from a platform — Freedom Workspace is the infrastructure that makes that possible.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+ <section class="detail-section">
+ <div class="container">
+ <h2>Who It's For</h2>
+ <div class="use-cases-grid">
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Law Firms</h3>
+ <p>Attorney-client privilege requires absolute data control. Freedom Workspace ensures privileged communications and case files never touch a third-party server.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Healthcare Practices</h3>
+ <p>HIPAA compliance is simpler when patient data never leaves your building. Freedom Workspace gives healthcare providers a fully compliant digital office without the cloud risk.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Manufacturing &amp; IP-Heavy Businesses</h3>
+ <p>Trade secrets, product designs, proprietary processes — too valuable to store on someone else's servers. Freedom Workspace keeps your intellectual property where it belongs.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Any Business That Values Independence</h3>
+ <p>If you believe your business data should belong to you — not rented from a platform — Freedom Workspace is the infrastructure that makes that possible.</p>
+</div>
+</div>
+</div>
+</section>
 
-    <section class="cta-section">
-      <div class="container">
-        <h2>Your Office. Your Data. Your Freedom.</h2>
-        <p style="color: var(--text-muted); margin-bottom: 2rem;">Let's talk about giving your business true digital independence.</p>
-        <a href="https://calendly.com/bitscorpus" target="_blank" class="cta-button">Book a Consultation →</a>
-        <br>
-        <a href="index.html" class="back-link">← Back to BITS</a>
-      </div>
-    </section>
-  </main>
+ <section class="cta-section">
+ <div class="container">
+ <h2>Your Office. Your Data. Your Freedom.</h2>
+ <p style="color: var(--text-muted); margin-bottom: 2rem;">Let's talk about giving your business true digital independence.</p>
+ <a href="https://calendly.com/bitscorpus" target="_blank" class="cta-button">Book a Consultation →</a>
+ <br>
+ <a href="index.html" class="back-link">← Back to BITS</a>
+</div>
+</section>
+</main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-bottom">
-        <p class="copyright">&copy; 2026 BITS — Blockchain Integrative Technology Solutions. All rights reserved.</p>
-        <p style="color: var(--text-dim); font-size: 0.75rem; margin-top: 0.5rem;">Privacy-First &bull; Data-Sovereign &bull; Platform-Agnostic</p>
-      </div>
-    </div>
-  </footer>
+ <footer class="site-footer">
+ <div class="container">
+ <div class="footer-bottom">
+ <p class="copyright">&copy; 2026 BITS — Blockchain Integrative Technology Solutions. All rights reserved.</p>
+ <p style="color: var(--text-dim); font-size: 0.75rem; margin-top: 0.5rem;">Privacy-First &bull; Data-Sovereign &bull; Platform-Agnostic</p>
+</div>
+</div>
+</footer>
 </body>
 </html>

@@ -1,353 +1,353 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="BITS TRACE™ — The world's first hardware-authenticated, blockchain-anchored, trustless chain-of-custody evidence platform. Patent Pending.">
-  <title>BITS TRACE™ — Trustless Recording &amp; Chain-of-Custody Evidence</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <style>
-    .detail-hero { padding: 8rem 0 4rem; text-align: center; background: linear-gradient(135deg, var(--bg-dark), var(--bg-medium)); }
-    .detail-hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.5rem; }
-    .detail-hero .tagline { color: var(--primary); font-size: 1.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; }
-    .detail-hero p { color: var(--text-muted); max-width: 720px; margin: 0 auto 2rem; font-size: 1.05rem; line-height: 1.8; }
-    .detail-section { padding: 4rem 0; }
-    .detail-section:nth-child(even) { background: var(--bg-medium); }
-    .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-    .use-case-card { background: var(--bg-dark); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 1.5rem; transition: border-color 0.2s; }
-    .use-case-card:hover { border-color: var(--primary); }
-    .use-case-card .icon { font-size: 2rem; margin-bottom: 0.75rem; }
-    .use-case-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
-    .use-case-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
-    .feature-block { display: flex; gap: 2rem; margin-bottom: 2.5rem; align-items: flex-start; }
-    .feature-block .icon { font-size: 2.5rem; flex-shrink: 0; }
-    .feature-block h3 { font-size: 1.15rem; margin-bottom: 0.25rem; }
-    .feature-block p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
-    .pipeline-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0; margin: 2rem 0; }
-    .pipeline-step { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); padding: 1.5rem 1rem; text-align: center; position: relative; }
-    .pipeline-step:not(:last-child)::after { content: '→'; position: absolute; right: -14px; top: 50%; transform: translateY(-50%); color: var(--primary); font-size: 1.2rem; font-weight: 900; z-index: 2; }
-    .pipeline-step .step-num { font-size: 1.6rem; font-weight: 900; color: var(--primary); line-height: 1; margin-bottom: 6px; }
-    .pipeline-step .step-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #aaa; margin-bottom: 6px; }
-    .pipeline-step .step-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; }
-    .solana-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(20, 241, 149, 0.08); border: 1px solid rgba(20, 241, 149, 0.3); border-radius: 30px; padding: 6px 16px; font-size: 0.85rem; color: #14f195; font-weight: 600; margin-bottom: 1.5rem; }
-    .solana-dot { width: 8px; height: 8px; background: #14f195; border-radius: 50%; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-    .patent-notice { background: rgba(233, 69, 96, 0.1); border: 1px solid var(--primary); border-radius: var(--radius-md); padding: 1.5rem; margin-top: 3rem; text-align: center; }
-    .patent-notice p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
-    .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
-    .pillar { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-top: 3px solid var(--primary); border-radius: var(--radius-md); padding: 1.2rem; text-align: center; }
-    .pillar .pillar-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
-    .pillar h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
-    .pillar p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
-    .cta-section { text-align: center; padding: 4rem 0; }
-    .back-link { display: inline-block; margin-top: 2rem; color: var(--primary); font-weight: 600; }
-    @media (max-width: 600px) { .feature-block { flex-direction: column; gap: 0.5rem; } .pipeline-step:not(:last-child)::after { display: none; } }
-  </style>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="description" content="BITS TRACE™ — The world's first hardware-authenticated, blockchain-anchored, trustless chain-of-custody evidence platform. Patent Pending.">
+ <title>BITS TRACE™ — Trustless Recording &amp; Chain-of-Custody Evidence</title>
+ <link rel="stylesheet" href="css/styles.css">
+ <style>
+ .detail-hero { padding: 8rem 0 4rem; text-align: center; background: linear-gradient(135deg, var(--bg-dark), var(--bg-medium)); }
+ .detail-hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.5rem; }
+ .detail-hero .tagline { color: var(--primary); font-size: 1.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; }
+ .detail-hero p { color: var(--text-muted); max-width: 720px; margin: 0 auto 2rem; font-size: 1.05rem; line-height: 1.8; }
+ .detail-section { padding: 4rem 0; }
+ .detail-section:nth-child(even) { background: var(--bg-medium); }
+ .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+ .use-case-card { background: var(--bg-dark); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 1.5rem; transition: border-color 0.2s; }
+ .use-case-card:hover { border-color: var(--primary); }
+ .use-case-card .icon { font-size: 2rem; margin-bottom: 0.75rem; }
+ .use-case-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+ .use-case-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
+ .feature-block { display: flex; gap: 2rem; margin-bottom: 2.5rem; align-items: flex-start; }
+ .feature-block .icon { font-size: 2.5rem; flex-shrink: 0; }
+ .feature-block h3 { font-size: 1.15rem; margin-bottom: 0.25rem; }
+ .feature-block p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+ .pipeline-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0; margin: 2rem 0; }
+ .pipeline-step { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); padding: 1.5rem 1rem; text-align: center; position: relative; }
+ .pipeline-step:not(:last-child)::after { content: '→'; position: absolute; right: -14px; top: 50%; transform: translateY(-50%); color: var(--primary); font-size: 1.2rem; font-weight: 900; z-index: 2; }
+ .pipeline-step .step-num { font-size: 1.6rem; font-weight: 900; color: var(--primary); line-height: 1; margin-bottom: 6px; }
+ .pipeline-step .step-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #aaa; margin-bottom: 6px; }
+ .pipeline-step .step-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; }
+ .solana-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(20, 241, 149, 0.08); border: 1px solid rgba(20, 241, 149, 0.3); border-radius: 30px; padding: 6px 16px; font-size: 0.85rem; color: #14f195; font-weight: 600; margin-bottom: 1.5rem; }
+ .solana-dot { width: 8px; height: 8px; background: #14f195; border-radius: 50%; animation: pulse 2s infinite; }
+ @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+ .patent-notice { background: rgba(233, 69, 96, 0.1); border: 1px solid var(--primary); border-radius: var(--radius-md); padding: 1.5rem; margin-top: 3rem; text-align: center; }
+ .patent-notice p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+ .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+ .pillar { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-top: 3px solid var(--primary); border-radius: var(--radius-md); padding: 1.2rem; text-align: center; }
+ .pillar .pillar-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+ .pillar h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+ .pillar p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+ .cta-section { text-align: center; padding: 4rem 0; }
+ .back-link { display: inline-block; margin-top: 2rem; color: var(--primary); font-weight: 600; }
+ @media (max-width: 600px) { .feature-block { flex-direction: column; gap: 0.5rem; } .pipeline-step:not(:last-child)::after { display: none; } }
+</style>
 </head>
 <body>
-  <header id="header">
-    <nav class="navbar">
-      <div class="container nav-container">
-        <a href="index.html" class="logo"><img src="assets/BITS-logo.png" alt="BITS" style="height: 36px;"></a>
-        <ul class="nav-links" id="nav-links">
-          <li><a href="index.html" class="nav-link">← Back to BITS</a></li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+ <header id="header">
+ <nav class="navbar">
+ <div class="container nav-container">
+ <a href="index.html" class="logo"><img src="assets/BITS-logo.png" alt="BITS" style="height: 36px;"></a>
+ <ul class="nav-links" id="nav-links">
+ <li><a href="index.html" class="nav-link">← Back to BITS</a></li>
+</ul>
+</div>
+</nav>
+</header>
 
-  <main>
+ <main>
 
-    <!-- HERO -->
-    <section class="detail-hero">
-      <div class="container">
-        <div class="solana-badge"><span class="solana-dot"></span> Live on Solana Mainnet</div>
-        <p class="tagline">Trustless Recording And Chain-of-Custody Evidence</p>
-        <h1>BITS TRACE™ 🔐</h1>
-        <p>The world's first hardware-authenticated, AI-assisted, blockchain-anchored evidence platform. Every capture is cryptographically signed at the moment it's created, anchored to the blockchain automatically — with no human authorization required — and independently verifiable by anyone on Earth. Built for a world where seeing is no longer believing.</p>
-        <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted); font-style: italic;">Patent Pending — March 2026 · George Mundin / Blockchain Integrative Technology Solutions</div>
-      </div>
-    </section>
+ <!-- HERO -->
+ <section class="detail-hero">
+ <div class="container">
+ <div class="solana-badge"><span class="solana-dot"></span> Live on Solana Mainnet</div>
+ <p class="tagline">Trustless Recording And Chain-of-Custody Evidence</p>
+ <h1>BITS TRACE™</h1>
+ <p>The world's first hardware-authenticated, AI-assisted, blockchain-anchored evidence platform. Every capture is cryptographically signed at the moment it's created, anchored to the blockchain automatically — with no human authorization required — and independently verifiable by anyone on Earth. Built for a world where seeing is no longer believing.</p>
+ <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted); font-style: italic;">Patent Pending — March 2026 · George Mundin / Blockchain Integrative Technology Solutions</div>
+</div>
+</section>
 
-    <!-- THE PROBLEM -->
-    <section class="detail-section">
-      <div class="container">
-        <h2 class="section-title">The Problem TRACE Solves</h2>
-        <p style="color: var(--text-muted); max-width: 800px; font-size: 1rem; line-height: 1.8; margin-bottom: 2rem;">Digital evidence is broken. Body camera footage disappears. Deepfake AI generates synthetic video indistinguishable from real footage. Every existing evidence system stores data on servers controlled by the very institutions whose conduct is under review. Europol projects that by 2027, up to 90% of online content could be AI-generated or manipulated. The justice system depends on answering one question that no technology could answer — until now.</p>
+ <!-- THE PROBLEM -->
+ <section class="detail-section">
+ <div class="container">
+ <h2 class="section-title">The Problem TRACE Solves</h2>
+ <p style="color: var(--text-muted); max-width: 800px; font-size: 1rem; line-height: 1.8; margin-bottom: 2rem;">Digital evidence is broken. Body camera footage disappears. Deepfake AI generates synthetic video indistinguishable from real footage. Every existing evidence system stores data on servers controlled by the very institutions whose conduct is under review. Europol projects that by 2027, up to 90% of online content could be AI-generated or manipulated. The justice system depends on answering one question that no technology could answer — until now.</p>
 
-        <div style="background: rgba(233,69,96,0.08); border-left: 4px solid var(--primary); padding: 1.5rem 2rem; border-radius: 0 12px 12px 0; margin-bottom: 2rem;">
-          <p style="font-size: 1.2rem; font-weight: 700; color: #fff; margin: 0;">"Is this evidence real?"</p>
-          <p style="color: var(--text-muted); margin: 0.5rem 0 0; font-size: 0.95rem;">TRACE answers it — with mathematical certainty.</p>
-        </div>
+ <div style="background: rgba(233,69,96,0.08); border-left: 4px solid var(--primary); padding: 1.5rem 2rem; border-radius: 0 12px 12px 0; margin-bottom: 2rem;">
+ <p style="font-size: 1.2rem; font-weight: 700; color: #fff; margin: 0;">"Is this evidence real?"</p>
+ <p style="color: var(--text-muted); margin: 0.5rem 0 0; font-size: 0.95rem;">TRACE answers it — with mathematical certainty.</p>
+</div>
 
-        <!-- 5 PILLARS -->
-        <div class="pillars">
-          <div class="pillar">
-            <div class="pillar-icon">✅</div>
-            <h4>Fully Auditable</h4>
-            <p>Every access, transfer, and review logged permanently — a complete chain of custody from moment of capture</p>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon">🔍</div>
-            <h4>Transparent</h4>
-            <p>The complete record is available to authorized parties — judges, attorneys, regulators, oversight bodies</p>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon">🤝</div>
-            <h4>Trustless</h4>
-            <p>No single institution controls the record. Verified by mathematics and cryptography — not by authority</p>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon">⛓️</div>
-            <h4>TRACEable</h4>
-            <p>Every piece of evidence linked to every other piece in a session — multi-agent, multi-perspective coordination</p>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon">🔒</div>
-            <h4>Immutable</h4>
-            <p>Once anchored to the blockchain, the record cannot be altered, deleted, or hidden — by anyone, ever</p>
-          </div>
-        </div>
-      </div>
-    </section>
+ <!-- 5 PILLARS -->
+ <div class="pillars">
+ <div class="pillar">
+ <div class="pillar-icon"></div>
+ <h4>Fully Auditable</h4>
+ <p>Every access, transfer, and review logged permanently — a complete chain of custody from moment of capture</p>
+</div>
+ <div class="pillar">
+ <div class="pillar-icon"></div>
+ <h4>Transparent</h4>
+ <p>The complete record is available to authorized parties — judges, attorneys, regulators, oversight bodies</p>
+</div>
+ <div class="pillar">
+ <div class="pillar-icon"></div>
+ <h4>Trustless</h4>
+ <p>No single institution controls the record. Verified by mathematics and cryptography — not by authority</p>
+</div>
+ <div class="pillar">
+ <div class="pillar-icon"></div>
+ <h4>TRACEable</h4>
+ <p>Every piece of evidence linked to every other piece in a session — multi-agent, multi-perspective coordination</p>
+</div>
+ <div class="pillar">
+ <div class="pillar-icon"></div>
+ <h4>Immutable</h4>
+ <p>Once anchored to the blockchain, the record cannot be altered, deleted, or hidden — by anyone, ever</p>
+</div>
+</div>
+</div>
+</section>
 
-    <!-- HOW IT WORKS -->
-    <section class="detail-section">
-      <div class="container">
-        <h2 class="section-title">How TRACE Works</h2>
-        <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">Five steps. Fully automatic. No human authorization required at any point.</p>
+ <!-- HOW IT WORKS -->
+ <section class="detail-section">
+ <div class="container">
+ <h2 class="section-title">How TRACE Works</h2>
+ <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">Five steps. Fully automatic. No human authorization required at any point.</p>
 
-        <div class="pipeline-steps">
-          <div class="pipeline-step">
-            <div class="step-num">1</div>
-            <div class="step-label">Capture</div>
-            <div class="step-desc">Wearable device, body cam, drone, robot, or phone captures evidence in the field</div>
-          </div>
-          <div class="pipeline-step">
-            <div class="step-num">2</div>
-            <div class="step-label">Hash</div>
-            <div class="step-desc">Raw data cryptographically fingerprinted BEFORE any AI, compression, or human review</div>
-          </div>
-          <div class="pipeline-step">
-            <div class="step-num">3</div>
-            <div class="step-label">Sign</div>
-            <div class="step-desc">Hardware security chip signs the fingerprint with a key that can never be copied or extracted</div>
-          </div>
-          <div class="pipeline-step">
-            <div class="step-num">4</div>
-            <div class="step-label">Anchor</div>
-            <div class="step-desc">Signed proof recorded automatically on Solana mainnet — permanent, public, irrevocable</div>
-          </div>
-          <div class="pipeline-step">
-            <div class="step-num">5</div>
-            <div class="step-label">Verify</div>
-            <div class="step-desc">Anyone — judge, attorney, regulator — independently verifies authenticity without trusting any party</div>
-          </div>
-        </div>
-      </div>
-    </section>
+ <div class="pipeline-steps">
+ <div class="pipeline-step">
+ <div class="step-num">1</div>
+ <div class="step-label">Capture</div>
+ <div class="step-desc">Wearable device, body cam, drone, robot, or phone captures evidence in the field</div>
+</div>
+ <div class="pipeline-step">
+ <div class="step-num">2</div>
+ <div class="step-label">Hash</div>
+ <div class="step-desc">Raw data cryptographically fingerprinted BEFORE any AI, compression, or human review</div>
+</div>
+ <div class="pipeline-step">
+ <div class="step-num">3</div>
+ <div class="step-label">Sign</div>
+ <div class="step-desc">Hardware security chip signs the fingerprint with a key that can never be copied or extracted</div>
+</div>
+ <div class="pipeline-step">
+ <div class="step-num">4</div>
+ <div class="step-label">Anchor</div>
+ <div class="step-desc">Signed proof recorded automatically on Solana mainnet — permanent, public, irrevocable</div>
+</div>
+ <div class="pipeline-step">
+ <div class="step-num">5</div>
+ <div class="step-label">Verify</div>
+ <div class="step-desc">Anyone — judge, attorney, regulator — independently verifies authenticity without trusting any party</div>
+</div>
+</div>
+</div>
+</section>
 
-    <!-- CORE CAPABILITIES -->
-    <section class="detail-section">
-      <div class="container">
-        <h2 class="section-title">Core Capabilities</h2>
+ <!-- CORE CAPABILITIES -->
+ <section class="detail-section">
+ <div class="container">
+ <h2 class="section-title">Core Capabilities</h2>
 
-        <div class="feature-block">
-          <div class="icon">🔐</div>
-          <div>
-            <h3>Hardware-Level Proof-of-Origin</h3>
-            <p>TRACE's breakthrough innovation: a cryptographic proof that answers the deepest question in digital evidence law — "Did this data come from a real sensor, or was it AI-generated?" The evidence hash is computed before any processing, signed by a tamper-resistant hardware key that never leaves the device. This is the deepfake defense no existing system provides.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>Hardware-Level Proof-of-Origin</h3>
+ <p>TRACE's breakthrough innovation: a cryptographic proof that answers the deepest question in digital evidence law — "Did this data come from a real sensor, or was it AI-generated?" The evidence hash is computed before any processing, signed by a tamper-resistant hardware key that never leaves the device. This is the deepfake defense no existing system provides.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">⛓️</div>
-          <div>
-            <h3>Automatic Solana Mainnet Anchoring</h3>
-            <p>Every capture automatically submits a memo transaction to Solana mainnet — no human approval needed. The resulting transaction signature is the permanent, public proof of existence. Anyone can verify it on Solscan.io in seconds. The chain of custody begins the moment evidence is captured and can never be reversed.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>Automatic Solana Mainnet Anchoring</h3>
+ <p>Every capture automatically submits a memo transaction to Solana mainnet — no human approval needed. The resulting transaction signature is the permanent, public proof of existence. Anyone can verify it on Solscan.io in seconds. The chain of custody begins the moment evidence is captured and can never be reversed.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">📋</div>
-          <div>
-            <h3>Trustless Chain of Custody</h3>
-            <p>Smart contracts auto-generate at the moment of capture. Every access, transfer, review, and presentation is logged permanently. There is no "delete." There is no "missing footage." The complete chain of custody — from field capture to courtroom — is immutable and independently verifiable without trusting any institution.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>Trustless Chain of Custody</h3>
+ <p>Smart contracts auto-generate at the moment of capture. Every access, transfer, review, and presentation is logged permanently. There is no "delete." There is no "missing footage." The complete chain of custody — from field capture to courtroom — is immutable and independently verifiable without trusting any institution.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">🤖</div>
-          <div>
-            <h3>AI Intelligence Delivery — Logged as Evidence</h3>
-            <p>TRACE doesn't just capture what happened — it captures what the operator knew. Real-time AI legal codes, use-of-force protocols, and situational guidance are delivered hands-free via wearable display and audio. Every intelligence delivery is anchored to the evidence record, proving not just the event but the operator's informed state during it.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>AI Intelligence Delivery — Logged as Evidence</h3>
+ <p>TRACE doesn't just capture what happened — it captures what the operator knew. Real-time AI legal codes, use-of-force protocols, and situational guidance are delivered hands-free via wearable display and audio. Every intelligence delivery is anchored to the evidence record, proving not just the event but the operator's informed state during it.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">📡</div>
-          <div>
-            <h3>Platform-Agnostic — Any Device, Any Sensor</h3>
-            <p>TRACE works with smart eyewear, helmets, body cameras, drones, autonomous vehicles, humanoid robots, fixed installations, and mobile phones. One hardware abstraction layer powers all platforms. Future sensors — contact lenses, ocular implants, neural interfaces — are covered by the same patent claims.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>Platform-Agnostic — Any Device, Any Sensor</h3>
+ <p>TRACE works with smart eyewear, helmets, body cameras, drones, autonomous vehicles, humanoid robots, fixed installations, and mobile phones. One hardware abstraction layer powers all platforms. Future sensors — contact lenses, ocular implants, neural interfaces — are covered by the same patent claims.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">🌐</div>
-          <div>
-            <h3>Multi-Agent Evidence Coordination</h3>
-            <p>Multiple operators capture the same event independently — each stream separately authenticated, each anchored to the same event on the ledger. Human, robot, and drone evidence streams are correlated into a unified, multi-perspective, court-ready record. No coordinator. No single point of failure. No trust required.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>Multi-Agent Evidence Coordination</h3>
+ <p>Multiple operators capture the same event independently — each stream separately authenticated, each anchored to the same event on the ledger. Human, robot, and drone evidence streams are correlated into a unified, multi-perspective, court-ready record. No coordinator. No single point of failure. No trust required.</p>
+</div>
+</div>
+</div>
+</section>
 
-    <!-- USE CASES -->
-    <section class="detail-section">
-      <div class="container">
-        <h2 class="section-title">Who TRACE Serves</h2>
-        <div class="use-cases-grid">
-          <div class="use-case-card">
-            <div class="icon">👮</div>
-            <h3>Law Enforcement</h3>
-            <p>Body cam footage with hardware-verified authenticity. AI delivers applicable laws and use-of-force protocols in real time. Every interaction logged to blockchain — bulletproof accountability for officers and citizens alike.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">🎖️</div>
-            <h3>Military & Defense</h3>
-            <p>Theater-of-operations evidence with tamper-proof chain of custody. Multi-agent correlated capture across soldiers, drones, and vehicles. Classified operations documented with cryptographic certainty.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">🛡️</div>
-            <h3>Private Security</h3>
-            <p>Client protection documentation with independent verification. Incident records that survive legal challenge. Evidence that proves what happened — and what security personnel knew — without relying on any single party's word.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">⚖️</div>
-            <h3>Legal & eDiscovery</h3>
-            <p>Evidence authentication for courtroom presentation. Chain of custody documentation that satisfies Federal Rules of Evidence. Independent verification without subpoenas or cooperation from opposing parties.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">🏥</div>
-            <h3>Healthcare</h3>
-            <p>Surgical procedure documentation with verified timestamps. Medical decision records anchored to blockchain. Patient incident reports that cannot be retroactively altered — protecting both patients and providers.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">📰</div>
-            <h3>Journalism & Media</h3>
-            <p>Field reporting with cryptographic authenticity proof. News footage that can be independently verified as unaltered. The antidote to deepfake media — provably real content in a world of synthetic media.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">🛡️</div>
-            <h3>Insurance</h3>
-            <p>Claims documentation with tamper-proof verification. Accident scene evidence anchored at the moment of capture. Fraud detection through independent evidence authenticity verification.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">🏗️</div>
-            <h3>Construction & Inspection</h3>
-            <p>Job site documentation with blockchain-verified timestamps. Inspection records that cannot be disputed. Progress documentation creating an immutable project history for liability protection.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+ <!-- USE CASES -->
+ <section class="detail-section">
+ <div class="container">
+ <h2 class="section-title">Who TRACE Serves</h2>
+ <div class="use-cases-grid">
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Law Enforcement</h3>
+ <p>Body cam footage with hardware-verified authenticity. AI delivers applicable laws and use-of-force protocols in real time. Every interaction logged to blockchain — bulletproof accountability for officers and citizens alike.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Military & Defense</h3>
+ <p>Theater-of-operations evidence with tamper-proof chain of custody. Multi-agent correlated capture across soldiers, drones, and vehicles. Classified operations documented with cryptographic certainty.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Private Security</h3>
+ <p>Client protection documentation with independent verification. Incident records that survive legal challenge. Evidence that proves what happened — and what security personnel knew — without relying on any single party's word.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Legal & eDiscovery</h3>
+ <p>Evidence authentication for courtroom presentation. Chain of custody documentation that satisfies Federal Rules of Evidence. Independent verification without subpoenas or cooperation from opposing parties.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Healthcare</h3>
+ <p>Surgical procedure documentation with verified timestamps. Medical decision records anchored to blockchain. Patient incident reports that cannot be retroactively altered — protecting both patients and providers.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Journalism & Media</h3>
+ <p>Field reporting with cryptographic authenticity proof. News footage that can be independently verified as unaltered. The antidote to deepfake media — provably real content in a world of synthetic media.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Insurance</h3>
+ <p>Claims documentation with tamper-proof verification. Accident scene evidence anchored at the moment of capture. Fraud detection through independent evidence authenticity verification.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Construction & Inspection</h3>
+ <p>Job site documentation with blockchain-verified timestamps. Inspection records that cannot be disputed. Progress documentation creating an immutable project history for liability protection.</p>
+</div>
+</div>
+</div>
+</section>
 
-    <!-- COMPETITIVE ADVANTAGE -->
-    <section class="detail-section">
-      <div class="container">
-        <h2 class="section-title">The Clear Runway</h2>
-        <p style="color: var(--text-muted); max-width: 800px; font-size: 1rem; line-height: 1.8; margin-bottom: 2rem;">Every competitor in the digital evidence space addresses one or two of these requirements. TRACE is the only platform that addresses all five simultaneously — in a single, patent-pending, wearable-integrated system.</p>
+ <!-- COMPETITIVE ADVANTAGE -->
+ <section class="detail-section">
+ <div class="container">
+ <h2 class="section-title">The Clear Runway</h2>
+ <p style="color: var(--text-muted); max-width: 800px; font-size: 1rem; line-height: 1.8; margin-bottom: 2rem;">Every competitor in the digital evidence space addresses one or two of these requirements. TRACE is the only platform that addresses all five simultaneously — in a single, patent-pending, wearable-integrated system.</p>
 
-        <div style="overflow-x: auto;">
-          <table style="width:100%; border-collapse:collapse; font-size: 0.88rem;">
-            <thead>
-              <tr style="background: rgba(233,69,96,0.15);">
-                <th style="padding:12px; text-align:left; border-bottom: 1px solid rgba(255,255,255,0.1);">Solution</th>
-                <th style="padding:12px; text-align:center; border-bottom: 1px solid rgba(255,255,255,0.1);">Hardware Proof-of-Origin</th>
-                <th style="padding:12px; text-align:center; border-bottom: 1px solid rgba(255,255,255,0.1);">Blockchain Custody</th>
-                <th style="padding:12px; text-align:center; border-bottom: 1px solid rgba(255,255,255,0.1);">AI Intelligence</th>
-                <th style="padding:12px; text-align:center; border-bottom: 1px solid rgba(255,255,255,0.1);">Wearable Integration</th>
-                <th style="padding:12px; text-align:center; border-bottom: 1px solid rgba(255,255,255,0.1);">Trustless Verification</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr style="background: rgba(233,69,96,0.07);">
-                <td style="padding:10px 12px; font-weight:700;">BITS TRACE™</td>
-                <td style="padding:10px 12px; text-align:center; color:#14f195;">✅</td>
-                <td style="padding:10px 12px; text-align:center; color:#14f195;">✅</td>
-                <td style="padding:10px 12px; text-align:center; color:#14f195;">✅</td>
-                <td style="padding:10px 12px; text-align:center; color:#14f195;">✅</td>
-                <td style="padding:10px 12px; text-align:center; color:#14f195;">✅</td>
-              </tr>
-              <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                <td style="padding:10px 12px; color: var(--text-muted);">Axon Body Cameras</td>
-                <td style="padding:10px 12px; text-align:center; color:var(--primary);">❌</td>
-                <td style="padding:10px 12px; text-align:center; color:var(--primary);">❌</td>
-                <td style="padding:10px 12px; text-align:center; color:var(--primary);">❌</td>
-                <td style="padding:10px 12px; text-align:center; color:var(--primary);">❌</td>
-                <td style="padding:10px 12px; text-align:center; color:var(--primary);">❌</td>
-              </tr>
-              <tr style="border-bottom: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02);">
-                <td style="padding:10px 12px; color: var(--text-muted);">C2PA (Adobe/Microsoft/Sony)</td>
-                <td style="padding:10px 12px; text-align:center; color:#f39c12;">⚠️ Central CA</td>
-                <td style="padding:10px 12px; text-align:center; color:var(--primary);">❌</td>
-                <td style="padding:10px 12px; text-align:center; color:var(--primary);">❌</td>
-                <td style="padding:10px 12px; text-align:center; color:var(--primary);">❌</td>
-                <td style="padding:10px 12px; text-align:center; color:var(--primary);">❌</td>
-              </tr>
-              <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                <td style="padding:10px 12px; color: var(--text-muted);">Motorola Solutions</td>
-                <td style="padding:10px 12px; text-align:center; color:var(--primary);">❌</td>
-                <td style="padding:10px 12px; text-align:center; color:var(--primary);">❌</td>
-                <td style="padding:10px 12px; text-align:center; color:var(--primary);">❌</td>
-                <td style="padding:10px 12px; text-align:center; color:var(--primary);">❌</td>
-                <td style="padding:10px 12px; text-align:center; color:var(--primary);">❌</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+ <div style="overflow-x: auto;">
+ <table style="width:100%; border-collapse:collapse; font-size: 0.88rem;">
+ <thead>
+ <tr style="background: rgba(233,69,96,0.15);">
+ <th style="padding:12px; text-align:left; border-bottom: 1px solid rgba(255,255,255,0.1);">Solution</th>
+ <th style="padding:12px; text-align:center; border-bottom: 1px solid rgba(255,255,255,0.1);">Hardware Proof-of-Origin</th>
+ <th style="padding:12px; text-align:center; border-bottom: 1px solid rgba(255,255,255,0.1);">Blockchain Custody</th>
+ <th style="padding:12px; text-align:center; border-bottom: 1px solid rgba(255,255,255,0.1);">AI Intelligence</th>
+ <th style="padding:12px; text-align:center; border-bottom: 1px solid rgba(255,255,255,0.1);">Wearable Integration</th>
+ <th style="padding:12px; text-align:center; border-bottom: 1px solid rgba(255,255,255,0.1);">Trustless Verification</th>
+</tr>
+</thead>
+ <tbody>
+ <tr style="background: rgba(233,69,96,0.07);">
+ <td style="padding:10px 12px; font-weight:700;">BITS TRACE™</td>
+ <td style="padding:10px 12px; text-align:center; color:#14f195;"></td>
+ <td style="padding:10px 12px; text-align:center; color:#14f195;"></td>
+ <td style="padding:10px 12px; text-align:center; color:#14f195;"></td>
+ <td style="padding:10px 12px; text-align:center; color:#14f195;"></td>
+ <td style="padding:10px 12px; text-align:center; color:#14f195;"></td>
+</tr>
+ <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+ <td style="padding:10px 12px; color: var(--text-muted);">Axon Body Cameras</td>
+ <td style="padding:10px 12px; text-align:center; color:var(--primary);"></td>
+ <td style="padding:10px 12px; text-align:center; color:var(--primary);"></td>
+ <td style="padding:10px 12px; text-align:center; color:var(--primary);"></td>
+ <td style="padding:10px 12px; text-align:center; color:var(--primary);"></td>
+ <td style="padding:10px 12px; text-align:center; color:var(--primary);"></td>
+</tr>
+ <tr style="border-bottom: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02);">
+ <td style="padding:10px 12px; color: var(--text-muted);">C2PA (Adobe/Microsoft/Sony)</td>
+ <td style="padding:10px 12px; text-align:center; color:#f39c12;"> Central CA</td>
+ <td style="padding:10px 12px; text-align:center; color:var(--primary);"></td>
+ <td style="padding:10px 12px; text-align:center; color:var(--primary);"></td>
+ <td style="padding:10px 12px; text-align:center; color:var(--primary);"></td>
+ <td style="padding:10px 12px; text-align:center; color:var(--primary);"></td>
+</tr>
+ <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+ <td style="padding:10px 12px; color: var(--text-muted);">Motorola Solutions</td>
+ <td style="padding:10px 12px; text-align:center; color:var(--primary);"></td>
+ <td style="padding:10px 12px; text-align:center; color:var(--primary);"></td>
+ <td style="padding:10px 12px; text-align:center; color:var(--primary);"></td>
+ <td style="padding:10px 12px; text-align:center; color:var(--primary);"></td>
+ <td style="padding:10px 12px; text-align:center; color:var(--primary);"></td>
+</tr>
+</tbody>
+</table>
+</div>
 
-        <div class="patent-notice" style="margin-top: 2rem;">
-          <p>⚖️ <strong style="color: #fff;">Patent Pending — March 2026</strong><br>
-          George Mundin / Blockchain Integrative Technology Solutions (BITS)<br>
-          26 claims covering wearable eyewear, body cameras, drones, autonomous vehicles, humanoid robots, neural interfaces, and all future capture platforms. Blockchain-agnostic language covers Solana, Ethereum, and any distributed ledger technology.</p>
-        </div>
-      </div>
-    </section>
+ <div class="patent-notice" style="margin-top: 2rem;">
+ <p> <strong style="color: #fff;">Patent Pending — March 2026</strong><br>
+ George Mundin / Blockchain Integrative Technology Solutions (BITS)<br>
+ 26 claims covering wearable eyewear, body cameras, drones, autonomous vehicles, humanoid robots, neural interfaces, and all future capture platforms. Blockchain-agnostic language covers Solana, Ethereum, and any distributed ledger technology.</p>
+</div>
+</div>
+</section>
 
-    <!-- OUR COMMITMENT -->
-    <section class="detail-section">
-      <div class="container">
-        <h2 class="section-title">Our Commitment</h2>
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-left: 4px solid var(--primary); border-radius: 0 12px 12px 0; padding: 2rem 2.5rem; max-width: 820px;">
-          <p style="font-size: 1.05rem; line-height: 1.9; color: rgba(255,255,255,0.85); margin-bottom: 1.2rem;">TRACE was built out of a deep conviction that truth matters — and that the people who suffer most when truth is suppressed are ordinary citizens, not the powerful institutions that control the evidence. We built this technology to level that playing field.</p>
-          <p style="font-size: 1.05rem; line-height: 1.9; color: rgba(255,255,255,0.85); margin-bottom: 1.2rem;">We are fully aware that powerful tools can be misused. That awareness is not a footnote — it is the foundation of how we build and who we partner with. BITS will not license TRACE to any government, agency, corporation, or individual that intends to deploy it for mass passive surveillance, political targeting, suppression of lawful dissent, or any purpose designed to harm innocent people.</p>
-          <p style="font-size: 1.05rem; line-height: 1.9; color: rgba(255,255,255,0.85); margin-bottom: 1.2rem;">Every licensing agreement will carry enforceable prohibitions — operator-initiated capture only, user notification requirements, and the right to audit. We will walk away from revenue before we compromise these values.</p>
-          <p style="font-size: 1.05rem; line-height: 1.9; color: rgba(255,255,255,0.85); margin-bottom: 0;">Our north star is simple: <strong style="color: white;">Does this protect people, or does it harm them?</strong> Every decision we make — every partner we choose, every deal we sign — runs through that filter first. TRACE exists to hold the powerful accountable, protect the innocent, and ensure that truth cannot be erased by those with the authority to erase it. That is why it was built. That is why it will be protected.</p>
-          <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; color: var(--text-muted);">— George Mundin, Founder · Blockchain Integrative Technology Solutions</div>
-        </div>
-      </div>
-    </section>
+ <!-- OUR COMMITMENT -->
+ <section class="detail-section">
+ <div class="container">
+ <h2 class="section-title">Our Commitment</h2>
+ <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-left: 4px solid var(--primary); border-radius: 0 12px 12px 0; padding: 2rem 2.5rem; max-width: 820px;">
+ <p style="font-size: 1.05rem; line-height: 1.9; color: rgba(255,255,255,0.85); margin-bottom: 1.2rem;">TRACE was built out of a deep conviction that truth matters — and that the people who suffer most when truth is suppressed are ordinary citizens, not the powerful institutions that control the evidence. We built this technology to level that playing field.</p>
+ <p style="font-size: 1.05rem; line-height: 1.9; color: rgba(255,255,255,0.85); margin-bottom: 1.2rem;">We are fully aware that powerful tools can be misused. That awareness is not a footnote — it is the foundation of how we build and who we partner with. BITS will not license TRACE to any government, agency, corporation, or individual that intends to deploy it for mass passive surveillance, political targeting, suppression of lawful dissent, or any purpose designed to harm innocent people.</p>
+ <p style="font-size: 1.05rem; line-height: 1.9; color: rgba(255,255,255,0.85); margin-bottom: 1.2rem;">Every licensing agreement will carry enforceable prohibitions — operator-initiated capture only, user notification requirements, and the right to audit. We will walk away from revenue before we compromise these values.</p>
+ <p style="font-size: 1.05rem; line-height: 1.9; color: rgba(255,255,255,0.85); margin-bottom: 0;">Our north star is simple: <strong style="color: white;">Does this protect people, or does it harm them?</strong> Every decision we make — every partner we choose, every deal we sign — runs through that filter first. TRACE exists to hold the powerful accountable, protect the innocent, and ensure that truth cannot be erased by those with the authority to erase it. That is why it was built. That is why it will be protected.</p>
+ <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; color: var(--text-muted);">— George Mundin, Founder · Blockchain Integrative Technology Solutions</div>
+</div>
+</div>
+</section>
 
-    <!-- CTA -->
-    <section class="cta-section">
-      <div class="container">
-        <h2>Ready to See TRACE in Action?</h2>
-        <p style="color: var(--text-muted); max-width: 600px; margin: 1rem auto 2rem; line-height: 1.8;">Schedule a live demonstration. Watch evidence anchor to Solana mainnet in real time. See a chain of custody record that no court, no institution, and no adversary can challenge.</p>
-        <a href="index.html#contact" class="cta-button">Request a Demo</a>
-        <br>
-        <a href="index.html" class="back-link">← Back to All BITS Products</a>
-      </div>
-    </section>
+ <!-- CTA -->
+ <section class="cta-section">
+ <div class="container">
+ <h2>Ready to See TRACE in Action?</h2>
+ <p style="color: var(--text-muted); max-width: 600px; margin: 1rem auto 2rem; line-height: 1.8;">Schedule a live demonstration. Watch evidence anchor to Solana mainnet in real time. See a chain of custody record that no court, no institution, and no adversary can challenge.</p>
+ <a href="index.html#contact" class="cta-button">Request a Demo</a>
+ <br>
+ <a href="index.html" class="back-link">← Back to All BITS Products</a>
+</div>
+</section>
 
-  </main>
+</main>
 
-  <footer style="background: var(--bg-dark); border-top: 1px solid rgba(255,255,255,0.05); padding: 2rem 0; text-align: center;">
-    <div class="container">
-      <p style="color: var(--text-muted); font-size: 0.85rem;">© 2026 Blockchain Integrative Technology Solutions (BITS) · contact@bitscorp.us · bitscorp.us<br>
-      BITS TRACE™ is Patent Pending. All rights reserved.</p>
-    </div>
-  </footer>
+ <footer style="background: var(--bg-dark); border-top: 1px solid rgba(255,255,255,0.05); padding: 2rem 0; text-align: center;">
+ <div class="container">
+ <p style="color: var(--text-muted); font-size: 0.85rem;">© 2026 Blockchain Integrative Technology Solutions (BITS) · contact@bitscorp.us · bitscorp.us<br>
+ BITS TRACE™ is Patent Pending. All rights reserved.</p>
+</div>
+</footer>
 
-  <script src="js/main.js"></script>
+ <script src="js/main.js"></script>
 </body>
 </html>

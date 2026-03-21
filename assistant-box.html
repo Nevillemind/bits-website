@@ -1,204 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="BITS AI Assistant Box — Plug-and-play AI infrastructure for your business. No cloud. No subscriptions to big tech. Just yours.">
-  <title>BITS AI Assistant Box — Your Own AI, On Your Desk</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <style>
-    .detail-hero { padding: 8rem 0 4rem; text-align: center; background: linear-gradient(135deg, var(--bg-dark), var(--bg-medium)); }
-    .detail-hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.5rem; }
-    .detail-hero .tagline { color: var(--primary); font-size: 1.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; }
-    .detail-hero p { color: var(--text-muted); max-width: 700px; margin: 0 auto 2rem; font-size: 1.05rem; line-height: 1.8; }
-    .detail-section { padding: 4rem 0; }
-    .detail-section:nth-child(even) { background: var(--bg-medium); }
-    .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-    .use-case-card { background: var(--bg-dark); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 1.5rem; }
-    .use-case-card:hover { border-color: var(--primary); }
-    .use-case-card .icon { font-size: 2rem; margin-bottom: 0.75rem; }
-    .use-case-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
-    .use-case-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
-    .feature-block { display: flex; gap: 2rem; margin-bottom: 2.5rem; align-items: flex-start; }
-    .feature-block .icon { font-size: 2.5rem; flex-shrink: 0; }
-    .feature-block h3 { font-size: 1.15rem; margin-bottom: 0.25rem; }
-    .feature-block p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
-    .back-link { display: inline-block; margin-top: 2rem; color: var(--primary); font-weight: 600; }
-    .cta-section { text-align: center; padding: 4rem 0; }
-    .comparison-table { width: 100%; border-collapse: collapse; margin: 2rem 0; }
-    .comparison-table th, .comparison-table td { padding: 1rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); }
-    .comparison-table th { color: var(--primary); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
-    .comparison-table td { color: var(--text-muted); font-size: 0.95rem; }
-    .comparison-table tr:hover td { background: rgba(255,255,255,0.02); }
-    .check { color: #4ecdc4; font-weight: 700; }
-    .cross { color: var(--primary); font-weight: 700; }
-    @media (max-width: 600px) { .feature-block { flex-direction: column; gap: 0.5rem; } }
-  </style>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="description" content="BITS AI Assistant Box — Plug-and-play AI infrastructure for your business. No cloud. No subscriptions to big tech. Just yours.">
+ <title>BITS AI Assistant Box — Your Own AI, On Your Desk</title>
+ <link rel="stylesheet" href="css/styles.css">
+ <style>
+ .detail-hero { padding: 8rem 0 4rem; text-align: center; background: linear-gradient(135deg, var(--bg-dark), var(--bg-medium)); }
+ .detail-hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.5rem; }
+ .detail-hero .tagline { color: var(--primary); font-size: 1.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; }
+ .detail-hero p { color: var(--text-muted); max-width: 700px; margin: 0 auto 2rem; font-size: 1.05rem; line-height: 1.8; }
+ .detail-section { padding: 4rem 0; }
+ .detail-section:nth-child(even) { background: var(--bg-medium); }
+ .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+ .use-case-card { background: var(--bg-dark); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 1.5rem; }
+ .use-case-card:hover { border-color: var(--primary); }
+ .use-case-card .icon { font-size: 2rem; margin-bottom: 0.75rem; }
+ .use-case-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+ .use-case-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
+ .feature-block { display: flex; gap: 2rem; margin-bottom: 2.5rem; align-items: flex-start; }
+ .feature-block .icon { font-size: 2.5rem; flex-shrink: 0; }
+ .feature-block h3 { font-size: 1.15rem; margin-bottom: 0.25rem; }
+ .feature-block p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+ .back-link { display: inline-block; margin-top: 2rem; color: var(--primary); font-weight: 600; }
+ .cta-section { text-align: center; padding: 4rem 0; }
+ .comparison-table { width: 100%; border-collapse: collapse; margin: 2rem 0; }
+ .comparison-table th, .comparison-table td { padding: 1rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); }
+ .comparison-table th { color: var(--primary); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+ .comparison-table td { color: var(--text-muted); font-size: 0.95rem; }
+ .comparison-table tr:hover td { background: rgba(255,255,255,0.02); }
+ .check { color: #4ecdc4; font-weight: 700; }
+ .cross { color: var(--primary); font-weight: 700; }
+ @media (max-width: 600px) { .feature-block { flex-direction: column; gap: 0.5rem; } }
+</style>
 </head>
 <body>
-  <header id="header">
-    <nav class="navbar">
-      <div class="container nav-container">
-        <a href="index.html" class="logo"><img src="assets/BITS-logo.png" alt="BITS" style="height: 36px;"></a>
-        <ul class="nav-links" id="nav-links">
-          <li><a href="index.html" class="nav-link">← Back to BITS</a></li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+ <header id="header">
+ <nav class="navbar">
+ <div class="container nav-container">
+ <a href="index.html" class="logo"><img src="assets/BITS-logo.png" alt="BITS" style="height: 36px;"></a>
+ <ul class="nav-links" id="nav-links">
+ <li><a href="index.html" class="nav-link">← Back to BITS</a></li>
+</ul>
+</div>
+</nav>
+</header>
 
-  <main>
-    <section class="detail-hero">
-      <div class="container">
-        <p class="tagline">Plug &amp; Play AI Infrastructure</p>
-        <h1>BITS AI Assistant Box</h1>
-        <p>A pre-configured AI device that ships to your door, plugs into your network, and gives your entire team access to enterprise-grade AI — running locally, privately, and entirely under your control.</p>
-      </div>
-    </section>
+ <main>
+ <section class="detail-hero">
+ <div class="container">
+ <p class="tagline">Plug &amp; Play AI Infrastructure</p>
+ <h1>BITS AI Assistant Box</h1>
+ <p>A pre-configured AI device that ships to your door, plugs into your network, and gives your entire team access to enterprise-grade AI — running locally, privately, and entirely under your control.</p>
+</div>
+</section>
 
-    <section class="detail-section">
-      <div class="container">
-        <h2>The Problem With Cloud AI</h2>
-        <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
-          Every time your team uses ChatGPT, Copilot, or any cloud AI service, your business data — questions, documents, client information, internal processes — leaves your building and goes to someone else's servers. You don't control it. You can't audit it. And you're paying a monthly subscription for the privilege.
-        </p>
-        <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
-          The BITS AI Assistant Box changes that equation entirely. It's a physical device — small enough to sit on a shelf — that runs the same caliber of AI models locally. Your data never leaves. There's no per-user subscription to big tech. And it's yours.
-        </p>
-      </div>
-    </section>
+ <section class="detail-section">
+ <div class="container">
+ <h2>The Problem With Cloud AI</h2>
+ <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
+ Every time your team uses ChatGPT, Copilot, or any cloud AI service, your business data — questions, documents, client information, internal processes — leaves your building and goes to someone else's servers. You don't control it. You can't audit it. And you're paying a monthly subscription for the privilege.
+</p>
+ <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; max-width: 800px;">
+ The BITS AI Assistant Box changes that equation entirely. It's a physical device — small enough to sit on a shelf — that runs the same caliber of AI models locally. Your data never leaves. There's no per-user subscription to big tech. And it's yours.
+</p>
+</div>
+</section>
 
-    <section class="detail-section">
-      <div class="container">
-        <h2>How It Works</h2>
+ <section class="detail-section">
+ <div class="container">
+ <h2>How It Works</h2>
 
-        <div class="feature-block">
-          <div class="icon">📦</div>
-          <div>
-            <h3>It Ships to You, Ready to Go</h3>
-            <p>We pre-configure your BITS Box with AI models, your BITS products (Field Coach, DataVault, etc.), and remote management tools. It arrives ready to plug in — no IT team required. Connect it to power and your network, and you're live.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>It Ships to You, Ready to Go</h3>
+ <p>We pre-configure your BITS Box with AI models, your BITS products (Field Coach, DataVault, etc.), and remote management tools. It arrives ready to plug in — no IT team required. Connect it to power and your network, and you're live.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">🧠</div>
-          <div>
-            <h3>Enterprise AI, Running Locally</h3>
-            <p>The Box runs state-of-the-art open-source AI models — the same quality you'd get from cloud services — entirely on your hardware. Your team asks questions, generates documents, analyzes data, and gets AI assistance without anything leaving your building.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>Enterprise AI, Running Locally</h3>
+ <p>The Box runs state-of-the-art open-source AI models — the same quality you'd get from cloud services — entirely on your hardware. Your team asks questions, generates documents, analyzes data, and gets AI assistance without anything leaving your building.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">🔧</div>
-          <div>
-            <h3>Remotely Managed &amp; Updated</h3>
-            <p>BITS manages your Box remotely — software updates, model upgrades, troubleshooting, and new feature deployment. You get the convenience of a managed service with the privacy of on-premise hardware. We see the system, never your data.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>Remotely Managed &amp; Updated</h3>
+ <p>BITS manages your Box remotely — software updates, model upgrades, troubleshooting, and new feature deployment. You get the convenience of a managed service with the privacy of on-premise hardware. We see the system, never your data.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">🔌</div>
-          <div>
-            <h3>All BITS Products, One Device</h3>
-            <p>Field Coach, DataVault, Halo, Freedom AI, Freedom Workspace — every BITS product runs on the same Box. As your needs grow, we deploy new capabilities remotely. One device. Unlimited potential.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>All BITS Products, One Device</h3>
+ <p>Field Coach, DataVault, Halo, Freedom AI, Freedom Workspace — every BITS product runs on the same Box. As your needs grow, we deploy new capabilities remotely. One device. Unlimited potential.</p>
+</div>
+</div>
+</div>
+</section>
 
-    <section class="detail-section">
-      <div class="container">
-        <h2>BITS Box vs. Cloud AI</h2>
-        <table class="comparison-table">
-          <thead>
-            <tr>
-              <th></th>
-              <th>BITS AI Assistant Box</th>
-              <th>Cloud AI (ChatGPT, Copilot, etc.)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Data stays in your building</td>
-              <td><span class="check">✓ Always</span></td>
-              <td><span class="cross">✗ Never</span></td>
-            </tr>
-            <tr>
-              <td>Per-user subscription fees</td>
-              <td><span class="check">✓ None</span></td>
-              <td><span class="cross">✗ $20-30/user/month</span></td>
-            </tr>
-            <tr>
-              <td>Works without internet</td>
-              <td><span class="check">✓ Yes</span></td>
-              <td><span class="cross">✗ No</span></td>
-            </tr>
-            <tr>
-              <td>You own the hardware</td>
-              <td><span class="check">✓ Yes</span></td>
-              <td><span class="cross">✗ No</span></td>
-            </tr>
-            <tr>
-              <td>Custom knowledge bases</td>
-              <td><span class="check">✓ Your SOPs, your data</span></td>
-              <td><span class="cross">✗ Generic only</span></td>
-            </tr>
-            <tr>
-              <td>Vendor lock-in</td>
-              <td><span class="check">✓ None — platform agnostic</span></td>
-              <td><span class="cross">✗ Locked to provider</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+ <section class="detail-section">
+ <div class="container">
+ <h2>BITS Box vs. Cloud AI</h2>
+ <table class="comparison-table">
+ <thead>
+ <tr>
+ <th></th>
+ <th>BITS AI Assistant Box</th>
+ <th>Cloud AI (ChatGPT, Copilot, etc.)</th>
+</tr>
+</thead>
+ <tbody>
+ <tr>
+ <td>Data stays in your building</td>
+ <td><span class="check">✓ Always</span></td>
+ <td><span class="cross">✗ Never</span></td>
+</tr>
+ <tr>
+ <td>Per-user subscription fees</td>
+ <td><span class="check">✓ None</span></td>
+ <td><span class="cross">✗ $20-30/user/month</span></td>
+</tr>
+ <tr>
+ <td>Works without internet</td>
+ <td><span class="check">✓ Yes</span></td>
+ <td><span class="cross">✗ No</span></td>
+</tr>
+ <tr>
+ <td>You own the hardware</td>
+ <td><span class="check">✓ Yes</span></td>
+ <td><span class="cross">✗ No</span></td>
+</tr>
+ <tr>
+ <td>Custom knowledge bases</td>
+ <td><span class="check">✓ Your SOPs, your data</span></td>
+ <td><span class="cross">✗ Generic only</span></td>
+</tr>
+ <tr>
+ <td>Vendor lock-in</td>
+ <td><span class="check">✓ None — platform agnostic</span></td>
+ <td><span class="cross">✗ Locked to provider</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
 
-    <section class="detail-section">
-      <div class="container">
-        <h2>Who It's For</h2>
-        <div class="use-cases-grid">
-          <div class="use-case-card">
-            <div class="icon">🏢</div>
-            <h3>Small &amp; Medium Businesses</h3>
-            <p>Get the same AI capabilities that Fortune 500 companies have — without the Fortune 500 budget or IT department. One device, one flat cost, unlimited users.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">🔒</div>
-            <h3>Privacy-Sensitive Industries</h3>
-            <p>Healthcare, legal, financial, government — any industry where data leaving the building is a compliance risk. BITS Box keeps everything local by default.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">🏗️</div>
-            <h3>Field Operations</h3>
-            <p>Contractors, service companies, fleet operators — teams that need AI assistance in the field. The Box serves as the central brain that your mobile workforce connects to.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">🏬</div>
-            <h3>Retail &amp; Restaurants</h3>
-            <p>Multi-location businesses that want consistent AI assistance at every site — training, inventory, customer service, operations — without per-location cloud subscriptions.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+ <section class="detail-section">
+ <div class="container">
+ <h2>Who It's For</h2>
+ <div class="use-cases-grid">
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Small &amp; Medium Businesses</h3>
+ <p>Get the same AI capabilities that Fortune 500 companies have — without the Fortune 500 budget or IT department. One device, one flat cost, unlimited users.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Privacy-Sensitive Industries</h3>
+ <p>Healthcare, legal, financial, government — any industry where data leaving the building is a compliance risk. BITS Box keeps everything local by default.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Field Operations</h3>
+ <p>Contractors, service companies, fleet operators — teams that need AI assistance in the field. The Box serves as the central brain that your mobile workforce connects to.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Retail &amp; Restaurants</h3>
+ <p>Multi-location businesses that want consistent AI assistance at every site — training, inventory, customer service, operations — without per-location cloud subscriptions.</p>
+</div>
+</div>
+</div>
+</section>
 
-    <section class="cta-section">
-      <div class="container">
-        <h2>Your AI. Your Building. Your Rules.</h2>
-        <p style="color: var(--text-muted); margin-bottom: 2rem;">Let's talk about putting a BITS Box in your business.</p>
-        <a href="https://calendly.com/bitscorpus" target="_blank" class="cta-button">Book a Consultation →</a>
-        <br>
-        <a href="index.html" class="back-link">← Back to BITS</a>
-      </div>
-    </section>
-  </main>
+ <section class="cta-section">
+ <div class="container">
+ <h2>Your AI. Your Building. Your Rules.</h2>
+ <p style="color: var(--text-muted); margin-bottom: 2rem;">Let's talk about putting a BITS Box in your business.</p>
+ <a href="https://calendly.com/bitscorpus" target="_blank" class="cta-button">Book a Consultation →</a>
+ <br>
+ <a href="index.html" class="back-link">← Back to BITS</a>
+</div>
+</section>
+</main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-bottom">
-        <p class="copyright">&copy; 2026 BITS — Blockchain Integrative Technology Solutions. All rights reserved.</p>
-        <p style="color: var(--text-dim); font-size: 0.75rem; margin-top: 0.5rem;">Privacy-First &bull; Data-Sovereign &bull; Platform-Agnostic</p>
-      </div>
-    </div>
-  </footer>
+ <footer class="site-footer">
+ <div class="container">
+ <div class="footer-bottom">
+ <p class="copyright">&copy; 2026 BITS — Blockchain Integrative Technology Solutions. All rights reserved.</p>
+ <p style="color: var(--text-dim); font-size: 0.75rem; margin-top: 0.5rem;">Privacy-First &bull; Data-Sovereign &bull; Platform-Agnostic</p>
+</div>
+</div>
+</footer>
 </body>
 </html>

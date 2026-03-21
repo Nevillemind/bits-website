@@ -1,335 +1,335 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="BITS Settld™ — Instant blockchain-powered payment settlement for freight carriers, contractors, and gig workers. GPS-verified. Escrow-backed. Settlement in seconds.">
-  <title>BITS Settld™ — The Settlement Layer for the Working World</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <style>
-    .detail-hero { padding: 8rem 0 4rem; text-align: center; background: linear-gradient(135deg, var(--bg-dark), var(--bg-medium)); }
-    .detail-hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.5rem; }
-    .detail-hero .tagline { color: var(--primary); font-size: 1.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; }
-    .detail-hero p { color: var(--text-muted); max-width: 720px; margin: 0 auto 2rem; font-size: 1.05rem; line-height: 1.8; }
-    .detail-section { padding: 4rem 0; }
-    .detail-section:nth-child(even) { background: var(--bg-medium); }
-    .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-    .use-case-card { background: var(--bg-dark); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 1.5rem; transition: border-color 0.2s; }
-    .use-case-card:hover { border-color: var(--primary); }
-    .use-case-card .icon { font-size: 2rem; margin-bottom: 0.75rem; }
-    .use-case-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
-    .use-case-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
-    .feature-block { display: flex; gap: 2rem; margin-bottom: 2.5rem; align-items: flex-start; }
-    .feature-block .icon { font-size: 2.5rem; flex-shrink: 0; }
-    .feature-block h3 { font-size: 1.15rem; margin-bottom: 0.25rem; }
-    .feature-block p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
-    .pipeline-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0; margin: 2rem 0; }
-    .pipeline-step { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); padding: 1.5rem 1rem; text-align: center; position: relative; }
-    .pipeline-step:not(:last-child)::after { content: '→'; position: absolute; right: -14px; top: 50%; transform: translateY(-50%); color: var(--primary); font-size: 1.2rem; font-weight: 900; z-index: 2; }
-    .pipeline-step .step-num { font-size: 1.6rem; font-weight: 900; color: var(--primary); line-height: 1; margin-bottom: 6px; }
-    .pipeline-step .step-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #aaa; margin-bottom: 6px; }
-    .pipeline-step .step-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; }
-    .solana-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(20, 241, 149, 0.08); border: 1px solid rgba(20, 241, 149, 0.3); border-radius: 30px; padding: 6px 16px; font-size: 0.85rem; color: #14f195; font-weight: 600; margin-bottom: 1.5rem; }
-    .solana-dot { width: 8px; height: 8px; background: #14f195; border-radius: 50%; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-    .patent-notice { background: rgba(233, 69, 96, 0.1); border: 1px solid var(--primary); border-radius: var(--radius-md); padding: 1.5rem; margin-top: 3rem; text-align: center; }
-    .patent-notice p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
-    .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
-    .pillar { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-top: 3px solid var(--primary); border-radius: var(--radius-md); padding: 1.2rem; text-align: center; }
-    .pillar .pillar-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
-    .pillar h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
-    .pillar p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
-    .vertical-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-left: 4px solid var(--primary); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; padding: 2rem; margin-bottom: 1.5rem; transition: border-color 0.2s; }
-    .vertical-card:hover { border-left-color: #ff6b6b; }
-    .vertical-card .vertical-headline { font-size: 1.3rem; font-weight: 900; color: #fff; margin-bottom: 0.25rem; }
-    .vertical-card .vertical-tagline { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 0.75rem; font-style: italic; }
-    .vertical-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin: 0; }
-    .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
-    .problem-card { background: rgba(233,69,96,0.06); border: 1px solid rgba(233,69,96,0.2); border-radius: var(--radius-md); padding: 1.5rem; text-align: center; }
-    .problem-card .problem-icon { font-size: 2rem; margin-bottom: 0.75rem; }
-    .problem-card h3 { font-size: 1rem; margin-bottom: 0.5rem; color: #fff; }
-    .problem-card p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; }
-    .fee-badge { display: inline-block; background: rgba(20,241,149,0.1); border: 1px solid rgba(20,241,149,0.3); border-radius: var(--radius-md); padding: 1.5rem 2.5rem; text-align: center; margin: 2rem auto; }
-    .fee-badge .fee-num { font-size: 3rem; font-weight: 900; color: #14f195; line-height: 1; }
-    .fee-badge .fee-label { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; }
-    .waitlist-box { background: rgba(233,69,96,0.08); border: 1px solid var(--primary); border-radius: var(--radius-lg); padding: 2rem; text-align: center; margin-top: 2rem; }
-    .waitlist-box h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
-    .waitlist-box p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.25rem; }
-    .cta-section { text-align: center; padding: 4rem 0; }
-    .back-link { display: inline-block; margin-top: 2rem; color: var(--primary); font-weight: 600; }
-    @media (max-width: 600px) { .feature-block { flex-direction: column; gap: 0.5rem; } .pipeline-step:not(:last-child)::after { display: none; } }
-  </style>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="description" content="BITS Settld™ — Instant blockchain-powered payment settlement for freight carriers, contractors, and gig workers. GPS-verified. Escrow-backed. Settlement in seconds.">
+ <title>BITS Settld™ — The Settlement Layer for the Working World</title>
+ <link rel="stylesheet" href="css/styles.css">
+ <style>
+ .detail-hero { padding: 8rem 0 4rem; text-align: center; background: linear-gradient(135deg, var(--bg-dark), var(--bg-medium)); }
+ .detail-hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.5rem; }
+ .detail-hero .tagline { color: var(--primary); font-size: 1.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; }
+ .detail-hero p { color: var(--text-muted); max-width: 720px; margin: 0 auto 2rem; font-size: 1.05rem; line-height: 1.8; }
+ .detail-section { padding: 4rem 0; }
+ .detail-section:nth-child(even) { background: var(--bg-medium); }
+ .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+ .use-case-card { background: var(--bg-dark); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 1.5rem; transition: border-color 0.2s; }
+ .use-case-card:hover { border-color: var(--primary); }
+ .use-case-card .icon { font-size: 2rem; margin-bottom: 0.75rem; }
+ .use-case-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+ .use-case-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
+ .feature-block { display: flex; gap: 2rem; margin-bottom: 2.5rem; align-items: flex-start; }
+ .feature-block .icon { font-size: 2.5rem; flex-shrink: 0; }
+ .feature-block h3 { font-size: 1.15rem; margin-bottom: 0.25rem; }
+ .feature-block p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+ .pipeline-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0; margin: 2rem 0; }
+ .pipeline-step { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); padding: 1.5rem 1rem; text-align: center; position: relative; }
+ .pipeline-step:not(:last-child)::after { content: '→'; position: absolute; right: -14px; top: 50%; transform: translateY(-50%); color: var(--primary); font-size: 1.2rem; font-weight: 900; z-index: 2; }
+ .pipeline-step .step-num { font-size: 1.6rem; font-weight: 900; color: var(--primary); line-height: 1; margin-bottom: 6px; }
+ .pipeline-step .step-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #aaa; margin-bottom: 6px; }
+ .pipeline-step .step-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; }
+ .solana-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(20, 241, 149, 0.08); border: 1px solid rgba(20, 241, 149, 0.3); border-radius: 30px; padding: 6px 16px; font-size: 0.85rem; color: #14f195; font-weight: 600; margin-bottom: 1.5rem; }
+ .solana-dot { width: 8px; height: 8px; background: #14f195; border-radius: 50%; animation: pulse 2s infinite; }
+ @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+ .patent-notice { background: rgba(233, 69, 96, 0.1); border: 1px solid var(--primary); border-radius: var(--radius-md); padding: 1.5rem; margin-top: 3rem; text-align: center; }
+ .patent-notice p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+ .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+ .pillar { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-top: 3px solid var(--primary); border-radius: var(--radius-md); padding: 1.2rem; text-align: center; }
+ .pillar .pillar-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+ .pillar h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+ .pillar p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+ .vertical-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-left: 4px solid var(--primary); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; padding: 2rem; margin-bottom: 1.5rem; transition: border-color 0.2s; }
+ .vertical-card:hover { border-left-color: #ff6b6b; }
+ .vertical-card .vertical-headline { font-size: 1.3rem; font-weight: 900; color: #fff; margin-bottom: 0.25rem; }
+ .vertical-card .vertical-tagline { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 0.75rem; font-style: italic; }
+ .vertical-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin: 0; }
+ .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
+ .problem-card { background: rgba(233,69,96,0.06); border: 1px solid rgba(233,69,96,0.2); border-radius: var(--radius-md); padding: 1.5rem; text-align: center; }
+ .problem-card .problem-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+ .problem-card h3 { font-size: 1rem; margin-bottom: 0.5rem; color: #fff; }
+ .problem-card p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; }
+ .fee-badge { display: inline-block; background: rgba(20,241,149,0.1); border: 1px solid rgba(20,241,149,0.3); border-radius: var(--radius-md); padding: 1.5rem 2.5rem; text-align: center; margin: 2rem auto; }
+ .fee-badge .fee-num { font-size: 3rem; font-weight: 900; color: #14f195; line-height: 1; }
+ .fee-badge .fee-label { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; }
+ .waitlist-box { background: rgba(233,69,96,0.08); border: 1px solid var(--primary); border-radius: var(--radius-lg); padding: 2rem; text-align: center; margin-top: 2rem; }
+ .waitlist-box h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+ .waitlist-box p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.25rem; }
+ .cta-section { text-align: center; padding: 4rem 0; }
+ .back-link { display: inline-block; margin-top: 2rem; color: var(--primary); font-weight: 600; }
+ @media (max-width: 600px) { .feature-block { flex-direction: column; gap: 0.5rem; } .pipeline-step:not(:last-child)::after { display: none; } }
+</style>
 </head>
 <body>
-  <header id="header">
-    <nav class="navbar">
-      <div class="container nav-container">
-        <a href="index.html" class="logo"><img src="assets/BITS-logo.png" alt="BITS" style="height: 36px;"></a>
-        <ul class="nav-links" id="nav-links">
-          <li><a href="index.html" class="nav-link">← Back to BITS</a></li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+ <header id="header">
+ <nav class="navbar">
+ <div class="container nav-container">
+ <a href="index.html" class="logo"><img src="assets/BITS-logo.png" alt="BITS" style="height: 36px;"></a>
+ <ul class="nav-links" id="nav-links">
+ <li><a href="index.html" class="nav-link">← Back to BITS</a></li>
+</ul>
+</div>
+</nav>
+</header>
 
-  <main>
+ <main>
 
-    <!-- HERO -->
-    <section class="detail-hero">
-      <div class="container">
-        <div class="solana-badge"><span class="solana-dot"></span> Blockchain-Powered Settlement</div>
-        <p class="tagline">The Settlement Layer for the Working World</p>
-        <h1>BITS Settld™ 💰</h1>
-        <p>Instant blockchain-powered payment settlement for freight carriers, contractors, and gig workers. No more waiting 30–90 days. GPS-verified delivery, blockchain escrow, TRACE-anchored proof — settlement in seconds.</p>
-        <div style="margin-top: 1.5rem;">
-          <a href="#waitlist" class="cta-button" style="display: inline-block; margin: 0.5rem;">Join the Waitlist</a>
-        </div>
-        <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted); font-style: italic;">Protected under BITS Payment Solutions IP · bitsettld.com (registered, DNS pending)</div>
-      </div>
-    </section>
+ <!-- HERO -->
+ <section class="detail-hero">
+ <div class="container">
+ <div class="solana-badge"><span class="solana-dot"></span> Blockchain-Powered Settlement</div>
+ <p class="tagline">The Settlement Layer for the Working World</p>
+ <h1>BITS Settld™</h1>
+ <p>Instant blockchain-powered payment settlement for freight carriers, contractors, and gig workers. No more waiting 30–90 days. GPS-verified delivery, blockchain escrow, TRACE-anchored proof — settlement in seconds.</p>
+ <div style="margin-top: 1.5rem;">
+ <a href="#waitlist" class="cta-button" style="display: inline-block; margin: 0.5rem;">Join the Waitlist</a>
+</div>
+ <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted); font-style: italic;">Protected under BITS Payment Solutions IP · bitsettld.com (registered, DNS pending)</div>
+</div>
+</section>
 
-    <!-- THE PROBLEM -->
-    <section class="detail-section">
-      <div class="container">
-        <h2 class="section-title">The Problem Settld Fixes</h2>
-        <p style="color: var(--text-muted); max-width: 800px; font-size: 1rem; line-height: 1.8; margin-bottom: 2rem;">The people who do the most physical work in our economy wait the longest to get paid. Freight carriers float fuel costs for 90 days. Contractors chase invoices for months while managing payroll. Gig workers live one bad week from crisis. Payment disputes cost businesses billions annually — and the people who can least afford to wait always wait the longest.</p>
+ <!-- THE PROBLEM -->
+ <section class="detail-section">
+ <div class="container">
+ <h2 class="section-title">The Problem Settld Fixes</h2>
+ <p style="color: var(--text-muted); max-width: 800px; font-size: 1rem; line-height: 1.8; margin-bottom: 2rem;">The people who do the most physical work in our economy wait the longest to get paid. Freight carriers float fuel costs for 90 days. Contractors chase invoices for months while managing payroll. Gig workers live one bad week from crisis. Payment disputes cost businesses billions annually — and the people who can least afford to wait always wait the longest.</p>
 
-        <div style="background: rgba(233,69,96,0.08); border-left: 4px solid var(--primary); padding: 1.5rem 2rem; border-radius: 0 12px 12px 0; margin-bottom: 2rem;">
-          <p style="font-size: 1.2rem; font-weight: 700; color: #fff; margin: 0;">"You did the work. You should get paid. Now."</p>
-          <p style="color: var(--text-muted); margin: 0.5rem 0 0; font-size: 0.95rem;">Settld eliminates the wait — GPS-verified delivery triggers instant blockchain settlement.</p>
-        </div>
+ <div style="background: rgba(233,69,96,0.08); border-left: 4px solid var(--primary); padding: 1.5rem 2rem; border-radius: 0 12px 12px 0; margin-bottom: 2rem;">
+ <p style="font-size: 1.2rem; font-weight: 700; color: #fff; margin: 0;">"You did the work. You should get paid. Now."</p>
+ <p style="color: var(--text-muted); margin: 0.5rem 0 0; font-size: 0.95rem;">Settld eliminates the wait — GPS-verified delivery triggers instant blockchain settlement.</p>
+</div>
 
-        <div class="problem-grid">
-          <div class="problem-card">
-            <div class="problem-icon">🚛</div>
-            <h3>Freight Carriers</h3>
-            <p>Wait 30–90 days for payment after delivery. Float fuel, driver wages, and maintenance costs out of pocket for months.</p>
-          </div>
-          <div class="problem-card">
-            <div class="problem-icon">🏗️</div>
-            <h3>Contractors</h3>
-            <p>Chase invoices for months. Manage crews and materials on credit while clients delay payment through bureaucratic approval chains.</p>
-          </div>
-          <div class="problem-card">
-            <div class="problem-icon">📦</div>
-            <h3>Gig Workers</h3>
-            <p>Live paycheck to paycheck with no financial cushion. One platform dispute can freeze earnings for weeks.</p>
-          </div>
-          <div class="problem-card">
-            <div class="problem-icon">⚡</div>
-            <h3>Payment Disputes</h3>
-            <p>Billions lost annually to disputed deliveries, incomplete work claims, and "we never received it" games. Settld ends it.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+ <div class="problem-grid">
+ <div class="problem-card">
+ <div class="problem-icon"></div>
+ <h3>Freight Carriers</h3>
+ <p>Wait 30–90 days for payment after delivery. Float fuel, driver wages, and maintenance costs out of pocket for months.</p>
+</div>
+ <div class="problem-card">
+ <div class="problem-icon"></div>
+ <h3>Contractors</h3>
+ <p>Chase invoices for months. Manage crews and materials on credit while clients delay payment through bureaucratic approval chains.</p>
+</div>
+ <div class="problem-card">
+ <div class="problem-icon"></div>
+ <h3>Gig Workers</h3>
+ <p>Live paycheck to paycheck with no financial cushion. One platform dispute can freeze earnings for weeks.</p>
+</div>
+ <div class="problem-card">
+ <div class="problem-icon"></div>
+ <h3>Payment Disputes</h3>
+ <p>Billions lost annually to disputed deliveries, incomplete work claims, and "we never received it" games. Settld ends it.</p>
+</div>
+</div>
+</div>
+</section>
 
-    <!-- HOW IT WORKS -->
-    <section class="detail-section">
-      <div class="container">
-        <h2 class="section-title">How Settld Works</h2>
-        <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">Five steps. GPS-verified. Blockchain-guaranteed. Settlement in seconds.</p>
+ <!-- HOW IT WORKS -->
+ <section class="detail-section">
+ <div class="container">
+ <h2 class="section-title">How Settld Works</h2>
+ <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">Five steps. GPS-verified. Blockchain-guaranteed. Settlement in seconds.</p>
 
-        <div class="pipeline-steps">
-          <div class="pipeline-step">
-            <div class="step-num">1</div>
-            <div class="step-label">Create Job</div>
-            <div class="step-desc">Shipper or client creates job with route checkpoints or project milestones</div>
-          </div>
-          <div class="pipeline-step">
-            <div class="step-num">2</div>
-            <div class="step-label">Fund Escrow</div>
-            <div class="step-desc">Payment locked in blockchain escrow — funds committed before work begins</div>
-          </div>
-          <div class="pipeline-step">
-            <div class="step-num">3</div>
-            <div class="step-label">Start Work</div>
-            <div class="step-desc">Carrier or contractor begins — GPS tracking activates automatically</div>
-          </div>
-          <div class="pipeline-step">
-            <div class="step-num">4</div>
-            <div class="step-label">Verify</div>
-            <div class="step-desc">GPS geofenced checkpoint hit + photo proof SHA-256 hashed and TRACE-anchored</div>
-          </div>
-          <div class="pipeline-step">
-            <div class="step-num">5</div>
-            <div class="step-label">Settle</div>
-            <div class="step-desc">Payment releases instantly from escrow on verified completion — no waiting, no chasing</div>
-          </div>
-        </div>
-      </div>
-    </section>
+ <div class="pipeline-steps">
+ <div class="pipeline-step">
+ <div class="step-num">1</div>
+ <div class="step-label">Create Job</div>
+ <div class="step-desc">Shipper or client creates job with route checkpoints or project milestones</div>
+</div>
+ <div class="pipeline-step">
+ <div class="step-num">2</div>
+ <div class="step-label">Fund Escrow</div>
+ <div class="step-desc">Payment locked in blockchain escrow — funds committed before work begins</div>
+</div>
+ <div class="pipeline-step">
+ <div class="step-num">3</div>
+ <div class="step-label">Start Work</div>
+ <div class="step-desc">Carrier or contractor begins — GPS tracking activates automatically</div>
+</div>
+ <div class="pipeline-step">
+ <div class="step-num">4</div>
+ <div class="step-label">Verify</div>
+ <div class="step-desc">GPS geofenced checkpoint hit + photo proof SHA-256 hashed and TRACE-anchored</div>
+</div>
+ <div class="pipeline-step">
+ <div class="step-num">5</div>
+ <div class="step-label">Settle</div>
+ <div class="step-desc">Payment releases instantly from escrow on verified completion — no waiting, no chasing</div>
+</div>
+</div>
+</div>
+</section>
 
-    <!-- CORE CAPABILITIES -->
-    <section class="detail-section">
-      <div class="container">
-        <h2 class="section-title">Core Capabilities</h2>
+ <!-- CORE CAPABILITIES -->
+ <section class="detail-section">
+ <div class="container">
+ <h2 class="section-title">Core Capabilities</h2>
 
-        <div class="feature-block">
-          <div class="icon">📍</div>
-          <div>
-            <h3>GPS Geofenced Checkpoint Verification</h3>
-            <p>Settld uses the Haversine distance formula to calculate precise GPS proximity at each checkpoint. When a carrier or contractor enters the geofenced zone — delivery dock, job site, inspection point — verification triggers automatically. No manual confirmation. No "I was there" disputes. Mathematics confirms presence.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>GPS Geofenced Checkpoint Verification</h3>
+ <p>Settld uses the Haversine distance formula to calculate precise GPS proximity at each checkpoint. When a carrier or contractor enters the geofenced zone — delivery dock, job site, inspection point — verification triggers automatically. No manual confirmation. No "I was there" disputes. Mathematics confirms presence.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">🔒</div>
-          <div>
-            <h3>Blockchain Escrow — Funds Locked Until Proof</h3>
-            <p>Payment is locked in smart contract escrow the moment a job is created. Funds cannot be diverted, withheld, or disputed away. When GPS and photo proof confirm completion, the escrow releases automatically — no human approval needed, no accounts payable bottleneck, no net-90 terms. The contract executes itself.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>Blockchain Escrow — Funds Locked Until Proof</h3>
+ <p>Payment is locked in smart contract escrow the moment a job is created. Funds cannot be diverted, withheld, or disputed away. When GPS and photo proof confirm completion, the escrow releases automatically — no human approval needed, no accounts payable bottleneck, no net-90 terms. The contract executes itself.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">📸</div>
-          <div>
-            <h3>Photo Proof with SHA-256 Hash + TRACE Integration</h3>
-            <p>Every checkpoint requires photographic proof. The photo is SHA-256 hashed and anchored to Solana via TRACE — the same blockchain authentication that powers BITS TRACE and TRACE Shield. Every proof of completion is immutable, timestamped, and independently verifiable. Disputes collapse against this evidence.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>Photo Proof with SHA-256 Hash + TRACE Integration</h3>
+ <p>Every checkpoint requires photographic proof. The photo is SHA-256 hashed and anchored to Solana via TRACE — the same blockchain authentication that powers BITS TRACE and TRACE Shield. Every proof of completion is immutable, timestamped, and independently verifiable. Disputes collapse against this evidence.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">⚡</div>
-          <div>
-            <h3>Two Payment Modes — Instant and Streaming</h3>
-            <p><strong style="color: #fff;">Instant:</strong> Full payment releases on final delivery confirmation — perfect for freight and simple gig deliveries. <strong style="color: #fff;">Streaming:</strong> Milestone-based payment streams release as each checkpoint is verified — perfect for construction phases, multi-stop routes, and long-duration contracts. Choose the model that fits the work.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>Two Payment Modes — Instant and Streaming</h3>
+ <p><strong style="color: #fff;">Instant:</strong> Full payment releases on final delivery confirmation — perfect for freight and simple gig deliveries. <strong style="color: #fff;">Streaming:</strong> Milestone-based payment streams release as each checkpoint is verified — perfect for construction phases, multi-stop routes, and long-duration contracts. Choose the model that fits the work.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">⛓️</div>
-          <div>
-            <h3>TRACE Integration — Every Proof Blockchain-Anchored</h3>
-            <p>Settld is built on BITS' TRACE infrastructure. Every GPS checkpoint, every photo proof, every completion event is anchored to Solana mainnet via TRACE. This means Settld payments aren't just fast — they're audit-proof. Every transaction comes with an immutable, court-ready record of what was done, when, and by whom.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>TRACE Integration — Every Proof Blockchain-Anchored</h3>
+ <p>Settld is built on BITS' TRACE infrastructure. Every GPS checkpoint, every photo proof, every completion event is anchored to Solana mainnet via TRACE. This means Settld payments aren't just fast — they're audit-proof. Every transaction comes with an immutable, court-ready record of what was done, when, and by whom.</p>
+</div>
+</div>
 
-        <div style="text-align: center; margin: 2rem 0;">
-          <div class="fee-badge">
-            <div class="fee-num">0.5%</div>
-            <div class="fee-label">Settlement fee — lowest in the industry</div>
-          </div>
-        </div>
-      </div>
-    </section>
+ <div style="text-align: center; margin: 2rem 0;">
+ <div class="fee-badge">
+ <div class="fee-num">0.5%</div>
+ <div class="fee-label">Settlement fee — lowest in the industry</div>
+</div>
+</div>
+</div>
+</section>
 
-    <!-- INDUSTRY VERTICALS -->
-    <section class="detail-section">
-      <div class="container">
-        <h2 class="section-title">Built for the Working World</h2>
-        <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">Settld is purpose-built for the industries that wait the longest to get paid.</p>
+ <!-- INDUSTRY VERTICALS -->
+ <section class="detail-section">
+ <div class="container">
+ <h2 class="section-title">Built for the Working World</h2>
+ <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">Settld is purpose-built for the industries that wait the longest to get paid.</p>
 
-        <div class="vertical-card">
-          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
-            <span style="font-size: 2.5rem;">🚛</span>
-            <div>
-              <div class="vertical-headline">Freight</div>
-              <div class="vertical-tagline">"Hauled it? Get Settld."</div>
-            </div>
-          </div>
-          <p>Freight carriers stop floating fuel and driver costs for 90 days. Create a job with your route checkpoints — origin, weigh stations, delivery dock. GPS tracking activates when you roll. Streaming payments release at each verified checkpoint, so you're earning as you drive. Final delivery confirmation triggers the remainder. No factoring fees. No net-90. Just settlement.</p>
-        </div>
+ <div class="vertical-card">
+ <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
+ <span style="font-size: 2.5rem;"></span>
+ <div>
+ <div class="vertical-headline">Freight</div>
+ <div class="vertical-tagline">"Hauled it? Get Settld."</div>
+</div>
+</div>
+ <p>Freight carriers stop floating fuel and driver costs for 90 days. Create a job with your route checkpoints — origin, weigh stations, delivery dock. GPS tracking activates when you roll. Streaming payments release at each verified checkpoint, so you're earning as you drive. Final delivery confirmation triggers the remainder. No factoring fees. No net-90. Just settlement.</p>
+</div>
 
-        <div class="vertical-card">
-          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
-            <span style="font-size: 2.5rem;">🏗️</span>
-            <div>
-              <div class="vertical-headline">Construction</div>
-              <div class="vertical-tagline">"Built it? Get Settld."</div>
-            </div>
-          </div>
-          <p>Contractors stop chasing invoices between phases. Set up milestone-based escrow at contract signing — foundation, framing, rough-in, inspection, completion. Each milestone gets a GPS checkpoint and photo proof requirement. When your crew completes a phase and the photo proof is TRACE-anchored, payment releases automatically. No approval delays. No "the check is in the mail." The smart contract executes the moment you prove the work is done.</p>
-        </div>
+ <div class="vertical-card">
+ <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
+ <span style="font-size: 2.5rem;"></span>
+ <div>
+ <div class="vertical-headline">Construction</div>
+ <div class="vertical-tagline">"Built it? Get Settld."</div>
+</div>
+</div>
+ <p>Contractors stop chasing invoices between phases. Set up milestone-based escrow at contract signing — foundation, framing, rough-in, inspection, completion. Each milestone gets a GPS checkpoint and photo proof requirement. When your crew completes a phase and the photo proof is TRACE-anchored, payment releases automatically. No approval delays. No "the check is in the mail." The smart contract executes the moment you prove the work is done.</p>
+</div>
 
-        <div class="vertical-card">
-          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
-            <span style="font-size: 2.5rem;">📦</span>
-            <div>
-              <div class="vertical-headline">Gig & Logistics</div>
-              <div class="vertical-tagline">"Finished? Get Settld."</div>
-            </div>
-          </div>
-          <p>Gig workers and last-mile delivery drivers stop living on platform timelines. Every delivery is a GPS-verified, photo-confirmed event. Escrow funds are committed when the job is accepted — the platform can't freeze your earnings on a dispute. When you hit the delivery GPS zone and snap the proof photo, settlement is instant. No waiting for weekly payout cycles. No "account under review" holds. Your work, your money, now.</p>
-        </div>
-      </div>
-    </section>
+ <div class="vertical-card">
+ <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
+ <span style="font-size: 2.5rem;"></span>
+ <div>
+ <div class="vertical-headline">Gig & Logistics</div>
+ <div class="vertical-tagline">"Finished? Get Settld."</div>
+</div>
+</div>
+ <p>Gig workers and last-mile delivery drivers stop living on platform timelines. Every delivery is a GPS-verified, photo-confirmed event. Escrow funds are committed when the job is accepted — the platform can't freeze your earnings on a dispute. When you hit the delivery GPS zone and snap the proof photo, settlement is instant. No waiting for weekly payout cycles. No "account under review" holds. Your work, your money, now.</p>
+</div>
+</div>
+</section>
 
-    <!-- KEY FEATURES PILLARS -->
-    <section class="detail-section">
-      <div class="container">
-        <h2 class="section-title">Why Settld Wins</h2>
-        <div class="pillars">
-          <div class="pillar">
-            <div class="pillar-icon">⚡</div>
-            <h4>Instant Settlement</h4>
-            <p>GPS-verified delivery triggers payment in seconds — not days, weeks, or months</p>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon">🔒</div>
-            <h4>Escrow-Backed</h4>
-            <p>Funds locked before work begins — no risk, no disputes, no "we'll pay you eventually"</p>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon">📍</div>
-            <h4>GPS Verified</h4>
-            <p>Haversine distance calculation — mathematical proof of delivery, not a promise</p>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon">⛓️</div>
-            <h4>TRACE-Anchored</h4>
-            <p>Every proof of completion is blockchain-anchored — immutable, court-ready record</p>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon">💸</div>
-            <h4>0.5% Fee</h4>
-            <p>Lowest settlement fee in the industry — no factoring, no net-30 discounts, no hidden costs</p>
-          </div>
-        </div>
-      </div>
-    </section>
+ <!-- KEY FEATURES PILLARS -->
+ <section class="detail-section">
+ <div class="container">
+ <h2 class="section-title">Why Settld Wins</h2>
+ <div class="pillars">
+ <div class="pillar">
+ <div class="pillar-icon"></div>
+ <h4>Instant Settlement</h4>
+ <p>GPS-verified delivery triggers payment in seconds — not days, weeks, or months</p>
+</div>
+ <div class="pillar">
+ <div class="pillar-icon"></div>
+ <h4>Escrow-Backed</h4>
+ <p>Funds locked before work begins — no risk, no disputes, no "we'll pay you eventually"</p>
+</div>
+ <div class="pillar">
+ <div class="pillar-icon"></div>
+ <h4>GPS Verified</h4>
+ <p>Haversine distance calculation — mathematical proof of delivery, not a promise</p>
+</div>
+ <div class="pillar">
+ <div class="pillar-icon"></div>
+ <h4>TRACE-Anchored</h4>
+ <p>Every proof of completion is blockchain-anchored — immutable, court-ready record</p>
+</div>
+ <div class="pillar">
+ <div class="pillar-icon"></div>
+ <h4>0.5% Fee</h4>
+ <p>Lowest settlement fee in the industry — no factoring, no net-30 discounts, no hidden costs</p>
+</div>
+</div>
+</div>
+</section>
 
-    <!-- WAITLIST -->
-    <section class="detail-section" id="waitlist">
-      <div class="container">
-        <h2 class="section-title">Get Settld First</h2>
-        <p style="color: var(--text-muted); max-width: 700px; font-size: 1rem; line-height: 1.8; margin-bottom: 2rem;">Settld is in pre-launch. Early access waitlist members get priority onboarding, reduced settlement fees for the first 6 months, and direct input into the product roadmap. If you haul freight, run a crew, or do gig work — you belong on this list.</p>
+ <!-- WAITLIST -->
+ <section class="detail-section" id="waitlist">
+ <div class="container">
+ <h2 class="section-title">Get Settld First</h2>
+ <p style="color: var(--text-muted); max-width: 700px; font-size: 1rem; line-height: 1.8; margin-bottom: 2rem;">Settld is in pre-launch. Early access waitlist members get priority onboarding, reduced settlement fees for the first 6 months, and direct input into the product roadmap. If you haul freight, run a crew, or do gig work — you belong on this list.</p>
 
-        <div class="waitlist-box">
-          <h3>Join the Waitlist</h3>
-          <p>Be first when Settld launches. Leave your email at bitsettld.com — we'll reach out with early access details.</p>
-          <a href="https://bitsettld.com" class="cta-button" style="display: inline-block;">Visit bitsettld.com →</a>
-          <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted);">bitsettld.com — coming soon · No spam. No BS. Just settlement.</p>
-        </div>
+ <div class="waitlist-box">
+ <h3>Join the Waitlist</h3>
+ <p>Be first when Settld launches. Leave your email at bitsettld.com — we'll reach out with early access details.</p>
+ <a href="https://bitsettld.com" class="cta-button" style="display: inline-block;">Visit bitsettld.com →</a>
+ <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted);">bitsettld.com — coming soon · No spam. No BS. Just settlement.</p>
+</div>
 
-        <div class="patent-notice">
-          <p>⚖️ <strong style="color: #fff;">Protected under BITS Payment Solutions IP</strong><br>
-          George Mundin / Blockchain Integrative Technology Solutions (BITS)<br>
-          GPS geofenced checkpoint verification, blockchain escrow settlement, and TRACE-anchored proof-of-completion for freight, construction, and gig economy payments.</p>
-        </div>
-      </div>
-    </section>
+ <div class="patent-notice">
+ <p> <strong style="color: #fff;">Protected under BITS Payment Solutions IP</strong><br>
+ George Mundin / Blockchain Integrative Technology Solutions (BITS)<br>
+ GPS geofenced checkpoint verification, blockchain escrow settlement, and TRACE-anchored proof-of-completion for freight, construction, and gig economy payments.</p>
+</div>
+</div>
+</section>
 
-    <!-- CTA -->
-    <section class="cta-section">
-      <div class="container">
-        <h2>Stop Waiting. Get Settld.</h2>
-        <p style="color: var(--text-muted); max-width: 600px; margin: 1rem auto 2rem; line-height: 1.8;">You did the work. The proof is on the blockchain. The money is in escrow. Settlement should take seconds — not months. That's what Settld delivers.</p>
-        <a href="https://bitsettld.com" class="cta-button">Visit bitsettld.com →</a>
-        <br>
-        <a href="index.html" class="back-link">← Back to All BITS Products</a>
-      </div>
-    </section>
+ <!-- CTA -->
+ <section class="cta-section">
+ <div class="container">
+ <h2>Stop Waiting. Get Settld.</h2>
+ <p style="color: var(--text-muted); max-width: 600px; margin: 1rem auto 2rem; line-height: 1.8;">You did the work. The proof is on the blockchain. The money is in escrow. Settlement should take seconds — not months. That's what Settld delivers.</p>
+ <a href="https://bitsettld.com" class="cta-button">Visit bitsettld.com →</a>
+ <br>
+ <a href="index.html" class="back-link">← Back to All BITS Products</a>
+</div>
+</section>
 
-  </main>
+</main>
 
-  <footer style="background: var(--bg-dark); border-top: 1px solid rgba(255,255,255,0.05); padding: 2rem 0; text-align: center;">
-    <div class="container">
-      <p style="color: var(--text-muted); font-size: 0.85rem;">© 2026 Blockchain Integrative Technology Solutions (BITS) · contact@bitscorp.us · bitscorp.us<br>
-      BITS Settld™ is protected under BITS Payment Solutions IP. All rights reserved.</p>
-    </div>
-  </footer>
+ <footer style="background: var(--bg-dark); border-top: 1px solid rgba(255,255,255,0.05); padding: 2rem 0; text-align: center;">
+ <div class="container">
+ <p style="color: var(--text-muted); font-size: 0.85rem;">© 2026 Blockchain Integrative Technology Solutions (BITS) · contact@bitscorp.us · bitscorp.us<br>
+ BITS Settld™ is protected under BITS Payment Solutions IP. All rights reserved.</p>
+</div>
+</footer>
 
-  <script src="js/main.js"></script>
+ <script src="js/main.js"></script>
 </body>
 </html>

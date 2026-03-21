@@ -1,331 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="TRACE Shield™ — Blockchain authentication for content creators. Dual-hash technology detects deepfakes. Verifiable certificates with QR codes. Patent Pending.">
-  <title>TRACE Shield™ — Blockchain Authentication for Content Creators</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <style>
-    .detail-hero { padding: 8rem 0 4rem; text-align: center; background: linear-gradient(135deg, var(--bg-dark), var(--bg-medium)); }
-    .detail-hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.5rem; }
-    .detail-hero .tagline { color: var(--primary); font-size: 1.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; }
-    .detail-hero p { color: var(--text-muted); max-width: 720px; margin: 0 auto 2rem; font-size: 1.05rem; line-height: 1.8; }
-    .detail-section { padding: 4rem 0; }
-    .detail-section:nth-child(even) { background: var(--bg-medium); }
-    .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-    .use-case-card { background: var(--bg-dark); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 1.5rem; transition: border-color 0.2s; }
-    .use-case-card:hover { border-color: var(--primary); }
-    .use-case-card .icon { font-size: 2rem; margin-bottom: 0.75rem; }
-    .use-case-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
-    .use-case-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
-    .feature-block { display: flex; gap: 2rem; margin-bottom: 2.5rem; align-items: flex-start; }
-    .feature-block .icon { font-size: 2.5rem; flex-shrink: 0; }
-    .feature-block h3 { font-size: 1.15rem; margin-bottom: 0.25rem; }
-    .feature-block p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
-    .pipeline-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0; margin: 2rem 0; }
-    .pipeline-step { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); padding: 1.5rem 1rem; text-align: center; position: relative; }
-    .pipeline-step:not(:last-child)::after { content: '→'; position: absolute; right: -14px; top: 50%; transform: translateY(-50%); color: var(--primary); font-size: 1.2rem; font-weight: 900; z-index: 2; }
-    .pipeline-step .step-num { font-size: 1.6rem; font-weight: 900; color: var(--primary); line-height: 1; margin-bottom: 6px; }
-    .pipeline-step .step-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #aaa; margin-bottom: 6px; }
-    .pipeline-step .step-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; }
-    .solana-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(20, 241, 149, 0.08); border: 1px solid rgba(20, 241, 149, 0.3); border-radius: 30px; padding: 6px 16px; font-size: 0.85rem; color: #14f195; font-weight: 600; margin-bottom: 1.5rem; }
-    .solana-dot { width: 8px; height: 8px; background: #14f195; border-radius: 50%; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-    .patent-notice { background: rgba(233, 69, 96, 0.1); border: 1px solid var(--primary); border-radius: var(--radius-md); padding: 1.5rem; margin-top: 3rem; text-align: center; }
-    .patent-notice p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
-    .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
-    .pillar { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-top: 3px solid var(--primary); border-radius: var(--radius-md); padding: 1.2rem; text-align: center; }
-    .pillar .pillar-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
-    .pillar h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
-    .pillar p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
-    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin-top: 2rem; }
-    .pricing-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-lg); padding: 2rem 1.5rem; text-align: center; transition: border-color 0.2s, transform 0.2s; }
-    .pricing-card:hover { border-color: var(--primary); transform: translateY(-4px); }
-    .pricing-card.featured { border-color: var(--primary); background: rgba(233,69,96,0.07); }
-    .pricing-card .tier-name { font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
-    .pricing-card .price { font-size: 2.2rem; font-weight: 900; color: #fff; line-height: 1; margin-bottom: 0.25rem; }
-    .pricing-card .price span { font-size: 0.9rem; font-weight: 400; color: var(--text-muted); }
-    .pricing-card .tier-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-top: 0.75rem; }
-    .cta-section { text-align: center; padding: 4rem 0; }
-    .back-link { display: inline-block; margin-top: 2rem; color: var(--primary); font-weight: 600; }
-    .check-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(20, 241, 149, 0.08); border: 1px solid rgba(20, 241, 149, 0.3); border-radius: 30px; padding: 6px 16px; font-size: 0.85rem; color: #14f195; font-weight: 600; margin: 0.5rem; text-decoration: none; transition: background 0.2s; }
-    .check-badge:hover { background: rgba(20, 241, 149, 0.15); }
-    @media (max-width: 600px) { .feature-block { flex-direction: column; gap: 0.5rem; } .pipeline-step:not(:last-child)::after { display: none; } }
-  </style>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="description" content="TRACE Shield™ — Blockchain authentication for content creators. Dual-hash technology detects deepfakes. Verifiable certificates with QR codes. Patent Pending.">
+ <title>TRACE Shield™ — Blockchain Authentication for Content Creators</title>
+ <link rel="stylesheet" href="css/styles.css">
+ <style>
+ .detail-hero { padding: 8rem 0 4rem; text-align: center; background: linear-gradient(135deg, var(--bg-dark), var(--bg-medium)); }
+ .detail-hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.5rem; }
+ .detail-hero .tagline { color: var(--primary); font-size: 1.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; }
+ .detail-hero p { color: var(--text-muted); max-width: 720px; margin: 0 auto 2rem; font-size: 1.05rem; line-height: 1.8; }
+ .detail-section { padding: 4rem 0; }
+ .detail-section:nth-child(even) { background: var(--bg-medium); }
+ .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+ .use-case-card { background: var(--bg-dark); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 1.5rem; transition: border-color 0.2s; }
+ .use-case-card:hover { border-color: var(--primary); }
+ .use-case-card .icon { font-size: 2rem; margin-bottom: 0.75rem; }
+ .use-case-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+ .use-case-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
+ .feature-block { display: flex; gap: 2rem; margin-bottom: 2.5rem; align-items: flex-start; }
+ .feature-block .icon { font-size: 2.5rem; flex-shrink: 0; }
+ .feature-block h3 { font-size: 1.15rem; margin-bottom: 0.25rem; }
+ .feature-block p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+ .pipeline-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0; margin: 2rem 0; }
+ .pipeline-step { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); padding: 1.5rem 1rem; text-align: center; position: relative; }
+ .pipeline-step:not(:last-child)::after { content: '→'; position: absolute; right: -14px; top: 50%; transform: translateY(-50%); color: var(--primary); font-size: 1.2rem; font-weight: 900; z-index: 2; }
+ .pipeline-step .step-num { font-size: 1.6rem; font-weight: 900; color: var(--primary); line-height: 1; margin-bottom: 6px; }
+ .pipeline-step .step-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #aaa; margin-bottom: 6px; }
+ .pipeline-step .step-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; }
+ .solana-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(20, 241, 149, 0.08); border: 1px solid rgba(20, 241, 149, 0.3); border-radius: 30px; padding: 6px 16px; font-size: 0.85rem; color: #14f195; font-weight: 600; margin-bottom: 1.5rem; }
+ .solana-dot { width: 8px; height: 8px; background: #14f195; border-radius: 50%; animation: pulse 2s infinite; }
+ @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+ .patent-notice { background: rgba(233, 69, 96, 0.1); border: 1px solid var(--primary); border-radius: var(--radius-md); padding: 1.5rem; margin-top: 3rem; text-align: center; }
+ .patent-notice p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+ .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+ .pillar { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-top: 3px solid var(--primary); border-radius: var(--radius-md); padding: 1.2rem; text-align: center; }
+ .pillar .pillar-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+ .pillar h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+ .pillar p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+ .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin-top: 2rem; }
+ .pricing-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-lg); padding: 2rem 1.5rem; text-align: center; transition: border-color 0.2s, transform 0.2s; }
+ .pricing-card:hover { border-color: var(--primary); transform: translateY(-4px); }
+ .pricing-card.featured { border-color: var(--primary); background: rgba(233,69,96,0.07); }
+ .pricing-card .tier-name { font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+ .pricing-card .price { font-size: 2.2rem; font-weight: 900; color: #fff; line-height: 1; margin-bottom: 0.25rem; }
+ .pricing-card .price span { font-size: 0.9rem; font-weight: 400; color: var(--text-muted); }
+ .pricing-card .tier-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-top: 0.75rem; }
+ .cta-section { text-align: center; padding: 4rem 0; }
+ .back-link { display: inline-block; margin-top: 2rem; color: var(--primary); font-weight: 600; }
+ .check-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(20, 241, 149, 0.08); border: 1px solid rgba(20, 241, 149, 0.3); border-radius: 30px; padding: 6px 16px; font-size: 0.85rem; color: #14f195; font-weight: 600; margin: 0.5rem; text-decoration: none; transition: background 0.2s; }
+ .check-badge:hover { background: rgba(20, 241, 149, 0.15); }
+ @media (max-width: 600px) { .feature-block { flex-direction: column; gap: 0.5rem; } .pipeline-step:not(:last-child)::after { display: none; } }
+</style>
 </head>
 <body>
-  <header id="header">
-    <nav class="navbar">
-      <div class="container nav-container">
-        <a href="index.html" class="logo"><img src="assets/BITS-logo.png" alt="BITS" style="height: 36px;"></a>
-        <ul class="nav-links" id="nav-links">
-          <li><a href="index.html" class="nav-link">← Back to BITS</a></li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+ <header id="header">
+ <nav class="navbar">
+ <div class="container nav-container">
+ <a href="index.html" class="logo"><img src="assets/BITS-logo.png" alt="BITS" style="height: 36px;"></a>
+ <ul class="nav-links" id="nav-links">
+ <li><a href="index.html" class="nav-link">← Back to BITS</a></li>
+</ul>
+</div>
+</nav>
+</header>
 
-  <main>
+ <main>
 
-    <!-- HERO -->
-    <section class="detail-hero">
-      <div class="container">
-        <div class="solana-badge"><span class="solana-dot"></span> Anchored on Solana Mainnet</div>
-        <p class="tagline">Protect Your Content. Prove You Created It.</p>
-        <h1>TRACE Shield™ 🛡️</h1>
-        <p>TRACE Shield anchors your videos, photos, and digital content to the Solana blockchain — giving you immutable, timestamped proof of creation. Dual-hash technology detects deepfakes and manipulation. Verifiable certificates with QR codes. Free public verification via TRACE Check.</p>
-        <div style="margin-top: 1.5rem;">
-          <a href="https://shield.bitstrace.com" class="check-badge">🛡️ shield.bitstrace.com</a>
-          <a href="https://check.bitstrace.com" class="check-badge">✅ TRACE Check — Free Verification</a>
-        </div>
-        <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted); font-style: italic;">Patent Pending — March 2026 · George Mundin / Blockchain Integrative Technology Solutions</div>
-      </div>
-    </section>
+ <!-- HERO -->
+ <section class="detail-hero">
+ <div class="container">
+ <div class="solana-badge"><span class="solana-dot"></span> Anchored on Solana Mainnet</div>
+ <p class="tagline">Protect Your Content. Prove You Created It.</p>
+ <h1>TRACE Shield™</h1>
+ <p>TRACE Shield anchors your videos, photos, and digital content to the Solana blockchain — giving you immutable, timestamped proof of creation. Dual-hash technology detects deepfakes and manipulation. Verifiable certificates with QR codes. Free public verification via TRACE Check.</p>
+ <div style="margin-top: 1.5rem;">
+ <a href="https://shield.bitstrace.com" class="check-badge"> shield.bitstrace.com</a>
+ <a href="https://check.bitstrace.com" class="check-badge"> TRACE Check — Free Verification</a>
+</div>
+ <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted); font-style: italic;">Patent Pending — March 2026 · George Mundin / Blockchain Integrative Technology Solutions</div>
+</div>
+</section>
 
-    <!-- THE PROBLEM -->
-    <section class="detail-section">
-      <div class="container">
-        <h2 class="section-title">The Problem TRACE Shield Solves</h2>
-        <p style="color: var(--text-muted); max-width: 800px; font-size: 1rem; line-height: 1.8; margin-bottom: 2rem;">Content theft, deepfake manipulation, and re-uploaded plagiarism cost creators billions every year. A screenshot, a re-encode, a subtle crop — and suddenly your original work looks identical to the stolen version. Existing copyright systems are slow, expensive, and rely on the platforms you're trying to fight. There was no way to prove you created something first — until now.</p>
+ <!-- THE PROBLEM -->
+ <section class="detail-section">
+ <div class="container">
+ <h2 class="section-title">The Problem TRACE Shield Solves</h2>
+ <p style="color: var(--text-muted); max-width: 800px; font-size: 1rem; line-height: 1.8; margin-bottom: 2rem;">Content theft, deepfake manipulation, and re-uploaded plagiarism cost creators billions every year. A screenshot, a re-encode, a subtle crop — and suddenly your original work looks identical to the stolen version. Existing copyright systems are slow, expensive, and rely on the platforms you're trying to fight. There was no way to prove you created something first — until now.</p>
 
-        <div style="background: rgba(233,69,96,0.08); border-left: 4px solid var(--primary); padding: 1.5rem 2rem; border-radius: 0 12px 12px 0; margin-bottom: 2rem;">
-          <p style="font-size: 1.2rem; font-weight: 700; color: #fff; margin: 0;">"I made this — and I can prove it."</p>
-          <p style="color: var(--text-muted); margin: 0.5rem 0 0; font-size: 0.95rem;">TRACE Shield answers it — with cryptographic certainty and a blockchain timestamp.</p>
-        </div>
+ <div style="background: rgba(233,69,96,0.08); border-left: 4px solid var(--primary); padding: 1.5rem 2rem; border-radius: 0 12px 12px 0; margin-bottom: 2rem;">
+ <p style="font-size: 1.2rem; font-weight: 700; color: #fff; margin: 0;">"I made this — and I can prove it."</p>
+ <p style="color: var(--text-muted); margin: 0.5rem 0 0; font-size: 0.95rem;">TRACE Shield answers it — with cryptographic certainty and a blockchain timestamp.</p>
+</div>
 
-        <div class="pillars">
-          <div class="pillar">
-            <div class="pillar-icon">🔐</div>
-            <h4>SHA-256 Hash</h4>
-            <p>Exact cryptographic fingerprint — catches any single byte change, no matter how subtle</p>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon">👁️</div>
-            <h4>Perceptual Hash</h4>
-            <p>Fuzzy fingerprint — catches deepfakes, re-encoding, color grading, and cropped copies</p>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon">⛓️</div>
-            <h4>Blockchain Anchored</h4>
-            <p>Both hashes written to Solana mainnet automatically — permanent, public, irrevocable</p>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon">📄</div>
-            <h4>QR Certificate</h4>
-            <p>Verifiable certificate issued instantly — scannable by anyone, anywhere, anytime</p>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon">🌐</div>
-            <h4>Public Verification</h4>
-            <p>TRACE Check — free public tool for anyone to verify "Is this content real?" at check.bitstrace.com</p>
-          </div>
-        </div>
-      </div>
-    </section>
+ <div class="pillars">
+ <div class="pillar">
+ <div class="pillar-icon"></div>
+ <h4>SHA-256 Hash</h4>
+ <p>Exact cryptographic fingerprint — catches any single byte change, no matter how subtle</p>
+</div>
+ <div class="pillar">
+ <div class="pillar-icon"></div>
+ <h4>Perceptual Hash</h4>
+ <p>Fuzzy fingerprint — catches deepfakes, re-encoding, color grading, and cropped copies</p>
+</div>
+ <div class="pillar">
+ <div class="pillar-icon"></div>
+ <h4>Blockchain Anchored</h4>
+ <p>Both hashes written to Solana mainnet automatically — permanent, public, irrevocable</p>
+</div>
+ <div class="pillar">
+ <div class="pillar-icon"></div>
+ <h4>QR Certificate</h4>
+ <p>Verifiable certificate issued instantly — scannable by anyone, anywhere, anytime</p>
+</div>
+ <div class="pillar">
+ <div class="pillar-icon"></div>
+ <h4>Public Verification</h4>
+ <p>TRACE Check — free public tool for anyone to verify "Is this content real?" at check.bitstrace.com</p>
+</div>
+</div>
+</div>
+</section>
 
-    <!-- HOW IT WORKS -->
-    <section class="detail-section">
-      <div class="container">
-        <h2 class="section-title">How TRACE Shield Works</h2>
-        <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">Five steps. Fully automatic. Proof issued in seconds.</p>
+ <!-- HOW IT WORKS -->
+ <section class="detail-section">
+ <div class="container">
+ <h2 class="section-title">How TRACE Shield Works</h2>
+ <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">Five steps. Fully automatic. Proof issued in seconds.</p>
 
-        <div class="pipeline-steps">
-          <div class="pipeline-step">
-            <div class="step-num">1</div>
-            <div class="step-label">Upload</div>
-            <div class="step-desc">Creator uploads content — video, photo, or digital file — to TRACE Shield</div>
-          </div>
-          <div class="pipeline-step">
-            <div class="step-num">2</div>
-            <div class="step-label">Hash</div>
-            <div class="step-desc">SHA-256 cryptographic hash AND perceptual hash generated simultaneously</div>
-          </div>
-          <div class="pipeline-step">
-            <div class="step-num">3</div>
-            <div class="step-label">Anchor</div>
-            <div class="step-desc">Both hashes anchored to Solana mainnet — timestamped, permanent, publicly verifiable</div>
-          </div>
-          <div class="pipeline-step">
-            <div class="step-num">4</div>
-            <div class="step-label">Certificate</div>
-            <div class="step-desc">QR-enabled verification certificate issued instantly — scannable by anyone</div>
-          </div>
-          <div class="pipeline-step">
-            <div class="step-num">5</div>
-            <div class="step-label">Verify</div>
-            <div class="step-desc">Anyone verifies authenticity via TRACE Check — no account required, completely free</div>
-          </div>
-        </div>
-      </div>
-    </section>
+ <div class="pipeline-steps">
+ <div class="pipeline-step">
+ <div class="step-num">1</div>
+ <div class="step-label">Upload</div>
+ <div class="step-desc">Creator uploads content — video, photo, or digital file — to TRACE Shield</div>
+</div>
+ <div class="pipeline-step">
+ <div class="step-num">2</div>
+ <div class="step-label">Hash</div>
+ <div class="step-desc">SHA-256 cryptographic hash AND perceptual hash generated simultaneously</div>
+</div>
+ <div class="pipeline-step">
+ <div class="step-num">3</div>
+ <div class="step-label">Anchor</div>
+ <div class="step-desc">Both hashes anchored to Solana mainnet — timestamped, permanent, publicly verifiable</div>
+</div>
+ <div class="pipeline-step">
+ <div class="step-num">4</div>
+ <div class="step-label">Certificate</div>
+ <div class="step-desc">QR-enabled verification certificate issued instantly — scannable by anyone</div>
+</div>
+ <div class="pipeline-step">
+ <div class="step-num">5</div>
+ <div class="step-label">Verify</div>
+ <div class="step-desc">Anyone verifies authenticity via TRACE Check — no account required, completely free</div>
+</div>
+</div>
+</div>
+</section>
 
-    <!-- CORE CAPABILITIES -->
-    <section class="detail-section">
-      <div class="container">
-        <h2 class="section-title">Core Capabilities</h2>
+ <!-- CORE CAPABILITIES -->
+ <section class="detail-section">
+ <div class="container">
+ <h2 class="section-title">Core Capabilities</h2>
 
-        <div class="feature-block">
-          <div class="icon">🔐</div>
-          <div>
-            <h3>Dual-Hash Technology — Deepfake Defense</h3>
-            <p>TRACE Shield's breakthrough: two fingerprints, two layers of protection. The SHA-256 hash catches any exact copy — any byte changed, any edit made. The perceptual hash catches what SHA-256 misses — the re-encoded version, the AI-regenerated face swap, the slightly cropped repost. Together they create a detection net that no manipulation technique can slip through.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>Dual-Hash Technology — Deepfake Defense</h3>
+ <p>TRACE Shield's breakthrough: two fingerprints, two layers of protection. The SHA-256 hash catches any exact copy — any byte changed, any edit made. The perceptual hash catches what SHA-256 misses — the re-encoded version, the AI-regenerated face swap, the slightly cropped repost. Together they create a detection net that no manipulation technique can slip through.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">⛓️</div>
-          <div>
-            <h3>Automatic Solana Blockchain Anchoring</h3>
-            <p>Every verification automatically submits both hashes as a memo transaction to Solana mainnet — no human approval needed. The resulting transaction signature is your permanent, public, irrevocable timestamp of creation. Anyone can verify it on Solscan.io in seconds. Your proof of ownership begins the moment you upload.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>Automatic Solana Blockchain Anchoring</h3>
+ <p>Every verification automatically submits both hashes as a memo transaction to Solana mainnet — no human approval needed. The resulting transaction signature is your permanent, public, irrevocable timestamp of creation. Anyone can verify it on Solscan.io in seconds. Your proof of ownership begins the moment you upload.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">📄</div>
-          <div>
-            <h3>Verifiable Certificates with QR Codes</h3>
-            <p>Every anchored piece of content receives a professionally formatted verification certificate containing the content hash, blockchain transaction ID, timestamp, and a QR code. Anyone — a potential buyer, a media outlet, a court — can scan the QR code and instantly verify the content's authenticity against the Solana blockchain record.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>Verifiable Certificates with QR Codes</h3>
+ <p>Every anchored piece of content receives a professionally formatted verification certificate containing the content hash, blockchain transaction ID, timestamp, and a QR code. Anyone — a potential buyer, a media outlet, a court — can scan the QR code and instantly verify the content's authenticity against the Solana blockchain record.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">✅</div>
-          <div>
-            <h3>TRACE Check — Free Public Verification Tool</h3>
-            <p>check.bitstrace.com is a completely free public tool. Anyone can upload a piece of content and ask: "Is this the original? Has this been manipulated?" TRACE Check runs both hash comparisons against the blockchain registry and returns a plain-language authenticity verdict. No account required. No cost. This is BITS' gift to the internet.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>TRACE Check — Free Public Verification Tool</h3>
+ <p>check.bitstrace.com is a completely free public tool. Anyone can upload a piece of content and ask: "Is this the original? Has this been manipulated?" TRACE Check runs both hash comparisons against the blockchain registry and returns a plain-language authenticity verdict. No account required. No cost. This is BITS' gift to the internet.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">📊</div>
-          <div>
-            <h3>Creator Dashboard</h3>
-            <p>Your complete content history in one place. View all verified uploads, download certificates, track verification activity, and manage your protected content library. See exactly when and where your content has been verified — and flag suspicious activity for review.</p>
-          </div>
-        </div>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>Creator Dashboard</h3>
+ <p>Your complete content history in one place. View all verified uploads, download certificates, track verification activity, and manage your protected content library. See exactly when and where your content has been verified — and flag suspicious activity for review.</p>
+</div>
+</div>
 
-        <div class="feature-block">
-          <div class="icon">🏢</div>
-          <div>
-            <h3>Enterprise Admin Panel</h3>
-            <p>Built for news organizations, legal teams, and enterprise content operations. Manage multiple users and content streams, generate bulk certificates, access the full API for integration with existing workflows, and configure custom SLAs and white-label branding. Enterprise clients get dedicated support and custom deployment options.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+ <div class="feature-block">
+ <div class="icon"></div>
+ <div>
+ <h3>Enterprise Admin Panel</h3>
+ <p>Built for news organizations, legal teams, and enterprise content operations. Manage multiple users and content streams, generate bulk certificates, access the full API for integration with existing workflows, and configure custom SLAs and white-label branding. Enterprise clients get dedicated support and custom deployment options.</p>
+</div>
+</div>
+</div>
+</section>
 
-    <!-- PRICING -->
-    <section class="detail-section">
-      <div class="container">
-        <h2 class="section-title">Pricing</h2>
-        <p style="color: var(--text-muted); margin-bottom: 0.5rem; font-size: 0.95rem;">Start free with TRACE Check. Upgrade when you need it.</p>
+ <!-- PRICING -->
+ <section class="detail-section">
+ <div class="container">
+ <h2 class="section-title">Pricing</h2>
+ <p style="color: var(--text-muted); margin-bottom: 0.5rem; font-size: 0.95rem;">Start free with TRACE Check. Upgrade when you need it.</p>
 
-        <div class="pricing-grid">
-          <div class="pricing-card">
-            <div class="tier-name">Shield</div>
-            <div class="price">$29.99<span>/mo</span></div>
-            <div class="tier-desc">50 verifications per month. Creator dashboard. QR certificates. Perfect for individual creators.</div>
-          </div>
-          <div class="pricing-card featured">
-            <div class="tier-name">Shield Pro</div>
-            <div class="price">$99<span>/mo</span></div>
-            <div class="tier-desc">Unlimited verifications. Full dashboard. Priority processing. Ideal for active creators and small teams.</div>
-          </div>
-          <div class="pricing-card">
-            <div class="tier-name">Shield Business</div>
-            <div class="price">$299<span>/mo</span></div>
-            <div class="tier-desc">Unlimited verifications + API access + team management. Built for media companies and agencies.</div>
-          </div>
-          <div class="pricing-card">
-            <div class="tier-name">Shield Enterprise</div>
-            <div class="price">$499<span>/mo</span></div>
-            <div class="tier-desc">Custom SLA + dedicated support + white-label deployment. Enterprise contracts available.</div>
-          </div>
-        </div>
+ <div class="pricing-grid">
+ <div class="pricing-card">
+ <div class="tier-name">Shield</div>
+ <div class="price">$29.99<span>/mo</span></div>
+ <div class="tier-desc">50 verifications per month. Creator dashboard. QR certificates. Perfect for individual creators.</div>
+</div>
+ <div class="pricing-card featured">
+ <div class="tier-name">Shield Pro</div>
+ <div class="price">$99<span>/mo</span></div>
+ <div class="tier-desc">Unlimited verifications. Full dashboard. Priority processing. Ideal for active creators and small teams.</div>
+</div>
+ <div class="pricing-card">
+ <div class="tier-name">Shield Business</div>
+ <div class="price">$299<span>/mo</span></div>
+ <div class="tier-desc">Unlimited verifications + API access + team management. Built for media companies and agencies.</div>
+</div>
+ <div class="pricing-card">
+ <div class="tier-name">Shield Enterprise</div>
+ <div class="price">$499<span>/mo</span></div>
+ <div class="tier-desc">Custom SLA + dedicated support + white-label deployment. Enterprise contracts available.</div>
+</div>
+</div>
 
-        <div style="margin-top: 2rem; text-align: center; padding: 1.25rem; background: rgba(20,241,149,0.06); border: 1px solid rgba(20,241,149,0.2); border-radius: var(--radius-md);">
-          <p style="color: #14f195; font-weight: 600; margin: 0;">✅ TRACE Check is always free — for anyone, forever.</p>
-          <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0.4rem 0 0;">check.bitstrace.com · No account required · No cost · Unlimited verifications</p>
-        </div>
-      </div>
-    </section>
+ <div style="margin-top: 2rem; text-align: center; padding: 1.25rem; background: rgba(20,241,149,0.06); border: 1px solid rgba(20,241,149,0.2); border-radius: var(--radius-md);">
+ <p style="color: #14f195; font-weight: 600; margin: 0;"> TRACE Check is always free — for anyone, forever.</p>
+ <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0.4rem 0 0;">check.bitstrace.com · No account required · No cost · Unlimited verifications</p>
+</div>
+</div>
+</section>
 
-    <!-- USE CASES -->
-    <section class="detail-section">
-      <div class="container">
-        <h2 class="section-title">Who TRACE Shield Serves</h2>
-        <div class="use-cases-grid">
-          <div class="use-case-card">
-            <div class="icon">🎬</div>
-            <h3>Content Creators</h3>
-            <p>Protect your videos and photos from theft and deepfake manipulation. Prove you created it first — before the re-poster, before the AI face swap, before the copyright dispute.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">📰</div>
-            <h3>News Organizations</h3>
-            <p>Prove footage authenticity in an era of synthetic media. Anchor raw field footage to blockchain before editing — your unaltered original is permanently timestamped and independently verifiable.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">⚖️</div>
-            <h3>Legal Teams</h3>
-            <p>Establish irrefutable evidence timelines. Digital content authenticated via blockchain satisfies chain-of-custody requirements. QR certificates provide court-ready proof of authenticity.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">🏥</div>
-            <h3>Insurance Companies</h3>
-            <p>Verify claim documentation authenticity. Detect manipulated images and fraudulent evidence. Blockchain-anchored verification reduces dispute costs and speeds up legitimate claim processing.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">📱</div>
-            <h3>Social Media Influencers</h3>
-            <p>Protect your brand content. When someone steals your video, you have proof — timestamped, blockchain-anchored, certificate-backed. Stop deepfakes before they damage your reputation.</p>
-          </div>
-          <div class="use-case-card">
-            <div class="icon">🎨</div>
-            <h3>Digital Artists & Photographers</h3>
-            <p>Establish provenance for your creative work. Verifiable proof of creation timestamps protects your portfolio, strengthens licensing negotiations, and defends against plagiarism claims.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+ <!-- USE CASES -->
+ <section class="detail-section">
+ <div class="container">
+ <h2 class="section-title">Who TRACE Shield Serves</h2>
+ <div class="use-cases-grid">
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Content Creators</h3>
+ <p>Protect your videos and photos from theft and deepfake manipulation. Prove you created it first — before the re-poster, before the AI face swap, before the copyright dispute.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>News Organizations</h3>
+ <p>Prove footage authenticity in an era of synthetic media. Anchor raw field footage to blockchain before editing — your unaltered original is permanently timestamped and independently verifiable.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Legal Teams</h3>
+ <p>Establish irrefutable evidence timelines. Digital content authenticated via blockchain satisfies chain-of-custody requirements. QR certificates provide court-ready proof of authenticity.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Insurance Companies</h3>
+ <p>Verify claim documentation authenticity. Detect manipulated images and fraudulent evidence. Blockchain-anchored verification reduces dispute costs and speeds up legitimate claim processing.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Social Media Influencers</h3>
+ <p>Protect your brand content. When someone steals your video, you have proof — timestamped, blockchain-anchored, certificate-backed. Stop deepfakes before they damage your reputation.</p>
+</div>
+ <div class="use-case-card">
+ <div class="icon"></div>
+ <h3>Digital Artists & Photographers</h3>
+ <p>Establish provenance for your creative work. Verifiable proof of creation timestamps protects your portfolio, strengthens licensing negotiations, and defends against plagiarism claims.</p>
+</div>
+</div>
+</div>
+</section>
 
-    <!-- PATENT & LINKS -->
-    <section class="detail-section">
-      <div class="container">
-        <div style="text-align: center; margin-bottom: 2rem;">
-          <a href="https://shield.bitstrace.com" style="display: inline-block; background: var(--primary); color: white; padding: 0.75rem 2rem; border-radius: var(--radius-md); font-weight: 700; text-decoration: none; margin: 0.5rem; font-size: 1rem;">Visit shield.bitstrace.com</a>
-          <a href="https://check.bitstrace.com" style="display: inline-block; background: rgba(20,241,149,0.15); color: #14f195; border: 1px solid rgba(20,241,149,0.4); padding: 0.75rem 2rem; border-radius: var(--radius-md); font-weight: 700; text-decoration: none; margin: 0.5rem; font-size: 1rem;">Try TRACE Check Free →</a>
-        </div>
+ <!-- PATENT & LINKS -->
+ <section class="detail-section">
+ <div class="container">
+ <div style="text-align: center; margin-bottom: 2rem;">
+ <a href="https://shield.bitstrace.com" style="display: inline-block; background: var(--primary); color: white; padding: 0.75rem 2rem; border-radius: var(--radius-md); font-weight: 700; text-decoration: none; margin: 0.5rem; font-size: 1rem;">Visit shield.bitstrace.com</a>
+ <a href="https://check.bitstrace.com" style="display: inline-block; background: rgba(20,241,149,0.15); color: #14f195; border: 1px solid rgba(20,241,149,0.4); padding: 0.75rem 2rem; border-radius: var(--radius-md); font-weight: 700; text-decoration: none; margin: 0.5rem; font-size: 1rem;">Try TRACE Check Free →</a>
+</div>
 
-        <div class="patent-notice">
-          <p>⚖️ <strong style="color: #fff;">Patent Pending — March 2026</strong><br>
-          George Mundin / Blockchain Integrative Technology Solutions (BITS)<br>
-          Dual-hash content authentication with blockchain anchoring for deepfake detection and proof-of-creation.</p>
-        </div>
-      </div>
-    </section>
+ <div class="patent-notice">
+ <p> <strong style="color: #fff;">Patent Pending — March 2026</strong><br>
+ George Mundin / Blockchain Integrative Technology Solutions (BITS)<br>
+ Dual-hash content authentication with blockchain anchoring for deepfake detection and proof-of-creation.</p>
+</div>
+</div>
+</section>
 
-    <!-- CTA -->
-    <section class="cta-section">
-      <div class="container">
-        <h2>Protect Your Content Today</h2>
-        <p style="color: var(--text-muted); max-width: 600px; margin: 1rem auto 2rem; line-height: 1.8;">Start with a free TRACE Check. Upload a piece of content to shield.bitstrace.com and watch it anchor to Solana mainnet in real time. Your certificate — proof that you made it first — arrives in seconds.</p>
-        <a href="https://shield.bitstrace.com" class="cta-button">Get TRACE Shield</a>
-        <br>
-        <a href="index.html" class="back-link">← Back to All BITS Products</a>
-      </div>
-    </section>
+ <!-- CTA -->
+ <section class="cta-section">
+ <div class="container">
+ <h2>Protect Your Content Today</h2>
+ <p style="color: var(--text-muted); max-width: 600px; margin: 1rem auto 2rem; line-height: 1.8;">Start with a free TRACE Check. Upload a piece of content to shield.bitstrace.com and watch it anchor to Solana mainnet in real time. Your certificate — proof that you made it first — arrives in seconds.</p>
+ <a href="https://shield.bitstrace.com" class="cta-button">Get TRACE Shield</a>
+ <br>
+ <a href="index.html" class="back-link">← Back to All BITS Products</a>
+</div>
+</section>
 
-  </main>
+</main>
 
-  <footer style="background: var(--bg-dark); border-top: 1px solid rgba(255,255,255,0.05); padding: 2rem 0; text-align: center;">
-    <div class="container">
-      <p style="color: var(--text-muted); font-size: 0.85rem;">© 2026 Blockchain Integrative Technology Solutions (BITS) · contact@bitscorp.us · bitscorp.us<br>
-      TRACE Shield™ is Patent Pending. All rights reserved.</p>
-    </div>
-  </footer>
+ <footer style="background: var(--bg-dark); border-top: 1px solid rgba(255,255,255,0.05); padding: 2rem 0; text-align: center;">
+ <div class="container">
+ <p style="color: var(--text-muted); font-size: 0.85rem;">© 2026 Blockchain Integrative Technology Solutions (BITS) · contact@bitscorp.us · bitscorp.us<br>
+ TRACE Shield™ is Patent Pending. All rights reserved.</p>
+</div>
+</footer>
 
-  <script src="js/main.js"></script>
+ <script src="js/main.js"></script>
 </body>
 </html>
