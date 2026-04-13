@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRACE Check — Is This Video Real?</title>
+<style>
+  :root {
+    --crimson: #dc2626;
+    --navy: #0f172a;
+    --slate: #1e293b;
+    --border: #334155;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--navy); color: var(--text); font-family: 'Inter', system-ui, sans-serif; min-height: 100vh; }
+
+  nav { background: var(--slate); border-bottom: 1px solid var(--border); padding: 0 32px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; color: white; }
+  .nav-logo .icon { color: var(--crimson); font-size: 20px; }
+  .nav-logo span.product { color: var(--crimson); }
+  .nav-link { color: var(--muted); font-size: 13px; text-decoration: none; }
+  .nav-link:hover { color: white; }
+  .nav-shield-btn { background: var(--crimson); color: white; border: none; padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; }
+
+  .hero { text-align: center; padding: 64px 24px 40px; }
+  .hero h1 { font-size: 42px; font-weight: 800; line-height: 1.15; margin-bottom: 16px; }
+  .hero h1 span { color: var(--crimson); }
+  .hero p { color: var(--muted); font-size: 17px; max-width: 520px; margin: 0 auto 40px; line-height: 1.6; }
+  .free-badge { display: inline-block; background: rgba(16,185,129,0.12); color: var(--success); border: 1px solid rgba(16,185,129,0.3); padding: 4px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 20px; }
+
+  .check-card { background: var(--slate); border: 1px solid var(--border); border-radius: 16px; padding: 40px; max-width: 620px; margin: 0 auto 48px; }
+
+  .drop-zone { border: 2px dashed var(--border); border-radius: 10px; padding: 48px 24px; text-align: center; cursor: pointer; transition: all 0.2s; position: relative; margin-bottom: 20px; }
+  .drop-zone:hover, .drop-zone.drag-over { border-color: var(--crimson); background: rgba(220,38,38,0.04); }
+  .drop-zone .icon { font-size: 36px; margin-bottom: 12px; }
+  .drop-zone .main-text { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+  .drop-zone .sub-text { font-size: 13px; color: var(--muted); }
+  .drop-zone input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+
+  .divider-or { display: flex; align-items: center; gap: 12px; color: var(--muted); font-size: 13px; margin: 20px 0; }
+  .divider-or::before, .divider-or::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .selected-file { background: var(--navy); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; font-size: 14px; margin-bottom: 16px; display: none; }
+  .check-btn { width: 100%; background: var(--crimson); color: white; border: none; padding: 14px; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; display: none; transition: background 0.2s; }
+  .check-btn:hover { background: #991b1b; }
+
+  .progress-bar { height: 4px; background: var(--border); border-radius: 2px; margin-top: 16px; overflow: hidden; display: none; }
+  .progress-fill { height: 100%; background: var(--crimson); width: 0%; transition: width 0.4s; }
+
+  /* RESULTS */
+  .result-section { max-width: 620px; margin: 0 auto 48px; display: none; }
+  .result-verdict { border-radius: 16px; padding: 28px 32px; margin-bottom: 16px; }
+  .result-verdict.verified { background: rgba(16,185,129,0.08); border: 2px solid rgba(16,185,129,0.4); }
+  .result-verdict.modified { background: rgba(245,158,11,0.08); border: 2px solid rgba(245,158,11,0.4); }
+  .result-verdict.not-in-trace { background: rgba(148,163,184,0.06); border: 1px solid var(--border); }
+
+  .verdict-icon { font-size: 40px; margin-bottom: 12px; }
+  .verdict-label { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+  .verdict-label.verified { color: var(--success); }
+  .verdict-label.modified { color: var(--warning); }
+  .verdict-label.not-in-trace { color: var(--muted); }
+  .verdict-text { font-size: 15px; color: var(--muted); line-height: 1.6; margin-bottom: 20px; }
+
+  .cert-details { background: var(--navy); border-radius: 10px; padding: 16px 20px; }
+  .cert-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(51,65,85,0.4); font-size: 13px; }
+  .cert-row:last-child { border-bottom: none; }
+  .cert-row .key { color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; font-size: 11px; }
+  .cert-row .val { color: var(--text); font-weight: 500; text-align: right; max-width: 280px; word-break: break-all; font-family: monospace; font-size: 12px; }
+
+  .verdict-actions { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+  .verdict-btn { padding: 9px 18px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid var(--border); background: var(--slate); color: var(--text); text-decoration: none; transition: all 0.2s; }
+  .verdict-btn:hover { border-color: var(--crimson); color: var(--crimson); }
+  .verdict-btn.primary { background: var(--crimson); border-color: var(--crimson); color: white; }
+  .verdict-btn.primary:hover { background: #991b1b; }
+
+  /* HOW IT WORKS */
+  .how-section { max-width: 860px; margin: 0 auto; padding: 0 24px 64px; }
+  .how-section h2 { font-size: 24px; font-weight: 700; text-align: center; margin-bottom: 32px; }
+  .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .step { background: var(--slate); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-align: center; }
+  .step .num { background: rgba(220,38,38,0.15); color: var(--crimson); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; margin: 0 auto 12px; }
+  .step h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+  .step p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.6s linear infinite; vertical-align: middle; margin-right: 6px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading { opacity: 0.7; pointer-events: none; }
+
+  .cta-section { background: var(--slate); border: 1px solid var(--border); border-radius: 16px; padding: 40px; max-width: 620px; margin: 0 auto 48px; text-align: center; }
+  .cta-section h3 { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+  .cta-section p { color: var(--muted); font-size: 15px; margin-bottom: 24px; }
+  .cta-btn { display: inline-block; background: var(--crimson); color: white; padding: 13px 32px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <span class="icon">🔍</span>
+    TRACE <span class="product">Check</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:20px">
+    <a href="../shield/index.html" class="nav-link">Shield Portal</a>
+    <a href="../shield/index.html" class="nav-shield-btn">🛡 Protect Your Content</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="free-badge">✅ Free Public Tool — No Account Required</div>
+  <h1>Is This Video <span>Real</span>?</h1>
+  <p>Upload any video or image and TRACE will check it against our blockchain-authenticated database. Find out if it's verified, modified, or a deepfake.</p>
+</div>
+
+<div class="check-card">
+  <div class="drop-zone" id="drop-zone">
+    <div class="icon">🎬</div>
+    <div class="main-text">Drop a video or image to check</div>
+    <div class="sub-text">MP4, MOV, AVI, JPG, PNG, WebM — up to 500MB — Free</div>
+    <input type="file" id="file-input" accept="video/*,image/*" onchange="fileSelected(this)" />
+  </div>
+
+  <div class="selected-file" id="selected-file-info"></div>
+  <div class="progress-bar" id="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <button class="check-btn" id="check-btn" onclick="runCheck()">🔍 Check This Content</button>
+</div>
+
+<div class="result-section" id="result-section">
+  <div class="result-verdict" id="result-verdict">
+    <div class="verdict-icon" id="verdict-icon"></div>
+    <div class="verdict-label" id="verdict-label"></div>
+    <div class="verdict-text" id="verdict-text"></div>
+    <div class="cert-details" id="cert-details" style="display:none"></div>
+    <div class="verdict-actions" id="verdict-actions"></div>
+  </div>
+</div>
+
+<div class="how-section">
+  <h2>How TRACE Check Works</h2>
+  <div class="steps-grid">
+    <div class="step">
+      <div class="num">1</div>
+      <h4>You Upload</h4>
+      <p>Drop any video or image. Your file is processed locally — we hash it, we don't store it.</p>
+    </div>
+    <div class="step">
+      <div class="num">2</div>
+      <h4>Dual-Hash Check</h4>
+      <p>TRACE runs SHA-256 (exact match) and perceptual hash (catches re-encoded deepfakes) against our blockchain-verified database.</p>
+    </div>
+    <div class="step">
+      <div class="num">3</div>
+      <h4>Blockchain Verdict</h4>
+      <p>If the content was authenticated by a creator via TRACE Shield, you'll see the blockchain proof, creator identity, and timestamp.</p>
+    </div>
+  </div>
+</div>
+
+<div class="cta-section">
+  <h3>🛡 Are You a Content Creator?</h3>
+  <p>Protect your videos with blockchain-backed authentication. If someone deepfakes or steals your content, you'll have immutable proof it's yours.</p>
+  <a href="../shield/index.html" class="cta-btn">Get TRACE Shield →</a>
+</div>
+
+<script>
+const API = window.location.origin;
+let selectedFile = null;
+
+const dz = document.getElementById('drop-zone');
+dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('drag-over'); });
+dz.addEventListener('dragleave', () => dz.classList.remove('drag-over'));
+dz.addEventListener('drop', e => {
+  e.preventDefault();
+  dz.classList.remove('drag-over');
+  if (e.dataTransfer.files[0]) fileSelected({ files: e.dataTransfer.files });
+});
+
+function fileSelected(input) {
+  const file = input.files[0];
+  if (!file) return;
+  selectedFile = file;
+  const sizeStr = file.size > 1024*1024 ? `${(file.size/1024/1024).toFixed(1)} MB` : `${(file.size/1024).toFixed(0)} KB`;
+  document.getElementById('selected-file-info').style.display = 'block';
+  document.getElementById('selected-file-info').innerHTML = `📎 <strong>${file.name}</strong> &nbsp;·&nbsp; ${sizeStr}`;
+  document.getElementById('check-btn').style.display = 'block';
+  document.getElementById('result-section').style.display = 'none';
+}
+
+async function runCheck() {
+  if (!selectedFile) return;
+  const btn = document.getElementById('check-btn');
+  const progress = document.getElementById('progress-bar');
+  const fill = document.getElementById('progress-fill');
+  btn.innerHTML = '<span class="spinner"></span>Checking...';
+  btn.classList.add('loading');
+  progress.style.display = 'block';
+
+  let pct = 0;
+  const interval = setInterval(() => { pct = Math.min(pct + 10, 88); fill.style.width = pct + '%'; }, 250);
+
+  try {
+    const form = new FormData();
+    form.append('file', selectedFile);
+    const resp = await fetch(`${API}/api/check`, { method: 'POST', body: form });
+    const data = await resp.json();
+    clearInterval(interval);
+    fill.style.width = '100%';
+    showResult(data);
+  } catch(e) {
+    clearInterval(interval);
+    showError(e.message);
+  } finally {
+    btn.innerHTML = '🔍 Check This Content';
+    btn.classList.remove('loading');
+    setTimeout(() => { fill.style.width = '0%'; progress.style.display = 'none'; }, 800);
+  }
+}
+
+function showResult(data) {
+  const section = document.getElementById('result-section');
+  const verdict = document.getElementById('result-verdict');
+  const icon = document.getElementById('verdict-icon');
+  const label = document.getElementById('verdict-label');
+  const text = document.getElementById('verdict-text');
+  const details = document.getElementById('cert-details');
+  const actions = document.getElementById('verdict-actions');
+
+  section.style.display = 'block';
+  section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  if (data.result === 'VERIFIED') {
+    verdict.className = 'result-verdict verified';
+    icon.textContent = '✅';
+    label.className = 'verdict-label verified';
+    label.textContent = 'TRACE VERIFIED — This Content Is Authentic';
+    text.textContent = `This content was authenticated by ${data.creator} via TRACE Shield and its blockchain record is intact. It has not been modified since authentication.`;
+    details.style.display = 'block';
+    details.innerHTML = `
+      <div class="cert-row"><span class="key">Creator</span><span class="val">${data.creator}</span></div>
+      <div class="cert-row"><span class="key">File</span><span class="val">${data.filename}</span></div>
+      <div class="cert-row"><span class="key">Authenticated</span><span class="val">${data.authenticated_on?.slice(0,10)}</span></div>
+      <div class="cert-row"><span class="key">Certificate</span><span class="val">${data.cert_id}</span></div>
+      ${data.blockchain_tx ? `<div class="cert-row"><span class="key">Blockchain TX</span><span class="val">${data.blockchain_tx}</span></div>` : ''}
+    `;
+    actions.innerHTML = `<a href="${API}/api/certificate/${data.cert_id}" target="_blank" class="verdict-btn primary">📄 View Certificate</a>`;
+  } else if (data.result === 'MODIFIED') {
+    verdict.className = 'result-verdict modified';
+    icon.textContent = '⚠️';
+    label.className = 'verdict-label modified';
+    label.textContent = 'MODIFIED — Possible Deepfake or Altered Content';
+    text.textContent = `This appears to be a modified version of content originally authenticated by ${data.original_creator}. The content has been altered since its original blockchain authentication.`;
+    details.style.display = 'block';
+    details.innerHTML = `
+      <div class="cert-row"><span class="key">Original Creator</span><span class="val">${data.original_creator}</span></div>
+      <div class="cert-row"><span class="key">Original File</span><span class="val">${data.original_filename}</span></div>
+      <div class="cert-row"><span class="key">Original Auth Date</span><span class="val">${data.original_authenticated_on?.slice(0,10)}</span></div>
+      <div class="cert-row"><span class="key">Similarity</span><span class="val">${data.similarity} (distance: ${data.perceptual_distance})</span></div>
+      <div class="cert-row"><span class="key">Original Cert</span><span class="val">${data.cert_id}</span></div>
+    `;
+    actions.innerHTML = `<a href="${API}/api/certificate/${data.cert_id}" target="_blank" class="verdict-btn">📄 View Original Certificate</a>`;
+  } else {
+    verdict.className = 'result-verdict not-in-trace';
+    icon.textContent = '❓';
+    label.className = 'verdict-label not-in-trace';
+    label.textContent = 'NOT IN TRACE — Content Not Authenticated';
+    text.textContent = 'This content has not been authenticated through TRACE Shield. It may still be authentic — it simply hasn\'t been verified yet.';
+    details.style.display = 'block';
+    details.innerHTML = `
+      <div class="cert-row"><span class="key">SHA-256</span><span class="val">${data.sha256_hash}</span></div>
+    `;
+    actions.innerHTML = `<a href="../shield/index.html" class="verdict-btn primary">🛡 Authenticate This Content</a>`;
+  }
+}
+
+function showError(msg) {
+  const section = document.getElementById('result-section');
+  section.style.display = 'block';
+  document.getElementById('result-verdict').className = 'result-verdict not-in-trace';
+  document.getElementById('verdict-icon').textContent = '❌';
+  document.getElementById('verdict-label').className = 'verdict-label';
+  document.getElementById('verdict-label').textContent = 'Connection Error';
+  document.getElementById('verdict-text').textContent = 'Could not connect to TRACE API. ' + msg;
+  document.getElementById('cert-details').style.display = 'none';
+  document.getElementById('verdict-actions').innerHTML = '';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRACE Shield — Creator Authentication Portal</title>
+<style>
+  :root {
+    --crimson: #dc2626;
+    --crimson-dark: #991b1b;
+    --navy: #0f172a;
+    --slate: #1e293b;
+    --border: #334155;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --success: #10b981;
+    --warning: #f59e0b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--navy); color: var(--text); font-family: 'Inter', system-ui, sans-serif; min-height: 100vh; }
+
+  /* NAV */
+  nav { background: var(--slate); border-bottom: 1px solid var(--border); padding: 0 32px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; color: white; }
+  .nav-logo .shield-icon { color: var(--crimson); font-size: 22px; }
+  .nav-logo span.product { color: var(--crimson); }
+  .nav-right { display: flex; align-items: center; gap: 16px; }
+  .nav-btn { background: var(--crimson); color: white; border: none; padding: 8px 18px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .nav-creator-name { color: var(--muted); font-size: 14px; }
+
+  /* HERO / SIGN IN */
+  .auth-section { display: flex; align-items: center; justify-content: center; min-height: calc(100vh - 60px); padding: 40px 20px; }
+  .auth-card { background: var(--slate); border: 1px solid var(--border); border-radius: 16px; padding: 48px 40px; width: 100%; max-width: 440px; text-align: center; }
+  .auth-card .shield-big { font-size: 48px; margin-bottom: 16px; }
+  .auth-card h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+  .auth-card h1 span { color: var(--crimson); }
+  .auth-card p { color: var(--muted); font-size: 15px; margin-bottom: 32px; line-height: 1.6; }
+  .form-group { margin-bottom: 16px; text-align: left; }
+  .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .form-group input, .form-group select { width: 100%; background: var(--navy); border: 1px solid var(--border); color: var(--text); padding: 11px 14px; border-radius: 8px; font-size: 15px; outline: none; transition: border-color 0.2s; }
+  .form-group input:focus, .form-group select:focus { border-color: var(--crimson); }
+  .btn-primary { width: 100%; background: var(--crimson); color: white; border: none; padding: 13px; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 8px; transition: background 0.2s; }
+  .btn-primary:hover { background: var(--crimson-dark); }
+  .auth-switch { margin-top: 20px; font-size: 14px; color: var(--muted); }
+  .auth-switch a { color: var(--crimson); cursor: pointer; text-decoration: none; font-weight: 600; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+
+  /* DASHBOARD */
+  .dashboard { display: none; min-height: calc(100vh - 60px); }
+  .dash-header { background: var(--slate); border-bottom: 1px solid var(--border); padding: 28px 40px; }
+  .dash-header h2 { font-size: 22px; font-weight: 700; }
+  .dash-header p { color: var(--muted); font-size: 14px; margin-top: 4px; }
+  .dash-body { padding: 32px 40px; max-width: 1100px; margin: 0 auto; }
+
+  /* STATS */
+  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
+  .stat-card { background: var(--slate); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+  .stat-card .label { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .stat-card .value { font-size: 28px; font-weight: 700; color: white; }
+  .stat-card .sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+  /* UPLOAD */
+  .upload-section { background: var(--slate); border: 1px solid var(--border); border-radius: 12px; padding: 32px; margin-bottom: 32px; }
+  .upload-section h3 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+  .upload-section p { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+  .drop-zone { border: 2px dashed var(--border); border-radius: 10px; padding: 48px 24px; text-align: center; cursor: pointer; transition: all 0.2s; position: relative; }
+  .drop-zone:hover, .drop-zone.drag-over { border-color: var(--crimson); background: rgba(220,38,38,0.04); }
+  .drop-zone .icon { font-size: 36px; margin-bottom: 12px; }
+  .drop-zone .main-text { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+  .drop-zone .sub-text { font-size: 13px; color: var(--muted); }
+  .drop-zone input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+  .verify-btn { background: var(--crimson); color: white; border: none; padding: 13px 32px; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 20px; display: none; transition: background 0.2s; }
+  .verify-btn:hover { background: var(--crimson-dark); }
+  .selected-file { margin-top: 16px; background: var(--navy); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; font-size: 14px; display: none; }
+
+  /* PROGRESS */
+  .progress-bar { height: 4px; background: var(--border); border-radius: 2px; margin-top: 16px; overflow: hidden; display: none; }
+  .progress-fill { height: 100%; background: var(--crimson); width: 0%; transition: width 0.3s; border-radius: 2px; }
+
+  /* RESULT CARD */
+  .result-card { border-radius: 12px; padding: 24px; margin-top: 20px; display: none; }
+  .result-card.success { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.3); }
+  .result-card.duplicate { background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.3); }
+  .result-card .result-title { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
+  .result-card .result-title.success { color: var(--success); }
+  .result-card .result-title.warn { color: var(--warning); }
+  .cert-detail { font-size: 13px; color: var(--muted); margin: 4px 0; }
+  .cert-detail span { color: var(--text); font-weight: 600; }
+  .cert-actions { display: flex; gap: 10px; margin-top: 16px; }
+  .cert-action-btn { padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid var(--border); background: var(--slate); color: var(--text); text-decoration: none; transition: all 0.2s; }
+  .cert-action-btn:hover { border-color: var(--crimson); color: var(--crimson); }
+
+  /* CERTS TABLE */
+  .certs-section { background: var(--slate); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+  .certs-section h3 { font-size: 18px; font-weight: 700; margin-bottom: 20px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; font-size: 11px; padding: 0 12px 12px; border-bottom: 1px solid var(--border); }
+  td { padding: 14px 12px; border-bottom: 1px solid rgba(51,65,85,0.5); color: var(--text); }
+  tr:last-child td { border-bottom: none; }
+  .badge-verified { background: rgba(16,185,129,0.15); color: var(--success); border: 1px solid rgba(16,185,129,0.3); padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+  .hash-truncate { font-family: monospace; font-size: 11px; color: var(--muted); }
+  .empty-state { text-align: center; padding: 48px; color: var(--muted); }
+  .empty-state .icon { font-size: 32px; margin-bottom: 12px; }
+
+  .loading { opacity: 0.6; pointer-events: none; }
+  .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.6s linear infinite; vertical-align: middle; margin-right: 6px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .plan-badge { background: rgba(220,38,38,0.15); color: var(--crimson); border: 1px solid rgba(220,38,38,0.3); padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+  .creator-id-hint { font-size: 12px; color: var(--muted); margin-top: 8px; font-family: monospace; background: var(--navy); padding: 6px 10px; border-radius: 4px; border: 1px solid var(--border); word-break: break-all; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span class="shield-icon">🛡</span>
+    TRACE<span class="product"> Shield</span>
+  </div>
+  <div class="nav-right">
+    <span class="nav-creator-name" id="nav-creator-name" style="display:none"></span>
+    <button class="nav-btn" id="nav-signout" style="display:none" onclick="signOut()">Sign Out</button>
+    <a href="../check/index.html" style="color:#94a3b8;font-size:13px;text-decoration:none;">TRACE Check →</a>
+  </div>
+</nav>
+
+<!-- AUTH -->
+<div class="auth-section" id="auth-section">
+  <div class="auth-card">
+    <div class="shield-big">🛡</div>
+    <h1>TRACE <span>Shield</span></h1>
+    <p>Blockchain-authenticated proof of content ownership. Protect your videos from deepfakes and theft.</p>
+
+    <!-- SIGN IN FORM -->
+    <div id="signin-form">
+      <div class="form-group">
+        <label>Creator ID</label>
+        <input type="text" id="signin-creator-id" placeholder="CR-XXXXXXXXXXXX" />
+      </div>
+      <button class="btn-primary" onclick="signIn()">Sign In</button>
+      <div class="auth-switch">No account? <a onclick="showSignup()">Create one free →</a></div>
+    </div>
+
+    <!-- SIGN UP FORM -->
+    <div id="signup-form" style="display:none">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="signup-name" placeholder="Your name or channel name" />
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="signup-email" placeholder="you@example.com" />
+      </div>
+      <div class="form-group">
+        <label>Plan</label>
+        <select id="signup-plan">
+          <option value="shield">Shield — $29.99/mo</option>
+          <option value="shield_pro">Shield Pro — $99/mo</option>
+          <option value="shield_business">Shield Business — $299/mo</option>
+        </select>
+      </div>
+      <button class="btn-primary" onclick="createAccount()">Create Account</button>
+      <div class="auth-switch">Already have an account? <a onclick="showSignin()">Sign in →</a></div>
+    </div>
+
+    <!-- NEW ACCOUNT RESULT -->
+    <div id="new-account-result" style="display:none">
+      <div class="result-card success" style="display:block; text-align:left;">
+        <div class="result-title success">✅ Account Created!</div>
+        <div class="cert-detail">Your Creator ID (save this!):</div>
+        <div class="creator-id-hint" id="new-creator-id"></div>
+        <div class="cert-detail" style="margin-top:8px">Use this ID to sign in. Save it somewhere safe.</div>
+      </div>
+      <button class="btn-primary" style="margin-top:16px" onclick="signInWithNewId()">Go to Dashboard →</button>
+    </div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard">
+  <div class="dash-header">
+    <h2>Creator Dashboard</h2>
+    <p id="dash-subtitle">Authenticate your content. Protect your work.</p>
+  </div>
+  <div class="dash-body">
+
+    <!-- STATS -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="label">Authenticated</div>
+        <div class="value" id="stat-total">0</div>
+        <div class="sub">videos & images</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Plan</div>
+        <div class="value" style="font-size:18px;padding-top:4px"><span class="plan-badge" id="stat-plan">—</span></div>
+        <div class="sub" id="stat-plan-sub">active</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Member Since</div>
+        <div class="value" style="font-size:18px;padding-top:4px" id="stat-since">—</div>
+        <div class="sub">TRACE creator</div>
+      </div>
+    </div>
+
+    <!-- UPLOAD -->
+    <div class="upload-section">
+      <h3>🔒 Authenticate New Content</h3>
+      <p>Upload a video or image to generate a blockchain-backed TRACE Certificate.</p>
+
+      <div class="drop-zone" id="drop-zone">
+        <div class="icon">📤</div>
+        <div class="main-text">Drag & drop your video or image here</div>
+        <div class="sub-text">Or click to browse — MP4, MOV, AVI, JPG, PNG, WebM — up to 500MB</div>
+        <input type="file" id="file-input" accept="video/*,image/*" onchange="fileSelected(this)" />
+      </div>
+
+      <div class="selected-file" id="selected-file-info"></div>
+      <div class="progress-bar" id="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+      <button class="verify-btn" id="verify-btn" onclick="submitVerify()">🛡 Authenticate This Content</button>
+      <div class="result-card" id="result-card"></div>
+    </div>
+
+    <!-- CERTIFICATES TABLE -->
+    <div class="certs-section">
+      <h3>Your Authenticated Content</h3>
+      <div id="certs-container">
+        <div class="empty-state">
+          <div class="icon">🔐</div>
+          <div>No content authenticated yet.<br>Upload your first file above.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const API = window.location.origin;
+let currentCreatorId = localStorage.getItem('trace_creator_id') || null;
+let newCreatorId = null;
+
+function showSignup() {
+  document.getElementById('signin-form').style.display = 'none';
+  document.getElementById('signup-form').style.display = 'block';
+  document.getElementById('new-account-result').style.display = 'none';
+}
+function showSignin() {
+  document.getElementById('signin-form').style.display = 'block';
+  document.getElementById('signup-form').style.display = 'none';
+  document.getElementById('new-account-result').style.display = 'none';
+}
+
+async function createAccount() {
+  const name = document.getElementById('signup-name').value.trim();
+  const email = document.getElementById('signup-email').value.trim();
+  const plan = document.getElementById('signup-plan').value;
+  if (!name || !email) { alert('Please fill in all fields.'); return; }
+
+  const btn = document.querySelector('#signup-form .btn-primary');
+  btn.innerHTML = '<span class="spinner"></span>Creating...';
+  btn.classList.add('loading');
+
+  try {
+    const resp = await fetch(`${API}/api/creators/signup`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, plan })
+    });
+    const data = await resp.json();
+    if (!resp.ok) throw new Error(data.detail || 'Signup failed');
+
+    newCreatorId = data.creator_id;
+    document.getElementById('new-creator-id').textContent = newCreatorId;
+    document.getElementById('signup-form').style.display = 'none';
+    document.getElementById('new-account-result').style.display = 'block';
+  } catch(e) {
+    alert('Error: ' + e.message);
+  } finally {
+    btn.innerHTML = 'Create Account';
+    btn.classList.remove('loading');
+  }
+}
+
+function signInWithNewId() {
+  if (newCreatorId) loadDashboard(newCreatorId);
+}
+
+async function signIn() {
+  const id = document.getElementById('signin-creator-id').value.trim();
+  if (!id) { alert('Enter your Creator ID'); return; }
+  await loadDashboard(id);
+}
+
+async function loadDashboard(creatorId) {
+  try {
+    const resp = await fetch(`${API}/api/creators/me`, {
+      headers: { 'X-Creator-Id': creatorId }
+    });
+    if (!resp.ok) { alert('Invalid Creator ID. Please check and try again.'); return; }
+    const data = await resp.json();
+
+    currentCreatorId = creatorId;
+    localStorage.setItem('trace_creator_id', creatorId);
+
+    document.getElementById('auth-section').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    document.getElementById('nav-creator-name').textContent = data.creator.name;
+    document.getElementById('nav-creator-name').style.display = 'block';
+    document.getElementById('nav-signout').style.display = 'block';
+    document.getElementById('dash-subtitle').textContent = `Welcome back, ${data.creator.name}`;
+    document.getElementById('stat-total').textContent = data.total_authenticated;
+    document.getElementById('stat-plan').textContent = data.creator.plan.replace('_', ' ').toUpperCase();
+    document.getElementById('stat-since').textContent = data.creator.member_since.slice(0,10);
+
+    renderCerts(data.certificates);
+  } catch(e) {
+    alert('Connection error. Make sure TRACE Shield API is running.');
+  }
+}
+
+function renderCerts(certs) {
+  const container = document.getElementById('certs-container');
+  if (!certs || certs.length === 0) {
+    container.innerHTML = `<div class="empty-state"><div class="icon">🔐</div><div>No content authenticated yet.<br>Upload your first file above.</div></div>`;
+    return;
+  }
+  container.innerHTML = `
+    <table>
+      <thead><tr>
+        <th>File</th>
+        <th>SHA-256</th>
+        <th>Authenticated</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr></thead>
+      <tbody>
+        ${certs.map(c => `
+          <tr>
+            <td>${c.filename}</td>
+            <td><span class="hash-truncate">${c.sha256_hash.slice(0,16)}...</span></td>
+            <td>${c.created_at.slice(0,10)}</td>
+            <td><span class="badge-verified">✅ VERIFIED</span></td>
+            <td>
+              <a href="${API}/api/certificate/${c.cert_id}" target="_blank" class="cert-action-btn">View Cert</a>
+              <a href="${API}/api/badge/${c.cert_id}" target="_blank" class="cert-action-btn">Badge</a>
+            </td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>`;
+}
+
+function signOut() {
+  localStorage.removeItem('trace_creator_id');
+  currentCreatorId = null;
+  document.getElementById('auth-section').style.display = 'flex';
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('nav-creator-name').style.display = 'none';
+  document.getElementById('nav-signout').style.display = 'none';
+  showSignin();
+}
+
+// Drag & drop
+const dz = document.getElementById('drop-zone');
+dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('drag-over'); });
+dz.addEventListener('dragleave', () => dz.classList.remove('drag-over'));
+dz.addEventListener('drop', e => {
+  e.preventDefault();
+  dz.classList.remove('drag-over');
+  if (e.dataTransfer.files[0]) fileSelected({ files: e.dataTransfer.files });
+});
+
+let selectedFile = null;
+function fileSelected(input) {
+  const file = input.files[0];
+  if (!file) return;
+  selectedFile = file;
+  const sizeStr = file.size > 1024*1024 ? `${(file.size/1024/1024).toFixed(1)} MB` : `${(file.size/1024).toFixed(0)} KB`;
+  document.getElementById('selected-file-info').style.display = 'block';
+  document.getElementById('selected-file-info').innerHTML = `📎 <strong>${file.name}</strong> &nbsp;·&nbsp; ${sizeStr} &nbsp;·&nbsp; ${file.type || 'unknown type'}`;
+  document.getElementById('verify-btn').style.display = 'inline-block';
+  document.getElementById('result-card').style.display = 'none';
+}
+
+async function submitVerify() {
+  if (!selectedFile || !currentCreatorId) return;
+  const btn = document.getElementById('verify-btn');
+  const progress = document.getElementById('progress-bar');
+  const fill = document.getElementById('progress-fill');
+  const result = document.getElementById('result-card');
+
+  btn.innerHTML = '<span class="spinner"></span>Authenticating...';
+  btn.classList.add('loading');
+  progress.style.display = 'block';
+
+  // Animate progress
+  let pct = 0;
+  const interval = setInterval(() => {
+    pct = Math.min(pct + 8, 85);
+    fill.style.width = pct + '%';
+  }, 300);
+
+  try {
+    const form = new FormData();
+    form.append('file', selectedFile);
+    const resp = await fetch(`${API}/api/verify`, {
+      method: 'POST',
+      headers: { 'X-Creator-Id': currentCreatorId },
+      body: form,
+    });
+    const data = await resp.json();
+    clearInterval(interval);
+    fill.style.width = '100%';
+
+    result.style.display = 'block';
+    if (data.status === 'verified') {
+      result.className = 'result-card success';
+      result.innerHTML = `
+        <div class="result-title success">🛡 Authenticated & Anchored</div>
+        <div class="cert-detail">Cert ID: <span>${data.cert_id}</span></div>
+        <div class="cert-detail">SHA-256: <span class="hash-truncate">${data.sha256_hash.slice(0,32)}...</span></div>
+        <div class="cert-detail">Perceptual Hash: <span class="hash-truncate">${data.perceptual_hash || 'N/A'}</span></div>
+        <div class="cert-detail">Blockchain: <span>${data.blockchain.network} ${data.blockchain.anchored ? '— TX: ' + data.blockchain.tx_id?.slice(0,16) + '...' : '(Solana ready — activation pending)'}</span></div>
+        <div class="cert-actions">
+          <a href="${API}/api/certificate/${data.cert_id}" target="_blank" class="cert-action-btn">📄 View Certificate</a>
+          <a href="${API}/api/badge/${data.cert_id}" target="_blank" class="cert-action-btn">🏅 Get Badge</a>
+          <a href="${API}/api/certificate/${data.cert_id}/qr" target="_blank" class="cert-action-btn">🔲 QR Code</a>
+        </div>`;
+      // Refresh cert list
+      loadDashboard(currentCreatorId);
+    } else if (data.status === 'already_verified') {
+      result.className = 'result-card duplicate';
+      result.innerHTML = `
+        <div class="result-title warn">⚠️ Already Authenticated</div>
+        <div class="cert-detail">This exact file was already authenticated on <span>${data.original_cert_date?.slice(0,10)}</span></div>
+        <div class="cert-detail">Cert ID: <span>${data.cert_id}</span></div>
+        <div class="cert-actions">
+          <a href="${API}/api/certificate/${data.cert_id}" target="_blank" class="cert-action-btn">📄 View Original Certificate</a>
+        </div>`;
+    }
+  } catch(e) {
+    clearInterval(interval);
+    result.style.display = 'block';
+    result.className = 'result-card';
+    result.style.border = '1px solid #dc2626';
+    result.innerHTML = `<div class="result-title" style="color:#dc2626">❌ Error</div><div class="cert-detail">${e.message}</div>`;
+  } finally {
+    btn.innerHTML = '🛡 Authenticate This Content';
+    btn.classList.remove('loading');
+    setTimeout(() => { fill.style.width = '0%'; progress.style.display = 'none'; }, 1000);
+  }
+}
+
+// Auto-login if saved
+if (currentCreatorId) loadDashboard(currentCreatorId);
+</script>
+</body>
+</html>
