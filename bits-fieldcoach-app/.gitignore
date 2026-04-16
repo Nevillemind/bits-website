@@ -1,0 +1,16 @@
+# Android build artifacts
+app/build/
+build/
+.gradle/
+local.properties
+*.apk
+*.aab
+
+# IDE
+.idea/
+*.iml
+.DS_Store
+
+# Keystore (never commit)
+*.jks
+*.keystore

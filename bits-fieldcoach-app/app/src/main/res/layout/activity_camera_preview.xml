@@ -208,7 +208,7 @@
             android:id="@+id/startStopButton"
             android:layout_width="0dp"
             android:layout_height="48dp"
-            android:layout_weight="2"
+            android:layout_weight="1.5"
             android:text="📸 TAKE PHOTO"
             android:textColor="#FFFFFF"
             android:textSize="12sp"
@@ -217,12 +217,26 @@
             app:cornerRadius="8dp"
             android:layout_marginEnd="8dp" />
 
+        <!-- GO LIVE Button — starts/stops live video stream to supervisor -->
+        <Button
+            android:id="@+id/goLiveButton"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1.2"
+            android:text="GO LIVE"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:backgroundTint="#B91C1C"
+            app:cornerRadius="8dp"
+            android:layout_marginEnd="8dp" />
+
         <!-- Ask AI Button -->
         <Button
             android:id="@+id/askAiButton"
             android:layout_width="0dp"
             android:layout_height="48dp"
-            android:layout_weight="1.5"
+            android:layout_weight="1.2"
             android:text="ASK AI"
             android:textColor="#FFFFFF"
             android:textSize="12sp"

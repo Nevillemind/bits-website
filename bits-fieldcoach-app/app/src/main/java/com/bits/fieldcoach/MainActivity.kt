@@ -6,8 +6,11 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.AudioManager
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -17,6 +20,9 @@ import com.bits.fieldcoach.ai.FieldCoachClient
 import com.bits.fieldcoach.audio.SpeechManager
 import com.bits.fieldcoach.ble.*
 import com.bits.fieldcoach.camera.PhoneCamera
+import com.bits.fieldcoach.rtmp.LivestreamManager
+import com.bits.fieldcoach.stream.StreamRelay
+import com.bits.fieldcoach.stream.StreamStatus
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -67,7 +73,15 @@ class MainActivity : AppCompatActivity() {
     private lateinit var transcriptText: TextView
     private lateinit var responseText: TextView
     private lateinit var connectButton: Button
+    private lateinit var goLiveButton: Button
     private lateinit var micButton: Button
+    private lateinit var debugText: TextView
+    private lateinit var liveDebugText: TextView  // dedicated livestream debug — nothing else writes here
+    private lateinit var hotspotSsidInput: EditText
+    private lateinit var hotspotPasswordInput: EditText
+    private var livestreamManager: LivestreamManager? = null
+    private var isLive = false
+    private var livestreamActive = false  // blocks BLE from overwriting debug log
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,6 +93,29 @@ class MainActivity : AppCompatActivity() {
         transcriptText = findViewById(R.id.transcriptText)
         responseText = findViewById(R.id.responseText)
         connectButton = findViewById(R.id.connectButton)
+        goLiveButton = findViewById(R.id.goLiveButton)
+        hotspotSsidInput = findViewById(R.id.hotspotSsidInput)
+        hotspotPasswordInput = findViewById(R.id.hotspotPasswordInput)
+
+        // Load saved hotspot credentials
+        val prefs = getSharedPreferences("bits_fieldcoach", Context.MODE_PRIVATE)
+        hotspotSsidInput.setText(prefs.getString("hotspot_ssid", ""))
+        hotspotPasswordInput.setText(prefs.getString("hotspot_password", ""))
+
+        // Save hotspot credentials button
+        findViewById<Button>(R.id.hotspotSaveButton).setOnClickListener {
+            val ssid = hotspotSsidInput.text.toString().trim()
+            val pass = hotspotPasswordInput.text.toString().trim()
+            if (ssid.isEmpty()) {
+                responseText.text = "Enter your hotspot name first."
+                return@setOnClickListener
+            }
+            prefs.edit()
+                .putString("hotspot_ssid", ssid)
+                .putString("hotspot_password", pass)
+                .apply()
+            responseText.text = "Hotspot settings saved ✓"
+        }
 
         // Initialize modules
         bleManager = BleConnectionManager(this)
@@ -98,6 +135,15 @@ class MainActivity : AppCompatActivity() {
 
         // Button handlers
         connectButton.setOnClickListener { startConnection() }
+
+        // GO LIVE button — start/stop streaming to supervisor
+        goLiveButton.setOnClickListener {
+            if (isLive) {
+                stopLiveStream()
+            } else {
+                startLiveStream()
+            }
+        }
 
         // Camera button — launches live camera preview screen
         cameraButton.setOnClickListener {
@@ -175,10 +221,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Observe BLE scan debug
-        val debugText: TextView = findViewById(R.id.debugText)
+        debugText = findViewById(R.id.debugText)
+        liveDebugText = findViewById(R.id.liveDebugText)
         lifecycleScope.launch {
             bleManager.discoveredDevices.collectLatest { devices ->
                 runOnUiThread {
+                    if (livestreamActive) return@runOnUiThread  // livestream owns debug log
                     if (devices.isEmpty()) {
                         debugText.text = "BLE: scanning..."
                     } else {
@@ -228,8 +276,88 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // -----------------------------------------------------------------------
+    // GO LIVE — Stream glasses camera to supervisor via Field Coach backend
+    // -----------------------------------------------------------------------
+
+    private fun startLiveStream() {
+        if (!bleManager.isConnected()) {
+            responseText.text = "Connect glasses first, then go live."
+            return
+        }
+
+        val prefs = getSharedPreferences("bits_fieldcoach", Context.MODE_PRIVATE)
+
+        // Check hotspot credentials are saved
+        val hotspotSsid = prefs.getString("hotspot_ssid", "") ?: ""
+        val hotspotPass = prefs.getString("hotspot_password", "") ?: ""
+        if (hotspotSsid.isEmpty()) {
+            responseText.text = "Set your hotspot name & password above first, then Save."
+            return
+        }
+
+        val workerId = prefs.getString("worker_id",
+            "worker_${android.provider.Settings.Secure.getString(
+                contentResolver,
+                android.provider.Settings.Secure.ANDROID_ID
+            )?.take(6) ?: "unknown"}"
+        ) ?: "worker_unknown"
+
+        Log.i(TAG, "Starting RTMP live stream as: $workerId")
+        goLiveButton.text = "CONNECTING..."
+        goLiveButton.backgroundTintList = android.content.res.ColorStateList.valueOf(0xFFF59E0B.toInt())
+
+        livestreamManager = LivestreamManager(this, bleManager, "wss://bitsfieldcoach.com", hotspotSsid, hotspotPass)
+        livestreamManager?.setStateListener { state ->
+            runOnUiThread {
+                when (state) {
+                    LivestreamManager.State.IDLE -> {
+                        isLive = false
+                        goLiveButton.text = "GO LIVE"
+                        goLiveButton.backgroundTintList = android.content.res.ColorStateList.valueOf(0xFF991B1B.toInt())
+                    }
+                    LivestreamManager.State.LIVE -> {
+                        isLive = true
+                        goLiveButton.text = "● LIVE — TAP TO STOP"
+                        goLiveButton.backgroundTintList = android.content.res.ColorStateList.valueOf(0xFFDC2626.toInt())
+                        responseText.text = "Live! Supervisor is watching at bitsfieldcoach.com/livestream/"
+                    }
+                    LivestreamManager.State.ERROR -> {
+                        isLive = false
+                        goLiveButton.text = "GO LIVE"
+                        goLiveButton.backgroundTintList = android.content.res.ColorStateList.valueOf(0xFF991B1B.toInt())
+                        responseText.text = "Stream error. Check debug log above."
+                    }
+                    else -> {
+                        goLiveButton.text = "STARTING..."
+                        goLiveButton.backgroundTintList = android.content.res.ColorStateList.valueOf(0xFFF59E0B.toInt())
+                    }
+                }
+            }
+        }
+        // Wire debug log to DEDICATED live debug view — nothing else can overwrite
+        livestreamManager?.setDebugListener { log ->
+            runOnUiThread {
+                liveDebugText.text = log.takeLast(3000)
+            }
+        }
+        livestreamActive = true
+        livestreamManager?.goLive(workerId)
+    }
+
+    private fun stopLiveStream() {
+        livestreamActive = false
+        livestreamManager?.stopLive()
+        livestreamManager = null
+        isLive = false
+        goLiveButton.text = "GO LIVE"
+        goLiveButton.backgroundTintList = android.content.res.ColorStateList.valueOf(0xFF991B1B.toInt())
+        responseText.text = "Stream stopped."
+        Log.i(TAG, "Live stream stopped")
+    }
+
     private fun requestPermissions() {
-        val permissions = arrayOf(
+        val permissions = mutableListOf(
             Manifest.permission.BLUETOOTH_CONNECT,
             Manifest.permission.BLUETOOTH_SCAN,
             Manifest.permission.BLUETOOTH_ADVERTISE,
@@ -238,13 +366,19 @@ class MainActivity : AppCompatActivity() {
             Manifest.permission.CAMERA
         )
 
-        val needed = permissions.filter {
+        // Android 13+ requires NEARBY_WIFI_DEVICES for local hotspot
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+            permissions.add(Manifest.permission.NEARBY_WIFI_DEVICES)
+        }
+
+        val permissionsArray = permissions.toTypedArray()
+
+        val needed = permissionsArray.filter {
             ContextCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED
         }
 
         if (needed.isNotEmpty()) {
-            ActivityCompat.requestPermissions(this, needed.toTypedArray(), PERMISSION_REQUEST_CODE)
-        } else {
+            ActivityCompat.requestPermissions(this, needed.toTypedArray(), PERMISSION_REQUEST_CODE)        } else {
             initializeAfterPermissions()
         }
     }
@@ -397,6 +531,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handlePhotoResponse(event: GlassesEvent.PhotoResponse) {
+        // Photo response from glasses — handled by AI analysis
+        // (Live streaming now uses RTMP, not BLE photo forwarding)
+
         lifecycleScope.launch {
             if (event.success && event.photoData != null) {
                 speechManager.speak("Analyzing what I see.")

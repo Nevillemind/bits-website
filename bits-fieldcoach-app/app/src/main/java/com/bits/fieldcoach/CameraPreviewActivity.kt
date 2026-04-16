@@ -1,5 +1,6 @@
 package com.bits.fieldcoach
 
+import android.content.Context
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Handler
@@ -14,15 +15,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.bits.fieldcoach.ble.ConnectionStatus
 import com.bits.fieldcoach.ble.GlassesEvent
+import com.bits.fieldcoach.rtmp.LivestreamManager
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 /**
  * BITS Field Coach — Live Camera Preview Activity
  *
- * Displays a continuous feed from the Mentra glasses camera.
- * Requests a new photo every ~1 second after receiving each frame.
- * Allows AI analysis of the current frame via "Ask AI" button.
+ * TAKE PHOTO — takes a single BLE photo, displays on screen.
+ * ASK AI — analyzes the current photo with AI.
+ * GO LIVE — starts RTMP livestream via LivestreamManager (hotspot → RTMP → supervisor).
  */
 class CameraPreviewActivity : AppCompatActivity() {
 
@@ -43,6 +45,11 @@ class CameraPreviewActivity : AppCompatActivity() {
     private lateinit var backButton: Button
     private lateinit var aiResponseText: TextView
     private lateinit var questionInput: EditText
+
+    // GO LIVE streaming — uses LivestreamManager (RTMP path)
+    private lateinit var goLiveButton: Button
+    private var livestreamManager: LivestreamManager? = null
+    private var isLive = false
 
     // Preview state
     private var isPreviewRunning = false
@@ -125,6 +132,16 @@ class CameraPreviewActivity : AppCompatActivity() {
             }
         }
 
+        // GO LIVE button — RTMP livestream via LivestreamManager (same as MainActivity)
+        goLiveButton = findViewById(R.id.goLiveButton)
+        goLiveButton.setOnClickListener {
+            if (isLive) {
+                stopLiveStream()
+            } else {
+                startLiveStream()
+            }
+        }
+
         // Observe connection state
         val bleManager = FieldCoachApp.bleManager
         if (bleManager != null) {
@@ -146,7 +163,7 @@ class CameraPreviewActivity : AppCompatActivity() {
         setupGlassesEventListener()
 
         // Initial UI state
-        updateConnectionUi(bleManager?.connectionState?.value ?: com.bits.fieldcoach.ble.ConnectionStatus.DISCONNECTED)
+        updateConnectionUi(bleManager?.connectionState?.value ?: ConnectionStatus.DISCONNECTED)
     }
 
     private var pendingQuestion: String = "What do you see? Describe any issues or observations."
@@ -158,7 +175,6 @@ class CameraPreviewActivity : AppCompatActivity() {
                 is GlassesEvent.PhotoResponse -> {
                     if (event.success && event.photoData != null) {
                         handleNewFrame(event.photoData)
-                        // Photo displayed — user can now tap ASK AI when ready
                         runOnUiThread {
                             frameCountText.text = "Photo captured ✅ — tap ASK AI to analyze"
                         }
@@ -172,9 +188,9 @@ class CameraPreviewActivity : AppCompatActivity() {
                 is GlassesEvent.ConnectionState -> {
                     runOnUiThread {
                         val status = if (event.connected)
-                            com.bits.fieldcoach.ble.ConnectionStatus.CONNECTED
+                            ConnectionStatus.CONNECTED
                         else
-                            com.bits.fieldcoach.ble.ConnectionStatus.DISCONNECTED
+                            ConnectionStatus.DISCONNECTED
                         updateConnectionUi(status)
                     }
                 }
@@ -208,13 +224,11 @@ class CameraPreviewActivity : AppCompatActivity() {
             Log.d(TAG, "Frame $frameCount displayed (${photoData.size} bytes, $fps)")
         }
 
-        // Re-enable take photo button
         runOnUiThread { startStopButton.isEnabled = true }
     }
 
     /**
-     * Take a single photo from glasses and display it on screen.
-     * Does NOT auto-analyze — user must tap ASK AI or use voice.
+     * Take a single photo from glasses via BLE.
      */
     private fun takeSinglePhoto() {
         val bleManager = FieldCoachApp.bleManager
@@ -226,12 +240,11 @@ class CameraPreviewActivity : AppCompatActivity() {
 
         frameCountText.text = "Taking photo..."
         startStopButton.isEnabled = false
-        
+
         val requestId = "preview_${System.currentTimeMillis()}"
         bleManager.requestPhoto(requestId)
         Log.i(TAG, "Single photo requested: $requestId")
 
-        // Re-enable button after 10 seconds (timeout)
         handler.postDelayed({
             startStopButton.isEnabled = true
             if (lastPhotoData == null) {
@@ -241,9 +254,7 @@ class CameraPreviewActivity : AppCompatActivity() {
     }
 
     /**
-     * ASK AI button — analyzes the ALREADY CAPTURED photo.
-     * User must take a photo first, then tap ASK AI.
-     * Does NOT take a new photo — uses whatever is on screen.
+     * ASK AI — analyzes the already captured photo.
      */
     private fun takePhotoAndAnalyze() {
         val photoData = lastPhotoData
@@ -256,9 +267,6 @@ class CameraPreviewActivity : AppCompatActivity() {
         analyzeCurrentFrame(pendingQuestion)
     }
 
-    /**
-     * Analyze the current frame with AI using the given question.
-     */
     private fun analyzeCurrentFrame(question: String) {
         val photoData = lastPhotoData ?: return
         val aiClient = FieldCoachApp.aiClient
@@ -300,6 +308,83 @@ class CameraPreviewActivity : AppCompatActivity() {
         }
     }
 
+    // -----------------------------------------------------------------------
+    // GO LIVE — RTMP livestream via LivestreamManager (same as MainActivity)
+    // -----------------------------------------------------------------------
+
+    private fun startLiveStream() {
+        val bleManager = FieldCoachApp.bleManager
+        if (bleManager == null || !bleManager.isConnected()) {
+            aiResponseText.text = "Glasses not connected. Connect from main screen first."
+            aiResponseText.visibility = View.VISIBLE
+            return
+        }
+
+        val prefs = getSharedPreferences("bits_fieldcoach", Context.MODE_PRIVATE)
+
+        // Check hotspot credentials are saved
+        val hotspotSsid = prefs.getString("hotspot_ssid", "") ?: ""
+        if (hotspotSsid.isEmpty()) {
+            aiResponseText.text = "Set hotspot name & password on main screen first."
+            aiResponseText.visibility = View.VISIBLE
+            return
+        }
+
+        val workerId = prefs.getString("worker_id",
+            "worker_${android.provider.Settings.Secure.getString(
+                contentResolver,
+                android.provider.Settings.Secure.ANDROID_ID
+            )?.take(6) ?: "unknown"}"
+        ) ?: "worker_unknown"
+
+        Log.i(TAG, "Starting RTMP live stream as: $workerId")
+        goLiveButton.text = "CONNECTING..."
+        goLiveButton.backgroundTintList = android.content.res.ColorStateList.valueOf(0xFFF59E0B.toInt())
+
+        livestreamManager = LivestreamManager(this, bleManager, "wss://bitsfieldcoach.com",
+            prefs.getString("hotspot_ssid", "") ?: "",
+            prefs.getString("hotspot_password", "") ?: ""
+        )
+        livestreamManager?.setStateListener { state ->
+            runOnUiThread {
+                when (state) {
+                    LivestreamManager.State.IDLE -> {
+                        isLive = false
+                        goLiveButton.text = "GO LIVE"
+                        goLiveButton.backgroundTintList = android.content.res.ColorStateList.valueOf(0xFFB91C1C.toInt())
+                    }
+                    LivestreamManager.State.LIVE -> {
+                        isLive = true
+                        goLiveButton.text = "● LIVE — TAP TO STOP"
+                        goLiveButton.backgroundTintList = android.content.res.ColorStateList.valueOf(0xFFDC2626.toInt())
+                        frameCountText.text = "LIVE — streaming to supervisor"
+                    }
+                    LivestreamManager.State.ERROR -> {
+                        isLive = false
+                        goLiveButton.text = "GO LIVE"
+                        goLiveButton.backgroundTintList = android.content.res.ColorStateList.valueOf(0xFFB91C1C.toInt())
+                        frameCountText.text = "Stream error. Check hotspot and try again."
+                    }
+                    else -> {
+                        goLiveButton.text = "STARTING..."
+                        goLiveButton.backgroundTintList = android.content.res.ColorStateList.valueOf(0xFFF59E0B.toInt())
+                    }
+                }
+            }
+        }
+        livestreamManager?.goLive(workerId)
+    }
+
+    private fun stopLiveStream() {
+        livestreamManager?.stopLive()
+        livestreamManager = null
+        isLive = false
+        goLiveButton.text = "GO LIVE"
+        goLiveButton.backgroundTintList = android.content.res.ColorStateList.valueOf(0xFFB91C1B.toInt())
+        frameCountText.text = "Stream stopped"
+        Log.i(TAG, "Live stream stopped")
+    }
+
     private fun stopPreviewLoop() {
         isPreviewRunning = false
         handler.removeCallbacksAndMessages(null)
@@ -328,8 +413,6 @@ class CameraPreviewActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         stopPreviewLoop()
-        // Note: we don't remove the listener from bleManager since it's a global list
-        // and BleConnectionManager doesn't currently support listener removal.
-        // The activity reference in the lambda will be cleared naturally by GC.
+        stopLiveStream()
     }
 }
